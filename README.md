@@ -19,3 +19,5 @@ IntelliJ instructies:
 
 java -jar PROJ1.jar
 zet dit hierboven in de terminal om het project te runnen
+
+wessel is de almachtige man
