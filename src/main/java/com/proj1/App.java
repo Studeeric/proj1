@@ -11,3 +11,6 @@ public class App
         System.out.println( "Hello World!" );
     }
 }
+
+//java -jar PROJ1.jar
+//zit dit hierboven in de terminal om het project te runnen

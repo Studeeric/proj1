@@ -17,4 +17,5 @@ De presentatie met de opdracht staat hier: https://blackboard.hhs.nl/webapps/bla
 
 IntelliJ instructies:
 
---Lucas hier scrijven aub--
+java -jar PROJ1.jar
+zet dit hierboven in de terminal om het project te runnen
