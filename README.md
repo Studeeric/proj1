@@ -19,5 +19,5 @@ Plan van aanpak https://dehaagsehogeschool-my.sharepoint.com/:w:/r/personal/2114
 
 (IntelliJ instructies:
 
-java -jar PROJ1.jar
+java -jar proj1.jar
 zet dit hierboven in de terminal om het project te runnen)
