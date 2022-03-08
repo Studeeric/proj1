@@ -1,9 +1,6 @@
 package com.proj1;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     public static void main( String[] args )
@@ -12,5 +9,4 @@ public class App
     }
 }
 
-//java -jar PROJ1.jar
-//zit dit hierboven in de terminal om het project te runnen
+
