@@ -10,7 +10,7 @@
 				"${dependencies}"
 			],
 			"problemMatcher": [],
-			"label": "java: exportjar:PROJ1",
+			"label": "java: exportjar:proj1",
 			"group": {
 				"kind": "build",
 				"isDefault": true
