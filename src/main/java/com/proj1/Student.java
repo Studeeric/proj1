@@ -14,6 +14,13 @@ public class Student {
         this.studentNumber = studentNumber;
         studentList.add(this);
     }
+    public String getName(){
+        return this.name;
+    }
+
+    public int getStudentNumber(){
+        return this.studentNumber;
+    }
 
     public void getPassed(){
         
