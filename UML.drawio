@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-03-10T15:29:16.091Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="dQdUN68OO6gLyydpm1Yd" version="17.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-03-10T15:33:14.511Z" agent="5.0 (X11)" etag="LCyQXKUzchQuuxFP-oF2" version="17.1.0" type="github">
   <diagram id="8I2CmzhelA5MCaDlNnXx" name="Page-1">
-    <mxGraphModel dx="1221" dy="672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,7 +40,7 @@
         <mxCell id="IUDxcDOe4H3WORA1nVKD-54" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="IUDxcDOe4H3WORA1nVKD-51" vertex="1">
           <mxGeometry y="104" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="IUDxcDOe4H3WORA1nVKD-55" value="+startExam()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="IUDxcDOe4H3WORA1nVKD-51" vertex="1">
+        <mxCell id="IUDxcDOe4H3WORA1nVKD-55" value="+startExam(student: Student)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="IUDxcDOe4H3WORA1nVKD-51" vertex="1">
           <mxGeometry y="112" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="IUDxcDOe4H3WORA1nVKD-56" value="+checkPassed(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="IUDxcDOe4H3WORA1nVKD-51" vertex="1">
