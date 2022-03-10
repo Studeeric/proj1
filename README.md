@@ -22,3 +22,4 @@ java -jar proj1.jar
 zet dit hierboven in de terminal om het project te runnen
 Build je project voordat je runt!!
 
+

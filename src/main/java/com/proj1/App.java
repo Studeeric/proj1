@@ -71,6 +71,83 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
+    //burton's toevoegingen vanaf hier
+    public void startExams(){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Geef je studentgegevens.");
+        String userInput = scanner.nextLine();
+
+        for (int i=0; i <studentList.size(); i++){
+            if(userInput != studentList.get(i).getName()){
+                studentGegevensAfwezigMessage();
+                
+                int sGAkiesmenu = scanner.nextInt();
+
+                try{
+                    switch(sGAkiesmenu){
+                        case 1:
+                            startExams();//deze methode opnieuw
+                            break;
+                        case 2:
+                            maakNieuweStudentAan();
+                            startExams();//deze methode opnieuw
+                            break;
+                        case 3:
+                            mainMenu();
+                            break;
+                        default:
+                            System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                            mainMenu();
+                    }    
+                } 
+                
+                break;
+            } else {
+                studentGegevensAanwezig();    
+            }
+
+        }
+    }
+
+    private void studentGegevensAanwezig(){
+        Scanner charles = new Scanner(System.in);
+        System.out.println("Kies een van de volgende examens.");
+        for (int n = 0; n < examList.size(); n++){
+            System.out.print(n+") " + examList.get(n).getName() + " " + examList.get(n).getCategory());
+        }
+        int inputStudentGegevensAanwezig = charles.nextInt();
+        try{
+        startExam(examList.get(inputStudentGegevensAanwezig).getName());
+        } catch (exception e){
+            System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+        }
+    }
+
+    private void studentGegevensAfwezigMessage(){
+        System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
+        System.out.println("Kies een van de volgende opties:");
+        System.out.println("1) Probeer opnieuw");
+        System.out.println("2) Nieuwe student aanmaken");
+        System.out.pritnln("3) Terug naar hoofdmenu");
+    }
+
+    private void maakNieuweStudentAan(){
+        Scanner maNiStAaInput = new Scanner(System.in);
+
+        System.out.println("Wat is je naam?");
+        String naam = maNiStAaInput.nextLine();
+
+        System.out.println("Wat is je studentnummer?");
+        int studentnummer = maNiStAaInput.nextInt();
+
+        Student student = new student(naam, studentnummer);
+
+        System.out.println("Je bent toegevoegd aan de student lijst.");
+        maNiStAaInput.close();
+
+    }
 }
 
 
