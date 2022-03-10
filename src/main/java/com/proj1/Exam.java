@@ -25,7 +25,7 @@ public class Exam {
 
     public void startExam(Student student){
         int correct = 0;
-        for (int i = 0; i < questionList.length; i++) {
+        for (int i = 0; i < questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
             questionList.get(i).askQuestion();
             if(questionList.get(i).checkAnswer(scanner.nextLine())){
@@ -36,7 +36,7 @@ public class Exam {
     }
 
     public void checkPassed(int correct, Student student){
-        if(correct >= (questionList.length/2)){
+        if(correct >= (questionList.size()/2)){
             student.behaaldeExamens.add(this);
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
                                 "Je hebt " + correct + " van de " + questionList.length + "vragen goed.");
