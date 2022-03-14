@@ -1,6 +1,5 @@
 package com.proj1; import java.util.Scanner; import java.io.IOException;
 
-
 public class App {
     public static void main( String[] args){
         mainMenu();
@@ -114,13 +113,13 @@ public class App {
     private void studentGegevensAanwezig(){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
-        for (int n = 0; n < examList.size(); n++){
-            System.out.print(n+") " + examList.get(n).getName() + " " + examList.get(n).getCategory());
+        for (int n = 0; n < Exam.examList.size(); n++){
+            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
         startExam(examList.get(inputStudentGegevensAanwezig).getName());
-        } catch (exception e){
+        } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
     }
@@ -132,7 +131,7 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.pritnln("3) Terug naar hoofdmenu");
     }
-
+/*
     private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
 
@@ -148,6 +147,7 @@ public class App {
         maNiStAaInput.close();
 
     }
+    */
 }
 
 
