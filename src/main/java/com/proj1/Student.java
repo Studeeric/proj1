@@ -24,7 +24,7 @@ public class Student {
     }
 
     public ArrayList<Exam> getPassed(){
-        return this.getPassed();                
+        return this.behaaldeExamens();                
     }
 
     public void newStudent(){
