@@ -71,6 +71,21 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
+    //getExams
+    private static void getExams(Scanner scanner) {
+        for (Exam e : Exam.examList){
+            System.out.println(e.getCategory() + " - " + e.getName());
+        }
+        System.out.println("press return to continue");
+        try{
+            String getExamsChoice = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}
+    }
+    //getStudents
+    //newStudent
+    //deleteStudent
+
     //burton's toevoegingen vanaf hier
     public static void startExams(){
 
@@ -148,6 +163,7 @@ public class App {
         maNiStAaInput.close();
 
     }
+    
 }
 
 
