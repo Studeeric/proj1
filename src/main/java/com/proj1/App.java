@@ -19,10 +19,10 @@ public class App {
                     getStudents(james);
                     mainMenu();
                 case(3):
-                    newStudent();
+                    Student.newStudent();
                     mainMenu();
                 case(4):
-                    deleteStudent();
+                    Student.deleteStudent();
                     mainMenu();
                 case(5):
                     startExams();
@@ -34,7 +34,7 @@ public class App {
                     studentExamPassed();
                     mainMenu();
                 case(8):
-                    studentMostPassed();
+                    Student.studentMostPassed();
                     mainMenu();
                 case(0):
                     System.out.println("exiting now.");
