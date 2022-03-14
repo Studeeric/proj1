@@ -22,7 +22,7 @@ public class Student {
         return this.studentNumber;
     }
 
-    public void getPassed(){                
-        
+    public ArrayList<Exam> getPassed(){                
+        return this.behaaldeExamens;
     }
 }
