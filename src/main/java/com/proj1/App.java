@@ -7,17 +7,17 @@ public class App {
     }
 
     public static void mainMenu() {
-        clrscr();
+        clearScreen();
         printMenu();
         Scanner james = new Scanner(System.in);
         int chooseAction = james.nextInt();
         try{
             switch (chooseAction){
                 case (1):
-                    getExams();
+                    getExams(james);
                     mainMenu();
                 case(2):
-                    getStudents();
+                    getStudents(james);
                     mainMenu();
                 case(3):
                     newStudent();
@@ -62,7 +62,7 @@ public class App {
         System.out.println("0) Exit");
     }
 
-    public static void clrscr(){
+    public static void clearScreen(){
         //Clears Screen in java
         try {
             if (System.getProperty("os.name").contains("Windows"))
@@ -78,11 +78,21 @@ public class App {
         }
         System.out.println("press return to continue");
         try{
-            String getExamsChoice = scanner.nextLine(); // This is just here to wait for input
+            String getExamsReturn = scanner.nextLine(); // This is just here to wait for input
         }
         finally{}
     }
     //getStudents
+    private static void getStudents(Scanner scanner) {
+        for (Student e : Student.studentList){
+            System.out.println(e.getName());
+        }
+        System.out.println("press return to continue");
+        try{
+            String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}
+    }
     //newStudent
     //deleteStudent
 
@@ -91,11 +101,11 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Geef je gegevens.");
-        String userInput = scanner.nextLine();
+        System.out.println("Geef je StudentNummer.");
+        int userInput = scanner.nextInt();
 
         for (int i=0; i < Student.studentList.size(); i++){
-            if(userInput != Student.studentList.get(i).getName()){
+            if(userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -122,6 +132,7 @@ public class App {
             } else {
                 studentGegevensAanwezig();    
             }
+            scanner.close();
 
         }
     }
@@ -134,7 +145,7 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-            Exam.startExam(Exam.examList.get(inputStudentGegevensAanwezig));
+            Exam.startExamr(Exam.examList.get(inputStudentGegevensAanwezig));
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
