@@ -102,7 +102,7 @@ public class App {
                             mainMenu();
                     }    
                 } 
-                
+                finally{}
                 break;
             } else {
                 studentGegevensAanwezig();    
@@ -111,7 +111,7 @@ public class App {
         }
     }
 
-    private void studentGegevensAanwezig(){
+    private static void studentGegevensAanwezig(){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
@@ -119,7 +119,7 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-            Exam.startExam(examList.get(inputStudentGegevensAanwezig));
+            Exam.startExam(Exam.examList.get(inputStudentGegevensAanwezig));
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
@@ -133,7 +133,7 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
 
-    private void maakNieuweStudentAan(){
+    private static void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
 
         System.out.println("Wat is je naam?");
@@ -144,7 +144,7 @@ public class App {
 
         Student student = new Student(naam, studentnummer);
 
-        System.out.println("Je bent toegevoegd aan de student lijst.");
+        System.out.println(student.getName() +" is toegevoegd aan de student lijst.");
         maNiStAaInput.close();
 
     }
