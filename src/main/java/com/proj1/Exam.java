@@ -1,7 +1,4 @@
-package com.proj1;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+package com.proj1; import java.util.ArrayList; import java.util.Scanner;
 
 public class Exam {
     private String name;
