@@ -32,10 +32,10 @@ public class App {
                     studentExamStatus();
                     mainMenu();
                 case(7):
-                    System.out.println("test7");
+                    studentExamPassed();
                     mainMenu();
                 case(8):
-                    System.out.println("test8");
+                    studentMostPassed();
                     mainMenu();
                 case(0):
                     System.out.println("exiting now.");
