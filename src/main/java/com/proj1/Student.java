@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Student {
     private String name;
     private int studentNumber;
-    private static ArrayList<Student> studentList;
+    public static ArrayList<Student> studentList;
     public ArrayList<Exam> behaaldeExamens;
     //private Exam examen;
 
@@ -22,7 +22,7 @@ public class Student {
         return this.studentNumber;
     }
 
-    public void getPassed(){                
-        
+    public ArrayList<Exam> getPassed(){                
+        return this.behaaldeExamens;
     }
 }

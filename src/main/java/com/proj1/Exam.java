@@ -12,7 +12,6 @@ public class Exam {
 
 
     /*  ATTENTION
-        Exam kan pas goed getest worden zodra Exam en Question en Student gemerged zijn.
         Questions moeten nog toegevoegd worden bij initialization.
     */
 
@@ -46,6 +45,14 @@ public class Exam {
                                 "Volgende keer beter!");
         }
 
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getCategory(){
+        return this.category;
     }
 
 }
