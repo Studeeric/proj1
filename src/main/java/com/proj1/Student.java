@@ -23,7 +23,8 @@ public class Student {
         return this.studentNumber;
     }
 
-    public void getPassed(){                
+    public ArrayList<Exam> getPassed(){
+        return this.getPassed();                
     }
 
     public void newStudent(){
