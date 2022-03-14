@@ -72,15 +72,15 @@ public class App {
         } catch (IOException | InterruptedException ex) {}
     }
     //burton's toevoegingen vanaf hier
-    public void startExams(){
+    public static void startExams(){
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Geef je studentgegevens.");
+        System.out.println("Geef je gegevens.");
         String userInput = scanner.nextLine();
 
-        for (int i=0; i <studentList.size(); i++){
-            if(userInput != studentList.get(i).getName()){
+        for (int i=0; i < Student.studentList.size(); i++){
+            if(userInput != Student.studentList.get(i).getName()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -114,23 +114,23 @@ public class App {
     private void studentGegevensAanwezig(){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
-        for (int n = 0; n < examList.size(); n++){
-            System.out.print(n+") " + examList.get(n).getName() + " " + examList.get(n).getCategory());
+        for (int n = 0; n < Exam.examList.size(); n++){
+            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-        startExam(examList.get(inputStudentGegevensAanwezig).getName());
-        } catch (exception e){
+            Exam.startExam(examList.get(inputStudentGegevensAanwezig));
+        } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
     }
 
-    private void studentGegevensAfwezigMessage(){
+    private static void studentGegevensAfwezigMessage(){
         System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.pritnln("3) Terug naar hoofdmenu");
+        System.out.println("3) Terug naar hoofdmenu");
     }
 
     private void maakNieuweStudentAan(){
@@ -142,7 +142,7 @@ public class App {
         System.out.println("Wat is je studentnummer?");
         int studentnummer = maNiStAaInput.nextInt();
 
-        Student student = new student(naam, studentnummer);
+        Student student = new Student(naam, studentnummer);
 
         System.out.println("Je bent toegevoegd aan de student lijst.");
         maNiStAaInput.close();
