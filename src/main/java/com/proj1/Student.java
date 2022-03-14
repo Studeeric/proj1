@@ -23,6 +23,7 @@ public class Student {
         return this.studentNumber;
     }
 
+<<<<<<< HEAD
     public void getPassed(){                
     }
 
@@ -55,5 +56,9 @@ public class Student {
 
     public void studentMostPassed (){
        
+=======
+    public ArrayList<Exam> getPassed(){                
+        return this.behaaldeExamens;
+>>>>>>> 34a3028d78782b95c2937c2cc8350338f1df5c4a
     }
 }

@@ -70,16 +70,31 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
+    //getExams
+    private static void getExams(Scanner scanner) {
+        for (Exam e : Exam.examList){
+            System.out.println(e.getCategory() + " - " + e.getName());
+        }
+        System.out.println("press return to continue");
+        try{
+            String getExamsChoice = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}
+    }
+    //getStudents
+    //newStudent
+    //deleteStudent
+
     //burton's toevoegingen vanaf hier
-    public void startExams(){
+    public static void startExams(){
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Geef je studentgegevens.");
+        System.out.println("Geef je gegevens.");
         String userInput = scanner.nextLine();
 
-        for (int i=0; i <studentList.size(); i++){
-            if(userInput != studentList.get(i).getName()){
+        for (int i=0; i < Student.studentList.size(); i++){
+            if(userInput != Student.studentList.get(i).getName()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -101,7 +116,7 @@ public class App {
                             mainMenu();
                     }    
                 } 
-                
+                finally{}
                 break;
             } else {
                 studentGegevensAanwezig();    
@@ -110,7 +125,7 @@ public class App {
         }
     }
 
-    private void studentGegevensAanwezig(){
+    private static void studentGegevensAanwezig(){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
@@ -118,21 +133,30 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
+<<<<<<< HEAD
         startExam(examList.get(inputStudentGegevensAanwezig).getName());
+=======
+            Exam.startExam(Exam.examList.get(inputStudentGegevensAanwezig));
+>>>>>>> 34a3028d78782b95c2937c2cc8350338f1df5c4a
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
     }
 
-    private void studentGegevensAfwezigMessage(){
+    private static void studentGegevensAfwezigMessage(){
         System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.pritnln("3) Terug naar hoofdmenu");
+        System.out.println("3) Terug naar hoofdmenu");
     }
+<<<<<<< HEAD
 /*
     private void maakNieuweStudentAan(){
+=======
+
+    private static void maakNieuweStudentAan(){
+>>>>>>> 34a3028d78782b95c2937c2cc8350338f1df5c4a
         Scanner maNiStAaInput = new Scanner(System.in);
 
         System.out.println("Wat is je naam?");
@@ -141,13 +165,17 @@ public class App {
         System.out.println("Wat is je studentnummer?");
         int studentnummer = maNiStAaInput.nextInt();
 
-        Student student = new student(naam, studentnummer);
+        Student student = new Student(naam, studentnummer);
 
-        System.out.println("Je bent toegevoegd aan de student lijst.");
+        System.out.println(student.getName() +" is toegevoegd aan de student lijst.");
         maNiStAaInput.close();
 
     }
+<<<<<<< HEAD
     */
+=======
+    
+>>>>>>> 34a3028d78782b95c2937c2cc8350338f1df5c4a
 }
 
 
