@@ -1,6 +1,5 @@
 package com.proj1; import java.util.Scanner; import java.io.IOException;
 
-
 public class App {
     public static void main( String[] args){
         mainMenu();
@@ -145,7 +144,7 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-            Exam.startExamr(Exam.examList.get(inputStudentGegevensAanwezig));
+        startExam(examList.get(inputStudentGegevensAanwezig).getName());
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
@@ -158,8 +157,8 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
     }
-
-    private static void maakNieuweStudentAan(){
+/*
+    private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
 
         System.out.println("Wat is je naam?");
@@ -174,7 +173,7 @@ public class App {
         maNiStAaInput.close();
 
     }
-    
+    */
 }
 
 
