@@ -14,28 +14,28 @@ public class App {
         try{
             switch (chooseAction){
                 case (1):
-                    System.out.println("test1");
+                    getExams();
                     mainMenu();
                 case(2):
-                    System.out.println("test2");
+                    getStudents();
                     mainMenu();
                 case(3):
-                    System.out.println("test3");
+                    newStudent();
                     mainMenu();
                 case(4):
-                    System.out.println("test4");
+                    deleteStudent();
                     mainMenu();
                 case(5):
-                    System.out.println("test5");
+                    startExams();
                     mainMenu();
                 case(6):
-                    System.out.println("test6");
+                    studentExamStatus();
                     mainMenu();
                 case(7):
-                    System.out.println("test7");
+                    studentExamPassed();
                     mainMenu();
                 case(8):
-                    System.out.println("test8");
+                    studentMostPassed();
                     mainMenu();
                 case(0):
                     System.out.println("exiting now.");
