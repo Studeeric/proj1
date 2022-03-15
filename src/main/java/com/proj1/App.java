@@ -45,8 +45,6 @@ public class App {
             }
         }finally {}
         james.close();
-
-        
     }
 
     public static void printMenu() {
@@ -62,7 +60,6 @@ public class App {
     }
 
     public static void clearScreen(){
-        //Clears Screen in java
         try {
             if (System.getProperty("os.name").contains("Windows"))
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -92,12 +89,32 @@ public class App {
         }
         finally{}
     }
-    //newStudent
-    //deleteStudent
+     //studentExamStatus
+    public static void studentExamStatus(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println ("Voer je naam en studentnummer in:");
+        String naam = scanner.nextLine();
+        int nummer = scanner.nextInt();
+        System.out.println ("Voer de naam van het examen in:");
+        String naam = scanner.nextLine();
 
+
+        scanner.close();
+    }
+    //studentsExamPassed
+    public static void studentExamPassed(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println ("Voer je naam en studentnummer in:");
+        String naam = scanner.nextLine();
+        int nummer = scanner.nextInt();
+        System.out.println ("Voer de naam van het examen in:");
+        String naam = scanner.nextLine();
+
+
+        scanner.close();
+    }
     //burton's toevoegingen vanaf hier
     public static void startExams(){
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Geef je StudentNummer.");
@@ -115,7 +132,7 @@ public class App {
                             startExams();//deze methode opnieuw
                             break;
                         case 2:
-                            maakNieuweStudentAan();
+                            Student.newStudent();
                             startExams();//deze methode opnieuw
                             break;
                         case 3:
@@ -132,7 +149,6 @@ public class App {
                 studentGegevensAanwezig();    
             }
             scanner.close();
-
         }
     }
 
@@ -171,7 +187,6 @@ public class App {
 
         System.out.println(student.getName() +" is toegevoegd aan de student lijst.");
         maNiStAaInput.close();
-
     }
     */
 }
