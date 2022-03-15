@@ -42,7 +42,6 @@ public class Student {
             }else{
                 System.out.println("Student niet gevonden.");
             }
-            
         }
         scanner.close();
     }
@@ -55,7 +54,6 @@ public class Student {
                 totaal = studentList.get(i).behaaldeExamens.size();
                 studentNR = i;
             }
-
         }
         System.out.println(studentList.get(studentNR).getName() + " heeft maar liefst " + totaal + " examens gehaald.");
     }
