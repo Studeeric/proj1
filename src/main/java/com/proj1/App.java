@@ -4,10 +4,10 @@ public class App {
     public static void main( String[] args){
         mainMenu();
     }
-
+    //mainMenu
     public static void mainMenu() {
         clearScreen();
-        printMenu();
+        printMainMenu();
         Scanner james = new Scanner(System.in);
         int chooseAction = james.nextInt();
         try{
@@ -47,7 +47,7 @@ public class App {
         james.close();
     }
 
-    public static void printMenu() {
+    public static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -93,27 +93,40 @@ public class App {
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
-        String naam = scanner.nextLine();
-        int nummer = scanner.nextInt();
+        String studentName = scanner.nextLine();
+        int studentNumber = scanner.nextInt();
+        System.out.println("Examens beschikbaar:");
+        for(Exam exam : Exam.examList){
+            System.out.print(" " + exam.getName());
+        }
+        System.out.println();
         System.out.println ("Voer de naam van het examen in:");
-        String naam = scanner.nextLine();
+        String examName = scanner.nextLine();
 
 
         scanner.close();
     }
+
     //studentsExamPassed
     public static void studentExamPassed(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
-        String naam = scanner.nextLine();
-        int nummer = scanner.nextInt();
+        String studentName = scanner.nextLine();
+        int studentNumber = scanner.nextInt();
+        System.out.println("Examens beschikbaar:");
+        for(Exam exam : Exam.examList){
+            System.out.print(" " + exam.getName());
+        }
+        System.out.println();
         System.out.println ("Voer de naam van het examen in:");
-        String naam = scanner.nextLine();
+        String examName = scanner.nextLine();
 
 
         scanner.close();
     }
+
     //burton's toevoegingen vanaf hier
+    //StartExams
     public static void startExams(){
         Scanner scanner = new Scanner(System.in);
 
@@ -160,7 +173,7 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-        startExam(examList.get(inputStudentGegevensAanwezig).getName());
+        Exam.startExam(Exam.examList.get(inputStudentGegevensAanwezig).getName()); //Burton please fix.
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
