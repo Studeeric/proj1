@@ -45,12 +45,21 @@ public class Exam {
     public String getName(){
         return this.name;
     }
-
+  
     public String getCategory(){
         return this.category;
     }
 
-    public void addQuestion(Question question){
+  public void addQuestion(Question question){
         this.questionList.add(question);
+  
+    public Exam getExam(int getal){
+        return examList.get(getal);
+    }
+  
+    public ArrayList<Question> getQuestion(getal){
+        return this.questionList;
+  
+   
     }
 }
