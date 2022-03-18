@@ -18,7 +18,7 @@ public class Exam {
         examList.add(this);
     }
 
-    public void startExam(Student student){
+    public static void startExam(Student student){
         int correct = 0;
         for (int i = 0; i < questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
@@ -50,12 +50,14 @@ public class Exam {
         return this.category;
     }
 
-  public void addQuestion(Question question){
-        this.questionList.add(question);
-  }
-  
-    public Exam getExam(int getal){
+
+    public static Exam getExam(int getal){
         return examList.get(getal);
+    }
+
+
+    public void addQuestion(Question question){
+          this.questionList.add(question);
     }
   
     public ArrayList<Question> getQuestion(int getal){
