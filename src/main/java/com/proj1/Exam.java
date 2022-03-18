@@ -7,7 +7,6 @@ public class Exam {
     private ArrayList<Question> questionList;
     private Scanner scanner = new Scanner(System.in);
 
-
     /*  ATTENTION
         Questions moeten nog toegevoegd worden bij initialization.
     */
@@ -32,7 +31,7 @@ public class Exam {
     }
 
     public void checkPassed(int correct, Student student){
-        if(correct >= (questionList.size()/2)){
+        if(correct >= questionList.size()/2){
             student.behaaldeExamens.add(this);
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
                                 "Je hebt " + correct + " van de " + questionList.size() + "vragen goed.");
@@ -41,13 +40,12 @@ public class Exam {
                                 "Je hebt " + correct + " van de " + questionList.size() + "vragen goed.\n" +
                                 "Volgende keer beter!");
         }
-
     }
 
     public String getName(){
         return this.name;
     }
-
+  
     public String getCategory(){
         return this.category;
     }
@@ -57,6 +55,13 @@ public class Exam {
     }
 
     public ArrayList<Question> getQuestion(int getal){
+
+  
+    public Exam getExam(int getal){
+        return questionList.get(getal);
+    }
+  
+    public ArrayList<Question> getQuestion(getal){
         return this.questionList;
     }
 }
