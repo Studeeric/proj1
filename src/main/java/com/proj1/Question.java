@@ -15,7 +15,7 @@ public class Question
     }
 
     public boolean checkAnswer(String input){
-        if (input == answer){
+        if (input.equals(answer)){
             return true;
         }
            return false;

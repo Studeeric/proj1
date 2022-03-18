@@ -184,7 +184,7 @@ public class App {
         } else{
             Exam.examList.get(input).startExam(student);
         }
-        charles.close();
+        
     }
 
     private static void studentGegevensAfwezigMessage(){
