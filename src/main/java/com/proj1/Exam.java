@@ -4,7 +4,7 @@ public class Exam {
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
-    private ArrayList<Question> questionList = new ArrayList<>();
+    ArrayList<Question> questionList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     /*  ATTENTION
@@ -52,14 +52,13 @@ public class Exam {
 
   public void addQuestion(Question question){
         this.questionList.add(question);
+  }
   
     public Exam getExam(int getal){
         return examList.get(getal);
     }
   
-    public ArrayList<Question> getQuestion(getal){
+    public ArrayList<Question> getQuestion(int getal){
         return this.questionList;
-  
-   
     }
 }
