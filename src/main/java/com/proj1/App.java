@@ -110,8 +110,9 @@ public class App {
      //studentExamStatus
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam en studentnummer in:");
+        System.out.println ("Voer je naam in:");
         String studentName = scanner.nextLine();
+        System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
         System.out.println("Examens beschikbaar:");
         int counter = 1;
@@ -129,8 +130,9 @@ public class App {
     //studentExamPassed
     public static void studentExamPassed(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam en studentnummer in:");
+        System.out.println ("Voer je naam in:");
         String studentName = scanner.nextLine();
+        System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
         System.out.println("Examens beschikbaar:");
         int counter = 1;
