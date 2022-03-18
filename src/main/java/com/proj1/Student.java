@@ -22,8 +22,10 @@ public class Student {
 
     public static void newStudent(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam en studentnummer in:");
+        System.out.println ("Voer je naam:");
         String naam = scanner.nextLine();
+        naam = naam.replace("\n", "");
+        System.out.println("Voer je studentnummer in:");
         int nummer = scanner.nextInt();
         Student newStudent = new Student (naam, nummer);
         System.out.println(newStudent.getName() + " is toegevoegd aan de student lijst.");

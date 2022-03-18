@@ -18,29 +18,27 @@ public class Exam {
         examList.add(this);
     }
 
-    public void startExam(Student student){
+    public static void startExam(Student student){
         int correct = 0;
-        for (int i = 0; i < questionList.size(); i++) {
+        for (int i = 1; i < questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
             System.out.println(questionList.get(i).askQuestion());
             if(questionList.get(i).checkAnswer(scanner.nextLine())){
                 correct++;
             }
+            System.out.println("Aantal goed: " + correct);
         }
-        checkPassed(correct, student);
-    }
-
-    public void checkPassed(int correct, Student student){
-        if(correct >= questionList.size()/2){
+        if (correct >= ((questionList.size()-1)/2)){
             student.behaaldeExamens.add(this);
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-                                "Je hebt " + correct + " van de " + questionList.size() + "vragen goed.");
+                                "Je hebt " + correct + " van de " + (questionList.size() - 1) + " vragen goed.");
         } else {
             System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-                                "Je hebt " + correct + " van de " + questionList.size() + "vragen goed.\n" +
+                                "Je hebt " + correct + " van de " + (questionList.size() - 1) + " vragen goed.\n" +
                                 "Volgende keer beter!");
         }
     }
+
 
     public String getName(){
         return this.name;
@@ -50,12 +48,13 @@ public class Exam {
         return this.category;
     }
 
-  public void addQuestion(Question question){
-        this.questionList.add(question);
-  }
-  
-    public Exam getExam(int getal){
+    public static Exam getExam(int getal){
         return examList.get(getal);
+    }
+
+
+    public void addQuestion(Question question){
+          this.questionList.add(question);
     }
   
     public ArrayList<Question> getQuestion(int getal){

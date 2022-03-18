@@ -9,49 +9,62 @@ public class App {
     //mainMenu
     public static void mainMenu() {
         clearScreen();
-        printMainMenu();
         Scanner james = new Scanner(System.in);
-        int chooseAction = james.nextInt();
-        james.nextLine();
-        try{
-            switch (chooseAction){
-                case (1):
-                    getExams(james);
-                    mainMenu();
-                case(2):
-                    getStudents(james);
-                    mainMenu();
-                case(3):
-                    Student.newStudent();
-                    mainMenu();
-                case(4):
-                    Student.deleteStudent();
-                    mainMenu();
-                case(5):
-                    startExams();
-                    mainMenu();
-                case(6):
-                    studentExamStatus();
-                    mainMenu();
-                case(7):
-                    studentExamPassed();
-                    mainMenu();
-                case(8):
-                    Student.studentMostPassed();
-                    mainMenu();
-                case(0):
-                    System.out.println("exiting now.");
-                    break;
-                default:
-                    System.out.println("No option found, please choose a listed option");
-                    mainMenu();
+        mainMenuLoop: while (true) {
+            printMainMenu();
+            int chooseAction = james.nextInt();
+            james.nextLine();
+            try{
+                switch (chooseAction){
+                    case (1):
+                        clearScreen();
+                        getExams(james);
+                        break;
+                    case(2):
+                        clearScreen();
+                        getStudents(james);
+                        break;
+                    case(3):
+                        clearScreen();
+                        Student.newStudent();
+                        break;
+                    case(4):
+                        clearScreen();
+                        Student.deleteStudent();
+                        break;
+                    case(5):
+                        clearScreen();
+                        startExams();
+                        break;
+                    case(6):
+                        clearScreen();
+                        studentExamStatus();
+                        break;
+                    case(7):
+                        clearScreen();
+                        studentExamPassed();
+                        break;
+                    case(8):
+                        clearScreen();
+                        Student.studentMostPassed();
+                        break;
+                    case(0):
+                        System.out.println("exiting now.");
+                        break mainMenuLoop;
+                    default:
+                        System.out.println("No option found, please choose a listed option");
+                        break;
+                }
             }
-        }finally {}
-        james.close();
+            catch(Exception e){
+                System.out.println("Error in the mainMenu method!"); 
+                System.out.println(e);
+            }
+        }
     }
 
     //printMainMenu
-    public static void printMainMenu() {
+    private static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -142,7 +155,11 @@ public class App {
         scanner.nextLine();
 
         for (int i=0; i < Student.studentList.size(); i++){
-            if(userInput != Student.studentList.get(i).getStudentNumber()){
+            if(userInput == Student.studentList.get(i).getStudentNumber()){
+                studentGegevensAanwezig(Student.studentList.get(i));    
+            }
+
+            if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -167,28 +184,28 @@ public class App {
                 } 
                 finally{}
                 break;
-            } else {
-                studentGegevensAanwezig(Student.studentList.get(i));    
             }
             scanner.close();
         }
     }
 
     //studentGegevensAanwezig
-    private static void studentGegevensAanwezig(Student student){
-        Scanner charles = new Scanner(System.in);
+    private static void studentGegevensAanwezig(Student sGAvariableStudent){
+        /*Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
-            System.out.print(n+") " + Exam.examList.get(n).getName() + " - " + Exam.examList.get(n).getCategory()+"\n");
-        }
-        int input = charles.nextInt();
-        charles.nextLine();
-        if (input > Exam.examList.size()-1 || input < 0){
+            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
+        }*/
+        //int inputStudentGegevensAanwezig = charles.nextInt();
+        try{
+        
+
+        Exam.startExam(sGAvariableStudent); //Burton please fix.
+
+        } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-        } else{
-            Exam.examList.get(input).startExam(student);
         }
-        charles.close();
+
     }
 
     private static void studentGegevensAfwezigMessage(){
@@ -198,6 +215,7 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
     }
+  
 /*
     private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
@@ -214,7 +232,6 @@ public class App {
         maNiStAaInput.close();
     }
     */
-
 
     private static void init(){
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
@@ -237,4 +254,3 @@ public class App {
         new Student("Wouter", 21076367);
     }
 }
-
