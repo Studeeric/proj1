@@ -52,11 +52,11 @@ public class Exam {
         return this.category;
     }
 
-    public Exam getExam(int getal){
-        return questionList.get(getal);
+    public static Exam getExam(int getal){
+        return examList.get(getal);
     }
 
-    public ArrayList<Question> getQuestion(getal){
+    public ArrayList<Question> getQuestion(int getal){
         return this.questionList;
     }
 }
