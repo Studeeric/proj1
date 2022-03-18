@@ -103,14 +103,14 @@ public class App {
             System.out.println(counter+")"+exam.getName());
             counter++;
         }
-        System.out.println ("Voer de naam van het examen in:");
-        String examName = scanner.nextLine();
-
-
+        System.out.println ("Voer het nunmmer van het examen in:");
+        int examNummer = scanner.nextInt();
+        examNummer = examNummer - 1;
+        System.out.println (Exam.getExam(examNummer));
         scanner.close();
     }
 
-    //studentsExamPassed
+    //studentExamPassed
     public static void studentExamPassed(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
@@ -139,7 +139,11 @@ public class App {
         scanner.nextLine();
 
         for (int i=0; i < Student.studentList.size(); i++){
-            if(userInput != Student.studentList.get(i).getStudentNumber()){
+            if(userInput == Student.studentList.get(i).getStudentNumber()){
+                studentGegevensAanwezig(Student.studentList.get(i));    
+            }
+
+            if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -164,27 +168,24 @@ public class App {
                 } 
                 finally{}
                 break;
-            } else {
-                studentGegevensAanwezig(Student.studentList.get(i));    
             }
             scanner.close();
         }
     }
 
-    private static void studentGegevensAanwezig(Student student){
-        Scanner charles = new Scanner(System.in);
+    private static void studentGegevensAanwezig(Student sGAvariableStudent){
+        /*Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
-            System.out.print(n+") " + Exam.examList.get(n).getName() + " - " + Exam.examList.get(n).getCategory()+"\n");
-        }
-        int input = charles.nextInt();
-        charles.nextLine();
-        if (input > Exam.examList.size()-1 || input < 0){
+            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
+        }*/
+        //int inputStudentGegevensAanwezig = charles.nextInt();
+        try{
+        Exam.startExam(sGAvariableStudent); //Burton please fix.
+        } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-        } else{
-            Exam.examList.get(input).startExam(student);
         }
-        
+
     }
 
     private static void studentGegevensAfwezigMessage(){

@@ -11,7 +11,7 @@ public class Question
     }
 
     public String askQuestion(){
-        return text;
+        return this.text;
     }
 
     public boolean checkAnswer(String input){
