@@ -20,11 +20,7 @@ public class Student {
         return this.studentNumber;
     }
 
-    public ArrayList<Exam> getPassed(){
-        return this.behaaldeExamens();                
-    }
-
-    public void newStudent(){
+    public static void newStudent(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
         String naam = scanner.nextLine();
@@ -34,7 +30,7 @@ public class Student {
         scanner.close();
     }
     
-    public void deleteStudent(){
+    public static void deleteStudent(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
         String naam = scanner.nextLine();
@@ -46,12 +42,19 @@ public class Student {
             }else{
                 System.out.println("Student niet gevonden.");
             }
-            
         }
         scanner.close();
     }
 
-    public void studentMostPassed (){
-       
+    public static void studentMostPassed (){
+        int totaal = 0;
+        int studentNR = 0;
+        for (int i = 0; i < studentList.size(); i++){
+            if (totaal < studentList.get(i).behaaldeExamens.size()){
+                totaal = studentList.get(i).behaaldeExamens.size();
+                studentNR = i;
+            }
+        }
+        System.out.println(studentList.get(studentNR).getName() + " heeft maar liefst " + totaal + " examens gehaald.");
     }
 }
