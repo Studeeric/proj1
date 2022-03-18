@@ -158,6 +158,22 @@ public class SaveManager {
         
     }
 
+    public static ArrayList<String> findSaveFiles(){
+        File folder = new File(Init.dir+"/database/");
+        ArrayList<String> dataFiles = new ArrayList<>();
+        File[] fileList = folder.listFiles();
+
+        for (File file : fileList) {
+            if (file.isFile()) {
+                if(file.getName().endsWith(".txt")){
+                    dataFiles.add(file.getName());
+                }
+            }
+        }
+        return dataFiles;
+        
+    }
+
     public static void loadSaveFile(String fileName){
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
