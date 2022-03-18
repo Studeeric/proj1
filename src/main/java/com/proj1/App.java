@@ -185,7 +185,7 @@ public class App {
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
-        //charles.close();        
+
     }
 
     private static void studentGegevensAfwezigMessage(){
