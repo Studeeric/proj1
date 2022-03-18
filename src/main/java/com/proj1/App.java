@@ -5,6 +5,7 @@ public class App {
         init();
         mainMenu();
     }
+
     //mainMenu
     public static void mainMenu() {
         clearScreen();
@@ -49,6 +50,7 @@ public class App {
         james.close();
     }
 
+    //printMainMenu
     public static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
@@ -69,6 +71,7 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
+
     //getExams
     private static void getExams(Scanner scanner) {
         for (Exam e : Exam.examList){
@@ -91,6 +94,7 @@ public class App {
         }
         finally{}
     }
+
      //studentExamStatus
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
@@ -129,7 +133,6 @@ public class App {
         scanner.close();
     }
 
-    //burton's toevoegingen vanaf hier
     //StartExams
     public static void startExams(){
         Scanner scanner = new Scanner(System.in);
@@ -171,6 +174,7 @@ public class App {
         }
     }
 
+    //studentGegevensAanwezig
     private static void studentGegevensAanwezig(Student student){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
@@ -226,8 +230,11 @@ public class App {
         tekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
         tekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
 
-        new Student("Eric", 21146632); // FF mijzelf toegevoegd om 1 standaard student er in te hebben, feel free om jezelf ook toe te voegen.
+        new Student("Eric", 21146632);
+        new Student("Lucas", 21093830);
+        new Student("Wessel", 21046220);
+        new Student("Burton",21035407);
+        new Student("Wouter", 21076367);
     }
-
 }
 
