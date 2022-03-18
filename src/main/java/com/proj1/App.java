@@ -4,10 +4,10 @@ public class App {
     public static void main( String[] args){
         mainMenu();
     }
-
+    //mainMenu
     public static void mainMenu() {
         clearScreen();
-        printMenu();
+        printMainMenu();
         Scanner james = new Scanner(System.in);
         int chooseAction = james.nextInt();
         try{
@@ -19,10 +19,10 @@ public class App {
                     getStudents(james);
                     mainMenu();
                 case(3):
-                    newStudent();
+                    Student.newStudent();
                     mainMenu();
                 case(4):
-                    deleteStudent();
+                    Student.deleteStudent();
                     mainMenu();
                 case(5):
                     startExams();
@@ -34,7 +34,7 @@ public class App {
                     studentExamPassed();
                     mainMenu();
                 case(8):
-                    studentMostPassed();
+                    Student.studentMostPassed();
                     mainMenu();
                 case(0):
                     System.out.println("exiting now.");
@@ -45,11 +45,9 @@ public class App {
             }
         }finally {}
         james.close();
-
-        
     }
 
-    public static void printMenu() {
+    public static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -62,7 +60,6 @@ public class App {
     }
 
     public static void clearScreen(){
-        //Clears Screen in java
         try {
             if (System.getProperty("os.name").contains("Windows"))
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -92,19 +89,58 @@ public class App {
         }
         finally{}
     }
-    //newStudent
-    //deleteStudent
+     //studentExamStatus
+    public static void studentExamStatus(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println ("Voer je naam en studentnummer in:");
+        String studentName = scanner.nextLine();
+        int studentNumber = scanner.nextInt();
+        System.out.println("Examens beschikbaar:");
+        int counter = 1;
+        for(Exam exam : Exam.examList){
+            System.out.println(counter+")"+exam.getName());
+            counter++;
+        }
+        System.out.println ("Voer de naam van het examen in:");
+        String examName = scanner.nextLine();
+
+
+        scanner.close();
+    }
+
+    //studentsExamPassed
+    public static void studentExamPassed(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println ("Voer je naam en studentnummer in:");
+        String studentName = scanner.nextLine();
+        int studentNumber = scanner.nextInt();
+        System.out.println("Examens beschikbaar:");
+        int counter = 1;
+        for(Exam exam : Exam.examList){
+            System.out.println(counter+")"+exam.getName());
+            counter++;
+        }
+        System.out.println ("Voer de naam van het examen in:");
+        String examName = scanner.nextLine();
+
+
+        scanner.close();
+    }
 
     //burton's toevoegingen vanaf hier
+    //StartExams
     public static void startExams(){
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Geef je StudentNummer.");
         int userInput = scanner.nextInt();
 
         for (int i=0; i < Student.studentList.size(); i++){
-            if(userInput != Student.studentList.get(i).getStudentNumber()){
+            if(userInput == Student.studentList.get(i).getStudentNumber()){
+                studentGegevensAanwezig(Student.studentList.get(i));    
+            }
+
+            if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
@@ -115,7 +151,7 @@ public class App {
                             startExams();//deze methode opnieuw
                             break;
                         case 2:
-                            maakNieuweStudentAan();
+                            Student.newStudent();
                             startExams();//deze methode opnieuw
                             break;
                         case 3:
@@ -128,15 +164,13 @@ public class App {
                 } 
                 finally{}
                 break;
-            } else {
-                studentGegevensAanwezig();    
+
             }
             scanner.close();
-
         }
     }
 
-    private static void studentGegevensAanwezig(){
+    private static void studentGegevensAanwezig(Student sGAvariableStudent){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
@@ -144,7 +178,7 @@ public class App {
         }
         int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-        startExam(examList.get(inputStudentGegevensAanwezig).getName());
+        Exam.startExam(sGAvariableStudent); //Burton please fix.
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
@@ -171,7 +205,6 @@ public class App {
 
         System.out.println(student.getName() +" is toegevoegd aan de student lijst.");
         maNiStAaInput.close();
-
     }
     */
 }

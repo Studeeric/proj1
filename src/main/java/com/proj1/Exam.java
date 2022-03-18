@@ -18,7 +18,7 @@ public class Exam {
         examList.add(this);
     }
 
-    public void startExam(Student student){
+    public static void startExam(Student student){
         int correct = 0;
         for (int i = 0; i < questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
