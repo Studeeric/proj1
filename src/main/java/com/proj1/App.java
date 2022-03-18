@@ -50,6 +50,7 @@ public class App {
     }
 
     public static void printMainMenu() {
+        System.out.println(Exam.examList.get(0).questionList.get(0).askQuestion());
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -221,10 +222,10 @@ public class App {
         rekenen.addQuestion(new Question("Wat is 610 x 410 / 5104?\n A) 2\n B) 55.6\n C) 50.2\n D) 49.0\n", "D"));
 
         Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
-        rekenen.addQuestion(new Question("Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "A"));
-        rekenen.addQuestion(new Question("Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "B"));
-        rekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
-        rekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
+        tekenen.addQuestion(new Question("Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "A"));
+        tekenen.addQuestion(new Question("Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "B"));
+        tekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
+        tekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
 
         new Student("Eric", 21146632); // FF mijzelf toegevoegd om 1 standaard student er in te hebben, feel free om jezelf ook toe te voegen.
     }
