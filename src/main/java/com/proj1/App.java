@@ -124,7 +124,6 @@ public class App {
         int examNummer = scanner.nextInt();
         examNummer = examNummer - 1;
         System.out.println (Exam.getExam(examNummer));
-        scanner.close();
     }
 
     //studentExamPassed
@@ -142,7 +141,6 @@ public class App {
         }
         System.out.println ("Voer de naam van het examen in:");
         String examName = scanner.nextLine();
-        scanner.close();
     }
 
     //StartExams
