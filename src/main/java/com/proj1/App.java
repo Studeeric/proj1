@@ -182,26 +182,29 @@ public class App {
                 finally{}
                 break;
             }
-            scanner.close();
         }
+        System.out.println("Press enter to continue");
+        try{
+            String returnMenu = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}
+        
     }
 
-    private static void studentGegevensAanwezig(Student sGAvariableStudent){
-        /*Scanner charles = new Scanner(System.in);
-        System.out.println("Kies een van de volgende examens.");
-        for (int n = 0; n < Exam.examList.size(); n++){
-            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
-        }*/
-        //int inputStudentGegevensAanwezig = charles.nextInt();
-        try{
-        
-
-        Exam.startExam(sGAvariableStudent); //Burton please fix.
-
-        } catch (Exception e){
-            System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+    private static void studentGegevensAanwezig(Student student){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Kies uw examen:");
+        for (int i = 0; i < Exam.examList.size(); i++) {
+            System.out.println(i + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
         }
+        int keuze = scanner.nextInt();
+        scanner.nextLine();
 
+        if (keuze > Exam.examList.size() || keuze < 0){
+            System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+        } else {
+            Exam.examList.get(keuze).startExam(student);
+        }
     }
 
     private static void studentGegevensAfwezigMessage(){
