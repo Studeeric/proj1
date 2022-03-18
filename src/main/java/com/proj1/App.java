@@ -8,48 +8,61 @@ public class App {
     //mainMenu
     public static void mainMenu() {
         clearScreen();
-        printMainMenu();
         Scanner james = new Scanner(System.in);
-        int chooseAction = james.nextInt();
-        james.nextLine();
-        try{
-            switch (chooseAction){
-                case (1):
-                    getExams(james);
-                    mainMenu();
-                case(2):
-                    getStudents(james);
-                    mainMenu();
-                case(3):
-                    Student.newStudent();
-                    mainMenu();
-                case(4):
-                    Student.deleteStudent();
-                    mainMenu();
-                case(5):
-                    startExams();
-                    mainMenu();
-                case(6):
-                    studentExamStatus();
-                    mainMenu();
-                case(7):
-                    studentExamPassed();
-                    mainMenu();
-                case(8):
-                    Student.studentMostPassed();
-                    mainMenu();
-                case(0):
-                    System.out.println("exiting now.");
-                    break;
-                default:
-                    System.out.println("No option found, please choose a listed option");
-                    mainMenu();
+        mainMenuLoop: while (true) {
+            printMainMenu();
+            int chooseAction = james.nextInt();
+            james.nextLine();
+            try{
+                switch (chooseAction){
+                    case (1):
+                        clearScreen();
+                        getExams(james);
+                        break;
+                    case(2):
+                        clearScreen();
+                        getStudents(james);
+                        break;
+                    case(3):
+                        clearScreen();
+                        Student.newStudent();
+                        break;
+                    case(4):
+                        clearScreen();
+                        Student.deleteStudent();
+                        break;
+                    case(5):
+                        clearScreen();
+                        startExams();
+                        break;
+                    case(6):
+                        clearScreen();
+                        studentExamStatus();
+                        break;
+                    case(7):
+                        clearScreen();
+                        studentExamPassed();
+                        break;
+                    case(8):
+                        clearScreen();
+                        Student.studentMostPassed();
+                        break;
+                    case(0):
+                        System.out.println("exiting now.");
+                        break mainMenuLoop;
+                    default:
+                        System.out.println("No option found, please choose a listed option");
+                        break;
+                }
             }
-        }finally {}
-        james.close();
+            catch(Exception e){
+                System.out.println("Error in the mainMenu method!"); 
+                System.out.println(e);
+            }
+        }
     }
 
-    public static void printMainMenu() {
+    private static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -181,7 +194,10 @@ public class App {
         }*/
         //int inputStudentGegevensAanwezig = charles.nextInt();
         try{
+        
+
         Exam.startExam(sGAvariableStudent); //Burton please fix.
+
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
