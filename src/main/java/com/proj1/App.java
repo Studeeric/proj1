@@ -50,7 +50,6 @@ public class App {
     }
 
     public static void printMainMenu() {
-        System.out.println(Exam.examList.get(0).questionList.get(0).askQuestion());
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
