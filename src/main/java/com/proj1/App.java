@@ -96,10 +96,11 @@ public class App {
         String studentName = scanner.nextLine();
         int studentNumber = scanner.nextInt();
         System.out.println("Examens beschikbaar:");
+        int counter = 1;
         for(Exam exam : Exam.examList){
-            System.out.print(" " + exam.getName());
+            System.out.println(counter+")"+exam.getName());
+            counter++;
         }
-        System.out.println();
         System.out.println ("Voer de naam van het examen in:");
         String examName = scanner.nextLine();
 
@@ -114,10 +115,11 @@ public class App {
         String studentName = scanner.nextLine();
         int studentNumber = scanner.nextInt();
         System.out.println("Examens beschikbaar:");
+        int counter = 1;
         for(Exam exam : Exam.examList){
-            System.out.print(" " + exam.getName());
+            System.out.println(counter+")"+exam.getName());
+            counter++;
         }
-        System.out.println();
         System.out.println ("Voer de naam van het examen in:");
         String examName = scanner.nextLine();
 
