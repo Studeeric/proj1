@@ -171,17 +171,18 @@ public class App {
     }
 
     private static void studentGegevensAanwezig(Student sGAvariableStudent){
-        Scanner charles = new Scanner(System.in);
+        /*Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
             System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
-        }
-        int inputStudentGegevensAanwezig = charles.nextInt();
+        }*/
+        //int inputStudentGegevensAanwezig = charles.nextInt();
         try{
         Exam.startExam(sGAvariableStudent); //Burton please fix.
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
+        //charles.close();
     }
 
     private static void studentGegevensAfwezigMessage(){
