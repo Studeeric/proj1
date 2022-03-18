@@ -3,8 +3,8 @@ package com.proj1; import java.util.Scanner; import java.util.ArrayList;
 public class Student {
     private String name;
     private int studentNumber;
-    public static ArrayList<Student> studentList;
-    public ArrayList<Exam> behaaldeExamens;
+    public static ArrayList<Student> studentList = new ArrayList<>();
+    public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
     //private Exam examen;
 
     public Student(String name, int studentNumber){
