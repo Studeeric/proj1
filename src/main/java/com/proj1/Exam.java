@@ -3,8 +3,8 @@ package com.proj1; import java.util.ArrayList; import java.util.Scanner;
 public class Exam {
     private String name;
     private String category;
-    public static ArrayList<Exam> examList;
-    private ArrayList<Question> questionList;
+    public static ArrayList<Exam> examList = new ArrayList<>();
+    private ArrayList<Question> questionList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     /*  ATTENTION
@@ -48,5 +48,9 @@ public class Exam {
 
     public String getCategory(){
         return this.category;
+    }
+
+    public void addQuestion(Question question){
+        this.questionList.add(question);
     }
 }

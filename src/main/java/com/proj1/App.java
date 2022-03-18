@@ -2,6 +2,7 @@ package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
+        init();
         mainMenu();
     }
     //mainMenu
@@ -10,6 +11,7 @@ public class App {
         printMainMenu();
         Scanner james = new Scanner(System.in);
         int chooseAction = james.nextInt();
+        james.nextLine();
         try{
             switch (chooseAction){
                 case (1):
@@ -130,14 +132,16 @@ public class App {
     public static void startExams(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Geef je StudentNummer.");
+        System.out.println("Geef je StudentNummer:");
         int userInput = scanner.nextInt();
+        scanner.nextLine();
 
         for (int i=0; i < Student.studentList.size(); i++){
             if(userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
                 
                 int sGAkiesmenu = scanner.nextInt();
+                scanner.nextLine();
 
                 try{
                     switch(sGAkiesmenu){
@@ -159,24 +163,26 @@ public class App {
                 finally{}
                 break;
             } else {
-                studentGegevensAanwezig();    
+                studentGegevensAanwezig(Student.studentList.get(i));    
             }
             scanner.close();
         }
     }
 
-    private static void studentGegevensAanwezig(){
+    private static void studentGegevensAanwezig(Student student){
         Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
         for (int n = 0; n < Exam.examList.size(); n++){
-            System.out.print(n+") " + Exam.examList.get(n).getName() + " " + Exam.examList.get(n).getCategory());
+            System.out.print(n+") " + Exam.examList.get(n).getName() + " - " + Exam.examList.get(n).getCategory()+"\n");
         }
-        int inputStudentGegevensAanwezig = charles.nextInt();
-        try{
-        Exam.startExam(Exam.examList.get(inputStudentGegevensAanwezig).getName()); //Burton please fix.
-        } catch (Exception e){
+        int input = charles.nextInt();
+        charles.nextLine();
+        if (input > Exam.examList.size()-1 || input < 0){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+        } else{
+            Exam.examList.get(input).startExam(student);
         }
+        charles.close();
     }
 
     private static void studentGegevensAfwezigMessage(){
@@ -202,6 +208,24 @@ public class App {
         maNiStAaInput.close();
     }
     */
-}
 
+
+    private static void init(){
+        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
+        rekenen.addQuestion(new Question("Wat is 2 - 2?\n A) 0\n B) 1\n C) 2\n D) 3\n", "A"));
+        rekenen.addQuestion(new Question("Wat is 1 + 1?\n A) 1\n B) 2\n C) 3\n D) 4\n", "B"));
+        rekenen.addQuestion(new Question("Wat is 3 x 2?\n A) 4\n B) 5\n C) 6\n D) 8\n", "C"));
+        rekenen.addQuestion(new Question("Wat is 610 x 410 / 5104?\n A) 2\n B) 55.6\n C) 50.2\n D) 49.0\n", "D"));
+
+        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
+        rekenen.addQuestion(new Question("Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "A"));
+        rekenen.addQuestion(new Question("Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "B"));
+        rekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
+        rekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
+
+        new Student("Eric", 21146632); // FF mijzelf toegevoegd om 1 standaard student er in te hebben, feel free om jezelf ook toe te voegen.
+    }
+
+}
 
