@@ -45,8 +45,16 @@ public class Exam {
     public String getName(){
         return this.name;
     }
-
+  
     public String getCategory(){
         return this.category;
+    }
+  
+    public Exam getExam(int getal){
+        return questionList.get(getal);
+    }
+  
+    public ArrayList<Question> getQuestion(getal){
+        return this.questionList;
     }
 }
