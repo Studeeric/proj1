@@ -24,4 +24,4 @@ hs_err_pid*
 
 ### VisualStudioCode ###
 .vscode/*      # Maybe .vscode/**/* instead - see comments
-!.vscode/tasks.json
+# !.vscode/tasks.json
