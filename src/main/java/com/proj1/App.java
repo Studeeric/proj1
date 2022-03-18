@@ -5,6 +5,7 @@ public class App {
         init();
         mainMenu();
     }
+
     //mainMenu
     public static void mainMenu() {
         clearScreen();
@@ -61,7 +62,7 @@ public class App {
             }
         }
     }
-
+    //printMainMenu
     private static void printMainMenu() {
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
@@ -82,6 +83,7 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
+
     //getExams
     private static void getExams(Scanner scanner) {
         for (Exam e : Exam.examList){
@@ -104,6 +106,7 @@ public class App {
         }
         finally{}
     }
+
      //studentExamStatus
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
@@ -137,16 +140,12 @@ public class App {
         }
         System.out.println ("Voer de naam van het examen in:");
         String examName = scanner.nextLine();
-
-
         scanner.close();
     }
 
-    //burton's toevoegingen vanaf hier
     //StartExams
     public static void startExams(){
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Geef je StudentNummer:");
         int userInput = scanner.nextInt();
         scanner.nextLine();
@@ -155,13 +154,10 @@ public class App {
             if(userInput == Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAanwezig(Student.studentList.get(i));    
             }
-
             if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
-                
                 int sGAkiesmenu = scanner.nextInt();
                 scanner.nextLine();
-
                 try{
                     switch(sGAkiesmenu){
                         case 1:
@@ -186,6 +182,7 @@ public class App {
         }
     }
 
+    //studentGegevensAanwezig
     private static void studentGegevensAanwezig(Student sGAvariableStudent){
         /*Scanner charles = new Scanner(System.in);
         System.out.println("Kies een van de volgende examens.");
@@ -194,14 +191,10 @@ public class App {
         }*/
         //int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-        
-
         Exam.startExam(sGAvariableStudent); //Burton please fix.
-
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
-
     }
 
     private static void studentGegevensAfwezigMessage(){
@@ -211,6 +204,7 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
     }
+  
 /*
     private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
@@ -227,8 +221,6 @@ public class App {
         maNiStAaInput.close();
     }
     */
-
-
     private static void init(){
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
@@ -243,8 +235,10 @@ public class App {
         tekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
         tekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
 
-        new Student("Eric", 21146632); // FF mijzelf toegevoegd om 1 standaard student er in te hebben, feel free om jezelf ook toe te voegen.
+        new Student("Eric", 21146632);
+        new Student("Lucas", 21093830);
+        new Student("Wessel", 21046220);
+        new Student("Burton",21035407);
+        new Student("Wouter", 21076367);
     }
-
 }
-
