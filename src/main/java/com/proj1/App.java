@@ -62,7 +62,6 @@ public class App {
             }
         }
     }
-
     //printMainMenu
     private static void printMainMenu() {
         System.out.println("1) Lijst met examens");
@@ -141,15 +140,12 @@ public class App {
         }
         System.out.println ("Voer de naam van het examen in:");
         String examName = scanner.nextLine();
-
-
         scanner.close();
     }
 
     //StartExams
     public static void startExams(){
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Geef je StudentNummer:");
         int userInput = scanner.nextInt();
         scanner.nextLine();
@@ -158,13 +154,10 @@ public class App {
             if(userInput == Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAanwezig(Student.studentList.get(i));    
             }
-
             if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
-                
                 int sGAkiesmenu = scanner.nextInt();
                 scanner.nextLine();
-
                 try{
                     switch(sGAkiesmenu){
                         case 1:
@@ -198,14 +191,10 @@ public class App {
         }*/
         //int inputStudentGegevensAanwezig = charles.nextInt();
         try{
-        
-
         Exam.startExam(sGAvariableStudent); //Burton please fix.
-
         } catch (Exception e){
             System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
         }
-
     }
 
     private static void studentGegevensAfwezigMessage(){
@@ -232,7 +221,6 @@ public class App {
         maNiStAaInput.close();
     }
     */
-
     private static void init(){
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
