@@ -103,14 +103,14 @@ public class App {
             System.out.println(counter+")"+exam.getName());
             counter++;
         }
-        System.out.println ("Voer de naam van het examen in:");
-        String examName = scanner.nextLine();
-
-
+        System.out.println ("Voer het nunmmer van het examen in:");
+        int examNummer = scanner.nextInt();
+        examNummer = examNummer - 1;
+        System.out.println (Exam.getExam(examNummer));
         scanner.close();
     }
 
-    //studentsExamPassed
+    //studentExamPassed
     public static void studentExamPassed(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
