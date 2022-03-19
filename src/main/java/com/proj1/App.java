@@ -130,18 +130,25 @@ public class App {
     //studentExamPassed
     public static void studentExamPassed(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam in:");
-        String studentName = scanner.nextLine();
         System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
-        System.out.println("Examens beschikbaar:");
+        scanner.nextLine();
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if (Student.studentList.get(i).getStudentNumber() == studentNumber){
+                studentNumber = i;
+                break;
+            }
+        }
         int counter = 1;
-        for(Exam exam : Exam.examList){
-            System.out.println(counter+")"+exam.getName());
+        for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
+            System.out.println(counter+") "+exam.getName()+" - "+exam.getCategory());
             counter++;
         }
-        System.out.println ("Voer de naam van het examen in:");
-        String examName = scanner.nextLine();
+        System.out.println("press return to continue");
+        try{
+            String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}  
     }
 
     //StartExams
