@@ -113,7 +113,7 @@ public class App {
         System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
         scanner.nextLine();
-        // For loop veranderd de variabele studentnumber naar index van studentnumber.
+        // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
             if (Student.studentList.get(i).getStudentNumber() == studentNumber){
                 studentNumber = i;
