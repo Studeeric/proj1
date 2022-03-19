@@ -110,21 +110,42 @@ public class App {
      //studentExamStatus
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam in:");
-        String studentName = scanner.nextLine();
         System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
+        scanner.nextLine();
+        // For loop veranderd de variabele studentnumber naar index van studentnumber.
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if (Student.studentList.get(i).getStudentNumber() == studentNumber){
+                studentNumber = i;
+                break;
+            }
+        }
+        //Print alle examens even
         System.out.println("Examens beschikbaar:");
         int counter = 1;
         for(Exam exam : Exam.examList){
-            System.out.println(counter+")"+exam.getName());
+            System.out.println(counter+")"+exam.getName() + " - " + exam.getCategory());
             counter++;
         }
         System.out.println ("Voer het nunmmer van het examen in:");
-        int examNummer = scanner.nextInt();
-        examNummer = examNummer - 1;
-        System.out.println (Exam.getExam(examNummer));
-        
+        int examNummer = scanner.nextInt() - 1;
+        scanner.nextLine();
+        boolean gehaald = false;
+        for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
+            if(Student.studentList.get(studentNumber).behaaldeExamens.get(i).equals(Exam.examList.get(examNummer))){
+                gehaald = true;
+            }
+        }
+        if (gehaald){
+            System.out.println("De student heeft het examen gehaald.");
+        } else {
+            System.out.println("De student heeft het examen niet gehaald.");
+        }
+        System.out.println("press return to continue");
+        try{
+            String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
+        }
+        finally{}        
     }
 
     //studentExamPassed
@@ -153,7 +174,8 @@ public class App {
 
         for (int i=0; i < Student.studentList.size(); i++){
             if(userInput == Student.studentList.get(i).getStudentNumber()){
-                studentGegevensAanwezig(Student.studentList.get(i));    
+                studentGegevensAanwezig(Student.studentList.get(i));
+                break;    
             }
             if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
