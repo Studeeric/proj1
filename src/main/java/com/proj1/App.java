@@ -10,6 +10,7 @@ public class App {
     public static void mainMenu() {
         clearScreen();
         Scanner james = new Scanner(System.in);
+        System.out.println("Welkom in het CoonCorp® ToetsSysteem");
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = james.nextInt();
@@ -19,6 +20,7 @@ public class App {
                     case (1):
                         clearScreen();
                         getExams(james);
+                        clearScreen();
                         break;
                     case(2):
                         clearScreen();
@@ -145,7 +147,7 @@ public class App {
         try{
             String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
         }
-        finally{}        
+        catch(Exception e){}
     }
 
     //studentExamPassed
@@ -161,15 +163,20 @@ public class App {
             }
         }
         int counter = 1;
-        for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
-            System.out.println(counter+") "+exam.getName()+" - "+exam.getCategory());
-            counter++;
+        if(Student.studentList.get(studentNumber).behaaldeExamens.size() > 0){
+            for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
+                System.out.println(counter+") "+exam.getName()+" - "+exam.getCategory());
+                counter++;
+            }
+        }
+        else{
+            System.out.println("No data found");
         }
         System.out.println("press return to continue");
         try{
             String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
         }
-        finally{}  
+        catch(Exception e){}
     }
 
     //StartExams
@@ -186,10 +193,10 @@ public class App {
             }
             if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
-                int sGAkiesmenu = scanner.nextInt();
+                int keuzeAfwezig = scanner.nextInt();
                 scanner.nextLine();
                 try{
-                    switch(sGAkiesmenu){
+                    switch(keuzeAfwezig){
                         case 1:
                             startExams();//deze methode opnieuw
                             break;
