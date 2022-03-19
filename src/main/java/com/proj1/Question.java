@@ -15,7 +15,7 @@ public class Question
     }
 
     public boolean checkAnswer(String input){
-        if (input.equals(answer)){
+        if (input.equals(answer) | input.equals(answer.toLowerCase())){
             return true;
         }
            return false;
