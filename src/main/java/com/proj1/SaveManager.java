@@ -183,25 +183,27 @@ public class SaveManager {
                 System.out.println(entries);
                 //entries = entries.replace("\n", ""); Debug Temp disable
                 String[] orders = entries.split(":");
-                switch(orders[0]){
-                    case("reken"):
-                        if(orders[1].equals("AddQuestion")){
-                            rekenen.addQuestion(new Question(orders[2],orders[3]));
-                        }
-                        break;
-                    case("teken"):
-                        if(orders[1].equals("AddQuestion")){
-                            tekenen.addQuestion(new Question(orders[2],orders[3]));
-                        }
-                        break;
-                    case("student"):
-                        if(orders[1].equals("makeStudent")){
-                            int studentNumberSaveFile = Integer.parseInt(orders[3]);
-                            new Student(orders[2], studentNumberSaveFile);
-                        }
-                        break;
-                    default:
-                        break;
+                if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
+                    switch(orders[0]){
+                        case("reken"):
+                            if(orders[1].equals("AddQuestion")){
+                                rekenen.addQuestion(new Question(orders[2],orders[3]));
+                            }
+                            break;
+                        case("teken"):
+                            if(orders[1].equals("AddQuestion")){
+                                tekenen.addQuestion(new Question(orders[2],orders[3]));
+                            }
+                            break;
+                        case("student"):
+                            if(orders[1].equals("makeStudent")){
+                                int studentNumberSaveFile = Integer.parseInt(orders[3]);
+                                new Student(orders[2], studentNumberSaveFile);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

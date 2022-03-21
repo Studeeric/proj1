@@ -14,4 +14,3 @@ student:makeStudent:Lucas:21093830
 student:makeStudent:Wessel:21046220
 student:makeStudent:Burton:21035407
 student:makeStudent:Wouter:21076367
-
