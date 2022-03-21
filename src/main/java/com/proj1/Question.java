@@ -11,11 +11,11 @@ public class Question
     }
 
     public String askQuestion(){
-        return text;
+        return this.text;
     }
 
     public boolean checkAnswer(String input){
-        if (input == answer){
+        if (input.equals(answer) | input.equals(answer.toLowerCase())){
             return true;
         }
            return false;
