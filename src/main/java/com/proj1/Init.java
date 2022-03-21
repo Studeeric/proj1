@@ -4,10 +4,8 @@ public class Init {
     public static String dir = System.getProperty("user.dir");
 
     public static void init() {
-        ArrayList<String> saves = new ArrayList<>();
-        for (String savefiles : saves) {
-            SaveManager.loadSaveFile(savefiles);
-        }
+        
+        SaveManager.loadSaveFile("oldDatabase.txt");
         
     }
     

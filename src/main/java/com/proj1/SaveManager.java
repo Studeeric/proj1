@@ -175,13 +175,23 @@ public class SaveManager {
     }
 
     public static void loadSaveFile(String fileName){
+        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
                 entries = entries.replace("\n", "");
                 String[] orders = entries.split(":");
-                    if(orders[0].equals("1")){
+                if(orders[0].equals("reken")){
+                    if(orders[1].equals("AddQuestion")){
+                        rekenen.addQuestion(new Question(orders[2],orders[3]));
                     }
+                }
+                else if(orders[0].equals("teken")){
+                    if(orders[1].equals("AddQuestion")){
+                        rekenen.addQuestion(new Question(orders[2],orders[3]));
+                    }
+                }
             }
         }
         catch(Exception e){
