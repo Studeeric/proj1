@@ -89,7 +89,7 @@ public class App {
         }
         finally{}
     }
-     //studentExamStatus
+    //studentExamStatus
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
         System.out.println ("Voer je naam en studentnummer in:");
@@ -192,7 +192,8 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
     }
-/*
+
+    /*
     private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
 
