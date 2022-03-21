@@ -1,4 +1,4 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
+package com.proj1; import java.util.Scanner;import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
 
 public class SaveManager {
 
@@ -180,26 +180,64 @@ public class SaveManager {
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
-                entries = entries.replace("\n", "");
+                System.out.println(entries);
+                //entries = entries.replace("\n", ""); Debug Temp disable
                 String[] orders = entries.split(":");
-                if(orders[0].equals("reken")){
-                    if(orders[1].equals("AddQuestion")){
-                        rekenen.addQuestion(new Question(orders[2],orders[3]));
-                    }
-                }
-                else if(orders[0].equals("teken")){
-                    if(orders[1].equals("AddQuestion")){
-                        rekenen.addQuestion(new Question(orders[2],orders[3]));
-                    }
+                switch(orders[0]){
+                    case("reken"):
+                        if(orders[1].equals("AddQuestion")){
+                            rekenen.addQuestion(new Question(orders[2],orders[3]));
+                        }
+                        break;
+                    case("teken"):
+                        if(orders[1].equals("AddQuestion")){
+                            tekenen.addQuestion(new Question(orders[2],orders[3]));
+                        }
+                        break;
+                    case("student"):
+                        if(orders[1].equals("makeStudent")){
+                            int studentNumberSaveFile = Integer.parseInt(orders[3]);
+                            new Student(orders[2], studentNumberSaveFile);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
         catch(Exception e){
             System.out.println("Error in method loadSaveFile");
+            System.out.println(e);
         }
         System.out.println("Settings Loaded");
         System.out.println("=========================");
+        checkLoaded();
     }
+
+    public static void checkLoaded() {
+        Scanner cloadedScanner = new Scanner(System.in);
+        checkLoadedLoop : while (true) {
+            int userchoiceCheckLoaded = cloadedScanner.nextInt();
+            cloadedScanner.nextLine();
+            switch (userchoiceCheckLoaded) {
+                case 1:
+                    for (Student student : Student.studentList){
+                        System.out.println(student.getName() + " - " +student.getStudentNumber());
+                    }
+                    break;
+                case 2:
+                    for(Exam exam : Exam.examList){
+                        System.out.println(exam.getName() + " - "+exam.getCategory());
+                    }
+                    break;
+                case 0:
+                    break checkLoadedLoop;
+                default:
+                    break;
+            }
+        }
+    }
+    
 }
     
 

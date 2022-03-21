@@ -1,12 +1,10 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
+package com.proj1;
 
 public class Init {
     public static String dir = System.getProperty("user.dir");
 
     public static void init() {
-        
-        SaveManager.loadSaveFile("oldDatabase.txt");
-        
+        SaveManager.loadSaveFile(dir + "\\database\\ExamInit.txt");
     }
     
 
