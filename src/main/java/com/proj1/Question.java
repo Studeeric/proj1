@@ -1,7 +1,5 @@
 package com.proj1;import java.util.ArrayList;
 
-import javax.swing.text.AsyncBoxView;
-
 public class Question 
 {
     ArrayList<String> questionContents = new ArrayList<>(); //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer

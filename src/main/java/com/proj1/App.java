@@ -112,98 +112,110 @@ public class App {
 
      //studentExamStatus
     public static void studentExamStatus(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam in:");
-        String studentName = scanner.nextLine();
-        System.out.println("Voer je studentnummer in");
-        int studentNumber = scanner.nextInt();
-        System.out.println("Examens beschikbaar:");
-        int counter = 1;
-        for(Exam exam : Exam.examList){
-            System.out.println(counter+")"+exam.getName());
-            counter++;
+        try(Scanner scanner = new Scanner(System.in)){
+            System.out.println ("Voer je naam in:");
+            String studentName = scanner.nextLine();
+            System.out.println("Voer je studentnummer in");
+            int studentNumber = scanner.nextInt();
+            System.out.println("Examens beschikbaar:");
+            int counter = 1;
+            for(Exam exam : Exam.examList){
+                System.out.println(counter+")"+exam.getName());
+                counter++;
+            }
+            System.out.println ("Voer het nunmmer van het examen in:");
+            int examNummer = scanner.nextInt();
+            examNummer = examNummer - 1;
+            System.out.println (Exam.getExam(examNummer));
         }
-        System.out.println ("Voer het nunmmer van het examen in:");
-        int examNummer = scanner.nextInt();
-        examNummer = examNummer - 1;
-        System.out.println (Exam.getExam(examNummer));
     }
 
     //studentExamPassed
     public static void studentExamPassed(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam in:");
-        String studentName = scanner.nextLine();
-        System.out.println("Voer je studentnummer in");
-        int studentNumber = scanner.nextInt();
-        System.out.println("Examens beschikbaar:");
-        int counter = 1;
-        for(Exam exam : Exam.examList){
-            System.out.println(counter+")"+exam.getName());
-            counter++;
+        try(Scanner scanner = new Scanner(System.in)){
+            System.out.println ("Voer je naam in:");
+            String studentName = scanner.nextLine();
+            System.out.println("Voer je studentnummer in");
+            int studentNumber = scanner.nextInt();
+            System.out.println("Examens beschikbaar:");
+            int counter = 1;
+            for(Exam exam : Exam.examList){
+                System.out.println(counter+")"+exam.getName());
+                counter++;
+            }
+            System.out.println ("Voer de naam van het examen in:");
+            String examName = scanner.nextLine();
         }
-        System.out.println ("Voer de naam van het examen in:");
-        String examName = scanner.nextLine();
     }
 
     //StartExams
     public static void startExams(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geef je StudentNummer:");
-        int userInput = scanner.nextInt();
-        scanner.nextLine();
+        try(Scanner scanner = new Scanner(System.in)){
+            
+            System.out.println("Geef je StudentNummer:");
+            int userInput = scanner.nextInt();
+            scanner.nextLine();
 
-        for (int i=0; i < Student.studentList.size(); i++){
-            if(userInput == Student.studentList.get(i).getStudentNumber()){
-                studentGegevensAanwezig(Student.studentList.get(i));    
+            for (int i=0; i < Student.studentList.size(); i++){
+                if(userInput == Student.studentList.get(i).getStudentNumber()){
+                    studentGegevensAanwezig(Student.studentList.get(i));    
+                }
+                if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
+                    studentGegevensAfwezigMessage();
+                    int studentNotFoundKeuze = scanner.nextInt();
+                    scanner.nextLine();
+                    try{
+                        switch(studentNotFoundKeuze){
+                            case 1:
+                                startExams();//deze methode opnieuw
+                                break;
+                            case 2:
+                                Student.newStudent();
+                                startExams();//deze methode opnieuw
+                                break;
+                            case 3:
+                                mainMenu();
+                                break;
+                            default:
+                                System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                                mainMenu();
+                        }    
+                    } 
+                    finally{}
+                    break;
+                }
             }
-            if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
-                studentGegevensAfwezigMessage();
-                int studentNotFoundKeuze = scanner.nextInt();
-                scanner.nextLine();
-                try{
-                    switch(studentNotFoundKeuze){
-                        case 1:
-                            startExams();//deze methode opnieuw
-                            break;
-                        case 2:
-                            Student.newStudent();
-                            startExams();//deze methode opnieuw
-                            break;
-                        case 3:
-                            mainMenu();
-                            break;
-                        default:
-                            System.out.println("Verkeerde optie. Ga terug naar main menu.");
-                            mainMenu();
-                    }    
-                } 
-                finally{}
-                break;
-            }
-        }
 
-        System.out.println("Press enter to continue");
-        try{
-            String returnMenu = scanner.nextLine(); // This is just here to wait for input
+            System.out.println("Press enter to continue");
+            try{
+                String returnMenu = scanner.nextLine(); // This is just here to wait for input
+            }
+            finally{}
         }
         finally{}
+    
         
     }
 
     private static void studentGegevensAanwezig(Student student){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Kies uw examen:");
-        for (int i = 0; i < Exam.examList.size(); i++) {
-            System.out.println(i + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
-        }
-        int keuze = scanner.nextInt();
-        scanner.nextLine();
+        try(Scanner scanner = new Scanner(System.in)){
+            
+            System.out.println("Kies uw examen:");
+            for (int i = 0; i < Exam.examList.size(); i++) {
+                System.out.println(i + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
+            }
+            int keuze = scanner.nextInt();
+            scanner.nextLine();
 
-        if (keuze > Exam.examList.size() || keuze < 0){
-            System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-        } else {
-            Exam.examList.get(keuze).startExam(student);
+            if (keuze > Exam.examList.size() || keuze < 0){
+                System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+            } else {
+                Exam.examList.get(keuze).startExam(student);
+            }
+        }
+        catch(Exception e){
+            System.out.println("Error in studentGegevensAanwezig");
+            System.out.println(e);
         }
     }
 

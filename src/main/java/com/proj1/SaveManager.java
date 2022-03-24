@@ -155,32 +155,33 @@ public class SaveManager {
     }
 
     public static void checkLoaded() {
-        Scanner cloadedScanner = new Scanner(System.in);
-        checkLoadedLoop : while (true) {
-            int userchoiceCheckLoaded = cloadedScanner.nextInt();
-            cloadedScanner.nextLine();
-            switch (userchoiceCheckLoaded) {
-                case 1:
-                    for (Student student : Student.studentList){
-                        System.out.print(student.getName() + " - " +student.getStudentNumber());
-                        for(Exam exam : student.behaaldeExamens){
-                            System.out.print(" - "+exam.getName());
+        try(Scanner cloadedScanner = new Scanner(System.in)){
+            checkLoadedLoop : while (true) {
+                int userchoiceCheckLoaded = cloadedScanner.nextInt();
+                cloadedScanner.nextLine();
+                switch (userchoiceCheckLoaded) {
+                    case 1:
+                        for (Student student : Student.studentList){
+                            System.out.print(student.getName() + " - " +student.getStudentNumber());
+                            for(Exam exam : student.behaaldeExamens){
+                                System.out.print(" - "+exam.getName());
+                            }
+                            System.out.println();
                         }
-                        System.out.println();
-                    }
-                    break;
-                case 2:
-                    for(Exam exam : Exam.examList){
-                        System.out.println(exam.getName() + " - "+exam.getCategory());
-                        for(Question question : exam.getQuestionList()){
-                            System.out.println(question.askQuestion());
+                        break;
+                    case 2:
+                        for(Exam exam : Exam.examList){
+                            System.out.println(exam.getName() + " - "+exam.getCategory());
+                            for(Question question : exam.getQuestionList()){
+                                System.out.println(question.askQuestion());
+                            }
                         }
-                    }
-                    break;
-                case 0:
-                    break checkLoadedLoop;
-                default:
-                    break;
+                        break;
+                    case 0:
+                        break checkLoadedLoop;
+                    default:
+                        break;
+                }
             }
         }
     }
