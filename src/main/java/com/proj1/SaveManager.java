@@ -2,6 +2,10 @@ package com.proj1; import java.util.Scanner;import java.io.IOException; import j
 
 public class SaveManager {
 
+    //Edited version of my accidental file editor + loader methods
+    //Todo: 
+    //Rewrite methods using a Exam object to work with the ArrayList index of said object instead of a direct object, so Exams can be added from the savefile.
+
     public static ArrayList<String> readFile(String fileName, boolean silent){ //
         File savefile = new File(fileName); 
         ArrayList<String> saveFileContents = new ArrayList<>();
@@ -93,13 +97,23 @@ public class SaveManager {
                 if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
                     switch(orders[0]){
                         case("reken"):
+                        case("rekenen"):
                             if(orders[1].equals("AddQuestion")){
-                                rekenen.addQuestion(new Question(orders[2],orders[3]));
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                rekenen.addQuestion(new Question(questionOptions));
                             }
                             break;
                         case("teken"):
+                        case("tekenen"):
                             if(orders[1].equals("AddQuestion")){
-                                tekenen.addQuestion(new Question(orders[2],orders[3]));
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                tekenen.addQuestion(new Question(questionOptions));
                             }
                             break;
                         case("student"):
@@ -158,6 +172,9 @@ public class SaveManager {
                 case 2:
                     for(Exam exam : Exam.examList){
                         System.out.println(exam.getName() + " - "+exam.getCategory());
+                        for(Question question : exam.getQuestionList()){
+                            System.out.println(question.askQuestion());
+                        }
                     }
                     break;
                 case 0:
@@ -173,15 +190,40 @@ public class SaveManager {
     }
 
     public static void exitSave() {
-        File savefile = new File(Init.dir + "\\database.txt");
-        File oldSavefile = new File(Init.dir + "\\oldDatabase.txt");
-        if(oldSavefile.isFile()){
-            oldSavefile.delete();
-        }
-        //Write data to file here
-        savefile.renameTo(oldSavefile);
+        File savefile = new File(Init.dir + "\\database.Wdf");
+        File oldSavefile = new File(Init.dir + "\\oldDatabase.Wdf");
         cleanFile(savefile, true);
-        System.out.println("Data saved, exiting now");
+        //Write data to file here
+        try{
+            FileWriter saveWriter = new FileWriter(savefile,true);
+            //Add the exams to the savefile
+            for(Exam exams : Exam.examList){
+                //System.out.println(exams.getName());//Debug
+                for(Question questions : exams.questionList){
+                    saveWriter.append(exams.getCategory().toLowerCase()+":"+"AddQuestion"+questions.contentsInString()+"\n");
+                }
+                saveWriter.append("#\n");
+            }
+            
+            for(Student student : Student.studentList){
+                String passedExams = "";
+                for(Exam studentPassedExam : student.behaaldeExamens){
+                    passedExams += ":"+studentPassedExam.getCategory().toLowerCase();
+                }
+                saveWriter.append("student"+":"+"makeStudent"+":"+student.getName()+":"+student.getStudentNumber()+passedExams+"\n");
+            }
+            saveWriter.close();
+            
+            oldSavefile.delete();
+            savefile.renameTo(oldSavefile);
+            cleanFile(savefile, true);
+            System.out.println("Data saved, exiting now");
+        }
+        catch(IOException e){
+            System.out.println("Error in exitSave");
+            System.out.println(e);
+        }
+        
     }
 
 }

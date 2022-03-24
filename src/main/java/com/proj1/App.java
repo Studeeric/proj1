@@ -20,10 +20,12 @@ public class App {
                     case (1):
                         clearScreen();
                         getExams(james);
+                        clearScreen();
                         break;
                     case(2):
                         clearScreen();
                         getStudents(james);
+                        clearScreen();
                         break;
                     case(3):
                         clearScreen();
@@ -50,7 +52,7 @@ public class App {
                         Student.studentMostPassed();
                         break;
                     case(0):
-                        System.out.println("exiting now.");
+                        System.out.println("Saving Data.....");
                         break mainMenuLoop;
                     default:
                         System.out.println("No option found, please choose a listed option");

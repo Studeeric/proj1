@@ -27,25 +27,40 @@ public class Student {
         naam = naam.replace("\n", "");
         System.out.println("Voer je studentnummer in:");
         int nummer = scanner.nextInt();
-        Student newStudent = new Student (naam, nummer);
-        System.out.println(newStudent.getName() + " is toegevoegd aan de student lijst.");
-        scanner.close();
+        Student student = new Student (naam, nummer);
+        System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
     }
     
     public static void deleteStudent(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam en studentnummer in:");
+        /*
+        System.out.println ("Voer je naam:");
         String naam = scanner.nextLine();
+        naam = naam.replace("\n", "");
+        System.out.println("Voer je studentnummer in:");
         int nummer = scanner.nextInt();
+        scanner.nextLine();
+        */
+        int counter = 1;
         for (Student e : Student.studentList){
-            if (e.name == naam && e.studentNumber == nummer){
+            System.out.println(counter+") "+e.getName());
+            counter++;
+            /*
+            if (e.getName() == naam && e.getStudentNumber() == nummer){
                 Student.studentList.remove(e);
-                System.out.println ("Student succesvol verwijderd.");
-            }else{
-                System.out.println("Student niet gevonden.");
+                return "Student succesvol verwijderd.";
             }
+            */
+            //This just doesn't work. Prob because \n or smth is causing the typed name to misreport.
+            //So I changed it to a completly insecure version, Enjoy!
         }
-        scanner.close();
+        System.out.println("Kies een student");
+        int userRemoveStudentChoice = scanner.nextInt();
+        scanner.nextLine();
+        Student.studentList.remove(userRemoveStudentChoice-1);
+        System.out.println("Student removed");
+        System.out.println("Press return to continue");
+        scanner.nextLine();
     }
 
     public static void studentMostPassed (){

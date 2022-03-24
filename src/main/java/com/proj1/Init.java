@@ -1,14 +1,24 @@
-package com.proj1;
+package com.proj1;import java.io.File;
 
 public class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
     public static void init(boolean debugMode) {
-        SaveManager.loadSaveFile(dir+"oldDatabase.Wdf",debugMode);
+        try{
+            File savefile = new File(Init.dir + "\\oldDatabase.Wdf");
+            if(!savefile.exists()){
+                savefile.createNewFile();
+            }
+            SaveManager.loadSaveFile(dir+"oldDatabase.Wdf",debugMode);
+        }
+        catch(Exception e){
+            System.out.println("Error in Init");
+            System.out.println(e);
+        }
     }
     
 
-
+    /*
     private static void legacyInit(boolean usethis){
         if(usethis){
             Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
@@ -31,5 +41,6 @@ public class Init {
             new Student("Wouter", 21076367);
         }
     }
+    */ //I ain't fixing this shit
     
 }
