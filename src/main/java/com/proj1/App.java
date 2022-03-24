@@ -2,8 +2,9 @@ package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
-        Init.init();
+        Init.init(false);
         mainMenu();
+        SaveManager.exitSave();
     }
 
     //mainMenu
@@ -156,10 +157,10 @@ public class App {
             }
             if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                 studentGegevensAfwezigMessage();
-                int sGAkiesmenu = scanner.nextInt();
+                int studentNotFoundKeuze = scanner.nextInt();
                 scanner.nextLine();
                 try{
-                    switch(sGAkiesmenu){
+                    switch(studentNotFoundKeuze){
                         case 1:
                             startExams();//deze methode opnieuw
                             break;

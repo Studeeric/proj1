@@ -28,106 +28,13 @@ public class SaveManager {
         }
         return saveFileContents;
     }
-    
-    public static void appendFile(Scanner gustav,String fileName, String writable){
-        /*
-        System.out.println("Enter text:");
-        String writable = gustav.nextLine();
-        */
 
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
-
-        //Append the given data to the file
-        try{
-            fileContents.add(writable);
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("Error in method appendFile!");
-            System.out.println(e);
-        }
-        System.out.println("=========================");
-    }
-
-    public static void editFile(Scanner charles,String fileName,boolean debugEditFile) {
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,!debugEditFile));
-
-        //Select and change the line.
-        if (debugEditFile){
-            System.out.println("Which line to edit?");
-            int userEditLineChoice = charles.nextInt();
-            charles.nextLine();
-            System.out.println("line " + userEditLineChoice + " selected. \nEdit Line: ");
-            String userEditLineContent = charles.nextLine();
-            fileContents.set(userEditLineChoice-1, userEditLineContent);
-        }
-        
-
-        //Write the changes to the file
-        try{
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-                System.out.println("Edit succesfull"); //Debug
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("A error has occured in method editFile");
-            System.out.println(e);
-        }
-        System.out.println("=========================");
-    }
-
-    public static void removeFromFile(Scanner augustus, String fileName) {
-        
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
-
-        //Select and remove line
-        System.out.println("Which line to remove?");
-        int counter = 1;
-        for (String entry : fileContents){
-            System.out.println(counter + ") " + entry);
-            counter++;
-        }
-        int userRemoveLineChoice = augustus.nextInt();
-        augustus.nextLine();
-        System.out.println("line " + userRemoveLineChoice + " selected for removal");
-        fileContents.remove(userRemoveLineChoice-1);
-
-        try{
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-                System.out.println("Line Removed"); //Debug
-                System.out.println("=========================");
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("Oh no a Error has occured in method removeFromFile()");
-            System.out.println(e);
-        }
-        
-    }
-
-    public static boolean cleanFile(String fileName) {
-        File savefile = new File(fileName);
+    public static boolean cleanFile(File savefile,boolean makefile) {
         try{
             if(savefile.delete()){
+                return savefile.createNewFile();
+            }
+            else if(makefile){
                 return savefile.createNewFile();
             }
             return false;
@@ -165,7 +72,7 @@ public class SaveManager {
 
         for (File file : fileList) {
             if (file.isFile()) {
-                if(file.getName().endsWith(".txt")){
+                if(file.getName().endsWith(".Wdf")){
                     dataFiles.add(file.getName());
                 }
             }
@@ -174,14 +81,14 @@ public class SaveManager {
         
     }
 
-    public static void loadSaveFile(String fileName){
+    public static void loadSaveFile(String fileName,boolean debugMode){
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
-                System.out.println(entries);
-                //entries = entries.replace("\n", ""); Debug Temp disable
+                //System.out.println(entries);
+                //entries = entries.replace("\n", ""); Debug Temp disable for questions containing escape sequences
                 String[] orders = entries.split(":");
                 if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
                     switch(orders[0]){
@@ -196,9 +103,24 @@ public class SaveManager {
                             }
                             break;
                         case("student"):
+                            for (String replacestring : orders){
+                                replacestring.replace("\n", "");
+                            }
                             if(orders[1].equals("makeStudent")){
                                 int studentNumberSaveFile = Integer.parseInt(orders[3]);
-                                new Student(orders[2], studentNumberSaveFile);
+                                Student henry = new Student(orders[2], studentNumberSaveFile);
+                                if(orders.length > 4){
+                                    int counter = 0;
+                                    while (counter < (orders.length-4)){
+                                        if(orders[counter+4].equals("reken")){
+                                            henry.behaaldeExamens.add(rekenen);
+                                        }
+                                        else if(orders[counter+4].equals("teken")){
+                                            henry.behaaldeExamens.add(tekenen);
+                                        }
+                                        counter++;
+                                    }
+                                }
                             }
                             break;
                         default:
@@ -213,7 +135,9 @@ public class SaveManager {
         }
         System.out.println("Settings Loaded");
         System.out.println("=========================");
-        checkLoaded();
+        if(debugMode){
+            checkLoaded();
+        }
     }
 
     public static void checkLoaded() {
@@ -224,7 +148,11 @@ public class SaveManager {
             switch (userchoiceCheckLoaded) {
                 case 1:
                     for (Student student : Student.studentList){
-                        System.out.println(student.getName() + " - " +student.getStudentNumber());
+                        System.out.print(student.getName() + " - " +student.getStudentNumber());
+                        for(Exam exam : student.behaaldeExamens){
+                            System.out.print(" - "+exam.getName());
+                        }
+                        System.out.println();
                     }
                     break;
                 case 2:
@@ -240,6 +168,22 @@ public class SaveManager {
         }
     }
     
+    public static void addToSave() {
+        
+    }
+
+    public static void exitSave() {
+        File savefile = new File(Init.dir + "\\database.txt");
+        File oldSavefile = new File(Init.dir + "\\oldDatabase.txt");
+        if(oldSavefile.isFile()){
+            oldSavefile.delete();
+        }
+        //Write data to file here
+        savefile.renameTo(oldSavefile);
+        cleanFile(savefile, true);
+        System.out.println("Data saved, exiting now");
+    }
+
 }
     
 
