@@ -111,49 +111,72 @@ public class App {
     }
 
      //studentExamStatus
-    public static void studentExamStatus(Scanner scanner){
-        try{
-            System.out.println ("Voer je naam in:");
-            String studentName = scanner.nextLine();
-            System.out.println("Voer je studentnummer in");
-            int studentNumber = scanner.nextInt();
-            System.out.println("Examens beschikbaar:");
-            int counter = 1;
-            for(Exam exam : Exam.examList){
-                System.out.println(counter+")"+exam.getName());
-                counter++;
+     public static void studentExamStatus(Scanner scanner){
+        System.out.println("Voer je studentnummer in");
+        int studentNumber = scanner.nextInt();
+        scanner.nextLine();
+        // For loop veranderd de variabele studentnumber naar index van studentList.
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if (Student.studentList.get(i).getStudentNumber() == studentNumber){
+                studentNumber = i;
+                break;
             }
-            System.out.println ("Voer het nunmmer van het examen in:");
-            int examNummer = scanner.nextInt();
-            examNummer = examNummer - 1;
-            System.out.println (Exam.getExam(examNummer));
         }
-        catch(Exception e){
-            System.out.println("Error in studentExamStatus!");
-            System.out.println(e);
+        //Print alle examens even
+        System.out.println("Examens beschikbaar:");
+        int counter = 1;
+        for(Exam exam : Exam.examList){
+            System.out.println(counter+")"+exam.getName() + " - " + exam.getCategory());
+            counter++;
         }
+        System.out.println ("Voer het nunmmer van het examen in:");
+        int examNummer = scanner.nextInt() - 1;
+        scanner.nextLine();
+        boolean gehaald = false;
+        for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
+            if(Student.studentList.get(studentNumber).behaaldeExamens.get(i).equals(Exam.examList.get(examNummer))){
+                gehaald = true;
+            }
+        }
+        if (gehaald){
+            System.out.println("De student heeft het examen gehaald.");
+        } else {
+            System.out.println("De student heeft het examen niet gehaald.");
+        }
+        System.out.println("press return to continue");
+        try{
+            String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
+        }
+        catch(Exception e){}
     }
+
 
     //studentExamPassed
     public static void studentExamPassed(Scanner scanner){
-        try{
-            System.out.println ("Voer je naam in:");
-            String studentName = scanner.nextLine();
-            System.out.println("Voer je studentnummer in:");
-            int studentNumber = scanner.nextInt();
-            System.out.println("Examens beschikbaar:");
-            int counter = 1;
-            for(Exam exam : Exam.examList){
-                System.out.println(counter+")"+exam.getName());
+        System.out.println("Voer je studentnummer in");
+        int studentNumber = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if (Student.studentList.get(i).getStudentNumber() == studentNumber){
+                studentNumber = i;
+                break;
+            }
+        }
+        int counter = 1;
+        if(Student.studentList.get(studentNumber).behaaldeExamens.size() > 0){
+            for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
+                System.out.println(counter+") "+exam.getName()+" - "+exam.getCategory());
                 counter++;
             }
-            System.out.println ("Voer de naam van het examen in:");
-            String examName = scanner.nextLine();
         }
-        catch(Exception e){
-            System.out.println("Error in studentExamPassed!");
-            System.out.println(e);
+        else{
+            System.out.println("No data found");
         }
+        System.out.println("press return to continue");
+        try{
+            String getStudentReturn = scanner.nextLine(); // This is just here to wait for input
+        }
+        catch(Exception e){}
     }
 
     //StartExams
