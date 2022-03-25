@@ -25,3 +25,6 @@ hs_err_pid*
 ### VisualStudioCode ###
 .vscode/*      # Maybe .vscode/**/* instead - see comments
 .vscode/tasks.json
+
+# Database files not already in git
+database/*

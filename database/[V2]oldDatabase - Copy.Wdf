@@ -1,0 +1,16 @@
+reken:AddQuestion:Wat is 2 + 2?: A) 1: B) 2: C) 3: D) 4:D
+reken:AddQuestion:Wat is 2 - 2?: A) 0: B) 1: C) 2: D) 3:A
+reken:AddQuestion:Wat is 1 + 1?: A) 1: B) 2: C) 3: D) 4:B
+reken:AddQuestion:Wat is 3 x 2?: A) 4: B) 5: C) 6: D) 8:C
+
+teken:AddQuestion:Wat krijg je als je blauw en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:A
+teken:AddQuestion:Wat krijg je als je rood en wit mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:B
+teken:AddQuestion:Wat krijg je als je blauw en rood mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:C
+teken:AddQuestion:Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
+teken:AddQuestion:Wat is 610 x 410 / 5104?: A) 2: B) 55.6: C) 50.2: D) 49.0:D
+
+student:makeStudent:Eric:21146632:reken
+student:makeStudent:Lucas:21093830:teken
+student:makeStudent:Wessel:21046220
+student:makeStudent:Burton:21035407
+student:makeStudent:Wouter:21076367
