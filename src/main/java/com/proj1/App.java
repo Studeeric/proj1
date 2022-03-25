@@ -4,16 +4,16 @@ import java.util.Scanner;
 import java.io.IOException;
 
 public class App {
-    public static void main(String[] args) {
-        init();
-        mainMenu();
+    public static void main( String[] args){
+        Scanner scanner = new Scanner(System.in);
+        Init.init(false);
+        mainMenu(scanner);
+        SaveManager.exitSave();
     }
 
-    // mainMenu
-    public static void mainMenu() {
+    //mainMenu
+    public static void mainMenu(Scanner james) {
         clearScreen();
-        Scanner james = new Scanner(System.in);
-        System.out.println("Welkom in het CoonCorp® ToetsSysteem");
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = james.nextInt();
@@ -28,33 +28,34 @@ public class App {
                     case (2):
                         clearScreen();
                         getStudents(james);
+                        clearScreen();
                         break;
                     case (3):
                         clearScreen();
-                        Student.newStudent();
+                        Student.newStudent(james);
                         break;
                     case (4):
                         clearScreen();
-                        Student.deleteStudent();
+                        Student.deleteStudent(james);
                         break;
                     case (5):
                         clearScreen();
-                        startExams();
+                        startExams(james);
                         break;
                     case (6):
                         clearScreen();
-                        studentExamStatus();
+                        studentExamStatus(james);
                         break;
                     case (7):
                         clearScreen();
-                        studentExamPassed();
+                        studentExamPassed(james);
                         break;
                     case (8):
                         clearScreen();
                         Student.studentMostPassed();
                         break;
-                    case (0):
-                        System.out.println("exiting now.");
+                    case(0):
+                        System.out.println("Saving Data.....");
                         break mainMenuLoop;
                     default:
                         System.out.println("No option found, please choose a listed option");
@@ -74,7 +75,7 @@ public class App {
         System.out.println("3) Nieuwe student inschrijven");
         System.out.println("4) Student verwijderen");
         System.out.println("5) Examen afnemen");
-        System.out.println("6) Is student geslaagd voor test?");
+        System.out.println("6) Is student geslaagd voor test?"); //non readable reference
         System.out.println("7) Welke examens heeft student gehaald?");
         System.out.println("8) Welke student heeft de meeste examens gehaald?");
         System.out.println("0) Exit");
@@ -106,9 +107,8 @@ public class App {
         pauseMenu(scanner);
     }
 
-    // studentExamStatus
-    public static void studentExamStatus() {
-        Scanner scanner = new Scanner(System.in);
+     //studentExamStatus
+     public static void studentExamStatus(Scanner scanner){
         System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
         scanner.nextLine();
@@ -150,9 +150,9 @@ public class App {
         pauseMenu(scanner);
     }
 
-    // studentExamPassed
-    public static void studentExamPassed() {
-        Scanner scanner = new Scanner(System.in);
+    //studentExamPassed
+    public static void studentExamPassed(Scanner scanner){
+
         System.out.println("Voer je studentnummer in");
         int studentNumber = scanner.nextInt();
         scanner.nextLine();
@@ -180,62 +180,67 @@ public class App {
         pauseMenu(scanner);
     }
 
-    // StartExams
-    public static void startExams() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geef je StudentNummer:");
-        int userInput = scanner.nextInt();
-        scanner.nextLine();
-
-        for (int i = 0; i < Student.studentList.size(); i++) {
-            if (userInput == Student.studentList.get(i).getStudentNumber()) {
-                studentGegevensAanwezig(Student.studentList.get(i));
-                break;
-            }
-            if (i == (Student.studentList.size() - 1) && userInput != Student.studentList.get(i).getStudentNumber()) {
-                studentGegevensAfwezigMessage();
-                int keuzeAfwezig = scanner.nextInt();
+    //StartExams
+    public static void startExams(Scanner scanner){
+        try{
+            startExamsLoop:while(true){
+                System.out.println("Geef je StudentNummer:");
+                int userInput = scanner.nextInt();
                 scanner.nextLine();
-                try {
-                    switch (keuzeAfwezig) {
-                        case 1:
-                            startExams();// deze methode opnieuw
-                            break;
-                        case 2:
-                            Student.newStudent();
-                            startExams();// deze methode opnieuw
-                            break;
-                        case 3:
-                            mainMenu();
-                            break;
-                        default:
-                            System.out.println("Verkeerde optie. Ga terug naar main menu.");
-                            mainMenu();
+                startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
+                    if(userInput == Student.studentList.get(i).getStudentNumber()){
+                        studentGegevensAanwezig(Student.studentList.get(i));    
                     }
-                } finally {
+                    if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
+                        studentGegevensAfwezigMessage();
+                        int studentNotFoundKeuze = scanner.nextInt();
+                        scanner.nextLine();
+                        try{
+                            switch(studentNotFoundKeuze){
+                                case 1:
+                                    break startExamsFindStudentLoop;//NO. No recursion
+                                case 2:
+                                    Student.newStudent(scanner);
+                                    break startExamsFindStudentLoop;
+                                case 3: 
+                                    break startExamsLoop;
+                                default:
+                                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                                    break startExamsLoop;
+                            }    
+                        } 
+                        finally{}
+                    }
                 }
-                break;
             }
-        }
-
         pauseMenu(scanner);
 
+        }
+        finally{}
+    
+        
     }
 
-    private static void studentGegevensAanwezig(Student student) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Kies uw examen:");
-        for (int i = 0; i < Exam.examList.size(); i++) {
-            System.out.println(i + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
-        }
-        int keuze = scanner.nextInt();
-        scanner.nextLine();
+    private static void studentGegevensAanwezig(Student student){
+        try(Scanner scanner = new Scanner(System.in)){//Remove scanner & check recursion
+            
+            System.out.println("Kies uw examen:");
+            for (int i = 0; i < Exam.examList.size(); i++) {
+                System.out.println(i+1 + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
+            }
+            int keuze = scanner.nextInt();
+            scanner.nextLine();
 
-        if (keuze > Exam.examList.size() || keuze < 0) {
-            System.out.println(
-                    "Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-        } else {
-            Exam.examList.get(keuze).startExam(student);
+            if (keuze > Exam.examList.size() || keuze < 0){
+                System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+            } else {
+                Exam.examList.get(keuze).startExam(student);
+            }
+        }
+        catch(Exception e){
+            System.out.println("Error in studentGegevensAanwezig");
+            System.out.println(e);
+
         }
     }
 
@@ -245,32 +250,6 @@ public class App {
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
-    }
-
-    private static void init(){
-
-        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
-        rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
-        rekenen.addQuestion(new Question("Wat is 2 - 2?\n A) 0\n B) 1\n C) 2\n D) 3\n", "A"));
-        rekenen.addQuestion(new Question("Wat is 1 + 1?\n A) 1\n B) 2\n C) 3\n D) 4\n", "B"));
-        rekenen.addQuestion(new Question("Wat is 3 x 2?\n A) 4\n B) 5\n C) 6\n D) 8\n", "C"));
-        rekenen.addQuestion(new Question("Wat is 610 x 410 / 5104?\n A) 2\n B) 55.6\n C) 50.2\n D) 49.0\n", "D"));
-
-        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
-        tekenen.addQuestion(new Question(
-                "Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "A"));
-        tekenen.addQuestion(new Question(
-                "Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "B"));
-        tekenen.addQuestion(new Question(
-                "Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
-        tekenen.addQuestion(new Question(
-                "Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
-
-        new Student("Eric", 21146632);
-        new Student("Lucas", 21093830);
-        new Student("Wessel", 21046220);
-        new Student("Burton", 21035407);
-        new Student("Wouter", 21076367);
     }
 
     private static void pauseMenu(Scanner scanner) {
@@ -283,4 +262,3 @@ public class App {
         }
     }
 }
-
