@@ -6,12 +6,12 @@ public class Student {
     public static ArrayList<Student> studentList = new ArrayList<>();
     public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
     
-
     public Student(String name, int studentNumber){
         this.name = name;
         this.studentNumber = studentNumber;
         studentList.add(this);
     }
+
     public String getName(){
         return this.name;
     }

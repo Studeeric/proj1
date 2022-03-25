@@ -216,13 +216,11 @@ public class App {
                 break;
             }
         }
-
         System.out.println("Press enter to continue");
         try{
             String returnMenu = scanner.nextLine(); // This is just here to wait for input
         }
         finally{}
-        
     }
 
     private static void studentGegevensAanwezig(Student student){
@@ -249,22 +247,6 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
   
-/*
-    private void maakNieuweStudentAan(){
-        Scanner maNiStAaInput = new Scanner(System.in);
-
-        System.out.println("Wat is je naam?");
-        String naam = maNiStAaInput.nextLine();
-
-        System.out.println("Wat is je studentnummer?");
-        int studentnummer = maNiStAaInput.nextInt();
-
-        Student student = new Student(naam, studentnummer);
-
-        System.out.println(student.getName() +" is toegevoegd aan de student lijst.");
-        maNiStAaInput.close();
-    }
-    */
     private static void init(){
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
