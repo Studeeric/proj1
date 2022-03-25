@@ -189,7 +189,7 @@ public class App {
                 scanner.nextLine();
                 startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
                     if(userInput == Student.studentList.get(i).getStudentNumber()){
-                        studentGegevensAanwezig(Student.studentList.get(i));    
+                        studentGegevensAanwezig(Student.studentList.get(i),scanner);    
                     }
                     if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
                         studentGegevensAfwezigMessage();
@@ -221,8 +221,8 @@ public class App {
         
     }
 
-    private static void studentGegevensAanwezig(Student student){
-        try(Scanner scanner = new Scanner(System.in)){//Remove scanner & check recursion
+    private static void studentGegevensAanwezig(Student student,Scanner scanner){
+        try{
             
             System.out.println("Kies uw examen:");
             for (int i = 0; i < Exam.examList.size(); i++) {
