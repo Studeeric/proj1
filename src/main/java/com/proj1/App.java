@@ -206,7 +206,7 @@ public class App {
             
             System.out.println("Kies uw examen:");
             for (int i = 0; i < Exam.examList.size(); i++) {
-                System.out.println(i + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
+                System.out.println(i+1 + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
             }
             int keuze = scanner.nextInt();
             scanner.nextLine();
