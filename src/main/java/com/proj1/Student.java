@@ -5,7 +5,7 @@ public class Student {
     private int studentNumber;
     public static ArrayList<Student> studentList = new ArrayList<>();
     public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
-    
+
 
     public Student(String name, int studentNumber){
         this.name = name;
@@ -50,13 +50,31 @@ public class Student {
 
     public static void studentMostPassed (){
         int totaal = 0;
-        int studentNR = 0;
+        ArrayList<Integer> studentNR = new ArrayList<Integer>;
         for (int i = 0; i < studentList.size(); i++){
-            if (totaal < studentList.get(i).behaaldeExamens.size()){
+            if (totaal <= studentList.get(i).behaaldeExamens.size()){
                 totaal = studentList.get(i).behaaldeExamens.size();
-                studentNR = i;
+                studentNR.add(i);
             }
+            
+        if (studentNR.size() == 1){
+            System.out.println(studentList.get(studentNR).getName() + " heeft maar liefst " + totaal + " examens gehaald.");
         }
-        System.out.println(studentList.get(studentNR).getName() + " heeft maar liefst " + totaal + " examens gehaald.");
+
+        if (studentNR.size() > 1){
+            System.out.println("Er zijn " + studentNR.size() + " studenten die allemaal de meeste examens gehaald hebben.");
+            System.out.println("");
+            for (int n = 0; n < studentNR.size(); n++){
+                System.out.print(studentNR.get(n));
+                if (n != studentNR.size()-1){
+                    System.out.print(", ");
+                }    
+            }
+            System.out.print(" hebben elk "+ totaal + " examens gehaald.");
+        }
+        //Als er een gelijkstand is in meeste examens behaald, zou het programma het volgende moeten doen:
+        //Er zijn 5 studenten die allebei de meeste examens gehaald hebben.
+        //
+        //Eric, Lucas, Wessel, Burton, Wouter hebben elk 0 examens gehaald.
     }
 }
