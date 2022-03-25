@@ -20,16 +20,19 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(){
-        try(Scanner scanner = new Scanner(System.in)){
+    public static void newStudent(Scanner scanner){
+        try{
             
             System.out.println ("Voer je naam:");
             String naam = scanner.nextLine();
             naam = naam.replace("\n", "");
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
+            scanner.nextLine();
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+            System.out.println("Press return to continue");
+            scanner.nextLine();
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
@@ -37,8 +40,8 @@ public class Student {
         }
     }
     
-    public static void deleteStudent(){
-        try( Scanner scanner = new Scanner(System.in)){
+    public static void deleteStudent(Scanner scanner){
+        try{
            
             /*
             System.out.println ("Voer je naam:");

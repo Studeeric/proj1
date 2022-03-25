@@ -2,15 +2,15 @@ package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
+        Scanner scanner = new Scanner(System.in);
         Init.init(false);
-        mainMenu();
+        mainMenu(scanner);
         SaveManager.exitSave();
     }
 
     //mainMenu
-    public static void mainMenu() {
+    public static void mainMenu(Scanner james) {
         clearScreen();
-        Scanner james = new Scanner(System.in);
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = james.nextInt();
@@ -29,23 +29,23 @@ public class App {
                         break;
                     case(3):
                         clearScreen();
-                        Student.newStudent();
+                        Student.newStudent(james);
                         break;
                     case(4):
                         clearScreen();
-                        Student.deleteStudent();
+                        Student.deleteStudent(james);
                         break;
                     case(5):
                         clearScreen();
-                        startExams();
+                        startExams(james);
                         break;
                     case(6):
                         clearScreen();
-                        studentExamStatus();
+                        studentExamStatus(james);
                         break;
                     case(7):
                         clearScreen();
-                        studentExamPassed();
+                        studentExamPassed(james);
                         break;
                     case(8):
                         clearScreen();
@@ -111,8 +111,8 @@ public class App {
     }
 
      //studentExamStatus
-    public static void studentExamStatus(){
-        try(Scanner scanner = new Scanner(System.in)){
+    public static void studentExamStatus(Scanner scanner){
+        try{
             System.out.println ("Voer je naam in:");
             String studentName = scanner.nextLine();
             System.out.println("Voer je studentnummer in");
@@ -128,11 +128,15 @@ public class App {
             examNummer = examNummer - 1;
             System.out.println (Exam.getExam(examNummer));
         }
+        catch(Exception e){
+            System.out.println("Error in studentExamStatus!");
+            System.out.println(e);
+        }
     }
 
     //studentExamPassed
-    public static void studentExamPassed(){
-        try(Scanner scanner = new Scanner(System.in)){
+    public static void studentExamPassed(Scanner scanner){
+        try{
             System.out.println ("Voer je naam in:");
             String studentName = scanner.nextLine();
             System.out.println("Voer je studentnummer in");
@@ -146,43 +150,43 @@ public class App {
             System.out.println ("Voer de naam van het examen in:");
             String examName = scanner.nextLine();
         }
+        catch(Exception e){
+            System.out.println("Error in studentExamPassed!");
+            System.out.println(e);
+        }
     }
 
     //StartExams
-    public static void startExams(){
-        try(Scanner scanner = new Scanner(System.in)){
-            
-            System.out.println("Geef je StudentNummer:");
-            int userInput = scanner.nextInt();
-            scanner.nextLine();
-
-            for (int i=0; i < Student.studentList.size(); i++){
-                if(userInput == Student.studentList.get(i).getStudentNumber()){
-                    studentGegevensAanwezig(Student.studentList.get(i));    
-                }
-                if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
-                    studentGegevensAfwezigMessage();
-                    int studentNotFoundKeuze = scanner.nextInt();
-                    scanner.nextLine();
-                    try{
-                        switch(studentNotFoundKeuze){
-                            case 1:
-                                startExams();//deze methode opnieuw
-                                break;
-                            case 2:
-                                Student.newStudent();
-                                startExams();//deze methode opnieuw
-                                break;
-                            case 3:
-                                mainMenu();
-                                break;
-                            default:
-                                System.out.println("Verkeerde optie. Ga terug naar main menu.");
-                                mainMenu();
-                        }    
-                    } 
-                    finally{}
-                    break;
+    public static void startExams(Scanner scanner){
+        try{
+            startExamsLoop:while(true){
+                System.out.println("Geef je StudentNummer:");
+                int userInput = scanner.nextInt();
+                scanner.nextLine();
+                startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
+                    if(userInput == Student.studentList.get(i).getStudentNumber()){
+                        studentGegevensAanwezig(Student.studentList.get(i));    
+                    }
+                    if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
+                        studentGegevensAfwezigMessage();
+                        int studentNotFoundKeuze = scanner.nextInt();
+                        scanner.nextLine();
+                        try{
+                            switch(studentNotFoundKeuze){
+                                case 1:
+                                    break startExamsFindStudentLoop;//NO. No recursion
+                                case 2:
+                                    Student.newStudent(scanner);
+                                    break startExamsFindStudentLoop;
+                                case 3: 
+                                    break startExamsLoop;
+                                default:
+                                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                                    break startExamsLoop;
+                            }    
+                        } 
+                        finally{}
+                    }
                 }
             }
 
