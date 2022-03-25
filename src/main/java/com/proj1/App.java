@@ -247,6 +247,7 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
 
+
     /*
      * private void maakNieuweStudentAan(){
      * Scanner maNiStAaInput = new Scanner(System.in);
@@ -299,3 +300,4 @@ public class App {
         }
     }
 }
+
