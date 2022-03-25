@@ -5,7 +5,7 @@ public class Student {
     private int studentNumber;
     public static ArrayList<Student> studentList = new ArrayList<>();
     public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
-    
+
 
     public Student(String name, int studentNumber){
         this.name = name;
@@ -49,6 +49,7 @@ public class Student {
     }
 
     public static void studentMostPassed (){
+
         int meesteNrBehaaldeExamens = 0;
         ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
 
@@ -77,6 +78,7 @@ public class Student {
             }
             System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
         }
+
     }
 }
 /*
