@@ -247,25 +247,8 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
 
+    private static void init(){
 
-    /*
-     * private void maakNieuweStudentAan(){
-     * Scanner maNiStAaInput = new Scanner(System.in);
-     * 
-     * System.out.println("Wat is je naam?");
-     * String naam = maNiStAaInput.nextLine();
-     * 
-     * System.out.println("Wat is je studentnummer?");
-     * int studentnummer = maNiStAaInput.nextInt();
-     * 
-     * Student student = new Student(naam, studentnummer);
-     * 
-     * System.out.println(student.getName()
-     * +" is toegevoegd aan de student lijst.");
-     * maNiStAaInput.close();
-     * }
-     */
-    private static void init() {
         Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
         rekenen.addQuestion(new Question("Wat is 2 - 2?\n A) 0\n B) 1\n C) 2\n D) 3\n", "A"));
