@@ -1,11 +1,5 @@
-package com.proj1;
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import org.junit.Test;
-
+package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals; import org.junit.jupiter.api.Test;
+//Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
 
     Exam TestExam = new Exam("OPT1", "HBO-ICT");
