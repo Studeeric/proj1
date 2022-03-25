@@ -49,32 +49,35 @@ public class Student {
     }
 
     public static void studentMostPassed (){
-        int totaal = 0;
-        ArrayList<Integer> studentNR = new ArrayList<Integer>;
+
+        int meesteNrBehaaldeExamens = 0;
+        ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
+
         for (int i = 0; i < studentList.size(); i++){
-            if (totaal <= studentList.get(i).behaaldeExamens.size()){
-                totaal = studentList.get(i).behaaldeExamens.size();
-                studentNR.add(i);
+            if (meesteNrBehaaldeExamens < studentList.get(i).behaaldeExamens.size()){
+                meesteNrBehaaldeExamens = studentList.get(i).behaaldeExamens.size();
             }
-            
-        if (studentNR.size() == 1){
-            System.out.println(studentList.get(studentNR).getName() + " heeft maar liefst " + totaal + " examens gehaald.");
         }
 
-        if (studentNR.size() > 1){
-            System.out.println("Er zijn " + studentNR.size() + " studenten die allemaal de meeste examens gehaald hebben.");
-            System.out.println("");
-            for (int n = 0; n < studentNR.size(); n++){
-                System.out.print(studentNR.get(n));
-                if (n != studentNR.size()-1){
-                    System.out.print(", ");
-                }    
+        for (int i = 0; i < studentList.size(); i++){
+            if (meesteNrBehaaldeExamens == studentList.get(i).behaaldeExamens.size()){
+                namenStudentenMetMostPassed.add(studentList.get(i).getName());
             }
-            System.out.print(" hebben elk "+ totaal + " examens gehaald.");
         }
-        //Als er een gelijkstand is in meeste examens behaald, zou het programma het volgende moeten doen:
-        //Er zijn 5 studenten die allebei de meeste examens gehaald hebben.
-        //
-        //Eric, Lucas, Wessel, Burton, Wouter hebben elk 0 examens gehaald.
+
+        if (namenStudentenMetMostPassed.size()==1){
+            System.out.println(namenStudentenMetMostPassed.get(1) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
+        } else {
+            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + "Studenten die allemaal het meeste examens gehaald hebben.");
+            System.out.println("");
+            for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
+                System.out.print(namenStudentenMetMostPassed.get(n));
+                if (n < (namenStudentenMetMostPassed.size()-1)){
+                    System.out.print(", ");
+                }
+            }
+            System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+        }
+
     }
 }
