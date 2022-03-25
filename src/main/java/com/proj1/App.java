@@ -108,12 +108,8 @@ public class App {
         }
         finally{}
     }
-<<<<<<< HEAD
-    //studentExamStatus
-=======
 
      //studentExamStatus
->>>>>>> f511550d00519ae17ac0e2961adbb8102f13ba85
     public static void studentExamStatus(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Voer je studentnummer in");
@@ -252,13 +248,9 @@ public class App {
         System.out.println("2) Nieuwe student aanmaken");
         System.out.println("3) Terug naar hoofdmenu");
     }
-<<<<<<< HEAD
 
-    /*
-=======
   
 /*
->>>>>>> f511550d00519ae17ac0e2961adbb8102f13ba85
     private void maakNieuweStudentAan(){
         Scanner maNiStAaInput = new Scanner(System.in);
 
@@ -274,28 +266,4 @@ public class App {
         maNiStAaInput.close();
     }
     */
-<<<<<<< HEAD
 }
-=======
-    private static void init(){
-        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
-        rekenen.addQuestion(new Question("Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n", "D"));
-        rekenen.addQuestion(new Question("Wat is 2 - 2?\n A) 0\n B) 1\n C) 2\n D) 3\n", "A"));
-        rekenen.addQuestion(new Question("Wat is 1 + 1?\n A) 1\n B) 2\n C) 3\n D) 4\n", "B"));
-        rekenen.addQuestion(new Question("Wat is 3 x 2?\n A) 4\n B) 5\n C) 6\n D) 8\n", "C"));
-        rekenen.addQuestion(new Question("Wat is 610 x 410 / 5104?\n A) 2\n B) 55.6\n C) 50.2\n D) 49.0\n", "D"));
-
-        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
-        tekenen.addQuestion(new Question("Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "A"));
-        tekenen.addQuestion(new Question("Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "B"));
-        tekenen.addQuestion(new Question("Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "C"));
-        tekenen.addQuestion(new Question("Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n", "D"));
-
-        new Student("Eric", 21146632);
-        new Student("Lucas", 21093830);
-        new Student("Wessel", 21046220);
-        new Student("Burton",21035407);
-        new Student("Wouter", 21076367);
-    }
-}
->>>>>>> f511550d00519ae17ac0e2961adbb8102f13ba85

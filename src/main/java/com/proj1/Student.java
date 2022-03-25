@@ -5,7 +5,7 @@ public class Student {
     private int studentNumber;
     public static ArrayList<Student> studentList = new ArrayList<>();
     public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
-    //private Exam examen;
+
 
     public Student(String name, int studentNumber){
         this.name = name;
