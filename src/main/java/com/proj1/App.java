@@ -72,7 +72,7 @@ public class App {
         System.out.println("3) Nieuwe student inschrijven");
         System.out.println("4) Student verwijderen");
         System.out.println("5) Examen afnemen");
-        System.out.println("6) Is student geslaagd voor test?");
+        System.out.println("6) Is student geslaagd voor test?"); //non readable reference
         System.out.println("7) Welke examens heeft student gehaald?");
         System.out.println("8) Welke student heeft de meeste examens gehaald?");
         System.out.println("0) Exit");
@@ -139,7 +139,7 @@ public class App {
         try{
             System.out.println ("Voer je naam in:");
             String studentName = scanner.nextLine();
-            System.out.println("Voer je studentnummer in");
+            System.out.println("Voer je studentnummer in:");
             int studentNumber = scanner.nextInt();
             System.out.println("Examens beschikbaar:");
             int counter = 1;
