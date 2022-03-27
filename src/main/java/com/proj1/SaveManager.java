@@ -91,11 +91,13 @@ public class SaveManager {
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
-                //System.out.println(entries);
-                //entries = entries.replace("\n", ""); Debug Temp disable for questions containing escape sequences
                 String[] orders = entries.split(":");
                 if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
                     switch(orders[0]){
+                        case("Exam"):
+                            if(orders[1].equals("newExam")){
+                                new Exam(orders[2], orders[3]);
+                            }
                         case("reken"):
                         case("rekenen"):
                             if(orders[1].equals("AddQuestion")){

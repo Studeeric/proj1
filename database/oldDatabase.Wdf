@@ -1,14 +1,23 @@
+#exam:action:name:category
+
+exam:newExam:Rekenen voor beginners:rekenen
+exam:newExam:Kleuren voor beginners:tekenen
+
+# question:action:index_of_exam:tobe_asked:options:answer
+
 rekenen:AddQuestion:Wat is 2 + 2?: A) 1: B) 2: C) 3: D) 4:D
 rekenen:AddQuestion:Wat is 2 - 2?: A) 0: B) 1: C) 2: D) 3:A
 rekenen:AddQuestion:Wat is 1 + 1?: A) 1: B) 2: C) 3: D) 4:B
 rekenen:AddQuestion:Wat is 3 x 2?: A) 4: B) 5: C) 6: D) 8:C
 rekenen:AddQuestion:Wat is 610 x 410 / 5104?: A) 2: B) 55.6: C) 50.2: D) 49.0:D
-#
+
 tekenen:AddQuestion:Wat krijg je als je blauw en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:A
 tekenen:AddQuestion:Wat krijg je als je rood en wit mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:B
 tekenen:AddQuestion:Wat krijg je als je blauw en rood mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:C
 tekenen:AddQuestion:Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
-#
+
+# student:action:name:number:exams_completed
+
 student:makeStudent:Eric:21146632
 student:makeStudent:Lucas:21093830
 student:makeStudent:Wessel:21046220
