@@ -1,6 +1,6 @@
 package com.proj1; import java.util.Scanner;import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
 
-public class SaveManager {
+public abstract class SaveManager {
 
     //Edited version of my accidental file editor + loader methods
     //Todo: 
