@@ -7,10 +7,6 @@ public class Exam {
     ArrayList<Question> questionList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
-    /*  ATTENTION
-        Questions moeten nog toegevoegd worden bij initialization.
-    */
-
     public Exam(String name, String category){
         this.name = name;
         this.category = category;

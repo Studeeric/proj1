@@ -58,7 +58,7 @@ public class App {
                         System.out.println("Saving Data.....");
                         break mainMenuLoop;
                     default:
-                        System.out.println("No option found, please choose a listed option");
+                        System.out.println("Invalid option. Please choose a listed option");
                         break;
                 }
             } catch (Exception e) {
@@ -109,7 +109,7 @@ public class App {
 
      //studentExamStatus
      public static void studentExamStatus(Scanner scanner){
-        System.out.println("Voer je studentnummer in");
+        System.out.println("Voer je studentnummer in:");
         int studentNumber = scanner.nextInt();
         scanner.nextLine();
         boolean studentFound = false;
@@ -175,7 +175,7 @@ public class App {
                 System.out.println("De student heeft helaas geen examens gehaald.");
             }
         } else {
-            System.out.println("Student is niet gevonden. U zal nu terugkeren naar het hoofdmenu.");
+            System.out.println("Student is niet gevonden. Keer terug naar het hoofdmenu");
         }
         pauseMenu(scanner);
     }
@@ -184,7 +184,7 @@ public class App {
     public static void startExams(Scanner scanner){
         try{
             startExamsLoop:while(true){
-                System.out.println("Geef je StudentNummer:");
+                System.out.println("Voer je StudentNummer in:");
                 int userInput = scanner.nextInt();
                 scanner.nextLine();
                 startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
@@ -201,9 +201,9 @@ public class App {
                                     break startExamsFindStudentLoop;//NO. No recursion
                                 case 2:
                                     Student.newStudent(scanner);
-                                    break startExamsFindStudentLoop;
+                                    break startExamsFindStudentLoop;//Break the for loop & run this method again
                                 case 3: 
-                                    break startExamsLoop;
+                                    break startExamsLoop;//Break the while loop & go back to mainMenu
                                 default:
                                     System.out.println("Verkeerde optie. Ga terug naar main menu.");
                                     break startExamsLoop;
@@ -216,9 +216,7 @@ public class App {
         pauseMenu(scanner);
 
         }
-        finally{}
-    
-        
+        finally{}   
     }
 
     private static void studentGegevensAanwezig(Student student,Scanner scanner){
@@ -253,11 +251,11 @@ public class App {
     }
 
     private static void pauseMenu(Scanner scanner) {
-        System.out.println("Press enter to continue.");
+        System.out.println("Press return to continue.");
         try {
             scanner.nextLine(); // This is just here to wait for input
         } catch (Exception e) {
-            System.out.println("Exception in method .....");
+            System.out.println("Exception in method pauseMenu");
             System.out.println(e);
         }
     }
