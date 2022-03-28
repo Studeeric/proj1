@@ -1,6 +1,6 @@
 package com.proj1;import java.io.File;
 
-public class Init {
+public abstract class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
     public static void init(boolean debugMode) {

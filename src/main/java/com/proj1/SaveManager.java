@@ -1,6 +1,6 @@
 package com.proj1; import java.util.Scanner;import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
 
-public class SaveManager {
+public abstract class SaveManager {
 
     //Edited version of my accidental file editor + loader methods
     //Todo: 
@@ -86,16 +86,30 @@ public class SaveManager {
     }
 
     public static void loadSaveFile(String fileName,boolean debugMode){
-        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
-        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
+        //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
-                //System.out.println(entries);
-                //entries = entries.replace("\n", ""); Debug Temp disable for questions containing escape sequences
                 String[] orders = entries.split(":");
                 if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
                     switch(orders[0]){
+                        case("exam"):
+                        case("Exam"):
+                            if(orders[1].equals("newExam")){
+                               Exam hermann =  new Exam(orders[2], orders[3]);
+                               System.out.println(Exam.examList.size());
+                            }
+                            else if(orders[1].equals("AddQuestion")){
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                Integer examNr = Integer.parseInt(orders[2]);   
+                                Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));
+                            }
+                            break;
+                            /*
                         case("reken"):
                         case("rekenen"):
                             if(orders[1].equals("AddQuestion")){
@@ -116,22 +130,19 @@ public class SaveManager {
                                 tekenen.addQuestion(new Question(questionOptions));
                             }
                             break;
+                            */
                         case("student"):
                             for (String replacestring : orders){
                                 replacestring.replace("\n", "");
                             }
                             if(orders[1].equals("makeStudent")){
                                 int studentNumberSaveFile = Integer.parseInt(orders[3]);
-                                Student henry = new Student(orders[2], studentNumberSaveFile);
+                                Student heinrich = new Student(orders[2], studentNumberSaveFile);
                                 if(orders.length > 4){
                                     int counter = 0;
                                     while (counter < (orders.length-4)){
-                                        if(orders[counter+4].equals("reken")){
-                                            henry.behaaldeExamens.add(rekenen);
-                                        }
-                                        else if(orders[counter+4].equals("teken")){
-                                            henry.behaaldeExamens.add(tekenen);
-                                        }
+                                        Integer examNr = Integer.parseInt(orders[counter+4]);
+                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr));
                                         counter++;
                                     }
                                 }
@@ -172,9 +183,12 @@ public class SaveManager {
                     case 2:
                         for(Exam exam : Exam.examList){
                             System.out.println(exam.getName() + " - "+exam.getCategory());
-                            for(Question question : exam.getQuestionList()){
-                                System.out.println(question.askQuestion());
+                            /*for(Question question : exam.getQuestionList()){
+                                for(String content : question.questionContents){
+                                    System.out.println(content);
+                                }
                             }
+                            */
                         }
                         break;
                     case 0:
@@ -185,10 +199,6 @@ public class SaveManager {
             }
         }
     }
-    
-    public static void addToSave() {
-    //empty, just like my wallet    
-    }
 
     public static void exitSave() {
         File savefile = new File(Init.dir + "\\database.Wdf");
@@ -198,11 +208,14 @@ public class SaveManager {
         try{
             FileWriter saveWriter = new FileWriter(savefile,true);
             //Add the exams to the savefile
+            int counter=1;
             for(Exam exams : Exam.examList){
                 //System.out.println(exams.getName());//Debug
+                saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory()+"\n");
                 for(Question questions : exams.questionList){
-                    saveWriter.append(exams.getCategory().toLowerCase()+":"+"AddQuestion"+questions.contentsInString()+"\n");
+                    saveWriter.append("exam"+":"+"AddQuestion"+counter+":"+questions.contentsInString()+"\n");
                 }
+                counter++;
                 saveWriter.append("#\n");
             }
             
