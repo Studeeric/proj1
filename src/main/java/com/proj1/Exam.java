@@ -27,6 +27,7 @@ public class Exam {
             if(questionList.get(i-1).checkAnswer(scanner.nextLine())){
                 correct++;
             }
+            App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
         if (correct >= ((questionList.size()-1)/2)){
