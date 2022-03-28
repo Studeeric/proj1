@@ -199,9 +199,6 @@ public class SaveManager {
             }
         }
     }
-    
-    public static void addToSave() {   
-    }
 
     public static void exitSave() {
         File savefile = new File(Init.dir + "\\database.Wdf");
