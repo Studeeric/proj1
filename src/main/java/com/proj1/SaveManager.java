@@ -187,7 +187,7 @@ public class SaveManager {
     }
     
     public static void addToSave() {
-        
+    //empty, just like my wallet    
     }
 
     public static void exitSave() {
