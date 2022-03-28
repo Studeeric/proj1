@@ -86,8 +86,8 @@ public class SaveManager {
     }
 
     public static void loadSaveFile(String fileName,boolean debugMode){
-        Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
-        Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
+        //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
@@ -98,6 +98,16 @@ public class SaveManager {
                             if(orders[1].equals("newExam")){
                                 new Exam(orders[2], orders[3]);
                             }
+                            if(orders[1].equals("AddQuestion")){
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                Integer examNr = Integer.parseInt(orders[2]);   
+                                Exam.examList.get(examNr).addQuestion(new Question(questionOptions));
+                            }
+                            break;
+                            /*
                         case("reken"):
                         case("rekenen"):
                             if(orders[1].equals("AddQuestion")){
@@ -118,22 +128,19 @@ public class SaveManager {
                                 tekenen.addQuestion(new Question(questionOptions));
                             }
                             break;
+                            */
                         case("student"):
                             for (String replacestring : orders){
                                 replacestring.replace("\n", "");
                             }
                             if(orders[1].equals("makeStudent")){
                                 int studentNumberSaveFile = Integer.parseInt(orders[3]);
-                                Student henry = new Student(orders[2], studentNumberSaveFile);
+                                Student heinrich = new Student(orders[2], studentNumberSaveFile);
                                 if(orders.length > 4){
                                     int counter = 0;
                                     while (counter < (orders.length-4)){
-                                        if(orders[counter+4].equals("reken")){
-                                            henry.behaaldeExamens.add(rekenen);
-                                        }
-                                        else if(orders[counter+4].equals("teken")){
-                                            henry.behaaldeExamens.add(tekenen);
-                                        }
+                                        Integer examNr = Integer.parseInt(orders[counter+4]);
+                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr));
                                         counter++;
                                     }
                                 }
@@ -188,8 +195,7 @@ public class SaveManager {
         }
     }
     
-    public static void addToSave() {
-        
+    public static void addToSave() {   
     }
 
     public static void exitSave() {
@@ -200,11 +206,14 @@ public class SaveManager {
         try{
             FileWriter saveWriter = new FileWriter(savefile,true);
             //Add the exams to the savefile
+            int counter=0;
             for(Exam exams : Exam.examList){
                 //System.out.println(exams.getName());//Debug
+                saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory());
                 for(Question questions : exams.questionList){
-                    saveWriter.append(exams.getCategory().toLowerCase()+":"+"AddQuestion"+questions.contentsInString()+"\n");
+                    saveWriter.append("exam"+":"+"AddQuestion"+counter+":"+questions.contentsInString()+"\n");
                 }
+                counter++;
                 saveWriter.append("#\n");
             }
             

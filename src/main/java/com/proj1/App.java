@@ -1,12 +1,9 @@
-package com.proj1;
-
-import java.util.Scanner;
-import java.io.IOException;
+package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
         Scanner scanner = new Scanner(System.in);
-        Init.init(false);
+        Init.init(true);
         mainMenu(scanner);
         SaveManager.exitSave();
     }
