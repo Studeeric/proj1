@@ -94,17 +94,19 @@ public class SaveManager {
                 String[] orders = entries.split(":");
                 if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
                     switch(orders[0]){
+                        case("exam"):
                         case("Exam"):
                             if(orders[1].equals("newExam")){
-                                new Exam(orders[2], orders[3]);
+                               Exam hermann =  new Exam(orders[2], orders[3]);
+                               System.out.println(Exam.examList.size());
                             }
-                            if(orders[1].equals("AddQuestion")){
+                            else if(orders[1].equals("AddQuestion")){
                                 ArrayList<String>questionOptions = new ArrayList<>();
                                 for(int i =2;i<orders.length;i++){
                                     questionOptions.add(orders[i]);
                                 }
                                 Integer examNr = Integer.parseInt(orders[2]);   
-                                Exam.examList.get(examNr).addQuestion(new Question(questionOptions));
+                                Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));
                             }
                             break;
                             /*
@@ -181,9 +183,12 @@ public class SaveManager {
                     case 2:
                         for(Exam exam : Exam.examList){
                             System.out.println(exam.getName() + " - "+exam.getCategory());
-                            for(Question question : exam.getQuestionList()){
-                                System.out.println(question.askQuestion());
+                            /*for(Question question : exam.getQuestionList()){
+                                for(String content : question.questionContents){
+                                    System.out.println(content);
+                                }
                             }
+                            */
                         }
                         break;
                     case 0:
@@ -206,10 +211,10 @@ public class SaveManager {
         try{
             FileWriter saveWriter = new FileWriter(savefile,true);
             //Add the exams to the savefile
-            int counter=0;
+            int counter=1;
             for(Exam exams : Exam.examList){
                 //System.out.println(exams.getName());//Debug
-                saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory());
+                saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory()+"\n");
                 for(Question questions : exams.questionList){
                     saveWriter.append("exam"+":"+"AddQuestion"+counter+":"+questions.contentsInString()+"\n");
                 }

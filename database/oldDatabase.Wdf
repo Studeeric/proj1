@@ -5,16 +5,16 @@ exam:newExam:Kleuren voor beginners:tekenen
 
 # question:action:index_of_exam:tobe_asked:options:answer
 
-exam:AddQuestion:0:Wat is 2 + 2?: A) 1: B) 2: C) 3: D) 4:D
-exam:AddQuestion:0:Wat is 2 - 2?: A) 0: B) 1: C) 2: D) 3:A
-exam:AddQuestion:0:Wat is 1 + 1?: A) 1: B) 2: C) 3: D) 4:B
-exam:AddQuestion:0:Wat is 3 x 2?: A) 4: B) 5: C) 6: D) 8:C
-exam:AddQuestion:0:Wat is 610 x 410 / 5104?: A) 2: B) 55.6: C) 50.2: D) 49.0:D
+exam:AddQuestion:1:Wat is 2 + 2?: A) 1: B) 2: C) 3: D) 4:D
+exam:AddQuestion:1:Wat is 2 - 2?: A) 0: B) 1: C) 2: D) 3:A
+exam:AddQuestion:1:Wat is 1 + 1?: A) 1: B) 2: C) 3: D) 4:B
+exam:AddQuestion:1:Wat is 3 x 2?: A) 4: B) 5: C) 6: D) 8:C
+exam:AddQuestion:1:Wat is 610 x 410 / 5104?: A) 2: B) 55.6: C) 50.2: D) 49.0:D
 
-exam:AddQuestion:1:Wat krijg je als je blauw en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:A
-exam:AddQuestion:1:Wat krijg je als je rood en wit mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:B
-exam:AddQuestion:1:Wat krijg je als je blauw en rood mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:C
-exam:AddQuestion:1: Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
+exam:AddQuestion:2:Wat krijg je als je blauw en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:A
+exam:AddQuestion:2:Wat krijg je als je rood en wit mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:B
+exam:AddQuestion:2:Wat krijg je als je blauw en rood mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:C
+exam:AddQuestion:2: Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
 
 # student:action:name:number:exams_completed
 
