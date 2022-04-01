@@ -3,4 +3,8 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 public class AppTest{
     
+    public void getStudentsTest(){
+        
+    }
+
 }
