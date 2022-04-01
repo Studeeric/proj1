@@ -1,9 +1,4 @@
-package com.proj1;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import org.junit.Test;
+package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals; import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
@@ -42,4 +37,16 @@ public class StudentTest {
         }
         assertEquals(juist, test);
     }
+    
+    // Deze test is er om een methode aan te kunnen roepen voor het aanmaken van een nieuwe student
+    @Test
+    public void medewerkerAddTest(){
+        String naam = "Minte Eskes";
+        String naamTest = "Minte Eskes";
+        int studentNummer = 240;
+        Student student = new Student(naam, studentNummer);
+
+       assertEquals(naamTest, student.getName());
+}
+
 }

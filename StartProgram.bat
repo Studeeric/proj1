@@ -1,1 +1,2 @@
-java -Xms512m -Xmx1G -jar proj1.jar
+@ECHO OFF
+java -Xms16m -Xmx512m -jar proj1.jar

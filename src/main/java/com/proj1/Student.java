@@ -20,32 +20,45 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam:");
-        String naam = scanner.nextLine();
-        naam = naam.replace("\n", "");
-        System.out.println("Voer je studentnummer in:");
-        int nummer = scanner.nextInt();
-        Student newStudent = new Student (naam, nummer);
-        System.out.println(newStudent.getName() + " is toegevoegd aan de student lijst.");
-        scanner.close();
+    public static void newStudent(Scanner scanner){
+        try{
+            
+            System.out.println ("Voer je naam:");
+            String naam = scanner.nextLine();
+            naam = naam.replace("\n", "");
+            System.out.println("Voer je studentnummer in:");
+            int nummer = scanner.nextInt();
+            scanner.nextLine();
+            Student student = new Student (naam, nummer);
+            System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+            System.out.println("Press return to continue");
+            scanner.nextLine();
+        }
+        catch(Exception e){
+            System.out.println("Error in newStudent");
+            System.out.println(e);
+        }
     }
     
-    public static void deleteStudent(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println ("Voer je naam en studentnummer in:");
-        String naam = scanner.nextLine();
-        int nummer = scanner.nextInt();
-        for (Student e : Student.studentList){
-            if (e.name == naam && e.studentNumber == nummer){
-                Student.studentList.remove(e);
-                System.out.println ("Student succesvol verwijderd.");
-            }else{
-                System.out.println("Student niet gevonden.");
+    public static void deleteStudent(Scanner scanner){
+        try{
+            int counter = 1;
+            for (Student e : Student.studentList){
+                System.out.println(counter+") "+e.getName());
+                counter++;
             }
+            System.out.println("Kies een student");
+            int userRemoveStudentChoice = scanner.nextInt();
+            scanner.nextLine();
+            Student.studentList.remove(userRemoveStudentChoice-1);
+            System.out.println("Student removed");
+            System.out.println("Press return to continue");
+            scanner.nextLine();
         }
-        scanner.close();
+        catch(Exception e){
+            System.out.println("Error in deleteStudent");
+            System.out.println(e);
+        }
     }
 
     public static void studentMostPassed (){
@@ -82,6 +95,7 @@ public class Student {
 
     }
 }
+//I'll allow it for april/1
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
