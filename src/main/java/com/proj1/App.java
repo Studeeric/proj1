@@ -14,13 +14,15 @@ public class App {
         clearScreen();
         mainMenuLoop: while (true) {
             printMainMenu();
+            int chooseAction = 9;
             try{
-            int chooseAction = james.nextInt();
+            chooseAction = james.nextInt();
             james.nextLine();
             } catch(InputMismatchException ime){
                 System.out.println("Wat denk je zelf, mafklapper? We vroegen om een getal, niet een string.");
                 System.out.println(ime);
             }
+            
             try {
                 switch (chooseAction) {
                     case (1):
