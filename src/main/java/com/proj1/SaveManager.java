@@ -142,7 +142,7 @@ public abstract class SaveManager {
                                     int counter = 0;
                                     while (counter < (orders.length-4)){
                                         Integer examNr = Integer.parseInt(orders[counter+4]);
-                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr));
+                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr-1));
                                         counter++;
                                     }
                                 }
@@ -222,7 +222,14 @@ public abstract class SaveManager {
             for(Student student : Student.studentList){
                 String passedExams = "";
                 for(Exam studentPassedExam : student.behaaldeExamens){
-                    passedExams += ":"+studentPassedExam.getCategory().toLowerCase();
+                    int examCounter = 0;
+                    for (Exam exam : Exam.examList){
+                        if(exam.getName().equals(studentPassedExam.getName())){
+                            passedExams += ":"+(examCounter+1);
+                        }
+                        examCounter++;
+                    }
+                    
                 }
                 saveWriter.append("student"+":"+"makeStudent"+":"+student.getName()+":"+student.getStudentNumber()+passedExams+"\n");
             }
