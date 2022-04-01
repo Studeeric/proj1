@@ -2,9 +2,9 @@ package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
-        Scanner scanner = new Scanner(System.in);
+        Scanner scannakin = new Scanner(System.in);
         Init.init(false);
-        mainMenu(scanner);
+        mainMenu(scannakin);
         SaveManager.exitSave();
     }
 
