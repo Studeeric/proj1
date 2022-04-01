@@ -102,7 +102,7 @@ public abstract class SaveManager {
                             }
                             else if(orders[1].equals("AddQuestion")){
                                 ArrayList<String>questionOptions = new ArrayList<>();
-                                for(int i =2;i<orders.length;i++){
+                                for(int i =3;i<orders.length;i++){
                                     questionOptions.add(orders[i]);
                                 }
                                 Integer examNr = Integer.parseInt(orders[2]);   
