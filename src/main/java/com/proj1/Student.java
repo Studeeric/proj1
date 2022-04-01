@@ -79,7 +79,7 @@ public class Student {
         }
 
         if (namenStudentenMetMostPassed.size()==1){
-            System.out.println(namenStudentenMetMostPassed.get(1) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
+            System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
         } else {
             System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal het meeste examens gehaald hebben.");
             System.out.println("");
