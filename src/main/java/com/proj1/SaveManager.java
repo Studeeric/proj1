@@ -86,6 +86,8 @@ public abstract class SaveManager {
     }
 
     public static void loadSaveFile(String fileName,boolean debugMode){
+         //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
