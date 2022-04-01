@@ -41,6 +41,5 @@ public abstract class Init {
             new Student("Wouter", 21076367);
         }
     }
-    */ //I ain't fixing this shit
-    
+    */ //I ain't fixing this shit    
 }

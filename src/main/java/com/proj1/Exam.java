@@ -5,7 +5,6 @@ public class Exam {
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
     ArrayList<Question> questionList = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
 
     public Exam(String name, String category){
         this.name = name;
@@ -13,7 +12,27 @@ public class Exam {
         examList.add(this);
     }
 
-    public void startExam(Student student){
+    public String getName(){
+        return this.name;
+    }
+  
+    public String getCategory(){
+        return this.category;
+    }
+
+    public static Exam getExam(int getal){
+        return examList.get(getal);
+    }
+
+    public void addQuestion(Question question){
+          this.questionList.add(question);
+    }
+  
+    public ArrayList<Question> getQuestionList(){
+        return this.questionList;
+    }
+
+    public void startExam(Student student, Scanner scanner){
         int correct = 0;
         for (int i = 1; i <= questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
@@ -44,30 +63,5 @@ public class Exam {
             "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
             "Volgende keer beter!");
         }
-    }
-
-    public String getName(){
-        return this.name;
-    }
-  
-    public String getCategory(){
-        return this.category;
-    }
-
-    public static Exam getExam(int getal){
-        return examList.get(getal);
-    }
-
-
-    public void addQuestion(Question question){
-          this.questionList.add(question);
-    }
-  
-    public ArrayList<Question> getQuestionList(){
-        return this.questionList;
-    }
-
-    private void succesfullExam(Student student){
-        student.behaaldeExamens.add(this);
     }
 }
