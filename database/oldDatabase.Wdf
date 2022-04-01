@@ -14,7 +14,7 @@ exam:AddQuestion:1:Wat is 610 x 410 / 5104?: A) 2: B) 55.6: C) 50.2: D) 49.0:D
 exam:AddQuestion:2:Wat krijg je als je blauw en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:A
 exam:AddQuestion:2:Wat krijg je als je rood en wit mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:B
 exam:AddQuestion:2:Wat krijg je als je blauw en rood mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:C
-exam:AddQuestion:2: Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
+exam:AddQuestion:2:Wat krijg je als je rood en geel mixt?: A) Groen: B) Roze: C) Paars: D) Oranje:D
 
 # student:action:name:number:exams_completed
 

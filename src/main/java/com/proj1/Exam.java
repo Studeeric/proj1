@@ -46,13 +46,22 @@ public class Exam {
             System.out.println("Aantal goed: " + correct);
         }
         if (correct >= ((questionList.size()-1)/2)){
+            examResult(student, correct, true);
+        } else {
+            examResult(student, correct, false);
+        }
+    }
+
+
+    public void examResult(Student student, int correct, boolean gehaald) {
+        if(gehaald){
             student.behaaldeExamens.add(this);
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
-        } else {
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+        } else{
             System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
-                                "Volgende keer beter!");
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
+            "Volgende keer beter!");
         }
     }
 }
