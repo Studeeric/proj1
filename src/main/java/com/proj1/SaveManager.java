@@ -213,7 +213,7 @@ public abstract class SaveManager {
                 //System.out.println(exams.getName());//Debug
                 saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory()+"\n");
                 for(Question questions : exams.questionList){
-                    saveWriter.append("exam"+":"+"AddQuestion"+counter+":"+questions.contentsInString()+"\n");
+                    saveWriter.append("exam"+":"+"AddQuestion"+":"+counter+questions.contentsInString()+"\n");
                 }
                 counter++;
                 saveWriter.append("#\n");
