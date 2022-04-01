@@ -42,27 +42,10 @@ public class Student {
     
     public static void deleteStudent(Scanner scanner){
         try{
-           
-            /*
-            System.out.println ("Voer je naam:");
-            String naam = scanner.nextLine();
-            naam = naam.replace("\n", "");
-            System.out.println("Voer je studentnummer in:");
-            int nummer = scanner.nextInt();
-            scanner.nextLine();
-            */
             int counter = 1;
             for (Student e : Student.studentList){
                 System.out.println(counter+") "+e.getName());
                 counter++;
-                /*
-                if (e.getName() == naam && e.getStudentNumber() == nummer){
-                    Student.studentList.remove(e);
-                    return "Student succesvol verwijderd.";
-                }
-                */
-                //This just doesn't work. Prob because \n or smth is causing the typed name to misreport.
-                //So I changed it to a completly insecure version, Enjoy!
             }
             System.out.println("Kies een student");
             int userRemoveStudentChoice = scanner.nextInt();
