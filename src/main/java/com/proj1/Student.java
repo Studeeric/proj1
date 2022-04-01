@@ -6,12 +6,12 @@ public class Student {
     public static ArrayList<Student> studentList = new ArrayList<>();
     public ArrayList<Exam> behaaldeExamens = new ArrayList<>();
 
-
     public Student(String name, int studentNumber){
         this.name = name;
         this.studentNumber = studentNumber;
         studentList.add(this);
     }
+
     public String getName(){
         return this.name;
     }
@@ -68,7 +68,7 @@ public class Student {
         if (namenStudentenMetMostPassed.size()==1){
             System.out.println(namenStudentenMetMostPassed.get(1) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
         } else {
-            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + "Studenten die allemaal het meeste examens gehaald hebben.");
+            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal het meeste examens gehaald hebben.");
             System.out.println("");
             for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
                 System.out.print(namenStudentenMetMostPassed.get(n));
@@ -77,10 +77,15 @@ public class Student {
                 }
             }
             System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+            System.out.println("");
         }
 
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110edabcfb238b3f698d1c57317d9b2220b92902
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -99,5 +104,9 @@ public class Student {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+<<<<<<< HEAD
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀
 */
+=======
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀*/
+>>>>>>> 110edabcfb238b3f698d1c57317d9b2220b92902
