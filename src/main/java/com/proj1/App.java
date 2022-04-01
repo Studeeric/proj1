@@ -1,5 +1,4 @@
-package com.proj1; import java.util.InputMismatchException;
-import java.util.Scanner; import java.io.IOException;
+package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
@@ -14,13 +13,8 @@ public class App {
         clearScreen();
         mainMenuLoop: while (true) {
             printMainMenu();
-            try{
             int chooseAction = james.nextInt();
             james.nextLine();
-            } catch(InputMismatchException ime){
-                System.out.println("Wat denk je zelf, mafklapper? We vroegen om een getal, niet een string.");
-                System.out.println(ime);
-            }
             try {
                 switch (chooseAction) {
                     case (1):
