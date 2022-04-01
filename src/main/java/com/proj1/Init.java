@@ -41,7 +41,5 @@ public abstract class Init {
             new Student("Wouter", 21076367);
         }
     }
-    */ //I ain't fixing this shit
-    //oh het is van Eric dan mag het blijven staan
-    
+    */ //I ain't fixing this shit    
 }
