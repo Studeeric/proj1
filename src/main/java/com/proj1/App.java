@@ -14,8 +14,13 @@ public class App {
         clearScreen();
         mainMenuLoop: while (true) {
             printMainMenu();
-            int chooseAction = james.nextInt();
+            int chooseAction = 10;//Any non valid option will work
+            try{
+            chooseAction = james.nextInt();
             james.nextLine();
+            } catch(InputMismatchException ime){
+                System.out.println("Please choose a valid option");
+            }
             try {
                 switch (chooseAction) {
                     case (1):
