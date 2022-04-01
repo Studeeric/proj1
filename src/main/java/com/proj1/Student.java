@@ -40,7 +40,8 @@ public class Student {
             System.out.println(e);
         }
     }
-
+    
+    //Lucas fix this,
     public static void newStudent2(Scanner scanner, String naam){
         try{
             System.out.println("Voer je studentnummer in:");
