@@ -27,16 +27,24 @@ public class Exam {
             System.out.println("Aantal goed: " + correct);
         }
         if (correct >= ((questionList.size()-1)/2)){
-            student.behaaldeExamens.add(this);
-            System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+            examResult(student, correct, true);
         } else {
-            System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
-                                "Volgende keer beter!");
+            examResult(student, correct, false);
         }
     }
 
+
+    public void examResult(Student student, int correct, boolean gehaald) {
+        if(gehaald){
+            student.behaaldeExamens.add(this);
+            System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+        } else{
+            System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
+            "Volgende keer beter!");
+        }
+    }
 
     public String getName(){
         return this.name;
@@ -57,5 +65,9 @@ public class Exam {
   
     public ArrayList<Question> getQuestionList(){
         return this.questionList;
+    }
+
+    private void succesfullExam(Student student){
+        student.behaaldeExamens.add(this);
     }
 }
