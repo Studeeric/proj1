@@ -42,5 +42,6 @@ public abstract class Init {
         }
     }
     */ //I ain't fixing this shit
+    //oh het is van Eric dan mag het blijven staan
     
 }
