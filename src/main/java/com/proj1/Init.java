@@ -9,9 +9,9 @@ public abstract class Init {
             if(!savefile.exists()){
                 savefile.createNewFile();
             }
-            SaveManager.loadSaveFile(dir+"oldDatabase.Wdf",debugMode);
+            SaveManager.loadSaveFile(dir+"oldDatabase.Wdf");
             if(debugMode){
-                Debug.printQuestions();
+                Debug.DebugSet();
             }
         }
         catch(Exception e){
