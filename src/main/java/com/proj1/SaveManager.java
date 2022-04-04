@@ -97,7 +97,7 @@ public abstract class SaveManager {
                         case("exam"):
                         case("Exam"):
                             if(orders[1].equals("newExam")){
-                               Exam hermann =  new Exam(orders[2], orders[3]);
+                               new Exam(orders[2], orders[3]);
                                System.out.println(Exam.examList.size());
                             }
                             else if(orders[1].equals("AddQuestion")){

@@ -10,6 +10,9 @@ public abstract class Init {
                 savefile.createNewFile();
             }
             SaveManager.loadSaveFile(dir+"oldDatabase.Wdf",debugMode);
+            if(debugMode){
+                Debug.printQuestions();
+            }
         }
         catch(Exception e){
             System.out.println("Error in Init");
