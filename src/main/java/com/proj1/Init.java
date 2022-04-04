@@ -17,7 +17,6 @@ public abstract class Init {
         }
     }
     
-
     /*
     private static void legacyInit(boolean usethis){
         if(usethis){

@@ -245,7 +245,6 @@ public class App {
         catch(Exception e){
             System.out.println("Error in studentGegevensAanwezig");
             System.out.println(e);
-
         }
     }
 

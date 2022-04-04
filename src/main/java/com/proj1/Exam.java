@@ -52,7 +52,6 @@ public class Exam {
         }
     }
 
-
     public void examResult(Student student, int correct, boolean gehaald) {
         if(gehaald){
             student.behaaldeExamens.add(this);
