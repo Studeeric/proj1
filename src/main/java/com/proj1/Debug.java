@@ -12,8 +12,8 @@ public class Debug {
                 System.out.println(question.contentsInString());
             }
         }
-
     }
+
     public static void checkLoaded() {
         try(Scanner cloadedScanner = new Scanner(System.in)){
             checkLoadedLoop : while (true) {
@@ -48,5 +48,4 @@ public class Debug {
             }
         }
     }
-    
 }
