@@ -21,7 +21,7 @@ public class Student {
     }
 
     //fixen dat er geen twee newstudents zijn
-    public static void newStudent(Scanner scanner, String naam2){
+    public static void newStudent(Scanner scanner){
         try{
             
             System.out.println ("Voer je naam:");
@@ -30,6 +30,7 @@ public class Student {
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
             checkStudentNumber(nummer, naam, scanner);
+
             /*
             scanner.nextLine();
             Student student = new Student (naam, nummer);
