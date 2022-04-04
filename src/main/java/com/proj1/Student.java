@@ -23,21 +23,16 @@ public class Student {
     //fixen dat er geen twee newstudents zijn
     public static void newStudent(Scanner scanner){
         try{
-            
             System.out.println ("Voer je naam:");
             String naam = scanner.nextLine();
             naam = naam.replace("\n", "");
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
-            checkStudentNumber(nummer, naam, scanner);
-
-            /*
-            scanner.nextLine();
+            checkStudentNumber(nummer, naam, scanner);  
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
             System.out.println("Press return to continue");
-            scanner.nextLine();
-            */
+            scanner.nextLine();          
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
@@ -45,30 +40,21 @@ public class Student {
         }
     }
     
-    //Lucas fix this,
-    public static void newStudent2(Scanner scanner, String naam){
+    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
         try{
-            System.out.println("Voer je studentnummer in:");
-            int nummer = scanner.nextInt();
-            checkStudentNumber(nummer, naam, scanner);
-            scanner.nextLine();
-            Student student = new Student (naam, nummer);
-            System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-            System.out.println("Press return to continue");
-            scanner.nextLine();
+        for (Student e : Student.studentList){
+            if (e.getStudentNumber() == nummer){
+                System.out.println("Studentnummer bestaat al kies een ander numnmer.");
+                System.out.println("Voer je studentnummer in:");
+                int nummer2 = scanner.nextInt();
+                checkStudentNumber(nummer2, naam, scanner);
+                scanner.nextLine();
+                }
+            }
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
             System.out.println(e);
-        }
-    }
-
-    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
-        for (Student e : Student.studentList){
-            if (e.getStudentNumber() == nummer){
-            System.out.println("Studentnummer bestaat al kies een ander numnmer.");
-            newStudent2(scanner, naam);
-            }
         }
     }
     
