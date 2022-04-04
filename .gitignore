@@ -31,3 +31,5 @@ hs_err_pid*
 database/*
 database/oldDatabase.Wdf
 *.Wdf
+database.Wdf
+database/database.Wdf
