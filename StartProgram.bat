@@ -1,2 +1,6 @@
 @ECHO OFF
-java -Xms16m -Xmx512m -jar proj1.jar
+
+set "AllowExt=.jar"
+for %%a in (%AllowExt%) do (
+  forfiles /p %CD% /m *%%a /c "java -Xms16m -Xmx512m -jar @file"
+)
