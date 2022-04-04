@@ -20,7 +20,8 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(Scanner scanner){
+    //fixen dat er geen twee newstudents zijn
+    public static void newStudent(Scanner scanner, String naam2){
         try{
             
             System.out.println ("Voer je naam:");
@@ -29,11 +30,13 @@ public class Student {
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
             checkStudentNumber(nummer, naam, scanner);
+            /*
             scanner.nextLine();
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
             System.out.println("Press return to continue");
             scanner.nextLine();
+            */
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
@@ -74,13 +77,18 @@ public class Student {
                 System.out.println(counter+") "+e.getName());
                 counter++;
             }
+            System.out.println("0) Terug naar het hoofdmenu");
             System.out.println("Kies een student");
             int userRemoveStudentChoice = scanner.nextInt();
             scanner.nextLine();
-            Student.studentList.remove(userRemoveStudentChoice-1);
-            System.out.println("Student removed");
-            System.out.println("Press return to continue");
-            scanner.nextLine();
+            if (userRemoveStudentChoice == 0){
+                System.out.println("Returning to main menu...");
+            }else{
+                Student.studentList.remove(userRemoveStudentChoice-1);
+                System.out.println("Student removed");
+                System.out.println("Press return to continue");
+                scanner.nextLine();
+            }
         }
         catch(Exception e){
             System.out.println("Error in deleteStudent");
