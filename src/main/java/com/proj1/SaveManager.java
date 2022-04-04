@@ -86,6 +86,8 @@ public abstract class SaveManager {
     }
 
     public static void loadSaveFile(String fileName,boolean debugMode){
+        //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
@@ -100,7 +102,7 @@ public abstract class SaveManager {
                             }
                             else if(orders[1].equals("AddQuestion")){
                                 ArrayList<String>questionOptions = new ArrayList<>();
-                                for(int i =2;i<orders.length;i++){
+                                for(int i =3;i<orders.length;i++){
                                     questionOptions.add(orders[i]);
                                 }
                                 Integer examNr = Integer.parseInt(orders[2]);   
@@ -140,7 +142,7 @@ public abstract class SaveManager {
                                     int counter = 0;
                                     while (counter < (orders.length-4)){
                                         Integer examNr = Integer.parseInt(orders[counter+4]);
-                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr));
+                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr-1));
                                         counter++;
                                     }
                                 }
@@ -211,7 +213,7 @@ public abstract class SaveManager {
                 //System.out.println(exams.getName());//Debug
                 saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory()+"\n");
                 for(Question questions : exams.questionList){
-                    saveWriter.append("exam"+":"+"AddQuestion"+counter+":"+questions.contentsInString()+"\n");
+                    saveWriter.append("exam"+":"+"AddQuestion"+":"+counter+questions.contentsInString()+"\n");
                 }
                 counter++;
                 saveWriter.append("#\n");
@@ -220,7 +222,14 @@ public abstract class SaveManager {
             for(Student student : Student.studentList){
                 String passedExams = "";
                 for(Exam studentPassedExam : student.behaaldeExamens){
-                    passedExams += ":"+studentPassedExam.getCategory().toLowerCase();
+                    int examCounter = 0;
+                    for (Exam exam : Exam.examList){
+                        if(exam.getName().equals(studentPassedExam.getName())){
+                            passedExams += ":"+(examCounter+1);
+                        }
+                        examCounter++;
+                    }
+                    
                 }
                 saveWriter.append("student"+":"+"makeStudent"+":"+student.getName()+":"+student.getStudentNumber()+passedExams+"\n");
             }

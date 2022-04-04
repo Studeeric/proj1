@@ -32,27 +32,36 @@ public class Exam {
         return this.questionList;
     }
 
-    public void startExam(Student student, Scanner scannekin){
+    public void startExam(Student student, Scanner scanner){
         int correct = 0;
         for (int i = 1; i <= questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
             for(int j=0;j<questionList.get(i-1).askQuestion().size()-1;j++){
                 System.out.println(questionList.get(i-1).askQuestion().get(j));
             }
-            if(questionList.get(i-1).checkAnswer(scannekin.nextLine())){
+            if(questionList.get(i-1).checkAnswer(scanner.nextLine())){
                 correct++;
             }
             App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
         if (correct >= ((questionList.size()-1)/2)){
+            examResult(student, correct, true);
+        } else {
+            examResult(student, correct, false);
+        }
+    }
+
+
+    public void examResult(Student student, int correct, boolean gehaald) {
+        if(gehaald){
             student.behaaldeExamens.add(this);
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
-        } else {
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+        } else{
             System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-                                "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
-                                "Volgende keer beter!");
+            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
+            "Volgende keer beter!");
         }
     }
 }
