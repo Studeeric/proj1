@@ -1,6 +1,10 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
+package com.proj1; import java.util.Scanner;import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
 
-public class SaveManager {
+public abstract class SaveManager {
+
+    //Edited version of my accidental file editor + loader methods
+    //Todo: 
+    //Rewrite methods using a Exam object to work with the ArrayList index of said object instead of a direct object, so Exams can be added from the savefile.
 
     public static ArrayList<String> readFile(String fileName, boolean silent){ //
         File savefile = new File(fileName); 
@@ -28,106 +32,13 @@ public class SaveManager {
         }
         return saveFileContents;
     }
-    
-    public static void appendFile(Scanner gustav,String fileName, String writable){
-        /*
-        System.out.println("Enter text:");
-        String writable = gustav.nextLine();
-        */
 
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
-
-        //Append the given data to the file
-        try{
-            fileContents.add(writable);
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("Error in method appendFile!");
-            System.out.println(e);
-        }
-        System.out.println("=========================");
-    }
-
-    public static void editFile(Scanner charles,String fileName,boolean debugEditFile) {
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,!debugEditFile));
-
-        //Select and change the line.
-        if (debugEditFile){
-            System.out.println("Which line to edit?");
-            int userEditLineChoice = charles.nextInt();
-            charles.nextLine();
-            System.out.println("line " + userEditLineChoice + " selected. \nEdit Line: ");
-            String userEditLineContent = charles.nextLine();
-            fileContents.set(userEditLineChoice-1, userEditLineContent);
-        }
-        
-
-        //Write the changes to the file
-        try{
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-                System.out.println("Edit succesfull"); //Debug
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("A error has occured in method editFile");
-            System.out.println(e);
-        }
-        System.out.println("=========================");
-    }
-
-    public static void removeFromFile(Scanner augustus, String fileName) {
-        
-        ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
-
-        //Select and remove line
-        System.out.println("Which line to remove?");
-        int counter = 1;
-        for (String entry : fileContents){
-            System.out.println(counter + ") " + entry);
-            counter++;
-        }
-        int userRemoveLineChoice = augustus.nextInt();
-        augustus.nextLine();
-        System.out.println("line " + userRemoveLineChoice + " selected for removal");
-        fileContents.remove(userRemoveLineChoice-1);
-
-        try{
-            if(cleanFile(fileName)){
-                FileWriter saveWriterEditAppend = new FileWriter(fileName, true);
-                for (String entry : fileContents){
-                    saveWriterEditAppend.write(entry + "\n");
-                }
-                saveWriterEditAppend.close();
-                System.out.println("Line Removed"); //Debug
-                System.out.println("=========================");
-            }
-        }
-        catch(Exception e){
-            //Debug remove in production
-            System.out.println("Oh no a Error has occured in method removeFromFile()");
-            System.out.println(e);
-        }
-        
-    }
-
-    public static boolean cleanFile(String fileName) {
-        File savefile = new File(fileName);
+    public static boolean cleanFile(File savefile,boolean makefile) {
         try{
             if(savefile.delete()){
+                return savefile.createNewFile();
+            }
+            else if(makefile){
                 return savefile.createNewFile();
             }
             return false;
@@ -158,22 +69,184 @@ public class SaveManager {
         
     }
 
-    public static void loadSaveFile(String fileName){
+    public static ArrayList<String> findSaveFiles(){
+        File folder = new File(Init.dir+"/database/");
+        ArrayList<String> dataFiles = new ArrayList<>();
+        File[] fileList = folder.listFiles();
+
+        for (File file : fileList) {
+            if (file.isFile()) {
+                if(file.getName().endsWith(".Wdf")){
+                    dataFiles.add(file.getName());
+                }
+            }
+        }
+        return dataFiles;
+        
+    }
+
+    public static void loadSaveFile(String fileName,boolean debugMode){
+        //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
+        //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
         try{
             for (String entries : fileContents){
-                entries = entries.replace("\n", "");
                 String[] orders = entries.split(":");
-                    if(orders[0].equals("1")){
+                if(!orders[0].startsWith("#")){ //Use # for comments in the savefile
+                    switch(orders[0]){
+                        case("exam"):
+                        case("Exam"):
+                            if(orders[1].equals("newExam")){
+                               Exam hermann =  new Exam(orders[2], orders[3]);
+                               System.out.println(Exam.examList.size());
+                            }
+                            else if(orders[1].equals("AddQuestion")){
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =3;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                Integer examNr = Integer.parseInt(orders[2]);   
+                                Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));
+                            }
+                            break;
+                            /*
+                        case("reken"):
+                        case("rekenen"):
+                            if(orders[1].equals("AddQuestion")){
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                rekenen.addQuestion(new Question(questionOptions));
+                            }
+                            break;
+                        case("teken"):
+                        case("tekenen"):
+                            if(orders[1].equals("AddQuestion")){
+                                ArrayList<String>questionOptions = new ArrayList<>();
+                                for(int i =2;i<orders.length;i++){
+                                    questionOptions.add(orders[i]);
+                                }
+                                tekenen.addQuestion(new Question(questionOptions));
+                            }
+                            break;
+                            */
+                        case("student"):
+                            for (String replacestring : orders){
+                                replacestring.replace("\n", "");
+                            }
+                            if(orders[1].equals("makeStudent")){
+                                int studentNumberSaveFile = Integer.parseInt(orders[3]);
+                                Student heinrich = new Student(orders[2], studentNumberSaveFile);
+                                if(orders.length > 4){
+                                    int counter = 0;
+                                    while (counter < (orders.length-4)){
+                                        Integer examNr = Integer.parseInt(orders[counter+4]);
+                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr-1));
+                                        counter++;
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+                            break;
                     }
+                }
             }
         }
         catch(Exception e){
             System.out.println("Error in method loadSaveFile");
+            System.out.println(e);
         }
         System.out.println("Settings Loaded");
         System.out.println("=========================");
+        if(debugMode){
+            checkLoaded();
+        }
     }
+
+    public static void checkLoaded() {
+        try(Scanner cloadedScanner = new Scanner(System.in)){
+            checkLoadedLoop : while (true) {
+                int userchoiceCheckLoaded = cloadedScanner.nextInt();
+                cloadedScanner.nextLine();
+                switch (userchoiceCheckLoaded) {
+                    case 1:
+                        for (Student student : Student.studentList){
+                            System.out.print(student.getName() + " - " +student.getStudentNumber());
+                            for(Exam exam : student.behaaldeExamens){
+                                System.out.print(" - "+exam.getName());
+                            }
+                            System.out.println();
+                        }
+                        break;
+                    case 2:
+                        for(Exam exam : Exam.examList){
+                            System.out.println(exam.getName() + " - "+exam.getCategory());
+                            /*for(Question question : exam.getQuestionList()){
+                                for(String content : question.questionContents){
+                                    System.out.println(content);
+                                }
+                            }
+                            */
+                        }
+                        break;
+                    case 0:
+                        break checkLoadedLoop;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    public static void exitSave() {
+        File savefile = new File(Init.dir + "\\database.Wdf");
+        File oldSavefile = new File(Init.dir + "\\oldDatabase.Wdf");
+        cleanFile(savefile, true);
+        //Write data to file here
+        try{
+            FileWriter saveWriter = new FileWriter(savefile,true);
+            //Add the exams to the savefile
+            int counter=1;
+            for(Exam exams : Exam.examList){
+                //System.out.println(exams.getName());//Debug
+                saveWriter.append("exam"+":"+"newExam"+":"+exams.getName()+":"+exams.getCategory()+"\n");
+                for(Question questions : exams.questionList){
+                    saveWriter.append("exam"+":"+"AddQuestion"+":"+counter+questions.contentsInString()+"\n");
+                }
+                counter++;
+                saveWriter.append("#\n");
+            }
+            
+            for(Student student : Student.studentList){
+                String passedExams = "";
+                for(Exam studentPassedExam : student.behaaldeExamens){
+                    int examCounter = 0;
+                    for (Exam exam : Exam.examList){
+                        if(exam.getName().equals(studentPassedExam.getName())){
+                            passedExams += ":"+(examCounter+1);
+                        }
+                        examCounter++;
+                    }
+                    
+                }
+                saveWriter.append("student"+":"+"makeStudent"+":"+student.getName()+":"+student.getStudentNumber()+passedExams+"\n");
+            }
+            saveWriter.close();
+            
+            oldSavefile.delete();
+            savefile.renameTo(oldSavefile);
+            cleanFile(savefile, true);
+            System.out.println("Data saved, exiting now");
+        }
+        catch(IOException e){
+            System.out.println("Error in exitSave");
+            System.out.println(e);
+        }
+        
+    }
+
 }
     
 
