@@ -235,7 +235,7 @@ public class App {
             if (keuze > Exam.examList.size() || keuze < 0){
                 System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
             } else {
-                Exam.examList.get(keuze-1).startExam(student);
+                Exam.examList.get(keuze-1).startExam(student,scanner);
             }
         }
         catch(Exception e){
