@@ -1,4 +1,4 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException; import java.util.InputMismatchException;
+package com.proj1; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
@@ -14,16 +14,17 @@ public class App {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             try{
-            chooseAction = james.nextInt();
-            james.nextLine();
-            } catch(InputMismatchException ime){
+            chooseAction = Integer.parseInt(james.nextLine());
+            } catch(NumberFormatException e){
                 System.out.println("Please choose a valid option");
+                pauseMenu(james);
             }
             try {
                 switch (chooseAction) {
                     case (1):
                         clearScreen();
-                        getExams(james);
+                        Exam.printAllExams(james);
+                        pauseMenu(james);
                         break;
                     case (2):
                         clearScreen();
@@ -89,14 +90,6 @@ public class App {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {
         }
-    }
-
-    // getExams
-    private static void getExams(Scanner scanner) {
-        for (Exam e : Exam.examList) {
-            System.out.println(e.getCategory() + " - " + e.getName());
-        }
-        pauseMenu(scanner);
     }
 
     // getStudents
