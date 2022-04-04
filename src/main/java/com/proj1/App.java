@@ -121,8 +121,9 @@ public class App {
                 counter++;
             }
             System.out.println("Voer het nunmmer van het examen in:");
-            int examNummer = scanner.nextInt() - 1;
+            int examNummer = scanner.nextInt();
             scanner.nextLine();
+            examNummer--;
             boolean gehaald = false;
             for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
                 if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
@@ -133,7 +134,7 @@ public class App {
             if (gehaald) {
                 System.out.println("De student heeft het examen gehaald.");
             } else {
-                if (examNummer<0||examNummer>=Student.studentList.get(studentNumber).behaaldeExamens.size()){
+                if (examNummer > Exam.examList.size()||examNummer < 0){
                     System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
                 } else{
                 System.out.println("De student heeft het examen niet gehaald.");
