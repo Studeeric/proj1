@@ -80,6 +80,7 @@ public class Student {
                     System.out.println("Returning to main menu...");
                     break;
                 } else {
+                    Student.studentList.set((userRemoveStudentChoice-1),null);
                     Student.studentList.remove(userRemoveStudentChoice-1);
                     System.out.println("Student removed");
                     System.out.println("Press return to continue");
