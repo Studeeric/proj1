@@ -31,6 +31,7 @@ public class Student {
             checkStudentNumber(nummer, naam, scanner);  
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+            System.out.println("Press return to continue");
             scanner.nextLine();          
         }
         catch(Exception e){
