@@ -123,8 +123,8 @@ public class App {
                 studentFound = true;
                 break;
             }
-            
         }
+        
         if (studentFound) {
             // Print alle examens even
             System.out.println("Examens beschikbaar:");
