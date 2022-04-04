@@ -56,31 +56,40 @@ public class Student {
             System.out.println(e);
         }
     }
+
+    public static void printAllStudents(Scanner scanner){
+        if (studentList.isEmpty()){
+            System.out.println("Er zijn geen studenten.");
+        } else {
+            for (int i = 0; i < studentList.size(); i++) {
+                System.out.println((i+1) + ") " + studentList.get(i).getName());
+            }
+        }
+    }
     
     public static void deleteStudent(Scanner scanner){
-        try{
-            int counter = 1;
-            for (Student e : Student.studentList){
-                System.out.println(counter+") "+e.getName());
-                counter++;
-            }
+        while (true){
+            App.clearScreen();
+            printAllStudents(scanner);
             System.out.println("0) Terug naar het hoofdmenu");
-            System.out.println("Kies een student");
-            int userRemoveStudentChoice = scanner.nextInt();
-            scanner.nextLine();
-            if (userRemoveStudentChoice == 0){
-                System.out.println("Returning to main menu...");
-            }else{
-                Student.studentList.remove(userRemoveStudentChoice-1);
-                System.out.println("Student removed");
-                System.out.println("Press return to continue");
-                scanner.nextLine();
+            System.out.println("Kies een student:");
+            int userRemoveStudentChoice;
+            try {
+                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
+                if (userRemoveStudentChoice == 0){
+                    System.out.println("Returning to main menu...");
+                    break;
+                } else {
+                    Student.studentList.remove(userRemoveStudentChoice-1);
+                    System.out.println("Student removed");
+                    System.out.println("Press return to continue");
+                    scanner.nextLine();
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Maak een valide keuze.");
+                App.pauseMenu(scanner);
             }
-        }
-        catch(Exception e){
-            System.out.println("Error in deleteStudent");
-            System.out.println(e);
-        }
+        }    
     }
 
     public static void studentMostPassed (){
