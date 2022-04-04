@@ -45,7 +45,7 @@ public class Exam {
             App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
-        if (correct >= ((questionList.size()-1)/2)){
+        if (correct >= ((questionList.size()-1)/2+1)){ //zodat een examen met 5 vragen pas voldoende is als je 3 vragen goed hebt
             examResult(student, correct, true);
         } else {
             examResult(student, correct, false);
