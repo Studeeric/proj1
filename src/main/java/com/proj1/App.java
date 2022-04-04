@@ -145,7 +145,11 @@ public class App {
             if (gehaald) {
                 System.out.println("De student heeft het examen gehaald.");
             } else {
+                if (examNummer<0||examNummer>=Student.studentList.get(studentNumber).behaaldeExamens.size()){
+                    System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
+                } else{
                 System.out.println("De student heeft het examen niet gehaald.");
+                }
             }
         } else {
             System.out.println("Student is niet gevonden. U zal nu terugkeren naar het hoofdmenu.");
