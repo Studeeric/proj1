@@ -133,8 +133,9 @@ public class App {
                 counter++;
             }
             System.out.println("Voer het nunmmer van het examen in:");
-            int examNummer = scanner.nextInt() - 1;
+            int examNummer = scanner.nextInt();
             scanner.nextLine();
+            examNummer--;
             boolean gehaald = false;
             for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
                 if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
