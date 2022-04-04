@@ -2,13 +2,14 @@ package com.proj1;import java.util.ArrayList;
 
 public class Question 
 {
-    ArrayList<String> questionContents = new ArrayList<>(); //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
+    ArrayList<String> questionContents = new ArrayList<>();
+    //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
 
     public Question (ArrayList<String> contents){
         this.questionContents = contents;
     }
 
-    public ArrayList<String> askQuestion(){ //needs rewriting
+    public ArrayList<String> askQuestion(){
         return this.questionContents;
     }
 
@@ -18,6 +19,7 @@ public class Question
         }
            return false;
     }
+
     public String contentsInString(){
         String contents = "";
         for(String i : questionContents){

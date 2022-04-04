@@ -20,7 +20,6 @@ public class Student {
         return this.studentNumber;
     }
 
-    //fixen dat er geen twee newstudents zijn
     public static void newStudent(Scanner scanner){
         try{
             System.out.println ("Voer je naam:");
