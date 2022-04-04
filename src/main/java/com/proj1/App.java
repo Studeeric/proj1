@@ -112,6 +112,7 @@ public class App {
                 break;
             }
         }
+        
         if (studentFound) {
             // Print alle examens even
             System.out.println("Examens beschikbaar:");
