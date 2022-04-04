@@ -10,7 +10,6 @@ public class App {
 
     //mainMenu
     public static void mainMenu(Scanner james) {
-        clearScreen();
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
@@ -25,12 +24,10 @@ public class App {
                     case (1):
                         clearScreen();
                         getExams(james);
-                        clearScreen();
                         break;
                     case (2):
                         clearScreen();
                         getStudents(james);
-                        clearScreen();
                         break;
                     case (3):
                         clearScreen();
@@ -72,6 +69,7 @@ public class App {
 
     // printMainMenu
     private static void printMainMenu() {
+        clearScreen();
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -111,9 +109,7 @@ public class App {
 
      //studentExamStatus
      public static void studentExamStatus(Scanner scanner){
-        System.out.println("Voer je studentnummer in:");
-        int studentNumber = scanner.nextInt();
-        scanner.nextLine();
+        int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
@@ -158,10 +154,7 @@ public class App {
 
     //studentExamPassed
     public static void studentExamPassed(Scanner scanner){
-
-        System.out.println("Voer je studentnummer in");
-        int studentNumber = scanner.nextInt();
-        scanner.nextLine();
+        int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
         for (int i = 0; i < Student.studentList.size(); i++) {
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
@@ -188,50 +181,20 @@ public class App {
 
     //StartExams
     public static void startExams(Scanner scanner){
-        try{
-            startExamsLoop:while(true){
-                System.out.println("Voer je StudentNummer in:");
-                int userInput = scanner.nextInt();
-                scanner.nextLine();
-                startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
-                    if(userInput == Student.studentList.get(i).getStudentNumber()){
-                        studentGegevensAanwezig(Student.studentList.get(i),scanner);    
-                    }
-                    if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
-                        studentGegevensAfwezigMessage();
-                        int studentNotFoundKeuze = scanner.nextInt();
-                        scanner.nextLine();
-                        try{
-                            switch(studentNotFoundKeuze){
-                                case 1:
-                                    break startExamsFindStudentLoop;//NO. No recursion
-                                case 2:
-                                    Student.newStudent(scanner);
-                                    break startExamsFindStudentLoop;//Break the for loop & run this method again
-                                case 3: 
-                                    break startExamsLoop;//Break the while loop & go back to mainMenu
-                                default:
-                                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
-                                    break startExamsLoop;
-                            }    
-                        } 
-                        finally{}
-                    }
-                }
-            }
-        pauseMenu(scanner);
-
+        int studentNumber = askStudentNumber(scanner);
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if(studentNumber == Student.studentList.get(i).getStudentNumber()){
+                studentGegevensAanwezig(Student.studentList.get(i), scanner);
+            }            
         }
-        finally{}   
+        pauseMenu(scanner);
     }
 
     private static void studentGegevensAanwezig(Student student,Scanner scanner){
         try{
             
             System.out.println("Kies uw examen:");
-            for (int i = 0; i < Exam.examList.size(); i++) {
-                System.out.println(i+1 + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
-            }
+            Exam.printAllExams(scanner);
             int keuze = scanner.nextInt();
             scanner.nextLine();
 
@@ -255,7 +218,7 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
 
-    private static void pauseMenu(Scanner scanner) {
+    public static void pauseMenu(Scanner scanner) {
         System.out.println("Press return to continue.");
         try {
             scanner.nextLine(); // This is just here to wait for input
@@ -263,5 +226,44 @@ public class App {
             System.out.println("Exception in method pauseMenu");
             System.out.println(e);
         }
+    }
+
+    private static int askStudentNumber(Scanner scanner) {
+        while (true) {
+            try
+            {
+                System.out.println("Voer je studentnummer in:");
+                int input = Integer.parseInt(scanner.nextLine());
+                for (int i = 0; i < Student.studentList.size(); i++) {
+                    if(input == Student.studentList.get(i).getStudentNumber()){
+                        return input;
+                    }
+                }
+                studentGegevensAfwezig(scanner);
+            }
+            catch (NumberFormatException e){
+                System.out.println("Voer een studentnummer in, zonder tekst.");
+                pauseMenu(scanner);
+                clearScreen();
+            }
+        }
+    }
+
+    public static void studentGegevensAfwezig(Scanner scanner){
+        studentGegevensAfwezigMessage();
+        int studentNotFoundKeuze = scanner.nextInt();
+        scanner.nextLine();
+            switch(studentNotFoundKeuze){
+                case 1:
+                    break;//NO. No recursion
+                case 2:
+                    Student.newStudent(scanner);
+                    break;//Break the for loop & run this method again
+                case 3: 
+                    break;//Break the while loop & go back to mainMenu
+                default:
+                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                    break;
+            }     
     }
 }

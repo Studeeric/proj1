@@ -63,4 +63,15 @@ public class Exam {
             "Volgende keer beter!");
         }
     }
+
+    public static void printAllExams(Scanner scanner){
+        if (examList.isEmpty()){
+            System.out.println("Er zijn momenteel geen examens beschikbaar.");
+            App.pauseMenu(scanner);
+        } else {
+            for (int i = 0; i < examList.size(); i++) {
+                System.out.println((i+1) + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
+            }
+        }
+    }
 }
