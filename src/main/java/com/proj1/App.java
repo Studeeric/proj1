@@ -145,7 +145,7 @@ public class App {
             if (gehaald) {
                 System.out.println("De student heeft het examen gehaald.");
             } else {
-                if (examNummer > Exam.examList.size()-1 || examNummer < 0){
+                if (examNummer > Exam.examList.size()||examNummer <= 0){
                     System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
                 } else{
                 System.out.println("De student heeft het examen niet gehaald.");
