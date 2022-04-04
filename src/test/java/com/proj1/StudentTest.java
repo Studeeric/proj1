@@ -40,7 +40,7 @@ public class StudentTest {
     
     // Deze test is er om een methode aan te kunnen roepen voor het aanmaken van een nieuwe student
     @Test
-    public void medewerkerAddTest(){
+    public void studentAddTest(){
         String naam = "Minte Eskes";
         String naamTest = "Minte Eskes";
         int studentNummer = 240;
