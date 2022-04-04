@@ -48,10 +48,6 @@ public class Student {
                 int nummer2 = scanner.nextInt();
                 checkStudentNumber(nummer2, naam, scanner);
                 scanner.nextLine();
-                Student student = new Student (naam, nummer2);
-                System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-                System.out.println("Press return to continue");
-                scanner.nextLine();
                 }
             }
         }
