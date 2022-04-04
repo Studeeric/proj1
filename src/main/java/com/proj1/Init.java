@@ -1,9 +1,10 @@
 package com.proj1;import java.io.File;
+import java.util.Scanner;
 
 public abstract class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
-    public static void init(boolean debugMode) {
+    public static void init(boolean debugMode,Scanner scanner) {
         try{
             File savefile = new File(Init.dir + "\\oldDatabase.Wdf");
             if(!savefile.exists()){
@@ -11,7 +12,7 @@ public abstract class Init {
             }
             SaveManager.loadSaveFile(dir+"oldDatabase.Wdf");
             if(debugMode){
-                Debug.DebugSet();
+                Debug.DebugSet(scanner);
             }
         }
         catch(Exception e){

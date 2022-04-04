@@ -1,8 +1,8 @@
 package com.proj1;import java.util.Scanner;
 
 public class Debug {
-    public static void DebugSet() {
-        checkLoaded();
+    public static void DebugSet(Scanner scanner) {
+        checkLoaded(scanner);
         printQuestions();
     }
 
@@ -14,8 +14,8 @@ public class Debug {
         }
     }
 
-    public static void checkLoaded() {
-        try(Scanner cloadedScanner = new Scanner(System.in)){
+    public static void checkLoaded(Scanner cloadedScanner) {
+        try{
             checkLoadedLoop : while (true) {
                 int userchoiceCheckLoaded = cloadedScanner.nextInt();
                 cloadedScanner.nextLine();
@@ -47,5 +47,6 @@ public class Debug {
                 }
             }
         }
+        finally{}
     }
 }
