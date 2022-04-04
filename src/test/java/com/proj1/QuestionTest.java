@@ -1,11 +1,12 @@
-package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals; import org.junit.jupiter.api.Test;
-
-
+package com.proj1; 
 /*
+import static org.junit.jupiter.api.Assertions.assertEquals; 
+import static org.junit.jupiter.api.Assertions.assertNotEquals; 
+import org.junit.jupiter.api.Test;
+
 public class QuestionTest {
 
-    //Question testQuestion = new Question("Wie werkt aan deze test?", "Wessel");
-
+    Question testQuestion = new Question("Wie werkt aan deze test?", "Wessel");
 
     //testen of de vraag over een komt
     @Test
@@ -14,8 +15,7 @@ public class QuestionTest {
         
         String resultText = testQuestion.askQuestion();
 
-        assertEquals(resultText, TestText);
-             
+        assertEquals(resultText, TestText);       
     }
 
     //test of het antwoord klopt

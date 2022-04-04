@@ -29,3 +29,7 @@ hs_err_pid*
 
 # Database files not already in git
 database/*
+database/oldDatabase.Wdf
+*.Wdf
+database.Wdf
+database/database.Wdf

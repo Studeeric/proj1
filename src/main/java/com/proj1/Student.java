@@ -22,22 +22,25 @@ public class Student {
 
     public static void newStudent(Scanner scanner){
         try{
-            
             System.out.println ("Voer je naam:");
             String naam = scanner.nextLine();
             naam = naam.replace("\n", "");
 
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
+<<<<<<< HEAD
 
             checkStudentNumber(nummer, naam, scanner);
             scanner.nextLine();
             
+=======
+            checkStudentNumber(nummer, naam, scanner);  
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
 
             System.out.println("Press return to continue");
-            scanner.nextLine();
+            scanner.nextLine();          
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
@@ -45,9 +48,9 @@ public class Student {
         }
     }
     
-    //Lucas fix this,
-    public static void newStudent2(Scanner scanner, String naam){
+    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
         try{
+<<<<<<< HEAD
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
             checkStudentNumber(nummer, naam, scanner);
@@ -58,6 +61,17 @@ public class Student {
 
             System.out.println("Press return to continue");
             scanner.nextLine();
+=======
+        for (Student e : Student.studentList){
+            if (e.getStudentNumber() == nummer){
+                System.out.println("Studentnummer bestaat al kies een ander numnmer.");
+                System.out.println("Voer je studentnummer in:");
+                int nummer2 = scanner.nextInt();
+                checkStudentNumber(nummer2, naam, scanner);
+                scanner.nextLine();
+                }
+            }
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
@@ -65,36 +79,49 @@ public class Student {
         }
     }
 
+<<<<<<< HEAD
     public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
         for (Student e : Student.studentList){
 
             if (e.getStudentNumber() == nummer){
             System.out.println("Studentnummer bestaat al kies een ander numnmer.");
             newStudent2(scanner, naam);
+=======
+    public static void printAllStudents(Scanner scanner){
+        if (studentList.isEmpty()){
+            System.out.println("Er zijn geen studenten.");
+        } else {
+            for (int i = 0; i < studentList.size(); i++) {
+                System.out.println((i+1) + ") " + studentList.get(i).getName());
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88
             }
             
         }
     }
     
     public static void deleteStudent(Scanner scanner){
-        try{
-            int counter = 1;
-            for (Student e : Student.studentList){
-                System.out.println(counter+") "+e.getName());
-                counter++;
+        while (true){
+            App.clearScreen();
+            printAllStudents(scanner);
+            System.out.println("0) Terug naar het hoofdmenu");
+            System.out.println("Kies een student:");
+            int userRemoveStudentChoice;
+            try {
+                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
+                if (userRemoveStudentChoice == 0){
+                    System.out.println("Returning to main menu...");
+                    break;
+                } else {
+                    Student.studentList.remove(userRemoveStudentChoice-1);
+                    System.out.println("Student removed");
+                    System.out.println("Press return to continue");
+                    scanner.nextLine();
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Maak een valide keuze.");
+                App.pauseMenu(scanner);
             }
-            System.out.println("Kies een student");
-            int userRemoveStudentChoice = scanner.nextInt();
-            scanner.nextLine();
-            Student.studentList.remove(userRemoveStudentChoice-1);
-            System.out.println("Student removed");
-            System.out.println("Press return to continue");
-            scanner.nextLine();
-        }
-        catch(Exception e){
-            System.out.println("Error in deleteStudent");
-            System.out.println(e);
-        }
+        }    
     }
 
     public static void studentMostPassed (){
@@ -128,9 +155,9 @@ public class Student {
             System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
             System.out.println("");
         }
-
     }
 }
+<<<<<<< HEAD
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -271,3 +298,5 @@ i8 788888       [88888^^ ooo ^^^^^;;77888^^^^;;7787^^^^ ^^;;;;  iiii;i78888888
                        Bob VanderClay           iiiiiiiiiiiiiiiiiiiiii
                                                     ^^^^^^^^^^^^^
   */
+=======
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88

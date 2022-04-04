@@ -3,35 +3,32 @@ package com.proj1; import java.util.Scanner; import java.io.IOException;
 public class App {
     public static void main( String[] args){
         Scanner scannakin = new Scanner(System.in);
-        Init.init(false);
-        Debug.printQuestions();
+        Init.init(false,scannakin);
         mainMenu(scannakin);
         SaveManager.exitSave();
     }
 
     //mainMenu
     public static void mainMenu(Scanner james) {
-        clearScreen();
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             try{
-            chooseAction = james.nextInt();
-            james.nextLine();
-            } catch(InputMismatchException ime){
+            chooseAction = Integer.parseInt(james.nextLine());
+            } catch(NumberFormatException e){
                 System.out.println("Please choose a valid option");
+                pauseMenu(james);
             }
             try {
                 switch (chooseAction) {
                     case (1):
                         clearScreen();
-                        getExams(james);
-                        clearScreen();
+                        Exam.printAllExams(james);
+                        pauseMenu(james);
                         break;
                     case (2):
                         clearScreen();
                         getStudents(james);
-                        clearScreen();
                         break;
                     case (3):
                         clearScreen();
@@ -73,6 +70,7 @@ public class App {
 
     // printMainMenu
     private static void printMainMenu() {
+        clearScreen();
         System.out.println("1) Lijst met examens");
         System.out.println("2) Lijst met studenten");
         System.out.println("3) Nieuwe student inschrijven");
@@ -94,14 +92,6 @@ public class App {
         }
     }
 
-    // getExams
-    private static void getExams(Scanner scanner) {
-        for (Exam e : Exam.examList) {
-            System.out.println(e.getCategory() + " - " + e.getName());
-        }
-        pauseMenu(scanner);
-    }
-
     // getStudents
     private static void getStudents(Scanner scanner) {
         for (Student e : Student.studentList) {
@@ -112,9 +102,7 @@ public class App {
 
      //studentExamStatus
      public static void studentExamStatus(Scanner scanner){
-        System.out.println("Voer je studentnummer in:");
-        int studentNumber = scanner.nextInt();
-        scanner.nextLine();
+        int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
@@ -124,6 +112,7 @@ public class App {
                 break;
             }
         }
+        
         if (studentFound) {
             // Print alle examens even
             System.out.println("Examens beschikbaar:");
@@ -133,9 +122,14 @@ public class App {
                 counter++;
             }
             System.out.println("Voer het nunmmer van het examen in:");
+<<<<<<< HEAD
             int examNummer = scanner.nextInt() - 1;
 
+=======
+            int examNummer = scanner.nextInt();
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88
             scanner.nextLine();
+            examNummer--;
             boolean gehaald = false;
             for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
                 if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
@@ -146,10 +140,17 @@ public class App {
             if (gehaald) {
                 System.out.println("De student heeft het examen gehaald.");
             } else {
+<<<<<<< HEAD
                 if(examNummer < 0 || examNummer >= Student.studentList.get(studentNumber).behaaldeExamens.size()){
                     System.out.println("Wat denk je zelf, mafklapper? je kann niet een examennummer kiezen die niet bestaat?");
                 } else{
                     System.out.println("De student heeft het examen niet gehaald.");
+=======
+                if (examNummer > Exam.examList.size()||examNummer < 0){
+                    System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
+                } else{
+                System.out.println("De student heeft het examen niet gehaald.");
+>>>>>>> 799839873f003007bf13b1cf228deb6c401eee88
                 }
             }
         } else {
@@ -160,10 +161,7 @@ public class App {
 
     //studentExamPassed
     public static void studentExamPassed(Scanner scanner){
-
-        System.out.println("Voer je studentnummer in");
-        int studentNumber = scanner.nextInt();
-        scanner.nextLine();
+        int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
         for (int i = 0; i < Student.studentList.size(); i++) {
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
@@ -190,63 +188,32 @@ public class App {
 
     //StartExams
     public static void startExams(Scanner scanner){
-        try{
-            startExamsLoop:while(true){
-                System.out.println("Voer je StudentNummer in:");
-                int userInput = scanner.nextInt();
-                scanner.nextLine();
-                startExamsFindStudentLoop: for (int i=0; i < Student.studentList.size(); i++){
-                    if(userInput == Student.studentList.get(i).getStudentNumber()){
-                        studentGegevensAanwezig(Student.studentList.get(i),scanner);    
-                    }
-                    if (i==(Student.studentList.size()-1)&&userInput != Student.studentList.get(i).getStudentNumber()){
-                        studentGegevensAfwezigMessage();
-                        int studentNotFoundKeuze = scanner.nextInt();
-                        scanner.nextLine();
-                        try{
-                            switch(studentNotFoundKeuze){
-                                case 1:
-                                    break startExamsFindStudentLoop;//NO. No recursion
-                                case 2:
-                                    Student.newStudent(scanner);
-                                    break startExamsFindStudentLoop;//Break the for loop & run this method again
-                                case 3: 
-                                    break startExamsLoop;//Break the while loop & go back to mainMenu
-                                default:
-                                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
-                                    break startExamsLoop;
-                            }    
-                        } 
-                        finally{}
-                    }
-                }
-            }
-        pauseMenu(scanner);
-
+        int studentNumber = askStudentNumber(scanner);
+        for (int i = 0; i < Student.studentList.size(); i++) {
+            if(studentNumber == Student.studentList.get(i).getStudentNumber()){
+                studentGegevensAanwezig(Student.studentList.get(i), scanner);
+            }            
         }
-        finally{}   
+        pauseMenu(scanner);
     }
 
     private static void studentGegevensAanwezig(Student student,Scanner scanner){
         try{
             
             System.out.println("Kies uw examen:");
-            for (int i = 0; i < Exam.examList.size(); i++) {
-                System.out.println(i+1 + ") " + Exam.examList.get(i).getName() + " - " + Exam.examList.get(i).getCategory());
-            }
+            Exam.printAllExams(scanner);
             int keuze = scanner.nextInt();
             scanner.nextLine();
 
             if (keuze > Exam.examList.size() || keuze < 0){
                 System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
             } else {
-                Exam.examList.get(keuze-1).startExam(student);
+                Exam.examList.get(keuze-1).startExam(student,scanner);
             }
         }
         catch(Exception e){
             System.out.println("Error in studentGegevensAanwezig");
             System.out.println(e);
-
         }
     }
 
@@ -258,7 +225,7 @@ public class App {
         System.out.println("3) Terug naar hoofdmenu");
     }
 
-    private static void pauseMenu(Scanner scanner) {
+    public static void pauseMenu(Scanner scanner) {
         System.out.println("Press return to continue.");
         try {
             scanner.nextLine(); // This is just here to wait for input
@@ -266,5 +233,44 @@ public class App {
             System.out.println("Exception in method pauseMenu");
             System.out.println(e);
         }
+    }
+
+    private static int askStudentNumber(Scanner scanner) {
+        while (true) {
+            try
+            {
+                System.out.println("Voer je studentnummer in:");
+                int input = Integer.parseInt(scanner.nextLine());
+                for (int i = 0; i < Student.studentList.size(); i++) {
+                    if(input == Student.studentList.get(i).getStudentNumber()){
+                        return input;
+                    }
+                }
+                studentGegevensAfwezig(scanner);
+            }
+            catch (NumberFormatException e){
+                System.out.println("Voer een studentnummer in, zonder tekst.");
+                pauseMenu(scanner);
+                clearScreen();
+            }
+        }
+    }
+
+    public static void studentGegevensAfwezig(Scanner scanner){
+        studentGegevensAfwezigMessage();
+        int studentNotFoundKeuze = scanner.nextInt();
+        scanner.nextLine();
+            switch(studentNotFoundKeuze){
+                case 1:
+                    break;//NO. No recursion
+                case 2:
+                    Student.newStudent(scanner);
+                    break;//Break the for loop & run this method again
+                case 3: 
+                    break;//Break the while loop & go back to mainMenu
+                default:
+                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                    break;
+            }     
     }
 }

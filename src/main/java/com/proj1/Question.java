@@ -8,7 +8,7 @@ public class Question
         this.questionContents = contents;
     }
 
-    public ArrayList<String> askQuestion(){ //needs rewriting
+    public ArrayList<String> askQuestion(){
         return this.questionContents;
     }
 
@@ -18,6 +18,7 @@ public class Question
         }
            return false;
     }
+
     public String contentsInString(){
         String contents = "";
         for(String i : questionContents){

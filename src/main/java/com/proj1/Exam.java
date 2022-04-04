@@ -45,13 +45,12 @@ public class Exam {
             App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
-        if (correct >= ((questionList.size()-1)/2)){
+        if (correct >= ((questionList.size()-1)/2+1)){ //zodat een examen met 5 vragen pas voldoende is als je 3 vragen goed hebt
             examResult(student, correct, true);
         } else {
             examResult(student, correct, false);
         }
     }
-
 
     public void examResult(Student student, int correct, boolean gehaald) {
         if(gehaald){
@@ -62,6 +61,17 @@ public class Exam {
             System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
             "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
             "Volgende keer beter!");
+        }
+    }
+
+    public static void printAllExams(Scanner scanner){
+        if (examList.isEmpty()){
+            System.out.println("Er zijn momenteel geen examens beschikbaar.");
+            App.pauseMenu(scanner);
+        } else {
+            for (int i = 0; i < examList.size(); i++) {
+                System.out.println((i+1) + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
+            }
         }
     }
 }

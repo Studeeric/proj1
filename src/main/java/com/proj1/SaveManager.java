@@ -85,7 +85,7 @@ public abstract class SaveManager {
         
     }
 
-    public static void loadSaveFile(String fileName,boolean debugMode){
+    public static void loadSaveFile(String fileName){
         //Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");
         //Exam tekenen = new Exam("Kleuren voor beginners", "Tekenen");
         ArrayList<String> fileContents = new ArrayList<String>(readFile(fileName,true));
@@ -97,7 +97,7 @@ public abstract class SaveManager {
                         case("exam"):
                         case("Exam"):
                             if(orders[1].equals("newExam")){
-                               Exam hermann =  new Exam(orders[2], orders[3]);
+                               new Exam(orders[2], orders[3]);
                                System.out.println(Exam.examList.size());
                             }
                             else if(orders[1].equals("AddQuestion")){
@@ -160,45 +160,9 @@ public abstract class SaveManager {
         }
         System.out.println("Settings Loaded");
         System.out.println("=========================");
-        if(debugMode){
-            checkLoaded();
-        }
     }
 
-    public static void checkLoaded() {
-        try(Scanner cloadedScanner = new Scanner(System.in)){
-            checkLoadedLoop : while (true) {
-                int userchoiceCheckLoaded = cloadedScanner.nextInt();
-                cloadedScanner.nextLine();
-                switch (userchoiceCheckLoaded) {
-                    case 1:
-                        for (Student student : Student.studentList){
-                            System.out.print(student.getName() + " - " +student.getStudentNumber());
-                            for(Exam exam : student.behaaldeExamens){
-                                System.out.print(" - "+exam.getName());
-                            }
-                            System.out.println();
-                        }
-                        break;
-                    case 2:
-                        for(Exam exam : Exam.examList){
-                            System.out.println(exam.getName() + " - "+exam.getCategory());
-                            /*for(Question question : exam.getQuestionList()){
-                                for(String content : question.questionContents){
-                                    System.out.println(content);
-                                }
-                            }
-                            */
-                        }
-                        break;
-                    case 0:
-                        break checkLoadedLoop;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
+    
 
     public static void exitSave() {
         File savefile = new File(Init.dir + "\\database.Wdf");

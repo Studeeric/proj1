@@ -1,15 +1,19 @@
 package com.proj1;import java.io.File;
+import java.util.Scanner;
 
 public abstract class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
-    public static void init(boolean debugMode) {
+    public static void init(boolean debugMode,Scanner scanner) {
         try{
             File savefile = new File(Init.dir + "\\oldDatabase.Wdf");
             if(!savefile.exists()){
                 savefile.createNewFile();
             }
-            SaveManager.loadSaveFile(dir+"oldDatabase.Wdf",debugMode);
+            SaveManager.loadSaveFile(dir+"oldDatabase.Wdf");
+            if(debugMode){
+                Debug.DebugSet(scanner);
+            }
         }
         catch(Exception e){
             System.out.println("Error in Init");
@@ -17,7 +21,6 @@ public abstract class Init {
         }
     }
     
-
     /*
     private static void legacyInit(boolean usethis){
         if(usethis){
