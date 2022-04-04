@@ -65,7 +65,7 @@ public class Student {
                 System.out.println("Voer je studentnummer in:");
                 int nummer2 = scanner.nextInt();
                 checkStudentNumber(nummer2, naam, scanner);
-            }else{}
+            }
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
