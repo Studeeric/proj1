@@ -26,12 +26,16 @@ public class Student {
             System.out.println ("Voer je naam:");
             String naam = scanner.nextLine();
             naam = naam.replace("\n", "");
+
             System.out.println("Voer je studentnummer in:");
             int nummer = scanner.nextInt();
+
             checkStudentNumber(nummer, naam, scanner);
             scanner.nextLine();
+            
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+
             System.out.println("Press return to continue");
             scanner.nextLine();
         }
@@ -48,8 +52,10 @@ public class Student {
             int nummer = scanner.nextInt();
             checkStudentNumber(nummer, naam, scanner);
             scanner.nextLine();
+
             Student student = new Student (naam, nummer);
             System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+
             System.out.println("Press return to continue");
             scanner.nextLine();
         }
@@ -61,10 +67,12 @@ public class Student {
 
     public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
         for (Student e : Student.studentList){
+
             if (e.getStudentNumber() == nummer){
             System.out.println("Studentnummer bestaat al kies een ander numnmer.");
             newStudent2(scanner, naam);
             }
+            
         }
     }
     
@@ -123,11 +131,6 @@ public class Student {
 
     }
 }
-<<<<<<< HEAD
-=======
-//I'll allow it for april/1
-
->>>>>>> 0dd172e8126db9bf99efc35b9963822617428675
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -147,8 +150,6 @@ public class Student {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀*/
-<<<<<<< HEAD
-=======
 /*
            .            .                     .
                   _        .                          .            (
@@ -270,4 +271,3 @@ i8 788888       [88888^^ ooo ^^^^^;;77888^^^^;;7787^^^^ ^^;;;;  iiii;i78888888
                        Bob VanderClay           iiiiiiiiiiiiiiiiiiiiii
                                                     ^^^^^^^^^^^^^
   */
->>>>>>> 0dd172e8126db9bf99efc35b9963822617428675
