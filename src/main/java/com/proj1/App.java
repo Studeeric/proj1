@@ -1,4 +1,4 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException;
+package com.proj1; import java.util.Scanner; import java.io.IOException; import java.util.InputMismatchException;
 
 public class App {
     public static void main( String[] args){
@@ -145,7 +145,11 @@ public class App {
             if (gehaald) {
                 System.out.println("De student heeft het examen gehaald.");
             } else {
+                if (examNummer<0||examNummer>=Student.studentList.get(studentNumber).behaaldeExamens.size()){
+                    System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
+                } else{
                 System.out.println("De student heeft het examen niet gehaald.");
+                }
             }
         } else {
             System.out.println("Student is niet gevonden. U zal nu terugkeren naar het hoofdmenu.");
@@ -235,7 +239,7 @@ public class App {
             if (keuze > Exam.examList.size() || keuze < 0){
                 System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
             } else {
-                Exam.examList.get(keuze-1).startExam(student);
+                Exam.examList.get(keuze-1).startExam(student,scanner);
             }
         }
         catch(Exception e){
