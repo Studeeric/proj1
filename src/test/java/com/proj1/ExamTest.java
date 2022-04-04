@@ -1,9 +1,5 @@
-package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals; import static org.junit.jupiter.api.Assertions.assertTrue; import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
 //Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
 
