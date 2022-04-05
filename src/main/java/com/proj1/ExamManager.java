@@ -17,6 +17,10 @@ abstract public class ExamManager {
                 case("1"):
                     exNewExam(scanner);
                     break;
+                case("2"):
+                    exRemoveExam(scanner);
+                    break;
+
                 case("0"):
                     App.clearScreen();
                     System.out.println("Returning to main menu...");
@@ -50,7 +54,7 @@ abstract public class ExamManager {
             exAddQuestion(exManagerCreated,scanner);
         }
         System.out.println("Exam Created!\nReturning to main menu now");
-        Debug.wait(1);
+        Debug.wait(2);
     }
 
     public static void exAddQuestion(Exam exam,Scanner scanner) {
@@ -69,6 +73,63 @@ abstract public class ExamManager {
             }
         }
     }
+    public static void exRemoveExam(Scanner scanner) {
+        App.clearScreen();
+        int exToBeRemoved = exChooseExamIndex(scanner);
+        System.out.println("Are you Sure you want to remove\n" + Exam.examList.get(exToBeRemoved).getName() + " - " +Exam.examList.get(exToBeRemoved).getCategory()+"?");
+        System.out.println("Y\\N");
+        exRemoveLoop: while (true){
+            switch(scanner.nextLine()){
+                case("Y"):
+                case("y"):
+                    Exam.examList.remove(exToBeRemoved);
+                    System.out.println("Exam removed.\nReturning to Exam menu");
+                    break exRemoveLoop;
+                case("N"):
+                case("n"):
+                    System.out.println("Remove aborted.\n Returning to Exam menu");
+                    break exRemoveLoop;
+                default:
+                System.out.println("Please choose either Yes(Y) or No(N)");
+                    break;
+
+            }
+        }
+        
+    }
+
+    
+
+    //Support methods
+    /*
+    public static Exam exChooseExam(Scanner scanner) {
+        Exam.printAllExams(scanner);
+        Integer examNr;
+        while (true){
+            String exChooseExChoice = scanner.nextLine();
+            try{
+                examNr = Integer.parseInt(exChooseExChoice);
+                break;
+            }
+            catch(Exception e){System.out.println("Please choose a valid option");}
+        }
+        return Exam.examList.get(examNr-1);
+    }
+    */
+    public static int exChooseExamIndex(Scanner scanner) {
+        System.out.println("Choose a Exam:");
+        Exam.printAllExams(scanner);
+        Integer examNr;
+        while (true){
+            String exChooseExChoice = scanner.nextLine();
+            try{
+                examNr = Integer.parseInt(exChooseExChoice);
+                break;
+            }
+            catch(Exception e){System.out.println("Please choose a valid option");}
+        }
+        return examNr-1;
+    }
 
     public static ArrayList<String> exGetQuestCont(Scanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
@@ -85,20 +146,5 @@ abstract public class ExamManager {
         System.out.println("Which option is the right one?");
         exQuestContents.add(scanner.nextLine());
         return exQuestContents;
-    }
-
-    //Support methods
-    public static Exam exChooseExam(Scanner scanner) {
-        Exam.printAllExams(scanner);
-        Integer examNr;
-        while (true){
-            String exChooseExChoice = scanner.nextLine();
-            try{
-                 examNr = Integer.parseInt(exChooseExChoice);
-                break;
-            }
-            catch(Exception e){System.out.println("Please choose a valid option");}
-        }
-        return Exam.examList.get(examNr-1);
     }
 }
