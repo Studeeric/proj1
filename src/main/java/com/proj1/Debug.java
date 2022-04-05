@@ -30,15 +30,6 @@ public class Debug {
                         }
                         break;
                     case 2:
-                        for(Exam exam : Exam.examList){
-                            System.out.println(exam.getName() + " - "+exam.getCategory());
-                            /*for(Question question : exam.getQuestionList()){
-                                for(String content : question.questionContents){
-                                    System.out.println(content);
-                                }
-                            }
-                            */
-                        }
                         break;
                     case 0:
                         break checkLoadedLoop;
@@ -48,5 +39,13 @@ public class Debug {
             }
         }
         finally{}
+    }
+    public static void wait(int seconds){
+        try{
+            Thread.sleep(seconds*1000);
+        }
+        catch(InterruptedException e){
+            Thread.currentThread().interrupt();
+        }
     }
 }
