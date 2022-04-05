@@ -28,19 +28,18 @@ public class Student {
                     System.out.println ("Voer je naam in:");
                     naam = scanner.nextLine();
                     if (naam.equals("")){
-                        System.out.println("Geen naam ingevoerd probeer opnieuw"); 
+                        System.out.println("Geen naam ingevoerd probeer opnieuw");
                     }
                     else{
                         break newStudentloop2;
                     }
                 }
                 naam = naam.replace("\n", "");
-                System.out.println("Voer je studentnummer in:");
-                int nummer = scanner.nextInt();
+                int nummer = studentNumberStrToInt(scanner);
                 checkStudentNumber(nummer, naam, scanner);  
                 Student student = new Student (naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-                System.out.println(); 
+                App.pauseMenu(scanner); 
                 break newStudentloop1; 
             }        
         }
@@ -51,25 +50,41 @@ public class Student {
     }
     
     public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
+        int nummer2;
         try{
         for (Student e : Student.studentList){
             if (e.getStudentNumber() == nummer){
-                    System.out.println("Studentnummer bestaat al kies een ander nummer");
-                    System.out.println("Voer je studentnummer in:");
-                    int nummer2 = scanner.nextInt();
+                    System.out.println("Studentnummer bestaat al kies een ander nummer.");
+                    App.pauseMenu(scanner);
+                    App.clearScreen();
+                    nummer2 = studentNumberStrToInt(scanner);
                     checkStudentNumber(nummer2, naam, scanner);
                 }
             }
             if (nummer <= 0 ){
                 System.out.println("Studentnummer is niet geldig kies een ander nummer");
-                System.out.println("Voer je studentnummer in:");
-                int nummer2 = scanner.nextInt();
+                App.pauseMenu(scanner);
+                App.clearScreen();
+                nummer2 = studentNumberStrToInt(scanner);
                 checkStudentNumber(nummer2, naam, scanner);
             }
         }
         catch(Exception e){
             System.out.println("Error in newStudent");
             System.out.println(e);
+        }
+    }
+
+    public static int studentNumberStrToInt(Scanner scanner){
+        while(true){
+            try{
+                System.out.println("Voer je studentnummer in:");
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException s){
+                System.out.println("Voer alleen cijfers in.");
+                App.pauseMenu(scanner);
+                App.clearScreen();
+            }    
         }
     }
 
