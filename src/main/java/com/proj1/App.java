@@ -112,35 +112,51 @@ public class App {
                 break;
             }
         }
-        
+        clearScreen();
         if (studentFound) {
-            // Print alle examens even
-            System.out.println("Examens beschikbaar:");
-            int counter = 1;
-            for (Exam exam : Exam.examList) {
-                System.out.println(counter + ")" + exam.getName() + " - " + exam.getCategory());
-                counter++;
-            }
-            System.out.println("Voer het nunmmer van het examen in:");
-            int examNummer = scanner.nextInt();
-            scanner.nextLine();
-            examNummer--;
-            boolean gehaald = false;
-            for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
-                if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
-                        .equals(Exam.examList.get(examNummer))) {
-                    gehaald = true;
+            int examNummer;
+            studentExamStatus: while (true){
+                examChoice: while (true){
+                    System.out.println("Examens beschikbaar:");
+                    Exam.printAllExams(scanner);
+                    System.out.println("0) Terug naar het hoofdmenu");
+                    System.out.println("Voer het nummer van het examen in:");
+                    try{
+                        examNummer = Integer.parseInt(scanner.nextLine());
+                        break examChoice;
+                    } catch (NumberFormatException e){
+                        System.out.println("Voer een geldig nummer in met alleen cijfers.");
+                        pauseMenu(scanner);
+                    }
+                }    
+                examNummer--;
+                boolean gehaald = false;
+                for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
+                    if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
+                            .equals(Exam.examList.get(examNummer))) {
+                        gehaald = true;
+                    }
                 }
-            }
-            if (gehaald) {
-                System.out.println("De student heeft het examen gehaald.");
-            } else {
-                if (examNummer > Exam.examList.size()||examNummer < 0){
-                    System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
-                } else{
-                System.out.println("De student heeft het examen niet gehaald.");
+                if (examNummer == -1){
+                    System.out.println("U keer terug naar het hoofdmenu.");
+                    break studentExamStatus;
                 }
-            }
+                if (gehaald) {
+                    System.out.println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
+                    pauseMenu(scanner);
+                    clearScreen();
+                } else {
+                    if (examNummer > Exam.examList.size()||examNummer < -1){
+                        System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
+                        pauseMenu(scanner);
+                        clearScreen();
+                    } else{
+                    System.out.println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" niet gehaald.");
+                    pauseMenu(scanner);
+                    clearScreen();
+                    }
+                }    
+            }    
         } else {
             System.out.println("Student is niet gevonden. U zal nu terugkeren naar het hoofdmenu.");
         }
@@ -210,7 +226,7 @@ public class App {
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.println("3) Terug naar hoofdmenu");
+        System.out.println("3) Terug");
     }
 
     public static void pauseMenu(Scanner scanner) {
