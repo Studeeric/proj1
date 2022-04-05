@@ -13,7 +13,7 @@ public class Question
     }
 
     public boolean checkAnswer(String input){
-        if (input.equals(questionContents.get(questionContents.size()-1))| input.equals(questionContents.get(questionContents.size()-1).toLowerCase())){
+        if (input.equals(questionContents.get(questionContents.size()-1)) || input.equals(questionContents.get(questionContents.size()-1).toLowerCase()) || input.equals(questionContents.get(questionContents.size()-1).toUpperCase())){
             return true;
         }
            return false;
