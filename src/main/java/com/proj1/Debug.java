@@ -1,6 +1,6 @@
 package com.proj1;import java.util.Scanner;
 
-public class Debug {
+abstract public class Debug {
     public static void DebugSet(Scanner scanner) {
         checkLoaded(scanner);
         printQuestions();

@@ -54,6 +54,9 @@ public class App {
                         clearScreen();
                         Student.studentMostPassed();
                         break;
+                    case(9):
+                        ExamManager.exManagerMenu(james);
+                        break;
                     case(0):
                         System.out.println("Saving Data.....");
                         break mainMenuLoop;
@@ -79,6 +82,7 @@ public class App {
         System.out.println("6) Is student geslaagd voor test?"); //non readable reference
         System.out.println("7) Welke examens heeft student gehaald?");
         System.out.println("8) Welke student heeft de meeste examens gehaald?");
+        System.out.println("9) Manage Examens");
         System.out.println("0) Exit");
     }
 
