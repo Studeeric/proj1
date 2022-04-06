@@ -1,4 +1,4 @@
-package com.proj1; import java.util.Scanner; import java.io.IOException;
+package com.proj1; import java.util.InputMismatchException; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
@@ -14,7 +14,7 @@ public class App {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             try{
-            chooseAction = Integer.parseInt(james.nextLine());
+            chooseAction = Math.abs(Integer.parseInt(james.nextLine()));
             } catch(NumberFormatException e){
                 System.out.println("Please choose a valid option");
                 pauseMenu(james);
@@ -207,16 +207,25 @@ public class App {
             
             System.out.println("Kies uw examen:");
             Exam.printAllExams(scanner);
-            int keuze = scanner.nextInt();
+            int keuze = 0; //any value will do as it will be overwritten unless user is a mafklapper
+            boolean invalidChoice = false;
+            try{
+            keuze = scanner.nextInt();
             scanner.nextLine();
-
-            if (keuze > Exam.examList.size() || keuze < 0){
-                System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-            } else {
-                Exam.examList.get(keuze-1).startExam(student,scanner);
+            } catch(InputMismatchException iME){
+                System.out.println("Mafklapper, we vroegen om een nummer, niet letter.");
+                System.out.println(iME);
+                invalidChoice = true;
             }
-        }
-        catch(Exception e){
+
+            if(!invalidChoice){
+                if (keuze > Exam.examList.size() || keuze < 0){
+                    System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+                } else {
+                    Exam.examList.get(keuze-1).startExam(student,scanner);
+                }
+            } else {System.out.println("try again later.");}
+        } catch (Exception e){
             System.out.println("Error in studentGegevensAanwezig");
             System.out.println(e);
         }

@@ -8,7 +8,7 @@ public class Student {
 
     public Student(String name, int studentNumber){
         this.name = name;
-        this.studentNumber = studentNumber;
+        this.studentNumber = Math.abs(studentNumber);
         studentList.add(this);
     }
 
