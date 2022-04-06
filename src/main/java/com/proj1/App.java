@@ -1,5 +1,4 @@
-package com.proj1; import java.util.InputMismatchException;
-import java.util.Scanner; import java.io.IOException;
+package com.proj1; import java.util.InputMismatchException; import java.util.Scanner; import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
@@ -193,17 +192,17 @@ public class App {
             System.out.println("Kies uw examen:");
             Exam.printAllExams(scanner);
             int keuze = 0; //any value will do as it will be overwritten unless user is a mafklapper
-            boolean mafklapper = false;
+            boolean invalidChoice = false;
             try{
             keuze = scanner.nextInt();
             scanner.nextLine();
             } catch(InputMismatchException iME){
                 System.out.println("Mafklapper, we vroegen om een nummer, niet letter.");
                 System.out.println(iME);
-                mafklapper = true;
+                invalidChoice = true;
             }
 
-            if(!mafklapper){
+            if(!invalidChoice){
                 if (keuze > Exam.examList.size() || keuze < 0){
                     System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
                 } else {
