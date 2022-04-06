@@ -21,7 +21,7 @@ public class App {
             }
             if (chooseAction<0){
                 System.out.println("Mafklapper, je hebt een negatieve waarde ingevuld. We maken het positief voor je.");
-                chooseAction = Math.abs(chooseAction);
+                chooseAction = Math.abs(chooseAction); //math.abs geeft de absolute waarde terug. Dat wil zeggen dat negatieve getallen positief worden, en positieve getallen onveranderd blijven.
             }
             try {
                 switch (chooseAction) {
