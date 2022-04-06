@@ -19,6 +19,10 @@ public class App {
                 System.out.println("Please choose a valid option");
                 pauseMenu(james);
             }
+            if (chooseAction<0){
+                System.out.println("Mafklapper, je hebt een negatieve waarde ingevuld. We maken het positief voor je.");
+                chooseAction = Math.abs(chooseAction);
+            }
             try {
                 switch (chooseAction) {
                     case (1):
