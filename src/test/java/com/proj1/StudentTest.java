@@ -49,7 +49,7 @@ public class StudentTest {
        assertEquals(naamTest, student.getName());
     }
 
-    //Deze methode controleerd of de studentnumber wel in de database staat
+    //Deze methode controleerd of de studentnumber wel in de studentList staat
     @Test
     public void checkStudentNumberTest(){
         int nummer = 21000321;
@@ -66,7 +66,7 @@ public class StudentTest {
         assertEquals(juist, test);
     }
 
-    //Deze methode controleerd of de studentnumber niet in de database staat
+    //Deze methode controleerd of de studentnumber niet in de studentList staat
     @Test
     public void checkStudentNumberTest2(){
         int nummer = 21000320;
