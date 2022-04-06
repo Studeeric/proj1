@@ -8,12 +8,7 @@ public class Student {
 
     public Student(String name, int studentNumber){
         this.name = name;
-        if (studentNumber > 0){
-            this.studentNumber = studentNumber;
-        } else {
-            this.studentNumber = Math.abs(studentNumber);
-            System.out.println("Mafklapper, je student nummer is negatief. Dit was waarschijnlijk niet de bedoeling, dus we hebben het positief gemaakt voor je.");
-        }
+        this.studentNumber = Math.abs(studentNumber);
         studentList.add(this);
     }
 
