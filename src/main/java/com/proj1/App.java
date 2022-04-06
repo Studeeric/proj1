@@ -19,7 +19,6 @@ public class App {
                 System.out.println("Please choose a valid option");
                 pauseMenu(james);
             }
-
             try {
                 switch (chooseAction) {
                     case (1):
