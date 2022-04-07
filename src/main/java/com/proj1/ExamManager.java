@@ -38,12 +38,13 @@ abstract public class ExamManager {
 
     public static void printExManagerMenu() {
         App.clearScreen();
-        System.out.println("Welcome to the KekCorp© Exam Manager.");
-        System.out.println("Please choose an option:\n");
-        System.out.println("1) Add a new Exam");
-        System.out.println("2) Remove a Exam");
-        System.out.println("3) Edit Exam Questions");
-        System.out.println("0) Exit");
+        System.out.println("""
+        Welcome to the KekCorp© Exam Manager.
+        Please choose an option:
+        1) Add a new Exam
+        2) Remove a Exam
+        3) Edit Exam Questions
+        0) Exit""");
     }
 
     //Action methods
@@ -96,10 +97,11 @@ abstract public class ExamManager {
                 
                 Exam exActualExam = Exam.examList.get(exIndex);
                 exEditSubLoop: while (true){
-                    System.out.println("1) Add a question");
-                    System.out.println("2) Remove a question");
-                    System.out.println("3) Edit a question");
-                    System.out.println("0) Exit");
+                    System.out.println("""
+                    1) Add a question
+                    2) Remove a question
+                    3) Edit a question
+                    0) Exit""");
                     switch(scanner.nextLine()){
                         case("1"):
                             exAddQuestion(exActualExam, scanner);
@@ -150,7 +152,11 @@ abstract public class ExamManager {
         exAddQuestLoop1: while(true){
             App.clearScreen();
             System.out.println("The selected exam has currently "+exam.getQuestionList().size()+" Questions\n");
-            System.out.println("Please choose an option:\n1) Make a new question\n2) View current questions\n0) Return to menu");
+            System.out.println("""
+                Please choose an option:
+                1) Make a new question
+                2) View current questions
+                0) Return to menu""");
             switch (scanner.nextLine()) {
                 case ("1"):
                     exam.addQuestion(new Question(exGetQuestCont(scanner)));
