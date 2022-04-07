@@ -152,7 +152,7 @@ public class Student {
                     System.out.print(", ");
                 }
             }
-            System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+            System.out.print(" hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
             System.out.println("");
         }
         
