@@ -15,9 +15,12 @@ abstract public class Debug {
     public static void printQuestions(){
         for(Exam exam : Exam.examList){
             for(Question question : exam.questionList){
+                System.out.println(question.questionPrompt);
                 System.out.println(question.contentsInString());
+                System.out.println(question.questionAnswer);
             }
         }
+        App.pauseMenu(new Scanner(System.in));
     }
 
     public static void checkLoaded(Scanner cloadedScanner) {

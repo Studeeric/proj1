@@ -39,13 +39,14 @@ public class Exam {
         int correct = 0;
         ArrayList<Question> currentQuestions = new ArrayList<>(questionList);
         Collections.shuffle(currentQuestions);
-        for (int i = 1; i <= currentQuestions.size(); i++) {
-            System.out.println("Vraag " + i + ":");
-            System.out.println(currentQuestions.get(i-1).questionAnswer);
-            for(int j=1;j<currentQuestions.get(i-1).askQuestion().size()-1;j++){
-                System.out.println((j)+ " "+currentQuestions.get(i-1).askQuestion().get(j));
+        App.clearScreen();
+        for (int i = 0; i < currentQuestions.size(); i++) {
+            System.out.println("Vraag " + (i+1) + ":");
+            System.out.println(currentQuestions.get(i).questionPrompt);
+            for(int j=0;j<currentQuestions.get(i).askQuestion().size();j++){
+                System.out.println((j+1)+ ") "+currentQuestions.get(i).askQuestion().get(j));
             }
-            if(currentQuestions.get(i-1).checkAnswer(scanner.nextLine())){
+            if(currentQuestions.get(i).checkAnswer(scanner.nextLine())){
                 correct++;
             }
             App.clearScreen();
