@@ -7,7 +7,7 @@ public abstract class SaveManager {
     //Rewrite methods using a Exam object to work with the ArrayList index of said object instead of a direct object, so Exams can be added from the savefile.
 
     public static ArrayList<String> readFile(String fileName, boolean silent){ //
-        File savefile = new File(fileName); 
+        File savefile = new File(fileName);
         ArrayList<String> saveFileContents = new ArrayList<>();
         try {
             Scanner james = new Scanner(savefile);
@@ -109,28 +109,6 @@ public abstract class SaveManager {
                                 Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));
                             }
                             break;
-                            /*
-                        case("reken"):
-                        case("rekenen"):
-                            if(orders[1].equals("AddQuestion")){
-                                ArrayList<String>questionOptions = new ArrayList<>();
-                                for(int i =2;i<orders.length;i++){
-                                    questionOptions.add(orders[i]);
-                                }
-                                rekenen.addQuestion(new Question(questionOptions));
-                            }
-                            break;
-                        case("teken"):
-                        case("tekenen"):
-                            if(orders[1].equals("AddQuestion")){
-                                ArrayList<String>questionOptions = new ArrayList<>();
-                                for(int i =2;i<orders.length;i++){
-                                    questionOptions.add(orders[i]);
-                                }
-                                tekenen.addQuestion(new Question(questionOptions));
-                            }
-                            break;
-                            */
                         case("student"):
                             for (String replacestring : orders){
                                 replacestring.replace("\n", "");
