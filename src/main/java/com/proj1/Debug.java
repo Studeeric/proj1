@@ -55,4 +55,8 @@ abstract public class Debug {
             Thread.currentThread().interrupt();
         }
     }
+    public static void testScan(IScanner scanner) {
+        System.out.println(scanner.nextInt());
+    }
+    
 }

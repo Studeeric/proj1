@@ -3,6 +3,18 @@ package com.proj1; import java.util.InputMismatchException; import java.util.Sca
 public class App {
     public static void main( String[] args){
         Scanner scannakin = new Scanner(System.in);
+
+
+
+        FakeScanner scanner =new FakeScanner();
+        ScannerV3 scanV3 = new ScannerV3();
+        scanner.intValue = 1;
+        Debug.testScan(scanner);
+        Debug.testScan(scanV3);
+        Debug.wait(30);
+
+
+
         Init.init(false,scannakin);
         mainMenu(scannakin);
         SaveManager.exitSave();
