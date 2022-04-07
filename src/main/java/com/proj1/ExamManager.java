@@ -45,43 +45,52 @@ abstract public class ExamManager {
         2) Remove a Exam
         3) Edit Exam Questions
         0) Exit""");
+
     }
 
     //Action methods
     public static void exNewExam(Scanner scanner) {
-        System.out.println("Enter the Exam name:");
+        System.out.println("Geef de naam van het examen:");
         String newExName = scanner.nextLine();
-        System.out.println("Enter the Exam category:");
+        System.out.println("Geef de categorie van het examen:");
         String newExCat = scanner.nextLine();
         Exam exManagerCreated = new Exam(newExName, newExCat);
-        System.out.println("Exam created, do you wish to add Questions now?\n1)Yes\n2)No");
+        System.out.println("Examen toegevoegd, wil u gelijk vragen toevoegen?\n1)Ja\n2)Nee");
         if(scanner.nextLine().equals("1")){
             exAddQuestion(exManagerCreated,scanner);
         }
-        System.out.println("Exam Created!\nReturning to main menu now");
+        System.out.println("Examen toegevoegd!\nReturning to main menu...");
         Debug.wait(2);
     }
 
     
     public static void exRemoveExam(Scanner scanner,int exToBeRemoved) {
         App.clearScreen();
-        System.out.println("Are you Sure you want to remove\n" + Exam.examList.get(exToBeRemoved).getName() + " - " +Exam.examList.get(exToBeRemoved).getCategory()+"?");
+        System.out.println("Weet u zeker dat u het volgende examen wil verwijderen\n" + Exam.examList.get(exToBeRemoved).getName() + " - " +Exam.examList.get(exToBeRemoved).getCategory()+"?");
         System.out.println("Y\\N");
         exRemoveLoop: while (true){
             switch(scanner.nextLine()){
-                case("Y"):
                 case("y"):
+                case("Y"):
                 case("yes"):
+                case("Yes"):
+                case("j"):
+                case("J"):
+                case("ja"):
+                case("Ja"):
                     Exam.examList.remove(exToBeRemoved);
-                    System.out.println("Exam removed.\nReturning to Exam menu");
+                    System.out.println("Examen verwijderd.\nReturning to examen menu...");
                     break exRemoveLoop;
-                case("N"):
                 case("n"):
+                case("N"):
+                case("no"):
                 case("No"):
-                    System.out.println("Remove aborted.\n Returning to Exam menu");
+                case("nee"):
+                case("Nee"):
+                    System.out.println("Examen verwijderen geannuleerd.\n Returning to examen menu...");
                     break exRemoveLoop;
                 default:
-                System.out.println("Please choose either Yes(Y) or No(N)");
+                System.out.println("Kies tussen: Yes(Y) of No(N)");
                     break;
 
             }
@@ -91,7 +100,7 @@ abstract public class ExamManager {
 
     public static void exEditExam(Scanner scanner) {
         exEditMainLoop: while(true){
-            System.out.println("Choose an Exam to edit");
+            System.out.println("Kies een examen om aan te passen");
             int exIndex = exChooseExamIndex(scanner,true);
             if(exIndex != -1){
                 
@@ -102,6 +111,7 @@ abstract public class ExamManager {
                     2) Remove a question
                     3) Edit a question
                     0) Exit""");
+
                     switch(scanner.nextLine()){
                         case("1"):
                             exAddQuestion(exActualExam, scanner);
@@ -110,7 +120,7 @@ abstract public class ExamManager {
                             exRemoveQuestion(exActualExam, scanner);
                             break;
                         case("3"):
-                            System.out.println("What question to edit?");
+                            System.out.println("Welke vraag wil u aanpassen?");
                             for(int i = 0; i< exActualExam.questionList.size();i++){
                                 System.out.println((i+1)+") "+ exActualExam.questionList.get(i).questionContents.get(0));
                             }
@@ -120,14 +130,14 @@ abstract public class ExamManager {
                                 Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
                                 App.clearScreen();
                                 exPrintQuestArray(exChosenQuest.questionContents, true);
-                                System.out.println("What line to edit?");
+                                System.out.println("Welke regel wil u aanpassen?");
                                 exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
                                 App.clearScreen();
-                                System.out.println("Old Line:");
+                                System.out.println("Oude regel:");
                                 System.out.println(exChosenQuest.questionContents.get(exUserEditChoice));
-                                System.out.println("New line:");
+                                System.out.println("Nieuwe regel:");
                                 exChosenQuest.questionContents.set(exUserEditChoice, scanner.nextLine());
-                                System.out.println("Line changed");
+                                System.out.println("Regel aangepast");
                                 App.pauseMenu(scanner);
                             }
                             break;
@@ -182,32 +192,38 @@ abstract public class ExamManager {
     }
 
     public static void exRemoveQuestion(Exam exActualExam, Scanner scanner) {
-        System.out.println("What question to remove?");
+        System.out.println("Welke vraag wil u verwijderen?");
         for(int i = 0; i< exActualExam.questionList.size();i++){
             System.out.println((i+1)+") "+ exActualExam.questionList.get(i).questionPrompt);
         }
         System.out.println();
         int exToBeRemoved = Integer.parseInt(scanner.nextLine());
         App.clearScreen();
-        System.out.println("Are you Sure you want to remove\n" + exActualExam.questionList.get(exToBeRemoved).questionPrompt);
+        System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + exActualExam.questionList.get(exToBeRemoved).questionPrompt);
         System.out.println("Y\\N?");
         exRemoveQuestLoop: while (true){
             switch(scanner.nextLine()){
-                case("Y"):
                 case("y"):
-                case("Yes"):
+                case("Y"):
                 case("yes"):
+                case("Yes"):
+                case("j"):
+                case("J"):
+                case("ja"):
+                case("Ja"):
                     exActualExam.questionList.remove(exToBeRemoved);
-                    System.out.println("Question removed.\nReturning to menu");
+                    System.out.println("Vraag verwijderd.\nReturning to menu...");
                     break exRemoveQuestLoop;
-                case("N"):
                 case("n"):
-                case("No"):
+                case("N"):
                 case("no"):
-                    System.out.println("Remove aborted.\nReturning to menu");
+                case("No"):
+                case("nee"):
+                case("Nee"):
+                    System.out.println("Vraag verwijderen geannuleerd.\nReturning to menu...");
                     break exRemoveQuestLoop;
                 default:
-                System.out.println("Please choose either Yes(Y) or No(N)");
+                System.out.println("Kies tussen: Yes(Y) of No(N)");
                     break;
 
             }
@@ -217,7 +233,7 @@ abstract public class ExamManager {
 
     public static int exChooseExamIndex(Scanner scanner, boolean exit) {
         Exam.printAllExams(scanner);
-        if(exit){System.out.println("0) Exit");}
+        if(exit){System.out.println("0) Keer terug naar het hoofdmenu");}
         Integer examNr;
         while (true){
             String exChooseExChoice = scanner.nextLine();
@@ -225,17 +241,17 @@ abstract public class ExamManager {
                 examNr = Integer.parseInt(exChooseExChoice);
                 break;
             }
-            catch(Exception e){System.out.println("Please choose a valid option");}
+            catch(Exception e){System.out.println("Kies een optie uit de lijst");}
         }
         return examNr-1;
     }
 
     public static ArrayList<String> exGetQuestCont(Scanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
-        System.out.println("Enter question prompt:");
+        System.out.println("Voer de vraag in:");
         exQuestContents.add(scanner.nextLine());
         exGetQuestLoop: while (true){
-            System.out.println("Enter question options prefix with A),B),C) etc. press 0 to confirm");
+            System.out.println("Voer een vraag in met aan het begin: A),B),C) etc. Voer 0 in om door te gaan");
             String exUserChoice = scanner.nextLine();
             switch(exUserChoice){
                 case("0"):
@@ -246,7 +262,7 @@ abstract public class ExamManager {
             }
         }
         App.clearScreen();
-        System.out.println("Which option is the right one?(Zo lang we letters gebruiken ipv nummers moet dit een letter zijn)");
+        System.out.println("Welke vraag is het juiste antwoord?(Zo lang we letters gebruiken ipv nummers moet dit een letter zijn)");
         exPrintQuestArray(exQuestContents,false);
         exQuestContents.add(scanner.nextLine());
         return exQuestContents;
