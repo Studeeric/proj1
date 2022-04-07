@@ -1,6 +1,4 @@
-package com.proj1;import java.util.Scanner;import java.io.File;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+package com.proj1;import java.util.Scanner;
 
 
 /*

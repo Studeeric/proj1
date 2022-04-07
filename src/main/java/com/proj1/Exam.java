@@ -1,6 +1,6 @@
 package com.proj1; import java.util.ArrayList; import java.util.Scanner;
 
-public class Exam {
+public class Exam implements IScanner{
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
@@ -73,5 +73,17 @@ public class Exam {
                 System.out.println((i+1) + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
             }
         }
+    }
+
+    @Override
+    public int nextInt() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public String nextLine() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

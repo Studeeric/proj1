@@ -2,7 +2,7 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 //Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
-
+    FakeScanner fakeScanner = new FakeScanner();
     Exam testExam = new Exam("OPT1", "HBO-ICT");
     Student testStudent = new Student("Pietje", 21146633);
     Student testStudent2 = new Student("Klaasje", 21146634);
@@ -38,6 +38,11 @@ public class ExamTest {
         testExam.examResult(testStudent2, 0, false);
         assertEquals(testExam, testStudent.behaaldeExamens.get(0));
         assertTrue(testStudent2.behaaldeExamens.isEmpty());
-    }    
+    }
+    
+    @Test
+    public void randomTest(){
+        
+    }
     
 }
