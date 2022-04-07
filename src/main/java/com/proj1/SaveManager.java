@@ -100,11 +100,13 @@ public abstract class SaveManager {
                             }
                             else if(orders[1].equals("AddQuestion")){
                                 ArrayList<String>questionOptions = new ArrayList<>();
-                                for(int i =3;i<orders.length;i++){
+                                for(int i =4;i<orders.length-1;i++){
                                     questionOptions.add(orders[i]);
                                 }
+                                String questionAnswer = orders[3];
+                                String questionPrompt = orders[orders.length-1];
                                 Integer examNr = Integer.parseInt(orders[2]);   
-                                Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));
+                                Exam.examList.get(examNr-1).addQuestion(new Question(questionPrompt,questionOptions,questionAnswer));
                             }
                             break;
                         case("student"):

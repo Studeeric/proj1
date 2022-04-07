@@ -4,10 +4,12 @@ public class Question
 {
     public ArrayList<String> questionContents = new ArrayList<>(); //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
     public String questionPrompt;
+    public String questionAnswer;
 
-    public Question (ArrayList<String> contents){
+    public Question (String prompt,ArrayList<String> contents,String answer){
         this.questionContents = contents;
-        this.questionPrompt = contents.get(0);
+        this.questionPrompt = prompt;
+        this.questionAnswer = answer;
     }
 
     public ArrayList<String> askQuestion(){
@@ -15,7 +17,7 @@ public class Question
     }
 
     public boolean checkAnswer(String input){
-        if (input.equals(questionContents.get(questionContents.size()-1)) || input.equals(questionContents.get(questionContents.size()-1).toLowerCase()) || input.equals(questionContents.get(questionContents.size()-1).toUpperCase())){
+        if (input.equals(questionAnswer)){
             return true;
         }
            return false;
