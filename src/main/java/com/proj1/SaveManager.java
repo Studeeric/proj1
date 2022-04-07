@@ -10,9 +10,9 @@ public abstract class SaveManager {
         File savefile = new File(fileName); 
         ArrayList<String> saveFileContents = new ArrayList<>();
         try {
-            Scanner james = new Scanner(savefile);
-            while (james.hasNextLine()) {
-                String contents = james.nextLine();
+            Scanner scanner = new Scanner(savefile);
+            while (scanner.hasNextLine()) {
+                String contents = scanner.nextLine();
                 saveFileContents.add(contents);
             }
             if(!silent){
@@ -23,7 +23,7 @@ public abstract class SaveManager {
                 }
                 System.out.println("=========================");
             }
-            james.close();
+            scanner.close();
         }
         catch (Exception e) {
             //Debug remove in production
