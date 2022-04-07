@@ -36,6 +36,10 @@ public class Student {
                 }
                 naam = naam.replace("\n", "");
                 int nummer = studentNumberStrToInt(obiScanKenobi);
+                while (nummer < 0){
+                    System.out.println("Studentnummer kan niet negatief zijn. Probeer het opnieiuw.");
+                    nummer = studentNumberStrToInt(obiScanKenobi);
+                }
                 checkStudentNumber(nummer, naam, obiScanKenobi);  
                 Student student = new Student (naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
