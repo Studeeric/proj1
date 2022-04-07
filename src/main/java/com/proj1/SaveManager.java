@@ -3,9 +3,7 @@ package com.proj1; import java.util.Scanner;import java.io.IOException; import j
 public abstract class SaveManager {
 
     //Edited version of my accidental file editor + loader methods
-    //Todo: 
-    //Rewrite methods using a Exam object to work with the ArrayList index of said object instead of a direct object, so Exams can be added from the savefile.
-
+    private SaveManager(){} //private constructor means no objects can be made of this class
     public static ArrayList<String> readFile(String fileName, boolean silent){ //
         File savefile = new File(fileName);
         ArrayList<String> saveFileContents = new ArrayList<>();
