@@ -272,7 +272,7 @@ public class App {
         }
     }
 
-    public static void studentGegevensAfwezig(Scanner scanner){
+    public static void studentGegevensAfwezig(IScanner scanner, IPrinter printer){
         studentGegevensAfwezigMessage();
         int studentNotFoundKeuze = scanner.nextInt();
         scanner.nextLine();
@@ -285,8 +285,30 @@ public class App {
                 case 3: 
                     break;//Break the while loop & go back to mainMenu
                 default:
-                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                    printer.println("Verkeerde optie. Ga terug naar main menu.");
                     break;
             }     
+    }
+}
+interface IScanner {
+    int nextInt();
+    String nextLine();
+}
+class Test3HalloScanner implements IScanner {
+    private int getal = 3;
+    public int nextInt() {
+        return getal;
+    }
+    public String nextLine() {
+        return "Hallo";
+    }
+}
+class RealScanner implements IScanner {
+    Scanner scanner;
+    public int nextInt() {
+        return scanner.nextInt();
+    }
+    public String nextLine() {
+        return scanner.nextLine();
     }
 }

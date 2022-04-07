@@ -2,10 +2,11 @@ package com.proj1;import java.util.ArrayList;
 
 public class Question 
 {
-    public ArrayList<String> questionContents = new ArrayList<>(); //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
+    public ArrayList<String> questionContents = new ArrayList<>(); 
+    //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
     public String questionPrompt;
-
-    public Question (ArrayList<String> contents){
+    // 
+    public Question (String q, ArrayList<String> contents){
         this.questionContents = contents;
         this.questionPrompt = contents.get(0);
     }
