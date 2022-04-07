@@ -238,7 +238,7 @@ public class App {
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.println("3) Terug");
+        System.out.println("3) Terug naar het hoofdmenu");
     }
 
     public static void pauseMenu(Scanner scanner) {
