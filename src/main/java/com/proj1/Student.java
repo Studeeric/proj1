@@ -20,13 +20,13 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(Scanner scanner){
+    public static void newStudent(Scanner obiScanKenobi){
         try{
             newStudentloop1: while(true){
                 String naam;
                 newStudentloop2:while(true){
                     System.out.println ("Voer je naam in:");
-                    naam = scanner.nextLine();
+                    naam = obiScanKenobi.nextLine();
                     if (naam.equals("")){
                         System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
                     }
@@ -35,11 +35,11 @@ public class Student {
                     }
                 }
                 naam = naam.replace("\n", "");
-                int nummer = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer, naam, scanner);  
+                int nummer = studentNumberStrToInt(obiScanKenobi);
+                checkStudentNumber(nummer, naam, obiScanKenobi);  
                 Student student = new Student (naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-                App.pauseMenu(scanner); 
+                App.pauseMenu(obiScanKenobi); 
                 break newStudentloop1; 
             }        
         }
@@ -75,14 +75,14 @@ public class Student {
         }
     }
 
-    public static int studentNumberStrToInt(Scanner scanner){
+    public static int studentNumberStrToInt(Scanner jimmy){
         while(true){
             try{
                 System.out.println("Voer je studentnummer in:");
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(jimmy.nextLine());
             } catch (NumberFormatException s){
                 System.out.println("Voer alleen cijfers in.");
-                App.pauseMenu(scanner);
+                App.pauseMenu(jimmy);
                 App.clearScreen();
             }    
         }
