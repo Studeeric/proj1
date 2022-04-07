@@ -1,4 +1,5 @@
 package com.proj1; import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,20 +37,21 @@ public class Exam {
 
     public void startExam(Student student, Scanner scanner){
         int correct = 0;
-        Random randomGen = new Random();
-        for (int i = 1; i <= questionList.size(); i++) {
+        ArrayList<Question> currentQuestions = new ArrayList<>(questionList);
+        Collections.shuffle(currentQuestions);
+        for (int i = 1; i <= currentQuestions.size(); i++) {
             System.out.println("Vraag " + i + ":");
-            System.out.println(questionList.get(i-1).questionAnswer);
-            for(int j=1;j<questionList.get(i-1).askQuestion().size()-1;j++){
-                System.out.println((j)+ " "+questionList.get(i-1).askQuestion().get(j));
+            System.out.println(currentQuestions.get(i-1).questionAnswer);
+            for(int j=1;j<currentQuestions.get(i-1).askQuestion().size()-1;j++){
+                System.out.println((j)+ " "+currentQuestions.get(i-1).askQuestion().get(j));
             }
-            if(questionList.get(i-1).checkAnswer(scanner.nextLine())){
+            if(currentQuestions.get(i-1).checkAnswer(scanner.nextLine())){
                 correct++;
             }
             App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
-        if (correct >= ((questionList.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
+        if (correct >= ((currentQuestions.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
             examResult(student, correct, true);
         } else {
             examResult(student, correct, false);
