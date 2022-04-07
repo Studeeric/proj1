@@ -49,24 +49,24 @@ public class Student {
         }
     }
     
-    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
+    public static void checkStudentNumber (int nummer, String naam, Scanner kristoff){
         int nummer2;
         try{
         for (Student e : Student.studentList){
             if (e.getStudentNumber() == nummer){
                     System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
-                    App.pauseMenu(scanner);
+                    App.pauseMenu(kristoff);
                     App.clearScreen();
-                    nummer2 = studentNumberStrToInt(scanner);
-                    checkStudentNumber(nummer2, naam, scanner);
+                    nummer2 = studentNumberStrToInt(kristoff);
+                    checkStudentNumber(nummer2, naam, kristoff);
                 }
             }
             if (nummer <= 0 ){
                 System.out.println("Studentnummer is niet geldig. Kies een ander nummer");
-                App.pauseMenu(scanner);
+                App.pauseMenu(kristoff);
                 App.clearScreen();
-                nummer2 = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer2, naam, scanner);
+                nummer2 = studentNumberStrToInt(kristoff);
+                checkStudentNumber(nummer2, naam, kristoff);
             }
         }
         catch(Exception e){
