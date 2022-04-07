@@ -238,7 +238,8 @@ public class App {
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.println("3) Terug naar het hoofdmenu");
+        System.out.println("0) Keer terug naar het hoofdmenu");
+
     }
 
     public static void pauseMenu(Scanner scanner) {
@@ -282,7 +283,7 @@ public class App {
                 case 2:
                     Student.newStudent(scanner);
                     break;//Break the for loop & run this method again
-                case 3: 
+                case 0: 
                     break;//Break the while loop & go back to mainMenu
                 default:
                     System.out.println("Verkeerde optie. Ga terug naar main menu.");
