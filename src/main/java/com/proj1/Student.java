@@ -8,7 +8,7 @@ public class Student {
 
     public Student(String name, int studentNumber){
         this.name = name;
-        this.studentNumber = studentNumber;
+        this.studentNumber = Math.abs(studentNumber);
         studentList.add(this);
     }
 
@@ -20,26 +20,26 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(Scanner scanner){
+    public static void newStudent(Scanner obiScanKenobi){
         try{
             newStudentloop1: while(true){
                 String naam;
                 newStudentloop2:while(true){
                     System.out.println ("Voer je naam in:");
-                    naam = scanner.nextLine();
+                    naam = obiScanKenobi.nextLine();
                     if (naam.equals("")){
-                        System.out.println("Geen naam ingevoerd probeer opnieuw");
+                        System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
                     }
                     else{
                         break newStudentloop2;
                     }
                 }
                 naam = naam.replace("\n", "");
-                int nummer = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer, naam, scanner);  
+                int nummer = studentNumberStrToInt(obiScanKenobi);
+                checkStudentNumber(nummer, naam, obiScanKenobi);  
                 Student student = new Student (naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-                App.pauseMenu(scanner); 
+                App.pauseMenu(obiScanKenobi); 
                 break newStudentloop1; 
             }        
         }
@@ -54,7 +54,7 @@ public class Student {
         try{
         for (Student e : Student.studentList){
             if (e.getStudentNumber() == nummer){
-                    System.out.println("Studentnummer bestaat al kies een ander nummer.");
+                    System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
                     App.pauseMenu(scanner);
                     App.clearScreen();
                     nummer2 = studentNumberStrToInt(scanner);
@@ -62,7 +62,7 @@ public class Student {
                 }
             }
             if (nummer <= 0 ){
-                System.out.println("Studentnummer is niet geldig kies een ander nummer");
+                System.out.println("Studentnummer is niet geldig. Kies een ander nummer");
                 App.pauseMenu(scanner);
                 App.clearScreen();
                 nummer2 = studentNumberStrToInt(scanner);
@@ -75,20 +75,20 @@ public class Student {
         }
     }
 
-    public static int studentNumberStrToInt(Scanner scanner){
+    public static int studentNumberStrToInt(Scanner jimmy){
         while(true){
             try{
                 System.out.println("Voer je studentnummer in:");
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(jimmy.nextLine());
             } catch (NumberFormatException s){
                 System.out.println("Voer alleen cijfers in.");
-                App.pauseMenu(scanner);
+                App.pauseMenu(jimmy);
                 App.clearScreen();
             }    
         }
     }
 
-    public static void printAllStudents(Scanner scanner){
+    public static void printAllStudents(Scanner pedro){
         if (studentList.isEmpty()){
             System.out.println("Er zijn geen studenten.");
         } else {
@@ -98,32 +98,33 @@ public class Student {
         }
     }
     
-    public static void deleteStudent(Scanner scanner){
+    public static void deleteStudent(Scanner kim){
         while (true){
             App.clearScreen();
-            printAllStudents(scanner);
+            printAllStudents(kim);
             System.out.println("0) Terug naar het hoofdmenu");
             System.out.println("Kies een student:");
             int userRemoveStudentChoice;
             try {
-                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
+                userRemoveStudentChoice = Integer.parseInt(kim.nextLine());
                 if (userRemoveStudentChoice == 0){
                     System.out.println("Returning to main menu...");
                     break;
                 } else {
+                    Student.studentList.set((userRemoveStudentChoice-1),null);
                     Student.studentList.remove(userRemoveStudentChoice-1);
                     System.out.println("Student removed");
                     System.out.println("Press return to continue");
-                    scanner.nextLine();
+                    kim.nextLine();
                 }
             } catch (NumberFormatException e){
                 System.out.println("Maak een valide keuze.");
-                App.pauseMenu(scanner);
+                App.pauseMenu(kim);
             }
         }    
     }
 
-    public static void studentMostPassed (){
+    public static void studentMostPassed (Scanner jacques){
 
         int meesteNrBehaaldeExamens = 0;
         ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
@@ -143,7 +144,7 @@ public class Student {
         if (namenStudentenMetMostPassed.size()==1){
             System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
         } else {
-            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal het meeste examens gehaald hebben.");
+            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
             System.out.println("");
             for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
                 System.out.print(namenStudentenMetMostPassed.get(n));
@@ -154,5 +155,6 @@ public class Student {
             System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
             System.out.println("");
         }
+        App.pauseMenu(jacques);
     }
 }
