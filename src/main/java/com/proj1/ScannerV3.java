@@ -17,6 +17,7 @@ public class ScannerV3 implements IScanner{
                 return Integer.parseInt(scanner.nextLine());
             } 
             catch (NumberFormatException e) {
+                System.out.println("Voer enkel cijfers in.");
             }
         }
     }

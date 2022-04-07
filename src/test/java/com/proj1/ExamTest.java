@@ -42,7 +42,7 @@ public class ExamTest {
     
     @Test
     public void randomTest(){
-        
+        Exam.printAllExams(fakeScanner);
     }
     
 }

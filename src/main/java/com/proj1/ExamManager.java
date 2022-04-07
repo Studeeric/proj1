@@ -1,4 +1,4 @@
-package com.proj1; import java.util.ArrayList; import java.util.Scanner;
+package com.proj1; import java.util.ArrayList;
 
 
 /*
@@ -9,7 +9,7 @@ Thanks for coming to my TED talk.
 
 abstract public class ExamManager {
 
-    public static void exManagerMenu(Scanner scanner) {
+    public static void exManagerMenu(IScanner scanner) {
         exManagerLoop: while (true) {
             printExManagerMenu();
             String userChoiceExManager = scanner.nextLine();
@@ -49,7 +49,7 @@ abstract public class ExamManager {
     }
 
     //Action methods
-    public static void exNewExam(Scanner scanner) {
+    public static void exNewExam(IScanner scanner) {
         System.out.println("Geef de naam van het examen:");
         String newExName = scanner.nextLine();
         System.out.println("Geef de categorie van het examen:");
@@ -64,7 +64,7 @@ abstract public class ExamManager {
     }
 
     
-    public static void exRemoveExam(Scanner scanner,int exToBeRemoved) {
+    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
         App.clearScreen();
         System.out.println("Weet u zeker dat u het volgende examen wil verwijderen\n" + Exam.examList.get(exToBeRemoved).getName() + " - " +Exam.examList.get(exToBeRemoved).getCategory()+"?");
         System.out.println("Y\\N");
@@ -98,7 +98,7 @@ abstract public class ExamManager {
         
     }
 
-    public static void exEditExam(Scanner scanner) {
+    public static void exEditExam(IScanner scanner) {
         exEditMainLoop: while(true){
             System.out.println("Kies een examen om aan te passen");
             int exIndex = exChooseExamIndex(scanner,true);
@@ -158,7 +158,7 @@ abstract public class ExamManager {
     
 
     //Support methods
-    public static void exAddQuestion(Exam exam,Scanner scanner) {
+    public static void exAddQuestion(Exam exam,IScanner scanner) {
         exAddQuestLoop1: while(true){
             App.clearScreen();
             System.out.println("The selected exam has currently "+exam.getQuestionList().size()+" Questions\n");
@@ -191,7 +191,7 @@ abstract public class ExamManager {
         }
     }
 
-    public static void exRemoveQuestion(Exam exActualExam, Scanner scanner) {
+    public static void exRemoveQuestion(Exam exActualExam, IScanner scanner) {
         System.out.println("Welke vraag wil u verwijderen?");
         for(int i = 0; i< exActualExam.questionList.size();i++){
             System.out.println((i+1)+") "+ exActualExam.questionList.get(i).questionPrompt);
@@ -231,7 +231,7 @@ abstract public class ExamManager {
         
     }
 
-    public static int exChooseExamIndex(Scanner scanner, boolean exit) {
+    public static int exChooseExamIndex(IScanner scanner, boolean exit) {
         Exam.printAllExams(scanner);
         if(exit){System.out.println("0) Keer terug naar het hoofdmenu");}
         Integer examNr;
@@ -246,7 +246,7 @@ abstract public class ExamManager {
         return examNr-1;
     }
 
-    public static ArrayList<String> exGetQuestCont(Scanner scanner) {
+    public static ArrayList<String> exGetQuestCont(IScanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
         System.out.println("Voer de vraag in:");
         exQuestContents.add(scanner.nextLine());

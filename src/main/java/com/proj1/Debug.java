@@ -1,4 +1,4 @@
-package com.proj1;import java.util.Scanner;
+package com.proj1;
 
 
 /*
@@ -7,7 +7,7 @@ This class adds some debug methods for SaveManager & usefull methods for the res
 */
 
 abstract public class Debug {
-    public static void DebugSet(Scanner scanner) {
+    public static void DebugSet(IScanner scanner) {
         checkLoaded(scanner);
         printQuestions();
     }
@@ -20,11 +20,11 @@ abstract public class Debug {
         }
     }
 
-    public static void checkLoaded(Scanner cloadedScanner) {
+    public static void checkLoaded(IScanner cloadedIScanner) {
         try{
             checkLoadedLoop : while (true) {
-                int userchoiceCheckLoaded = cloadedScanner.nextInt();
-                cloadedScanner.nextLine();
+                int userchoiceCheckLoaded = cloadedIScanner.nextInt();
+                cloadedIScanner.nextLine();
                 switch (userchoiceCheckLoaded) {
                     case 1:
                         for (Student student : Student.studentList){

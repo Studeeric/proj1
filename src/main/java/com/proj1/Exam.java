@@ -1,6 +1,6 @@
-package com.proj1; import java.util.ArrayList; import java.util.Scanner;
+package com.proj1; import java.util.ArrayList;
 
-public class Exam implements IScanner{
+public class Exam{
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Exam implements IScanner{
         return this.questionList;
     }
 
-    public void startExam(Student student, Scanner scanner){
+    public void startExam(Student student, IScanner scanner){
         int correct = 0;
         for (int i = 1; i <= questionList.size(); i++) {
             System.out.println("Vraag " + i + ":");
@@ -64,7 +64,7 @@ public class Exam implements IScanner{
         }
     }
 
-    public static void printAllExams(Scanner scanner){
+    public static void printAllExams(IScanner scanner){
         if (examList.isEmpty()){
             System.out.println("Er zijn momenteel geen examens beschikbaar.");
             App.pauseMenu(scanner);
@@ -73,17 +73,5 @@ public class Exam implements IScanner{
                 System.out.println((i+1) + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
             }
         }
-    }
-
-    @Override
-    public int nextInt() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public String nextLine() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

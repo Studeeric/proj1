@@ -1,4 +1,4 @@
-package com.proj1; import java.util.Scanner; import java.util.ArrayList;
+package com.proj1; import java.util.ArrayList;
 
 public class Student {
     private String name;
@@ -20,7 +20,7 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(Scanner obiScanKenobi){
+    public static void newStudent(IScanner obiScanKenobi){
         try{
             newStudentloop1: while(true){
                 String naam;
@@ -38,7 +38,7 @@ public class Student {
                 int nummer = studentNumberStrToInt(obiScanKenobi);
                 checkStudentNumber(nummer, naam, obiScanKenobi);  
                 Student student = new Student (naam, nummer);
-                System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+                StudentUI.printStudentMadeSuc(student.getName());
                 App.pauseMenu(obiScanKenobi); 
                 break newStudentloop1; 
             }        
@@ -49,12 +49,12 @@ public class Student {
         }
     }
     
-    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
+    public static void checkStudentNumber (int nummer, String naam, IScanner scanner){
         int nummer2;
         try{
         for (Student e : Student.studentList){
             if (e.getStudentNumber() == nummer){
-                    System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
+                    StudentUI.printNumExist();
                     App.pauseMenu(scanner);
                     App.clearScreen();
                     nummer2 = studentNumberStrToInt(scanner);
@@ -62,7 +62,7 @@ public class Student {
                 }
             }
             if (nummer <= 0 ){
-                System.out.println("Studentnummer is niet geldig. Kies een ander nummer");
+                StudentUI.printNumInv();
                 App.pauseMenu(scanner);
                 App.clearScreen();
                 nummer2 = studentNumberStrToInt(scanner);
@@ -75,7 +75,7 @@ public class Student {
         }
     }
 
-    public static int studentNumberStrToInt(Scanner jimmy){
+    public static int studentNumberStrToInt(IScanner jimmy){
         while(true){
             try{
                 System.out.println("Voer je studentnummer in:");
@@ -88,7 +88,7 @@ public class Student {
         }
     }
 
-    public static void printAllStudents(Scanner pedro){
+    public static void printAllStudents(IScanner pedro){
         if (studentList.isEmpty()){
             System.out.println("Er zijn geen studenten.");
         } else {
@@ -98,7 +98,7 @@ public class Student {
         }
     }
     
-    public static void deleteStudent(Scanner kim){
+    public static void deleteStudent(IScanner kim){
         while (true){
             App.clearScreen();
             printAllStudents(kim);
@@ -124,7 +124,7 @@ public class Student {
         }    
     }
 
-    public static void studentMostPassed (Scanner jacques){
+    public static void studentMostPassed (IScanner jacques){
 
         int meesteNrBehaaldeExamens = 0;
         ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
