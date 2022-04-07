@@ -88,7 +88,7 @@ public class Student {
         }
     }
 
-    public static void printAllStudents(Scanner scanner){
+    public static void printAllStudents(Scanner pedro){
         if (studentList.isEmpty()){
             System.out.println("Er zijn geen studenten.");
         } else {
@@ -98,15 +98,15 @@ public class Student {
         }
     }
     
-    public static void deleteStudent(Scanner scanner){
+    public static void deleteStudent(Scanner kim){
         while (true){
             App.clearScreen();
-            printAllStudents(scanner);
+            printAllStudents(kim);
             System.out.println("0) Terug naar het hoofdmenu");
             System.out.println("Kies een student:");
             int userRemoveStudentChoice;
             try {
-                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
+                userRemoveStudentChoice = Integer.parseInt(kim.nextLine());
                 if (userRemoveStudentChoice == 0){
                     System.out.println("Returning to main menu...");
                     break;
@@ -115,16 +115,16 @@ public class Student {
                     Student.studentList.remove(userRemoveStudentChoice-1);
                     System.out.println("Student removed");
                     System.out.println("Press return to continue");
-                    scanner.nextLine();
+                    kim.nextLine();
                 }
             } catch (NumberFormatException e){
                 System.out.println("Maak een valide keuze.");
-                App.pauseMenu(scanner);
+                App.pauseMenu(kim);
             }
         }    
     }
 
-    public static void studentMostPassed (Scanner scanner){
+    public static void studentMostPassed (Scanner jacques){
 
         int meesteNrBehaaldeExamens = 0;
         ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
@@ -155,6 +155,6 @@ public class Student {
             System.out.print("hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
             System.out.println("");
         }
-        App.pauseMenu(scanner);
+        App.pauseMenu(jacques);
     }
 }
