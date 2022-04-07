@@ -52,7 +52,7 @@ public class App {
                         break;
                     case (8):
                         clearScreen();
-                        Student.studentMostPassed();
+                        Student.studentMostPassed(james);
                         break;
                     case(9):
                         ExamManager.exManagerMenu(james);
