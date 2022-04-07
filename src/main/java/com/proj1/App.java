@@ -14,7 +14,7 @@ public class App {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             try{
-            chooseAction = Math.abs(Integer.parseInt(james.nextLine()));
+            chooseAction = Integer.parseInt(james.nextLine());
             } catch(NumberFormatException e){
                 System.out.println("Please choose a valid option");
                 pauseMenu(james);
