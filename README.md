@@ -1,15 +1,6 @@
 # PROJ1
-Hello boys,
-
-Laten we er iets moois van maken.
-We hebben het er wel tijdens de werkcolleges verder over.
-
-Mvg,
-Eric Bull
-
-Commit voordat je pusht
-Push eerst naar je eigen branch NIET NAAR DEVELOP
-Voordat je pushed, laat iemand naar je code kijken.
+Dit is de definitieve versie van de opdracht, in develop gaan we verder.
+Dit is echter voor als we niet alles af kunnen krijgen en op ze minst iets kunnen inleveren
 
 De presentatie met de opdracht staat hier: https://blackboard.hhs.nl/webapps/blackboard/content/listContent.jsp?course_id=_89671_1&content_id=_3366595_1&mode=reset
 
