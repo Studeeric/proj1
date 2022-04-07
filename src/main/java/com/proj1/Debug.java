@@ -1,4 +1,12 @@
-package com.proj1;import java.util.Scanner;
+package com.proj1;import java.util.Scanner;import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+
+/*
+=======Class Explanation=======
+This class adds some debug methods for SaveManager & usefull methods for the rest
+*/
 
 abstract public class Debug {
     public static void DebugSet(Scanner scanner) {
@@ -40,6 +48,7 @@ abstract public class Debug {
         }
         finally{}
     }
+
     public static void wait(int seconds){
         try{
             Thread.sleep(seconds*1000);
