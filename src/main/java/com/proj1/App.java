@@ -2,60 +2,60 @@ package com.proj1; import java.util.InputMismatchException; import java.util.Sca
 
 public class App {
     public static void main( String[] args){
-        Scanner scanner = new Scanner(System.in);
-        Init.init(false,scanner);
-        mainMenu(scanner);
+        Scanner scannakin = new Scanner(System.in);
+        Init.init(false,scannakin);
+        mainMenu(scannakin);
         SaveManager.exitSave();
     }
 
     //mainMenu
-    public static void mainMenu(Scanner scanner) {
+    public static void mainMenu(Scanner james) {
         mainMenuLoop: while (true) {
             printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             try{
-            chooseAction = Math.abs(Integer.parseInt(scanner.nextLine()));
+            chooseAction = Math.abs(Integer.parseInt(james.nextLine()));
             } catch(NumberFormatException e){
                 System.out.println("Please choose a valid option");
-                pauseMenu(scanner);
+                pauseMenu(james);
             }
             try {
                 switch (chooseAction) {
                     case (1):
                         clearScreen();
-                        Exam.printAllExams(scanner);
-                        pauseMenu(scanner);
+                        Exam.printAllExams(james);
+                        pauseMenu(james);
                         break;
                     case (2):
                         clearScreen();
-                        getStudents(scanner);
+                        getStudents(james);
                         break;
                     case (3):
                         clearScreen();
-                        Student.newStudent(scanner);
+                        Student.newStudent(james);
                         break;
                     case (4):
                         clearScreen();
-                        Student.deleteStudent(scanner);
+                        Student.deleteStudent(james);
                         break;
                     case (5):
                         clearScreen();
-                        startExams(scanner);
+                        startExams(james);
                         break;
                     case (6):
                         clearScreen();
-                        studentExamStatus(scanner);
+                        studentExamStatus(james);
                         break;
                     case (7):
                         clearScreen();
-                        studentExamPassed(scanner);
+                        studentExamPassed(james);
                         break;
                     case (8):
                         clearScreen();
-                        Student.studentMostPassed(scanner);
+                        Student.studentMostPassed(james);
                         break;
                     case(9):
-                        ExamManager.exManagerMenu(scanner);
+                        ExamManager.exManagerMenu(james);
                         break;
                     case(0):
                         System.out.println("Saving Data.....");
@@ -67,7 +67,7 @@ public class App {
             } catch (Exception e) {
                 System.out.println("Error in the mainMenu method!");
                 System.out.println(e);
-                pauseMenu(scanner);
+                pauseMenu(james);
             }
         }
     }
