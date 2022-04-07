@@ -106,14 +106,12 @@ public class App {
     }
 
      //studentExamStatus
-     public static void studentExamStatus(Scanner scanner){
+    public static void studentExamStatus(Scanner scanner){
         int studentNumber = askStudentNumber(scanner);
-        boolean studentFound = false;
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
                 studentNumber = i;
-                studentFound = true;
                 break;
             }
         }

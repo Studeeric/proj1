@@ -4,7 +4,7 @@ public class Exam {
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
-    ArrayList<Question> questionList = new ArrayList<>();
+    public ArrayList<Question> questionList = new ArrayList<>();
 
     public Exam(String name, String category){
         this.name = name;
