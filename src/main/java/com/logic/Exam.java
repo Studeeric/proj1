@@ -1,4 +1,4 @@
-package com.proj1; import java.util.ArrayList;
+package com.logic; import java.util.ArrayList;
 
 public class Exam{
     private String name;

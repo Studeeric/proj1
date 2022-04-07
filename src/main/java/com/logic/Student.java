@@ -1,4 +1,6 @@
-package com.proj1; import java.util.ArrayList;
+package com.logic; import java.util.ArrayList;
+
+import com.ui.StudentUI;
 
 public class Student {
     private String name;

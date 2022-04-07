@@ -1,11 +1,6 @@
-package com.proj1;
+package com.logic;
 
 import java.util.Scanner;
-
-interface IScanner{
-    int nextInt();
-    String nextLine();
-}
 
 public class ScannerV3 implements IScanner{
     Scanner scanner = new Scanner(System.in);

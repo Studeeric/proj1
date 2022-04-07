@@ -1,7 +1,6 @@
-package com.proj1;
+package com.ui;
 
-public abstract class StudentUI {
-    private static Printer printer = new Printer();
+public abstract class StudentUI extends UI {
     
     private StudentUI(){
     }

@@ -1,4 +1,8 @@
-package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals; import org.junit.jupiter.api.Test;
+package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import com.logic.Student;
+
+import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 

@@ -1,4 +1,4 @@
-package com.proj1;
+package com.ui;
 
 public class Printer implements IPrinter{
 

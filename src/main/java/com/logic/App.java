@@ -1,13 +1,17 @@
-package com.proj1; import java.util.InputMismatchException; import java.io.IOException;
+package com.logic; import java.util.InputMismatchException;
+
+import com.ui.AppUI;
+
+import java.io.IOException;
 
 public class App {
     public static void main( String[] args){
         ScannerV3 scannakin = new ScannerV3();
-        FakeScanner fakeScanner =new FakeScanner();
-        fakeScanner.intValue = 1;
-        Debug.testScan(fakeScanner);
-        Debug.testScan(scannakin);
-        Debug.wait(30);
+        // FakeScanner fakeScanner = new FakeScanner();
+        // fakeScanner.intValue = 1;
+        // Debug.testScan(fakeScanner);
+        // Debug.testScan(scannakin);
+        // Debug.wait(30);
         Init.init(false,scannakin);
         mainMenu(scannakin);
         SaveManager.exitSave();
@@ -75,16 +79,7 @@ public class App {
     // printMainMenu
     private static void printMainMenu() {
         clearScreen();
-        System.out.println("1) Lijst met examens");
-        System.out.println("2) Lijst met studenten");
-        System.out.println("3) Nieuwe student inschrijven");
-        System.out.println("4) Student verwijderen");
-        System.out.println("5) Examen afnemen");
-        System.out.println("6) Is student geslaagd voor test?"); //non readable reference
-        System.out.println("7) Welke examens heeft student gehaald?");
-        System.out.println("8) Welke student heeft de meeste examens gehaald?");
-        System.out.println("9) Manage Examens");
-        System.out.println("0) Exit");
+        AppUI.printMainMenu();
     }
 
     public static void clearScreen() {

@@ -1,4 +1,4 @@
-package com.proj1;import java.io.File;
+package com.logic;import java.io.File;
 
 public abstract class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
