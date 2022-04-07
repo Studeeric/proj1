@@ -274,8 +274,14 @@ public class App {
 
     public static void studentGegevensAfwezig(Scanner scanner){
         studentGegevensAfwezigMessage();
-        int studentNotFoundKeuze = scanner.nextInt();
-        scanner.nextLine();
+        try{
+            int studentNotFoundKeuze = scanner.nextInt();
+            while (studentNotFoundKeuze < 0){
+                System.out.println("Probeer het opnieuw. Geef een positief getal.");
+                studentGegevensAfwezigMessage();
+                studentNotFoundKeuze = scanner.nextInt();
+            }
+            scanner.nextLine();
             switch(studentNotFoundKeuze){
                 case 1:
                     break;//NO. No recursion
@@ -287,6 +293,11 @@ public class App {
                 default:
                     System.out.println("Verkeerde optie. Ga terug naar main menu.");
                     break;
-            }     
+            }  
+        } catch(InputMismatchException iME){
+            System.out.println("He, mafklapper. Wat dacht je zelf? geef een keer het juiste variable type antwoord.");
+            System.out.println(iME);
+        }
+           
     }
 }
