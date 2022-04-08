@@ -47,9 +47,14 @@ abstract public class Debug {
         finally{}
     }
 
-    public static void wait(int seconds){
+    public static void wait(int seconds, boolean second){
         try{
-            Thread.sleep(seconds*1000);
+            if(second){
+                Thread.sleep(seconds*1000);
+            }
+            else{
+                Thread.sleep(seconds);
+            }
         }
         catch(InterruptedException e){
             Thread.currentThread().interrupt();
