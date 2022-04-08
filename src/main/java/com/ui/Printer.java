@@ -7,6 +7,16 @@ public class Printer implements IPrinter{
         System.out.println(in);        
     }
 }
+class FakePrinter implements IPrinter{
+    String lastIn;
+    
+    @Override
+    public void print(String in) {
+        this.lastIn = in;
+        
+    }
+
+}
 
 
 

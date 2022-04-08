@@ -26,11 +26,11 @@ abstract public class ExamManager {
                 case("0"):
                     App.clearScreen();
                     System.out.println("Returning to main menu...");
-                    Debug.wait(1);
+                    Debug.wait(1,true);
                     break exManagerLoop;
                 default:
                     System.out.println("Please choose a listed option...");
-                    Debug.wait(2);
+                    Debug.wait(2,true);
                     break;
             }
         }
@@ -60,7 +60,7 @@ abstract public class ExamManager {
             exAddQuestion(exManagerCreated,scanner);
         }
         System.out.println("Examen toegevoegd!\nReturning to main menu...");
-        Debug.wait(2);
+        Debug.wait(2,true);
     }
 
     
