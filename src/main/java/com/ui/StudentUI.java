@@ -25,6 +25,7 @@ public abstract class StudentUI extends UI {
     public static void printNumInv() {
         printer.print("Studentnummer is niet geldig. Kies een ander nummer");
     }
+
     public static void printAskName(boolean valid) {
         if(valid){
             System.out.println ("Voer je naam in:");
@@ -33,6 +34,7 @@ public abstract class StudentUI extends UI {
             System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
         }
     }
+
     public static void printAskNumber(boolean valid) {
         if(valid){
             System.out.println("Voer je studentnummer in:");
@@ -41,6 +43,7 @@ public abstract class StudentUI extends UI {
             System.out.println("Voer alleen cijfers in.");
         }
     }
+    
     public static void printAllStudents(boolean exit){
         if (Student.studentList.isEmpty()){
             System.out.println("Er zijn geen studenten.");
