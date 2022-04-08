@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 //Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
-    ScannerTest fakeScanner = new ScannerTest();
+    TestScanner testScanner = new TestScanner();
     Exam testExam = new Exam("OPT1", "HBO-ICT");
     Student testStudent = new Student("Pietje", 21146633);
     Student testStudent2 = new Student("Klaasje", 21146634);
@@ -49,9 +49,11 @@ public class ExamTest {
     
     @Test
     public void randomTest(){
-        Exam.printAllExams(fakeScanner);
-        fakeScanner.setInt(3);
-        assertEquals(3, fakeScanner.nextInt());
+        Exam.printAllExams(testScanner);
+        testScanner.setInt(3);
+        assertEquals(3, testScanner.nextInt());
     }
+
+    // TODO Maak nieuwe test
     
 }

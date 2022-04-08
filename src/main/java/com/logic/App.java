@@ -1,8 +1,7 @@
-package com.logic; import java.util.InputMismatchException;
+package com.logic; import java.io.IOException;
+import java.util.InputMismatchException;
 
 import com.ui.AppUI;
-
-import java.io.IOException;
 
 public class App {
     public static void main( String[] args){

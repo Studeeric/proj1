@@ -2,7 +2,7 @@ package com.proj1;
 
 import com.logic.IScanner;
 
-class ScannerTest implements IScanner{
+class TestScanner implements IScanner{
 
   int intValue;
   String stringValue;
