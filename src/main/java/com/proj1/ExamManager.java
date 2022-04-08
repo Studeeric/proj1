@@ -169,7 +169,7 @@ abstract public class ExamManager {
                 0) Return to menu""");
             switch (scanner.nextLine()) {
                 case ("1"):
-                    exam.addQuestion(new Question(exGetQuestCont(scanner)));
+                    exam.addQuestion(exFormatQuestion(exGetQuestCont(scanner)));
                     break;
                 case("2"):
                     int counter = 1;
@@ -251,7 +251,7 @@ abstract public class ExamManager {
         System.out.println("Voer de vraag in:");
         exQuestContents.add(scanner.nextLine());
         exGetQuestLoop: while (true){
-            System.out.println("Voer een vraag in met aan het begin: A),B),C) etc. Voer 0 in om door te gaan");
+            System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
             String exUserChoice = scanner.nextLine();
             switch(exUserChoice){
                 case("0"):
@@ -262,10 +262,19 @@ abstract public class ExamManager {
             }
         }
         App.clearScreen();
-        System.out.println("Welke vraag is het juiste antwoord?(Zo lang we letters gebruiken ipv nummers moet dit een letter zijn)");
+        System.out.println("Welke optie is het juiste antwoord?");
         exPrintQuestArray(exQuestContents,false);
         exQuestContents.add(scanner.nextLine());
         return exQuestContents;
+    }
+
+    public static Question exFormatQuestion(ArrayList<String> contents) {
+        ArrayList<String> questionOptions = new ArrayList<>();
+        for(int i =1;i<contents.size()-1;i++){
+            questionOptions.add(contents.get(i));
+        }
+        return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
+        
     }
 
     public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {

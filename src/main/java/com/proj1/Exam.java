@@ -1,4 +1,7 @@
-package com.proj1; import java.util.ArrayList; import java.util.Scanner;
+package com.proj1; import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Exam {
     private String name;
@@ -34,18 +37,22 @@ public class Exam {
 
     public void startExam(Student student, Scanner scanner){
         int correct = 0;
-        for (int i = 1; i <= questionList.size(); i++) {
-            System.out.println("Vraag " + i + ":");
-            for(int j=0;j<questionList.get(i-1).askQuestion().size()-1;j++){
-                System.out.println(questionList.get(i-1).askQuestion().get(j));
+        ArrayList<Question> currentQuestions = new ArrayList<>(questionList);
+        Collections.shuffle(currentQuestions);
+        App.clearScreen();
+        for (int i = 0; i < currentQuestions.size(); i++) {
+            System.out.println("Vraag " + (i+1) + ":");
+            System.out.println(currentQuestions.get(i).questionPrompt);
+            for(int j=0;j<currentQuestions.get(i).askQuestion().size();j++){
+                System.out.println((j+1)+ ") "+currentQuestions.get(i).askQuestion().get(j));
             }
-            if(questionList.get(i-1).checkAnswer(scanner.nextLine())){
+            if(currentQuestions.get(i).checkAnswer(scanner.nextLine())){
                 correct++;
             }
             App.clearScreen();
             System.out.println("Aantal goed: " + correct);
         }
-        if (correct >= ((questionList.size()-1)/2+1)){ //zodat een examen met 5 vragen pas voldoende is als je 3 vragen goed hebt
+        if (correct >= ((currentQuestions.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
             examResult(student, correct, true);
         } else {
             examResult(student, correct, false);
