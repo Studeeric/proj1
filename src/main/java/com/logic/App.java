@@ -111,7 +111,8 @@ public class App {
                         gehaald = true;
                     }
                 }
-            }else if (examNummer == -1) {
+            }
+            if (examNummer == -1) {
                 System.out.println("U keer terug naar het hoofdmenu.");
                 break studentExamStatus;
             }
