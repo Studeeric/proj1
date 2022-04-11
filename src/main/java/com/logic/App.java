@@ -176,7 +176,7 @@ public class App {
                 AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
                 AppUI.printOptionGoBackToMainMenu();
-                System.out.println("Voer het nummer van het examen in:");
+                AppUI.voerXIn("examnr");
                 try {
                     examNummer = Integer.parseInt(scanner.nextLine());
                     if (examNummer == 0){
@@ -195,8 +195,7 @@ public class App {
                 }
             }
         } catch (Exception e){
-            System.out.println("Error in studentGegevensAanwezig");
-            System.out.println(e);
+            AppUI.errorMessageApp(e, "studentGegevensAanwezig");
         }
     }
 
