@@ -33,7 +33,7 @@ public class Student {
             }
             naam = naam.replace("\n", "");
             int nummer = checkStudentNumber(scanner);
-            if (nummer != -1) {
+            if (nummer != 0) {
                 Student student = new Student(naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
                 App.pauseMenu(scanner);
@@ -57,26 +57,26 @@ public class Student {
                 if (student.getStudentNumber() == nummer) {
                     unique = false;
                     System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
-                    System.out.println("Indien u wenst te annuleren, voer -1 in.");
+                    System.out.println("Indien u wenst te annuleren, voer 0 in.");
                     System.out.println("Toets iets anders in om het opnieuw te proberen.");
-                    if (scanner.nextLine().equals("-1")) {
+                    if (scanner.nextLine().equals("0")) {
                         System.out.println("U keert nu terug naar het hoofdmenu.");
-                        return -5;
+                        App.pauseMenu(scanner);
+                        return 0;
                     }
-                    App.pauseMenu(scanner);
                     App.clearScreen();
                 }
             }
             if (unique) {
                 if (nummer < 0 || nummer > 99999999) {
                     System.out.println("Nummer ongeldig. Kies een ander nummer.");
-                    System.out.println("Indien u wenst te annuleren, voer -1 in.");
+                    System.out.println("Indien u wenst te annuleren, voer 0 in.");
                     System.out.println("Toets iets anders in om het opnieuw te proberen.");
                     if (scanner.nextLine().equals("-1")) {
                         System.out.println("U keert nu terug naar het hoofdmenu.");
-                        return -5;
+                        App.pauseMenu(scanner);
+                        return 0;
                     }
-                    App.pauseMenu(scanner);
                     App.clearScreen();
                 } else {
                     return nummer;
