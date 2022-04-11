@@ -22,67 +22,85 @@ public class Student {
     public int getStudentNumber(){
         return this.studentNumber;
     }
-    //TODO Deze method is fucked
-    /*
-    public static void newStudent(IScanner scanner){
-        try{
-            newStudentloop1: while(true){
-                String naam;
-                newStudentloop2:while(true){
-                    StudentUI.printAskName(true);
-                    naam = scanner.nextLine();
-                    if (naam.equals("")){
-                        StudentUI.printAskName(false);
-                    }
-                    else{
-                        break newStudentloop2;
-                    }
-                }
+    public static void newStudent(IScanner scanner) {
+        try {
+            String naam = "";
+            // Loops name input
+            while (naam.equals("")) {
+                System.out.println("Voer je naam in:");
+                naam = scanner.nextLine();
                 naam = naam.replace("\n", "");
-                int nummer = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer, naam, scanner);  
-                Student student = new Student (naam, nummer);
-                StudentUI.printStudentMadeSuc(student.getName());
-                App.pauseMenu(scanner); 
-                break newStudentloop1; 
-            }        
-        }
-        catch(Exception e){
+                if (naam.equals("")) {
+                    System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
+                }
+            }
+            int nummer = checkStudentNumber(scanner);
+            if (nummer != 0) {
+                Student student = new Student(naam, nummer);
+                System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+                App.pauseMenu(scanner);
+            }
+        } catch (Exception e) {
             System.out.println("Error in newStudent");
             System.out.println(e);
         }
     }
-    */
-    //Copy from develop
     
-    public static void checkStudentNumber (int nummer, String naam, IScanner scanner){
-        int nummer2;
-        for (Student e : Student.studentList){
-            if (e.getStudentNumber() == nummer){
-                    StudentUI.printNumExist();
-                    App.pauseMenu(scanner);
+    /** Returns the studentnumber that the user inputted.
+     * 
+     * @param scanner
+     * @return int
+    */
+    public static int checkStudentNumber(IScanner scanner) {
+        while (true) {
+            boolean unique = true;
+            int nummer = studentNumberStrToInt(scanner);
+            for (Student student : studentList) {
+                if (student.getStudentNumber() == nummer) {
+                    unique = false;
+                    System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
+                    System.out.println("Indien u wenst te annuleren, voer 0 in.");
+                    System.out.println("Toets iets anders in om het opnieuw te proberen.");
+                    if (scanner.nextLine().equals("0")) {
+                        System.out.println("U keert nu terug naar het hoofdmenu.");
+                        App.pauseMenu(scanner);
+                        return 0;
+                    }
                     UI.clearScreen();
-                    nummer2 = studentNumberStrToInt(scanner);
-                    checkStudentNumber(nummer2, naam, scanner);
+                }
             }
-            if (nummer <= 0 ){
-                StudentUI.printNumInv();
-                App.pauseMenu(scanner);
-                UI.clearScreen();
-                nummer2 = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer2, naam, scanner);
+            if (unique) {
+                if (nummer < 0 || nummer > 99999999) {
+                    System.out.println("Nummer ongeldig. Kies een ander nummer.");
+                    System.out.println("Indien u wenst te annuleren, voer 0 in.");
+                    System.out.println("Toets iets anders in om het opnieuw te proberen.");
+                    if (scanner.nextLine().equals("-1")) {
+                        System.out.println("U keert nu terug naar het hoofdmenu.");
+                        App.pauseMenu(scanner);
+                        return 0;
+                    }
+                    UI.clearScreen();
+                } else {
+                    return nummer;
+                }
+
             }
 
         }
     }
 
+    /**Asks studentnumber and tries to turn the string into an int.
+     * 
+     * @param scanner
+     * @return int
+    */
     public static int studentNumberStrToInt(IScanner scanner){
         while(true){
             try{
-                StudentUI.printAskNumber(true);
+                System.out.println("Voer je studentnummer (max 8 cijfers) in:");
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException s){
-                StudentUI.printAskNumber(false);
+                System.out.println("Voer alleen cijfers in.");
                 App.pauseMenu(scanner);
                 UI.clearScreen();
             }    
