@@ -90,7 +90,7 @@ public class App {
         int examNummer;
         studentExamStatus: while (true) {
             examChoice: while (true) {
-                System.out.println("Examens beschikbaar:");
+                AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
                 AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
