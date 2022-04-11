@@ -19,7 +19,7 @@ public abstract class AppUI extends UI{
       ANSI_CYAN + "7)" + ANSI_RESET + " Welke examens heeft student gehaald?" + "\n" +
       ANSI_CYAN + "8)" + ANSI_RESET + " Welke student heeft de meeste examens gehaald?" + "\n" +
       ANSI_CYAN + "9)" + ANSI_RESET + " Manage Examens" + "\n" +
-      ANSI_RED + "0) Exit" + ANSI_RESET + "\n"
+      ANSI_RED + "0) Exit" + ANSI_RESET
     );
   }
   
