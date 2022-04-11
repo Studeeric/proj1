@@ -81,6 +81,7 @@ public class App {
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
+            
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
                 studentNumber = i;
                 break;
