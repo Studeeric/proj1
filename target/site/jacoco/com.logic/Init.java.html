@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Init.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">proj1</a> &gt; <a href="index.source.html" class="el_package">com.logic</a> &gt; <span class="el_source">Init.java</span></div><h1>Init.java</h1><pre class="source lang-java linenums">package com.logic;import java.io.File;
+
+<span class="nc" id="L3">public abstract class Init {</span>
+<span class="nc" id="L4">    public static String dir = System.getProperty(&quot;user.dir&quot;)+&quot;\\database\\&quot;;</span>
+
+    public static void init(boolean debugMode,IScanner scanner) {
+        try{
+<span class="nc" id="L8">            File savefile = new File(Init.dir + &quot;\\oldDatabase.Wdf&quot;);</span>
+<span class="nc bnc" id="L9" title="All 2 branches missed.">            if(!savefile.exists()){</span>
+<span class="nc" id="L10">                savefile.createNewFile();</span>
+            }
+<span class="nc" id="L12">            SaveManager.loadSaveFile(dir+&quot;oldDatabase.Wdf&quot;);</span>
+<span class="nc bnc" id="L13" title="All 2 branches missed.">            if(debugMode){</span>
+<span class="nc" id="L14">                Debug.DebugSet(scanner);</span>
+            }
+<span class="nc" id="L16">        }</span>
+<span class="nc" id="L17">        catch(Exception e){</span>
+<span class="nc" id="L18">            System.out.println(&quot;Error in Init&quot;);</span>
+<span class="nc" id="L19">            System.out.println(e);</span>
+        }
+<span class="nc" id="L21">    }</span>
+    
+    /*
+    private static void legacyInit(boolean usethis){
+        if(usethis){
+            Exam rekenen = new Exam(&quot;Rekenen voor beginners&quot;, &quot;Rekenen&quot;);
+            rekenen.addQuestion(new Question(&quot;Wat is 2 + 2?\n A) 1\n B) 2\n C) 3\n D) 4\n&quot;, &quot;D&quot;));
+            rekenen.addQuestion(new Question(&quot;Wat is 2 - 2?\n A) 0\n B) 1\n C) 2\n D) 3\n&quot;, &quot;A&quot;));
+            rekenen.addQuestion(new Question(&quot;Wat is 1 + 1?\n A) 1\n B) 2\n C) 3\n D) 4\n&quot;, &quot;B&quot;));
+            rekenen.addQuestion(new Question(&quot;Wat is 3 x 2?\n A) 4\n B) 5\n C) 6\n D) 8\n&quot;, &quot;C&quot;));
+            rekenen.addQuestion(new Question(&quot;Wat is 610 x 410 / 5104?\n A) 2\n B) 55.6\n C) 50.2\n D) 49.0\n&quot;, &quot;D&quot;));
+
+            Exam tekenen = new Exam(&quot;Kleuren voor beginners&quot;, &quot;Tekenen&quot;);
+            tekenen.addQuestion(new Question(&quot;Wat krijg je als je blauw en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n&quot;, &quot;A&quot;));
+            tekenen.addQuestion(new Question(&quot;Wat krijg je als je rood en wit mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n&quot;, &quot;B&quot;));
+            tekenen.addQuestion(new Question(&quot;Wat krijg je als je blauw en rood mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n&quot;, &quot;C&quot;));
+            tekenen.addQuestion(new Question(&quot;Wat krijg je als je rood en geel mixt?\n A) Groen\n B) Roze\n C) Paars\n D) Oranje\n&quot;, &quot;D&quot;));
+
+            new Student(&quot;Eric&quot;, 21146632);
+            new Student(&quot;Lucas&quot;, 21093830);
+            new Student(&quot;Wessel&quot;, 21046220);
+            new Student(&quot;Burton&quot;,21035407);
+            new Student(&quot;Wouter&quot;, 21076367);
+        }
+    }
+    */ //I ain't fixing this shit    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

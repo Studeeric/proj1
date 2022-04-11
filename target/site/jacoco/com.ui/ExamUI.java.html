@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExamUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">proj1</a> &gt; <a href="index.source.html" class="el_package">com.ui</a> &gt; <span class="el_source">ExamUI.java</span></div><h1>ExamUI.java</h1><pre class="source lang-java linenums">package com.ui;
+
+public abstract class ExamUI extends UI{
+  
+  private ExamUI(){ 
+  }
+
+  public static void amountCorrect(int correct){
+<span class="nc" id="L9">    printer.print</span>
+    (
+<span class="nc" id="L11">      &quot;Aantal goed: &quot; + ANSI_GREEN + correct + ANSI_RESET</span>
+    );
+<span class="nc" id="L13">  }</span>
+
+  public static void amountOfTotalCorrect(int correct, int total){
+<span class="nc" id="L16">    printer.print</span>
+    (
+<span class="nc" id="L18">      &quot;Je hebt &quot; + ANSI_GREEN + correct + ANSI_RESET + &quot; van de &quot; + ANSI_RED + total + ANSI_RESET + &quot; vragen goed.&quot;</span>
+    );
+<span class="nc" id="L20">  }</span>
+
+  public static void succesfulExam(int correct, int total){
+<span class="nc" id="L23">    printer.print</span>
+    (
+<span class="nc" id="L25">      &quot;Gefeliciteerd!&quot; + &quot;\n&quot; +</span>
+      &quot;Je hebt het examen gehaald!&quot; + &quot;\n&quot;
+    );
+<span class="nc" id="L28">    amountOfTotalCorrect(correct, total);</span>
+<span class="nc" id="L29">  }</span>
+
+  public static void failedExam(int correct, int total){
+<span class="nc" id="L32">    printer.print</span>
+    (
+<span class="nc" id="L34">      &quot;Helaas... Je hebt het examen niet gehaald.&quot;</span>
+    );
+<span class="nc" id="L36">    amountOfTotalCorrect(correct, total);</span>
+<span class="nc" id="L37">    printer.print</span>
+    (
+<span class="nc" id="L39">      &quot;Volgende keer beter!&quot;</span>
+    );
+<span class="nc" id="L41">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

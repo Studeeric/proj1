@@ -1,6 +1,9 @@
 # PROJ1
-Dit is de definitieve versie van de opdracht, in develop gaan we verder.
-Dit is echter voor als we niet alles af kunnen krijgen en op ze minst iets kunnen inleveren
+Generate coverage files:  
+mvn jacoco:prepare-agent test install jacoco:report  
+Install the coverage gutters extention in vscode
+
+
 
 Hello boys,
 

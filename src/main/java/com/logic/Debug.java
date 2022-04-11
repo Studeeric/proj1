@@ -1,13 +1,13 @@
-package com.proj1;import java.util.Scanner;
+package com.logic;
 
 
-/*
+/**
 =======Class Explanation=======
 This class adds some debug methods for SaveManager & usefull methods for the rest
 */
 
 abstract public class Debug {
-    public static void DebugSet(Scanner scanner) {
+    public static void DebugSet(IScanner scanner) {
         checkLoaded(scanner);
         printQuestions();
     }
@@ -20,14 +20,14 @@ abstract public class Debug {
                 System.out.println(question.questionAnswer);
             }
         }
-        App.pauseMenu(new Scanner(System.in));
+        // TODO App.pauseMenu(new ScannerV3(System.in));
     }
 
-    public static void checkLoaded(Scanner cloadedScanner) {
+    public static void checkLoaded(IScanner cloadedIScanner) {
         try{
             checkLoadedLoop : while (true) {
-                int userchoiceCheckLoaded = cloadedScanner.nextInt();
-                cloadedScanner.nextLine();
+                int userchoiceCheckLoaded = cloadedIScanner.nextInt();
+                cloadedIScanner.nextLine();
                 switch (userchoiceCheckLoaded) {
                     case 1:
                         for (Student student : Student.studentList){
@@ -50,12 +50,21 @@ abstract public class Debug {
         finally{}
     }
 
-    public static void wait(int seconds){
+    public static void wait(int seconds, boolean second){
         try{
-            Thread.sleep(seconds*1000);
+            if(second){
+                Thread.sleep(seconds*1000);
+            }
+            else{
+                Thread.sleep(seconds);
+            }
         }
         catch(InterruptedException e){
             Thread.currentThread().interrupt();
         }
     }
+    public static void testScan(IScanner scanner) {
+        System.out.println(scanner.nextInt());
+    }
+    
 }

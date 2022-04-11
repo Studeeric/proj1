@@ -1,8 +1,9 @@
-package com.proj1; import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+package com.logic; import java.util.ArrayList;
 
-public class Exam {
+import com.ui.ExamUI;
+import com.ui.UI;
+
+public class Exam{
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();
@@ -34,11 +35,11 @@ public class Exam {
         return this.questionList;
     }
 
-    public void startExam(Student student, Scanner scanner){
+    public void startExam(Student student, IScanner scanner){
         int correct = 0;
         ArrayList<Question> currentQuestions = new ArrayList<>(questionList);
-        Collections.shuffle(currentQuestions);
-        App.clearScreen();
+        //TODO Collections.shuffle(currentQuestions);
+        UI.clearScreen();
         for (int i = 0; i < currentQuestions.size(); i++) {
             System.out.println("Vraag " + (i+1) + ":");
             System.out.println(currentQuestions.get(i).questionPrompt);
@@ -48,8 +49,8 @@ public class Exam {
             if(currentQuestions.get(i).checkAnswer(scanner.nextLine())){
                 correct++;
             }
-            App.clearScreen();
-            System.out.println("Aantal goed: " + correct);
+            UI.clearScreen();
+            ExamUI.amountCorrect(correct);
         }
         if (correct >= ((currentQuestions.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
             examResult(student, correct, true);
@@ -69,16 +70,13 @@ public class Exam {
             if(!alreadyPassed){
                 student.behaaldeExamens.add(this);
             }
-            System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+            ExamUI.succesfulExam(correct, questionList.size());
         } else{
-            System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
-            "Volgende keer beter!");
+            ExamUI.failedExam(correct, questionList.size());
         }
     }
 
-    public static void printAllExams(Scanner scanner){
+    public static void printAllExams(IScanner scanner){
         if (examList.isEmpty()){
             System.out.println("Er zijn momenteel geen examens beschikbaar.");
             App.pauseMenu(scanner);

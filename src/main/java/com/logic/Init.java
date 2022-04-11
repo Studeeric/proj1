@@ -1,10 +1,9 @@
-package com.proj1;import java.io.File;
-import java.util.Scanner;
+package com.logic;import java.io.File;
 
 public abstract class Init {
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
-    public static void init(boolean debugMode,Scanner scanner) {
+    public static void init(boolean debugMode,IScanner scanner) {
         try{
             File savefile = new File(Init.dir + "\\oldDatabase.Wdf");
             if(!savefile.exists()){
