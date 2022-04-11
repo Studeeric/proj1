@@ -46,23 +46,23 @@ public abstract class ExamUI extends UI{
   }
 
   public static void printQuestion(int i, ArrayList<Question> currentQuestions) {
-    System.out.println(
+    printer.print(
       "Vraag " + (i+1) + ":" + "\n" +
       currentQuestions.get(i).questionPrompt
       );
   }
 
   public static void printQuestionChoices(int i, int j, ArrayList<Question> currentQuestions) {
-    System.out.println(
+    printer.print(
       j+1 + ") " + currentQuestions.get(i).askQuestion().get(j)
       );
   }
 
   public static void printNoExams(){
-      System.out.println("Er zijn momenteel geen examens beschikbaar.");
+      printer.print("Er zijn momenteel geen examens beschikbaar.");
   }
 
   public static void printExam(int i, ArrayList<Exam> examList) {
-    System.out.println(i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
+    printer.print(i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
   }
 }
