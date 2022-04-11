@@ -27,11 +27,11 @@ public class Student {
             while (naam.equals("")) {
                 System.out.println("Voer je naam in:");
                 naam = scanner.nextLine();
+                naam = naam.replace("\n", "");
                 if (naam.equals("")) {
                     System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
                 }
             }
-            naam = naam.replace("\n", "");
             int nummer = checkStudentNumber(scanner);
             if (nummer != 0) {
                 Student student = new Student(naam, nummer);
