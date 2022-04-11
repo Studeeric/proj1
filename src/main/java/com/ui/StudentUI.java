@@ -75,20 +75,27 @@ public  class StudentUI extends UI {
         System.out.println("Kies een student:");
     }
 
-    public static void printMostPassed(int meesteNrBehaaldeExamens, ArrayList<String> namenStudentenMetMostPassed){
-        if (namenStudentenMetMostPassed.size()==1){
-            System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");   
-        } else {
-            System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
-            System.out.println("");
-            for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
+    public static void printMostPassed(int a, int meesteNrBehaaldeExamens, ArrayList<String> namenStudentenMetMostPassed, int n){
+        switch(a){
+            case(1):
+                System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");
+                break;
+            case(2):
+                System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
+                System.out.println("");
+                break;
+            case(3):
                 System.out.print(namenStudentenMetMostPassed.get(n));
-                if (n < (namenStudentenMetMostPassed.size()-1)){
-                    System.out.print(", ");
-                }
-            }
-            System.out.print(" hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
-            System.out.println("");
+                break;
+            case(4):
+                System.out.print(", ");
+                break;
+            case(5):
+                System.out.print(" hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+                System.out.println("");
+                break;
+            default:
+                break;
         }
 
     }

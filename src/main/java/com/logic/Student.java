@@ -146,7 +146,18 @@ public class Student {
             }
         }
 
-        StudentUI.printMostPassed(meesteNrBehaaldeExamens, namenStudentenMetMostPassed);
+        if (namenStudentenMetMostPassed.size()==1){
+            StudentUI.printMostPassed(1, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
+        } else {
+            StudentUI.printMostPassed(2, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
+            for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
+                StudentUI.printMostPassed(3, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
+                if (n < (namenStudentenMetMostPassed.size()-1)){
+                    StudentUI.printMostPassed(4, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, n);
+                }
+            }
+            StudentUI.printMostPassed(5, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
+        }
         
         App.pauseMenu(scanner);
     }
