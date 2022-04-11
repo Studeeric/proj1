@@ -175,7 +175,7 @@ public class App {
                 UI.clearScreen();
                 AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
-                System.out.println("0) Terug naar het hoofdmenu");
+                AppUI.printOptionGoBackToMainMenu();
                 System.out.println("Voer het nummer van het examen in:");
                 try {
                     examNummer = Integer.parseInt(scanner.nextLine());
