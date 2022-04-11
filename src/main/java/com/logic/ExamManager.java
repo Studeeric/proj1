@@ -98,7 +98,6 @@ abstract public class ExamManager {
                 Exam exActualExam = Exam.examList.get(exIndex);
                 exEditSubLoop: while (true){
                     exManagerUI.printExEditMainMenu();
-
                     switch(scanner.nextLine()){
                         case("1"):
                             exAddQuestion(exActualExam, scanner);
@@ -107,27 +106,7 @@ abstract public class ExamManager {
                             exRemoveQuestion(exActualExam, scanner);
                             break;
                         case("3"):
-                            exManagerUI.printExEditQuestionEditQuestion(true);
-                            for(int i = 0; i< exActualExam.questionList.size();i++){
-                                exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
-                            }
-                            exManagerUI.printExEditQuestionList();
-
-                            int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
-                            if(exUserEditChoice != -1){
-                                Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
-                                UI.clearScreen();
-                                //TODO Update this to new Question format
-                                exPrintQuestArray(exChosenQuest.questionContents, true);
-                                exManagerUI.printExEditQuestionEditQuestion(true);
-                                exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
-                                UI.clearScreen();
-                                //TODO this too
-                                exManagerUI.printExEditQuestionEditMenu(exChosenQuest.questionContents.get(exUserEditChoice));
-                                exChosenQuest.questionContents.set(exUserEditChoice, scanner.nextLine());
-                                exManagerUI.printExEditQuestionEditConfirm();
-                                App.pauseMenu(scanner);
-                            }
+                            exEditQuestion(exActualExam,scanner);
                             break;
                         case("0"):
                             break exEditSubLoop;
@@ -141,6 +120,31 @@ abstract public class ExamManager {
 
         }
         
+    }
+    //TODO also this
+    public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
+        exManagerUI.printExEditQuestionEditQuestion(true);
+        for(int i = 0; i< exActualExam.questionList.size();i++){
+            exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
+        }
+        exManagerUI.printExEditQuestionList();
+
+        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+        if(exUserEditChoice != -1){
+            Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
+            UI.clearScreen();
+            //TODO Update this to new Question format
+            exPrintQuestArray(exChosenQuest.questionContents, true);
+            exManagerUI.printExEditQuestionEditQuestion(true);
+            exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+            UI.clearScreen();
+            //TODO this too
+            exManagerUI.printExEditQuestionEditMenu(exChosenQuest.questionContents.get(exUserEditChoice));
+            exChosenQuest.questionContents.set(exUserEditChoice, scanner.nextLine());
+            exManagerUI.printExEditQuestionEditConfirm();
+            App.pauseMenu(scanner);
+        }
+
     }
 
     
