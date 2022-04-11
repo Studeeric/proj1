@@ -127,8 +127,7 @@ public class App {
                 break studentExamStatus;
             }
             if (gehaald) {
-                System.out
-                        .println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
+                System.out.println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
                 pauseMenu(scanner);
                 UI.clearScreen();
             } else {
