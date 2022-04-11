@@ -35,17 +35,17 @@ public class AppTest{
                     gehaald = true;
                 }
             }
-        }else if (examNummer == -1) {
+        assertEquals(0, examNummer);
+        } if (examNummer == -1) {
                 examNummer = 1;
-        }else if (gehaald) {
+        } if (gehaald) {
                 examNummer = 2;
-        }else if (examNummer >= Exam.examList.size() || examNummer < -1) {
+        } if (examNummer >= Exam.examList.size() || examNummer < -1) {
                 examNummer = 3;
         }
-        assertEquals(0, examNummer);
-        assertEquals(false, gehaald);
         assertNotEquals(1, examNummer);
         assertNotEquals(2, examNummer);
-        assertNotEquals(3, examNummer);
+        assertEquals(3, examNummer);
+        assertEquals(false, gehaald);
     }
 }
