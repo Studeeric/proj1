@@ -1,5 +1,7 @@
 package com.logic; import java.util.ArrayList;
 
+import com.ui.ExamUI;
+
 public class Exam{
     private String name;
     private String category;
@@ -43,7 +45,7 @@ public class Exam{
                 correct++;
             }
             App.clearScreen();
-            System.out.println("Aantal goed: " + correct);
+            ExamUI.amountCorrect(correct);
         }
         if (correct >= ((questionList.size()-1)/2+1)){ //zodat een examen met 5 vragen pas voldoende is als je 3 vragen goed hebt
             examResult(student, correct, true);
@@ -55,12 +57,9 @@ public class Exam{
     public void examResult(Student student, int correct, boolean gehaald) {
         if(gehaald){
             student.behaaldeExamens.add(this);
-            System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
-            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
+            ExamUI.succesfulExam(correct, questionList.size());
         } else{
-            System.out.println("Helaas... Je hebt het examen niet gehaald.\n" +
-            "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.\n" +
-            "Volgende keer beter!");
+            ExamUI.failedExam(correct, questionList.size());
         }
     }
 

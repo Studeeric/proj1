@@ -1,10 +1,12 @@
 package com.ui;
 
+/**The app does this */
 public abstract class AppUI extends UI{
 
   private AppUI(){
   }
 
+  /**The method printmainmenu does this */
   public static void printMainMenu(){
     printer.print
     (

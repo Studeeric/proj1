@@ -1,6 +1,4 @@
 package com.logic; import java.io.IOException;
-import java.util.InputMismatchException;
-
 import com.ui.AppUI;
 
 public class App {
@@ -79,8 +77,10 @@ public class App {
     private static void printMainMenu() {
         clearScreen();
         AppUI.printMainMenu();
+    
     }
 
+    /**The method clears the screen. This way the terminal won't be too bloated.*/
     public static void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows"))
@@ -98,7 +98,7 @@ public class App {
         }
         pauseMenu(scanner);
     }
-
+    
      //studentExamStatus
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
@@ -198,32 +198,22 @@ public class App {
         pauseMenu(scanner);
     }
 
-    private static void studentGegevensAanwezig(Student student,IScanner scanner){
-        try{
-            
+    private static void studentGegevensAanwezig(Student student, IScanner scanner) {
+        try {
             System.out.println("Kies uw examen:");
             Exam.printAllExams(scanner);
-            int keuze = 0; //any value will do as it will be overwritten unless user is a mafklapper
-            boolean invalidChoice = false;
-            try{
+            int keuze = 0; // any value will do as it will be overwritten unless user is a mafklapper
             keuze = scanner.nextInt();
-            scanner.nextLine();
-            } catch(InputMismatchException iME){
-                System.out.println("Mafklapper, we vroegen om een nummer, niet letter.");
-                System.out.println(iME);
-                invalidChoice = true;
+            if (keuze > Exam.examList.size() || keuze < 0) {
+                System.out.println(
+                        "Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+            } else {
+                Exam.examList.get(keuze - 1).startExam(student, scanner);
             }
-
-            if(!invalidChoice){
-                if (keuze > Exam.examList.size() || keuze < 0){
-                    System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-                } else {
-                    Exam.examList.get(keuze-1).startExam(student,scanner);
-                }
-            } else {System.out.println("try again later.");}
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error in studentGegevensAanwezig");
             System.out.println(e);
+            // System.out.println(Thread.currentThread().getStackTrace());
         }
     }
 

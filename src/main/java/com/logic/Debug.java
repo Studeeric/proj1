@@ -1,7 +1,7 @@
 package com.logic;
 
 
-/*
+/**
 =======Class Explanation=======
 This class adds some debug methods for SaveManager & usefull methods for the rest
 */
