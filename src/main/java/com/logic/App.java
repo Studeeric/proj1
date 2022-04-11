@@ -201,7 +201,7 @@ public class App {
 
 
     public static void pauseMenu(IScanner scanner) {
-        System.out.println("Press return to continue.");
+        AppUI.printPressReturnToContinue();
         try {
             scanner.nextLine(); // This is just here to wait for input
         } catch (Exception e) {
