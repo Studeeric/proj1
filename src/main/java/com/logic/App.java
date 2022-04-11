@@ -13,7 +13,7 @@ public class App {
     //mainMenu
     public static void mainMenu(IScanner james) {
         mainMenuLoop: while (true) {
-            printMainMenu();
+            AppUI.printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             chooseAction = james.nextInt();
             try {
@@ -68,15 +68,6 @@ public class App {
         }
     }
 
-    // printMainMenu
-    private static void printMainMenu() {
-        UI.clearScreen();
-        AppUI.printMainMenu();
-    
-    }
-
-   
-
     // getStudents
     private static void getStudents(IScanner scanner) {
         for (Student s : Student.studentList) {
@@ -85,7 +76,7 @@ public class App {
         pauseMenu(scanner);
     }
     
-     //studentExamStatus
+    //studentExamStatus
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
