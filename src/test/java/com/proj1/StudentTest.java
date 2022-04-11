@@ -10,7 +10,7 @@ public class StudentTest {
     
     //test of die de naam krijgt
     @Test
-    public void getNameTest(){
+    public void testGetName(){
         String testName = "Geerd";
 
         assertEquals(testName, testStudent.getName());
@@ -18,7 +18,7 @@ public class StudentTest {
 
     //test of het StudentNumber goed door komt
     @Test
-    public void getStudentNumberTest(){
+    public void testGetStudentNumber(){
         int testStudentNumber = 21000321;
         int foutTestStudentNumber  = 21045678;
 
@@ -28,7 +28,7 @@ public class StudentTest {
 
     //test of de student verwijderd word
     @Test
-    public void deleteStudentTest() {
+    public void testDeleteStudent() {
         String juist = "gelukt";
         String test = "nietGelukt";
         String naam = "Geerd";
@@ -44,7 +44,7 @@ public class StudentTest {
     
     // Deze test is er om een methode aan te kunnen roepen voor het aanmaken van een nieuwe student
     @Test
-    public void studentAddTest(){
+    public void testStudentAdd(){
         String naam = "Minte Eskes";
         String naamTest = "Minte Eskes";
         int studentNummer = 240;
@@ -55,7 +55,7 @@ public class StudentTest {
 
     //Deze methode controleerd of de studentnumber wel in de studentList staat
     @Test
-    public void checkStudentNumberTest(){
+    public void testCheckStudentNumber(){
         int nummer = 21000321;
         String juist = "gelukt";
         String test = "nietGelukt";
@@ -72,7 +72,7 @@ public class StudentTest {
 
     //Deze methode controleerd of de studentnumber niet in de studentList staat
     @Test
-    public void checkStudentNumberTest2(){
+    public void testCheckStudentNumber2(){
         int nummer = 21000320;
         String juist = "gelukt";
         String test = "nietGelukt";
