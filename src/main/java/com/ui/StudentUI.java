@@ -1,16 +1,14 @@
 package com.ui;
 import com.logic.Student;
-public abstract class StudentUI extends UI {
+public  class StudentUI extends UI {
     
-    private StudentUI(){
-    }
 
     public static void printNumExist(){
         printer.print("Studentnummer bestaat al. Kies een ander nummer.");
     }
 
     public static void printStudentMadeSuc(String name) {
-        printer.print(name + "is toegevoegd aan de student lijst.");
+        printer.print(name + " is toegevoegd aan de student lijst.");
     }
 
     public static void printStudentRemove(boolean succes) {
@@ -22,10 +20,15 @@ public abstract class StudentUI extends UI {
         }
         
     }
+    
     public static void printNumInv() {
         printer.print("Studentnummer is niet geldig. Kies een ander nummer");
     }
 
+    /**
+     * Asks for student number. True for the question, false for the message that a name hasn't been put in.
+     * @param valid
+     */
     public static void printAskName(boolean valid) {
         if(valid){
             System.out.println ("Voer je naam in:");

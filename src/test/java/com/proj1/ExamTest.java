@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 //Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
-    TestScanner testScanner = new TestScanner();
-    Exam testExam = new Exam("OPT1", "HBO-ICT");
-    Student testStudent = new Student("Pietje", 21146633);
-    Student testStudent2 = new Student("Klaasje", 21146634);
+    static TestScanner testScanner = new TestScanner();
+    static Exam testExam = new Exam("OPT1", "HBO-ICT");
+    static Student testStudent = new Student("Pietje", 21146633);
+    static Student testStudent2 = new Student("Klaasje", 21146634);
 
     //test of de naam wordt opgevraagd
     @Test
-    public void getNameTest(){
+    public void testGetName(){
         String testName = "OPT1";
         String foutTestName = "Biologie";
         
@@ -27,7 +27,7 @@ public class ExamTest {
 
     //test of de category wordt opgevraagd
     @Test
-    public void getCategoryTest(){
+    public void testGetCategory(){
         String testCategory = "HBO-ICT";
         String foutTestCategory = "Beta";
 
@@ -40,7 +40,7 @@ public class ExamTest {
     Deze test test of een examen goed wordt toegevoegd bij een student. 
     */
     @Test
-    public void addExamTest(){
+    public void testAddExam(){
         testExam.examResult(testStudent, 0, true);
         testExam.examResult(testStudent2, 0, false);
         assertEquals(testExam, testStudent.behaaldeExamens.get(0));
@@ -48,12 +48,15 @@ public class ExamTest {
     }
     
     @Test
-    public void randomTest(){
+    public void testRandom(){
         Exam.printAllExams(testScanner);
         testScanner.setInt(3);
         assertEquals(3, testScanner.nextInt());
     }
 
-    // TODO Maak nieuwe test
+    @Test
+    public void testGetExam(){
+        assertEquals(testExam, Exam.getExam(0));
+    }
     
 }
