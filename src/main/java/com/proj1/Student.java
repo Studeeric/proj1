@@ -95,7 +95,7 @@ public class Student {
     public static int studentNumberStrToInt(Scanner scanner){
         while(true){
             try{
-                System.out.println("Voer je studentnummer in:");
+                System.out.println("Voer je studentnummer (max 8 cijfers) in:");
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException s){
                 System.out.println("Voer alleen cijfers in.");
