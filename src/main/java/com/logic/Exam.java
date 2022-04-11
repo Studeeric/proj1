@@ -1,4 +1,5 @@
 package com.logic; import java.util.ArrayList;
+import java.util.Collections;
 
 import com.ui.ExamUI;
 import com.ui.UI;
@@ -38,7 +39,7 @@ public class Exam{
     public void startExam(Student student, IScanner scanner){
         int correct = 0;
         ArrayList<Question> currentQuestions = new ArrayList<>(questionList);
-        //TODO Collections.shuffle(currentQuestions);
+        Collections.shuffle(currentQuestions);
         UI.clearScreen();
         for (int i = 0; i < currentQuestions.size(); i++) {
             System.out.println("Vraag " + (i+1) + ":");

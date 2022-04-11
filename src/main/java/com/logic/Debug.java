@@ -9,10 +9,10 @@ This class adds some debug methods for SaveManager & usefull methods for the res
 abstract public class Debug {
     public static void DebugSet(IScanner scanner) {
         checkLoaded(scanner);
-        printQuestions();
+        printQuestions(scanner);
     }
 
-    public static void printQuestions(){
+    public static void printQuestions(IScanner scanner){
         for(Exam exam : Exam.examList){
             for(Question question : exam.questionList){
                 System.out.println(question.questionPrompt);
@@ -20,7 +20,7 @@ abstract public class Debug {
                 System.out.println(question.questionAnswer);
             }
         }
-        // TODO App.pauseMenu(new ScannerV3(System.in));
+        App.pauseMenu(scanner);
     }
 
     public static void checkLoaded(IScanner cloadedIScanner) {
