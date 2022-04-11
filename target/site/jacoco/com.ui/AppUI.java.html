@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">proj1</a> &gt; <a href="index.source.html" class="el_package">com.ui</a> &gt; <span class="el_source">AppUI.java</span></div><h1>AppUI.java</h1><pre class="source lang-java linenums">package com.ui;
+
+/**The app does this */
+public abstract class AppUI extends UI{
+
+  private AppUI(){
+  }
+
+  /**The method printmainmenu does this */
+  public static void printMainMenu(){
+<span class="nc" id="L11">    printer.print</span>
+    (
+<span class="nc" id="L13">      ANSI_CYAN + &quot;1)&quot; + ANSI_RESET + &quot; Lijst met examens&quot; + &quot;\n&quot; +</span>
+      ANSI_CYAN + &quot;2)&quot; + ANSI_RESET + &quot; Lijst met studenten&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;3)&quot; + ANSI_RESET + &quot; Nieuwe student inschrijven&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;4)&quot; + ANSI_RESET + &quot; Student verwijderen&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;5)&quot; + ANSI_RESET + &quot; Examen afnemen&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;6)&quot; + ANSI_RESET + &quot; Is student geslaagd voor test?&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;7)&quot; + ANSI_RESET + &quot; Welke examens heeft student gehaald?&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;8)&quot; + ANSI_RESET + &quot; Welke student heeft de meeste examens gehaald?&quot; + &quot;\n&quot; +
+      ANSI_CYAN + &quot;9)&quot; + ANSI_RESET + &quot; Manage Examens&quot; + &quot;\n&quot; +
+      ANSI_RED + &quot;0) Exit&quot; + ANSI_RESET + &quot;\n&quot;
+    );
+<span class="nc" id="L24">  }</span>
+  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

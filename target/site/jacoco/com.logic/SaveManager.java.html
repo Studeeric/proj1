@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SaveManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">proj1</a> &gt; <a href="index.source.html" class="el_package">com.logic</a> &gt; <span class="el_source">SaveManager.java</span></div><h1>SaveManager.java</h1><pre class="source lang-java linenums">package com.logic; import java.util.Scanner;import java.io.IOException; import java.io.File; import java.io.FileWriter; import java.util.ArrayList;
+
+<span class="nc" id="L3">public abstract class SaveManager {</span>
+
+    //Edited version of my accidental file editor + loader methods
+    //Todo: 
+    //Rewrite methods using a Exam object to work with the ArrayList index of said object instead of a direct object, so Exams can be added from the savefile.
+
+    public static ArrayList&lt;String&gt; readFile(String fileName, boolean silent){ //
+<span class="nc" id="L10">        File savefile = new File(fileName);</span>
+<span class="nc" id="L11">        ArrayList&lt;String&gt; saveFileContents = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L13">            Scanner james = new Scanner(savefile);</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">            while (james.hasNextLine()) {</span>
+<span class="nc" id="L15">                String contents = james.nextLine();</span>
+<span class="nc" id="L16">                saveFileContents.add(contents);</span>
+            }
+<span class="nc bnc" id="L18" title="All 2 branches missed.">            if(!silent){</span>
+<span class="nc" id="L19">                int counter = 1;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">                for (String entry : saveFileContents){</span>
+<span class="nc" id="L21">                    System.out.println(counter + &quot;) &quot; + entry);</span>
+<span class="nc" id="L22">                    counter++;</span>
+                }
+<span class="nc" id="L24">                System.out.println(&quot;=========================&quot;);</span>
+            }
+<span class="nc" id="L26">            james.close();</span>
+<span class="nc" id="L27">        }</span>
+<span class="nc" id="L28">        catch (Exception e) {</span>
+            //Debug remove in production
+<span class="nc" id="L30">            System.out.println(&quot;An error occurred in method readFile().&quot;);</span>
+<span class="nc" id="L31">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L33">        return saveFileContents;</span>
+    }
+
+    public static boolean cleanFile(File savefile,boolean makefile) {
+        try{
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if(savefile.delete()){</span>
+<span class="nc" id="L39">                return savefile.createNewFile();</span>
+            }
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            else if(makefile){</span>
+<span class="nc" id="L42">                return savefile.createNewFile();</span>
+            }
+<span class="nc" id="L44">            return false;</span>
+        }
+<span class="nc" id="L46">        catch(IOException e){</span>
+<span class="nc" id="L47">            System.out.println(&quot;A error has occured in method cleanFile&quot;); </span>
+<span class="nc" id="L48">            return false;</span>
+        }
+    }
+
+    public static boolean isFileValid(String fileName) {
+<span class="nc" id="L53">        File savefile = new File(fileName);</span>
+        //Check if the output file exists and if it doesn't, makes one
+        try{
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (savefile.createNewFile()){</span>
+<span class="nc" id="L57">                System.out.println(&quot;Made new savefile: &quot; + savefile.getName());</span>
+<span class="nc" id="L58">            }</span>
+            else{
+<span class="nc" id="L60">                System.out.println(&quot;Using existing savefile&quot;);</span>
+            }
+<span class="nc" id="L62">            return true;</span>
+        }
+<span class="nc" id="L64">        catch(IOException e){</span>
+<span class="nc" id="L65">            System.out.println(&quot;Error in method isFileValid!&quot;);</span>
+<span class="nc" id="L66">            System.out.println(e);</span>
+<span class="nc" id="L67">            return false;</span>
+        }
+        
+    }
+
+    public static ArrayList&lt;String&gt; findSaveFiles(){
+<span class="nc" id="L73">        File folder = new File(Init.dir+&quot;/database/&quot;);</span>
+<span class="nc" id="L74">        ArrayList&lt;String&gt; dataFiles = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L75">        File[] fileList = folder.listFiles();</span>
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (File file : fileList) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (file.isFile()) {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                if(file.getName().endsWith(&quot;.Wdf&quot;)){</span>
+<span class="nc" id="L80">                    dataFiles.add(file.getName());</span>
+                }
+            }
+        }
+<span class="nc" id="L84">        return dataFiles;</span>
+        
+    }
+
+    public static void loadSaveFile(String fileName){
+        //Exam rekenen = new Exam(&quot;Rekenen voor beginners&quot;, &quot;Rekenen&quot;);
+        //Exam tekenen = new Exam(&quot;Kleuren voor beginners&quot;, &quot;Tekenen&quot;);
+<span class="nc" id="L91">        ArrayList&lt;String&gt; fileContents = new ArrayList&lt;String&gt;(readFile(fileName,true));</span>
+        try{
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            for (String entries : fileContents){</span>
+<span class="nc" id="L94">                String[] orders = entries.split(&quot;:&quot;);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                if(!orders[0].startsWith(&quot;#&quot;)){ //Use # for comments in the savefile</span>
+<span class="nc bnc" id="L96" title="All 3 branches missed.">                    switch(orders[0]){</span>
+                        case(&quot;exam&quot;):
+                        case(&quot;Exam&quot;):
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                            if(orders[1].equals(&quot;newExam&quot;)){</span>
+<span class="nc" id="L100">                               new Exam(orders[2], orders[3]);</span>
+<span class="nc" id="L101">                               System.out.println(Exam.examList.size());</span>
+<span class="nc" id="L102">                            }</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                            else if(orders[1].equals(&quot;AddQuestion&quot;)){</span>
+<span class="nc" id="L104">                                ArrayList&lt;String&gt;questionOptions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                                for(int i =3;i&lt;orders.length;i++){</span>
+<span class="nc" id="L106">                                    questionOptions.add(orders[i]);</span>
+                                }
+<span class="nc" id="L108">                                Integer examNr = Integer.parseInt(orders[2]);   </span>
+<span class="nc" id="L109">                                Exam.examList.get(examNr-1).addQuestion(new Question(questionOptions));</span>
+                            }
+<span class="nc" id="L111">                            break;</span>
+                        case(&quot;student&quot;):
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                            for (String replacestring : orders){</span>
+<span class="nc" id="L114">                                replacestring.replace(&quot;\n&quot;, &quot;&quot;);</span>
+                            }
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                            if(orders[1].equals(&quot;makeStudent&quot;)){</span>
+<span class="nc" id="L117">                                int studentNumberSaveFile = Integer.parseInt(orders[3]);</span>
+<span class="nc" id="L118">                                Student heinrich = new Student(orders[2], studentNumberSaveFile);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                                if(orders.length &gt; 4){</span>
+<span class="nc" id="L120">                                    int counter = 0;</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">                                    while (counter &lt; (orders.length-4)){</span>
+<span class="nc" id="L122">                                        Integer examNr = Integer.parseInt(orders[counter+4]);</span>
+<span class="nc" id="L123">                                        heinrich.behaaldeExamens.add(Exam.examList.get(examNr-1));</span>
+<span class="nc" id="L124">                                        counter++;</span>
+                                    }
+                                }
+                            }
+<span class="nc" id="L128">                            break;</span>
+                        default:
+                            break;
+                    }
+                }
+            }
+<span class="nc" id="L134">        }</span>
+<span class="nc" id="L135">        catch(Exception e){</span>
+<span class="nc" id="L136">            System.out.println(&quot;Error in method loadSaveFile&quot;);</span>
+<span class="nc" id="L137">            System.out.println(e);</span>
+        }
+<span class="nc" id="L139">        System.out.println(&quot;Settings Loaded&quot;);</span>
+<span class="nc" id="L140">        System.out.println(&quot;=========================&quot;);</span>
+<span class="nc" id="L141">    }</span>
+
+    
+
+    public static void exitSave() {
+<span class="nc" id="L146">        File savefile = new File(Init.dir + &quot;\\database.Wdf&quot;);</span>
+<span class="nc" id="L147">        File oldSavefile = new File(Init.dir + &quot;\\oldDatabase.Wdf&quot;);</span>
+<span class="nc" id="L148">        cleanFile(savefile, true);</span>
+        //Write data to file here
+        try{
+<span class="nc" id="L151">            FileWriter saveWriter = new FileWriter(savefile,true);</span>
+            //Add the exams to the savefile
+<span class="nc" id="L153">            int counter=1;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for(Exam exams : Exam.examList){</span>
+                //System.out.println(exams.getName());//Debug
+<span class="nc" id="L156">                saveWriter.append(&quot;exam&quot;+&quot;:&quot;+&quot;newExam&quot;+&quot;:&quot;+exams.getName()+&quot;:&quot;+exams.getCategory()+&quot;\n&quot;);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                for(Question questions : exams.questionList){</span>
+<span class="nc" id="L158">                    saveWriter.append(&quot;exam&quot;+&quot;:&quot;+&quot;AddQuestion&quot;+&quot;:&quot;+counter+questions.contentsInString()+&quot;\n&quot;);</span>
+                }
+<span class="nc" id="L160">                counter++;</span>
+<span class="nc" id="L161">                saveWriter.append(&quot;#\n&quot;);</span>
+            }
+            
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            for(Student student : Student.studentList){</span>
+<span class="nc" id="L165">                String passedExams = &quot;&quot;;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">                for(Exam studentPassedExam : student.behaaldeExamens){</span>
+<span class="nc" id="L167">                    int examCounter = 0;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">                    for (Exam exam : Exam.examList){</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">                        if(exam.getName().equals(studentPassedExam.getName())){</span>
+<span class="nc" id="L170">                            passedExams += &quot;:&quot;+(examCounter+1);</span>
+                        }
+<span class="nc" id="L172">                        examCounter++;</span>
+                    }
+                    
+                }
+<span class="nc" id="L176">                saveWriter.append(&quot;student&quot;+&quot;:&quot;+&quot;makeStudent&quot;+&quot;:&quot;+student.getName()+&quot;:&quot;+student.getStudentNumber()+passedExams+&quot;\n&quot;);</span>
+            }
+<span class="nc" id="L178">            saveWriter.close();</span>
+            
+<span class="nc" id="L180">            oldSavefile.delete();</span>
+<span class="nc" id="L181">            savefile.renameTo(oldSavefile);</span>
+<span class="nc" id="L182">            cleanFile(savefile, true);</span>
+<span class="nc" id="L183">            System.out.println(&quot;Data saved, exiting now&quot;);</span>
+<span class="nc" id="L184">        }</span>
+<span class="nc" id="L185">        catch(IOException e){</span>
+<span class="nc" id="L186">            System.out.println(&quot;Error in exitSave&quot;);</span>
+<span class="nc" id="L187">            System.out.println(e);</span>
+        }
+        
+<span class="nc" id="L190">    }</span>
+
+}
+    
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

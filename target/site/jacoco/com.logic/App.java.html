@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">proj1</a> &gt; <a href="index.source.html" class="el_package">com.logic</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package com.logic; import java.io.IOException;
+import com.ui.AppUI;
+import com.ui.UI;
+
+<span class="nc" id="L5">public class App {</span>
+    public static void main( String[] args){
+<span class="nc" id="L7">        ScannerV3 scannakin = new ScannerV3();</span>
+<span class="nc" id="L8">        Init.init(false,scannakin);</span>
+<span class="nc" id="L9">        mainMenu(scannakin);</span>
+<span class="nc" id="L10">        SaveManager.exitSave();</span>
+<span class="nc" id="L11">    }</span>
+
+    //mainMenu
+    public static void mainMenu(IScanner james) {
+<span class="nc" id="L15">        mainMenuLoop: while (true) {</span>
+<span class="nc" id="L16">            printMainMenu();</span>
+<span class="nc" id="L17">            int chooseAction = 10;//Any non valid option will work</span>
+<span class="nc" id="L18">            chooseAction = james.nextInt();</span>
+            try {
+<span class="nc bnc" id="L20" title="All 11 branches missed.">                switch (chooseAction) {</span>
+                    case (1):
+<span class="nc" id="L22">                        UI.clearScreen();</span>
+<span class="nc" id="L23">                        Exam.printAllExams(james);</span>
+<span class="nc" id="L24">                        pauseMenu(james);</span>
+<span class="nc" id="L25">                        break;</span>
+                    case (2):
+<span class="nc" id="L27">                        UI.clearScreen();</span>
+<span class="nc" id="L28">                        getStudents(james);</span>
+<span class="nc" id="L29">                        break;</span>
+                    case (3):
+<span class="nc" id="L31">                        UI.clearScreen();</span>
+<span class="nc" id="L32">                        Student.newStudent(james);</span>
+<span class="nc" id="L33">                        break;</span>
+                    case (4):
+<span class="nc" id="L35">                        UI.clearScreen();</span>
+<span class="nc" id="L36">                        Student.deleteStudent(james);</span>
+<span class="nc" id="L37">                        break;</span>
+                    case (5):
+<span class="nc" id="L39">                        UI.clearScreen();</span>
+<span class="nc" id="L40">                        startExams(james);</span>
+<span class="nc" id="L41">                        break;</span>
+                    case (6):
+<span class="nc" id="L43">                        UI.clearScreen();</span>
+<span class="nc" id="L44">                        studentExamStatus(james);</span>
+<span class="nc" id="L45">                        break;</span>
+                    case (7):
+<span class="nc" id="L47">                        UI.clearScreen();</span>
+<span class="nc" id="L48">                        studentExamPassed(james);</span>
+<span class="nc" id="L49">                        break;</span>
+                    case (8):
+<span class="nc" id="L51">                        UI.clearScreen();</span>
+<span class="nc" id="L52">                        Student.studentMostPassed(james);</span>
+<span class="nc" id="L53">                        break;</span>
+                    case(9):
+<span class="nc" id="L55">                        ExamManager.exManagerMenu(james);</span>
+<span class="nc" id="L56">                        break;</span>
+                    case(0):
+<span class="nc" id="L58">                        System.out.println(&quot;Saving Data.....&quot;);</span>
+<span class="nc" id="L59">                        break mainMenuLoop;</span>
+                    default:
+<span class="nc" id="L61">                        System.out.println(&quot;Invalid option. Please choose a listed option&quot;);</span>
+                        break;
+                }
+<span class="nc" id="L64">            } catch (Exception e) {</span>
+<span class="nc" id="L65">                System.out.println(&quot;Error in the mainMenu method!&quot;);</span>
+<span class="nc" id="L66">                System.out.println(e);</span>
+<span class="nc" id="L67">                pauseMenu(james);</span>
+            }
+        }
+<span class="nc" id="L70">    }</span>
+
+    // printMainMenu
+    private static void printMainMenu() {
+<span class="nc" id="L74">        UI.clearScreen();</span>
+<span class="nc" id="L75">        AppUI.printMainMenu();</span>
+    
+<span class="nc" id="L77">    }</span>
+
+   
+
+    // getStudents
+    private static void getStudents(IScanner scanner) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (Student e : Student.studentList) {</span>
+<span class="nc" id="L84">            System.out.println(e.getName());</span>
+        }
+<span class="nc" id="L86">        pauseMenu(scanner);</span>
+<span class="nc" id="L87">    }</span>
+    
+     //studentExamStatus
+    public static void studentExamStatus(IScanner scanner){
+<span class="nc" id="L91">        int studentNumber = askStudentNumber(scanner);</span>
+        // For loop veranderd de variabele studentnumber naar index van studentList.
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for (int i = 0; i &lt; Student.studentList.size(); i++) {</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (Student.studentList.get(i).getStudentNumber() == studentNumber) {</span>
+<span class="nc" id="L95">                studentNumber = i;</span>
+<span class="nc" id="L96">                break;</span>
+            }
+        }
+<span class="nc" id="L99">        UI.clearScreen();</span>
+        int examNummer;
+<span class="nc" id="L101">        studentExamStatus: while (true) {</span>
+<span class="nc" id="L102">            examChoice: while (true) {</span>
+<span class="nc" id="L103">                System.out.println(&quot;Examens beschikbaar:&quot;);</span>
+<span class="nc" id="L104">                Exam.printAllExams(scanner);</span>
+<span class="nc" id="L105">                System.out.println(&quot;0) Terug naar het hoofdmenu&quot;);</span>
+<span class="nc" id="L106">                System.out.println(&quot;Voer het nummer van het examen in:&quot;);</span>
+                try {
+<span class="nc" id="L108">                    examNummer = Integer.parseInt(scanner.nextLine());</span>
+<span class="nc" id="L109">                    break examChoice;</span>
+<span class="nc" id="L110">                } catch (NumberFormatException e) {</span>
+<span class="nc" id="L111">                    System.out.println(&quot;Voer een geldig nummer in met alleen cijfers.&quot;);</span>
+<span class="nc" id="L112">                    pauseMenu(scanner);</span>
+                }
+            }
+<span class="nc" id="L115">            examNummer--;</span>
+<span class="nc" id="L116">            boolean gehaald = false;</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            if (examNummer &lt;= Exam.examList.size() &amp;&amp; examNummer &gt;= 0) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                for (int i = 0; i &lt; Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {</span>
+<span class="nc" id="L119">                    if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">                            .equals(Exam.examList.get(examNummer))) {</span>
+<span class="nc" id="L121">                        gehaald = true;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (examNummer == -1) {</span>
+<span class="nc" id="L126">                System.out.println(&quot;U keer terug naar het hoofdmenu.&quot;);</span>
+<span class="nc" id="L127">                break studentExamStatus;</span>
+            }
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (gehaald) {</span>
+<span class="nc" id="L130">                System.out</span>
+<span class="nc" id="L131">                        .println(&quot;De student heeft het examen \&quot;&quot; + Exam.getExam(examNummer).getName() + &quot;\&quot; gehaald.&quot;);</span>
+<span class="nc" id="L132">                pauseMenu(scanner);</span>
+<span class="nc" id="L133">                UI.clearScreen();</span>
+<span class="nc" id="L134">            } else {</span>
+<span class="nc bnc" id="L135" title="All 4 branches missed.">                if (examNummer &gt;= Exam.examList.size() || examNummer &lt; -1) {</span>
+<span class="nc" id="L136">                    System.out.println(&quot;Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.&quot;);</span>
+<span class="nc" id="L137">                    pauseMenu(scanner);</span>
+<span class="nc" id="L138">                    UI.clearScreen();</span>
+<span class="nc" id="L139">                } else {</span>
+<span class="nc" id="L140">                    System.out.println(</span>
+<span class="nc" id="L141">                            &quot;De student heeft het examen \&quot;&quot; + Exam.getExam(examNummer).getName() + &quot;\&quot; niet gehaald.&quot;);</span>
+<span class="nc" id="L142">                    pauseMenu(scanner);</span>
+<span class="nc" id="L143">                    UI.clearScreen();</span>
+                }
+            }
+        }
+<span class="nc" id="L147">        pauseMenu(scanner);</span>
+<span class="nc" id="L148">    }</span>
+
+    //studentExamPassed
+    public static void studentExamPassed(IScanner scanner){
+<span class="nc" id="L152">        int studentNumber = askStudentNumber(scanner);</span>
+<span class="nc" id="L153">        boolean studentFound = false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        for (int i = 0; i &lt; Student.studentList.size(); i++) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (Student.studentList.get(i).getStudentNumber() == studentNumber) {</span>
+<span class="nc" id="L156">                studentNumber = i;</span>
+<span class="nc" id="L157">                studentFound = true;</span>
+<span class="nc" id="L158">                break;</span>
+            }
+        }
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (studentFound) {</span>
+<span class="nc" id="L162">            int counter = 1;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (Student.studentList.get(studentNumber).behaaldeExamens.size() &gt; 0) {</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">                for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {</span>
+<span class="nc" id="L165">                    System.out.println(counter + &quot;) &quot; + exam.getName() + &quot; - &quot; + exam.getCategory());</span>
+<span class="nc" id="L166">                    counter++;</span>
+                }
+<span class="nc" id="L168">            } else {</span>
+<span class="nc" id="L169">                System.out.println(&quot;De student heeft helaas geen examens gehaald.&quot;);</span>
+            }
+<span class="nc" id="L171">        } else {</span>
+<span class="nc" id="L172">            System.out.println(&quot;Student is niet gevonden. Keer terug naar het hoofdmenu&quot;);</span>
+        }
+<span class="nc" id="L174">        pauseMenu(scanner);</span>
+<span class="nc" id="L175">    }</span>
+
+    //StartExams
+    public static void startExams(IScanner scanner){
+<span class="nc" id="L179">        int studentNumber = askStudentNumber(scanner);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        for (int i = 0; i &lt; Student.studentList.size(); i++) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if(studentNumber == Student.studentList.get(i).getStudentNumber()){</span>
+<span class="nc" id="L182">                studentGegevensAanwezig(Student.studentList.get(i), scanner);</span>
+            }            
+        }
+<span class="nc" id="L185">        pauseMenu(scanner);</span>
+<span class="nc" id="L186">    }</span>
+
+    private static void studentGegevensAanwezig(Student student, IScanner scanner) {
+        try {
+<span class="nc" id="L190">            System.out.println(&quot;Kies uw examen:&quot;);</span>
+<span class="nc" id="L191">            Exam.printAllExams(scanner);</span>
+<span class="nc" id="L192">            int keuze = 0; // any value will do as it will be overwritten unless user is a mafklapper</span>
+<span class="nc" id="L193">            keuze = scanner.nextInt();</span>
+<span class="nc bnc" id="L194" title="All 4 branches missed.">            if (keuze &gt; Exam.examList.size() || keuze &lt; 0) {</span>
+<span class="nc" id="L195">                System.out.println(</span>
+<span class="nc" id="L196">                        &quot;Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.&quot;);</span>
+<span class="nc" id="L197">            } else {</span>
+<span class="nc" id="L198">                Exam.examList.get(keuze - 1).startExam(student, scanner);</span>
+            }
+<span class="nc" id="L200">        } catch (Exception e) {</span>
+<span class="nc" id="L201">            System.out.println(&quot;Error in studentGegevensAanwezig&quot;);</span>
+<span class="nc" id="L202">            System.out.println(e);</span>
+            // System.out.println(Thread.currentThread().getStackTrace());
+        }
+<span class="nc" id="L205">    }</span>
+
+    private static void studentGegevensAfwezigMessage() {
+<span class="nc" id="L208">        System.out.println(&quot;Studentgegevens kloppen niet, of bestaan niet.&quot;);</span>
+<span class="nc" id="L209">        System.out.println(&quot;Kies een van de volgende opties:&quot;);</span>
+<span class="nc" id="L210">        System.out.println(&quot;1) Probeer opnieuw&quot;);</span>
+<span class="nc" id="L211">        System.out.println(&quot;2) Nieuwe student aanmaken&quot;);</span>
+<span class="nc" id="L212">        System.out.println(&quot;0) Keer terug naar het hoofdmenu&quot;);</span>
+
+<span class="nc" id="L214">    }</span>
+
+    public static void pauseMenu(IScanner scanner) {
+<span class="nc" id="L217">        System.out.println(&quot;Press return to continue.&quot;);</span>
+        try {
+<span class="nc" id="L219">            scanner.nextLine(); // This is just here to wait for input</span>
+<span class="nc" id="L220">        } catch (Exception e) {</span>
+<span class="nc" id="L221">            System.out.println(&quot;Exception in method pauseMenu&quot;);</span>
+<span class="nc" id="L222">            System.out.println(e);</span>
+        }
+<span class="nc" id="L224">    }</span>
+
+    private static int askStudentNumber(IScanner scanner) {
+<span class="nc" id="L227">        while (true) {</span>
+<span class="nc" id="L228">            System.out.println(&quot;Voer je studentnummer in:&quot;);</span>
+<span class="nc" id="L229">            int input = scanner.nextInt();</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            for (int i = 0; i &lt; Student.studentList.size(); i++) {</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                if (input == Student.studentList.get(i).getStudentNumber()) {</span>
+<span class="nc" id="L232">                    return input;</span>
+                }
+            }
+<span class="nc" id="L235">            studentGegevensAfwezig(scanner);</span>
+        }
+    }
+
+    public static void studentGegevensAfwezig(IScanner scanner){
+<span class="nc" id="L240">        studentGegevensAfwezigMessage();</span>
+<span class="nc" id="L241">        int studentNotFoundKeuze = scanner.nextInt();</span>
+<span class="nc bnc" id="L242" title="All 4 branches missed.">            switch(studentNotFoundKeuze){</span>
+                case 1:
+<span class="nc" id="L244">                    break;//NO. No recursion</span>
+                case 2:
+<span class="nc" id="L246">                    Student.newStudent(scanner);</span>
+<span class="nc" id="L247">                    break;//Break the for loop &amp; run this method again</span>
+                case 0: 
+<span class="nc" id="L249">                    break;//Break the while loop &amp; go back to mainMenu</span>
+                default:
+<span class="nc" id="L251">                    System.out.println(&quot;Verkeerde optie. Ga terug naar main menu.&quot;);</span>
+                    break;
+            }     
+<span class="nc" id="L254">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+proj1,com.logic,Init,54,0,4,0,13,0,5,0,3,0
+proj1,com.logic,SaveManager,558,0,51,0,110,0,33,0,7,0
+proj1,com.logic,App,458,0,59,0,163,0,48,0,13,0
+proj1,com.logic,ScannerV3,23,0,0,0,7,0,3,0,3,0
+proj1,com.logic,FakeScanner,17,0,0,0,7,0,5,0,5,0
+proj1,com.logic,Question,88,0,8,0,13,0,8,0,4,0
+proj1,com.logic,Exam,173,23,14,0,33,7,15,2,8,2
+proj1,com.logic,ExamManager,525,0,42,0,137,0,37,0,11,0
+proj1,com.logic,Student,279,24,24,0,79,7,19,2,7,2
+proj1,com.logic,Debug,118,0,14,0,31,0,14,0,6,0
+proj1,com.ui,Printer,7,0,0,0,3,0,2,0,2,0
+proj1,com.ui,FakePrinter,7,0,0,0,3,0,2,0,2,0
+proj1,com.ui,AppUI,4,0,0,0,3,0,1,0,1,0
+proj1,com.ui,UI,42,0,2,0,10,0,4,0,3,0
+proj1,com.ui,StudentUI,88,0,12,0,29,0,13,0,7,0
+proj1,com.ui,ExamUI,51,0,0,0,16,0,4,0,4,0

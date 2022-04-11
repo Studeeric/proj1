@@ -33,4 +33,9 @@ database/oldDatabase.Wdf
 *.Wdf
 database.Wdf
 database/database.Wdf
-target
+
+#Coverage Files#
+target/maven-archiver
+target/maven-status
+target/surefire-reports
+target/jacoco.exec
