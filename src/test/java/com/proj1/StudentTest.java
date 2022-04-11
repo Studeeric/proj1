@@ -54,6 +54,7 @@ public class StudentTest {
     }
 
     //Deze methode controleerd of de studentnumber wel in de studentList staat
+    /*
     @Test
     public void testCheckStudentNumber(){
         int nummer = 21000321;
@@ -69,6 +70,7 @@ public class StudentTest {
 
         assertEquals(juist, test);
     }
+    */
 
     //Deze methode controleerd of de studentnumber niet in de studentList staat
     @Test

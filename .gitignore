@@ -39,4 +39,5 @@ target/maven-archiver
 target/maven-status
 target/surefire-reports
 target/jacoco.exec
+target/site/jacoco/*
 target
