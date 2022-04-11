@@ -20,73 +20,86 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(Scanner obiScanKenobi){
-        try{
-            newStudentloop1: while(true){
-                String naam;
-                newStudentloop2:while(true){
-                    System.out.println ("Voer je naam in:");
-                    naam = obiScanKenobi.nextLine();
-                    if (naam.equals("")){
-                        System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
-                    }
-                    else{
-                        break newStudentloop2;
-                    }
+    public static void newStudent(Scanner scanner) {
+        try {
+            String naam = "";
+            // Loops name input
+            while (naam.equals("")) {
+                System.out.println("Voer je naam in:");
+                naam = scanner.nextLine();
+                if (naam.equals("")) {
+                    System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
                 }
-                naam = naam.replace("\n", "");
-                int nummer = studentNumberStrToInt(obiScanKenobi);
-                while (nummer < 0){
-                    System.out.println("Studentnummer kan niet negatief zijn. Probeer het opnieiuw.");
-                    nummer = studentNumberStrToInt(obiScanKenobi);
-                }
-                checkStudentNumber(nummer, naam, obiScanKenobi);  
-                Student student = new Student (naam, nummer);
+            }
+            naam = naam.replace("\n", "");
+            int nummer = checkStudentNumber(scanner);
+            if (nummer != -1) {
+                Student student = new Student(naam, nummer);
                 System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
-                App.pauseMenu(obiScanKenobi); 
-                break newStudentloop1; 
-            }        
-        }
-        catch(Exception e){
+                App.pauseMenu(scanner);
+            }
+        } catch (Exception e) {
             System.out.println("Error in newStudent");
             System.out.println(e);
         }
     }
-    
-    public static void checkStudentNumber (int nummer, String naam, Scanner scanner){
-        int nummer2;
-        try{
-        for (Student e : Student.studentList){
-            if (e.getStudentNumber() == nummer){
+ 
+    /** Returns the studentnumber that the user inputted.
+     * 
+     * @param scanner
+     * @return int
+    */
+    public static int checkStudentNumber(Scanner scanner) {
+        while (true) {
+            boolean unique = true;
+            int nummer = studentNumberStrToInt(scanner);
+            for (Student student : studentList) {
+                if (student.getStudentNumber() == nummer) {
+                    unique = false;
                     System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
+                    System.out.println("Indien u wenst te annuleren, voer -1 in.");
+                    System.out.println("Toets iets anders in om het opnieuw te proberen.");
+                    if (scanner.nextLine().equals("-1")) {
+                        System.out.println("U keert nu terug naar het hoofdmenu.");
+                        return -5;
+                    }
                     App.pauseMenu(scanner);
                     App.clearScreen();
-                    nummer2 = studentNumberStrToInt(scanner);
-                    checkStudentNumber(nummer2, naam, scanner);
                 }
             }
-            if (nummer <= 0 ){
-                System.out.println("Studentnummer is niet geldig. Kies een ander nummer");
-                App.pauseMenu(scanner);
-                App.clearScreen();
-                nummer2 = studentNumberStrToInt(scanner);
-                checkStudentNumber(nummer2, naam, scanner);
+            if (unique) {
+                if (nummer < 0 || nummer > 99999999) {
+                    System.out.println("Nummer ongeldig. Kies een ander nummer.");
+                    System.out.println("Indien u wenst te annuleren, voer -1 in.");
+                    System.out.println("Toets iets anders in om het opnieuw te proberen.");
+                    if (scanner.nextLine().equals("-1")) {
+                        System.out.println("U keert nu terug naar het hoofdmenu.");
+                        return -5;
+                    }
+                    App.pauseMenu(scanner);
+                    App.clearScreen();
+                } else {
+                    return nummer;
+                }
+
             }
-        }
-        catch(Exception e){
-            System.out.println("Error in newStudent");
-            System.out.println(e);
+
         }
     }
 
-    public static int studentNumberStrToInt(Scanner jimmy){
+    /**Asks studentnumber and tries to turn the string into an int.
+     * 
+     * @param scanner
+     * @return int
+    */
+    public static int studentNumberStrToInt(Scanner scanner){
         while(true){
             try{
                 System.out.println("Voer je studentnummer in:");
-                return Integer.parseInt(jimmy.nextLine());
+                return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException s){
                 System.out.println("Voer alleen cijfers in.");
-                App.pauseMenu(jimmy);
+                App.pauseMenu(scanner);
                 App.clearScreen();
             }    
         }
