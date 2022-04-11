@@ -173,7 +173,7 @@ public class App {
             int examNummer;
             ExamensLoop: while (true) {
                 UI.clearScreen();
-                System.out.println("Examens beschikbaar:");
+                AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
                 System.out.println("0) Terug naar het hoofdmenu");
                 System.out.println("Voer het nummer van het examen in:");
