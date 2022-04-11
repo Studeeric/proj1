@@ -14,4 +14,15 @@ public abstract class UI {
 
   protected UI(){
   }
+  
+   /**The method clears the screen. This way the terminal won't be too bloated.*/
+  public static void clearScreen() {
+    try{
+        if (System.getProperty("os.name").contains("Windows"))
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        else
+            Runtime.getRuntime().exec("clear");
+    } 
+    catch (Exception e) {}
+  }
 }

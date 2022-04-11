@@ -1,5 +1,6 @@
 package com.logic; import java.io.IOException;
 import com.ui.AppUI;
+import com.ui.UI;
 
 public class App {
     public static void main( String[] args){
@@ -18,36 +19,36 @@ public class App {
             try {
                 switch (chooseAction) {
                     case (1):
-                        clearScreen();
+                        UI.clearScreen();
                         Exam.printAllExams(james);
                         pauseMenu(james);
                         break;
                     case (2):
-                        clearScreen();
+                        UI.clearScreen();
                         getStudents(james);
                         break;
                     case (3):
-                        clearScreen();
+                        UI.clearScreen();
                         Student.newStudent(james);
                         break;
                     case (4):
-                        clearScreen();
+                        UI.clearScreen();
                         Student.deleteStudent(james);
                         break;
                     case (5):
-                        clearScreen();
+                        UI.clearScreen();
                         startExams(james);
                         break;
                     case (6):
-                        clearScreen();
+                        UI.clearScreen();
                         studentExamStatus(james);
                         break;
                     case (7):
-                        clearScreen();
+                        UI.clearScreen();
                         studentExamPassed(james);
                         break;
                     case (8):
-                        clearScreen();
+                        UI.clearScreen();
                         Student.studentMostPassed(james);
                         break;
                     case(9):
@@ -70,21 +71,12 @@ public class App {
 
     // printMainMenu
     private static void printMainMenu() {
-        clearScreen();
+        UI.clearScreen();
         AppUI.printMainMenu();
     
     }
 
-    /**The method clears the screen. This way the terminal won't be too bloated.*/
-    public static void clearScreen() {
-        try {
-            if (System.getProperty("os.name").contains("Windows"))
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                Runtime.getRuntime().exec("clear");
-        } catch (IOException | InterruptedException ex) {
-        }
-    }
+   
 
     // getStudents
     private static void getStudents(IScanner scanner) {
@@ -104,7 +96,7 @@ public class App {
                 break;
             }
         }
-        clearScreen();
+        UI.clearScreen();
         int examNummer;
         studentExamStatus: while (true) {
             examChoice: while (true) {
@@ -138,17 +130,17 @@ public class App {
                 System.out
                         .println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
                 pauseMenu(scanner);
-                clearScreen();
+                UI.clearScreen();
             } else {
                 if (examNummer >= Exam.examList.size() || examNummer < -1) {
                     System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
                     pauseMenu(scanner);
-                    clearScreen();
+                    UI.clearScreen();
                 } else {
                     System.out.println(
                             "De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" niet gehaald.");
                     pauseMenu(scanner);
-                    clearScreen();
+                    UI.clearScreen();
                 }
             }
         }

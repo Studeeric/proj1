@@ -28,8 +28,9 @@ hs_err_pid*
 .vscode/settings.json
 
 # Database files not already in git
-database/*
+database
 database/oldDatabase.Wdf
 *.Wdf
 database.Wdf
 database/database.Wdf
+target

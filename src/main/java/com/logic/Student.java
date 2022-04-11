@@ -1,6 +1,7 @@
 package com.logic; import java.util.ArrayList;
 
 import com.ui.StudentUI;
+import com.ui.UI;
 
 public class Student {
     private String name;
@@ -58,7 +59,7 @@ public class Student {
             if (e.getStudentNumber() == nummer){
                     StudentUI.printNumExist();
                     App.pauseMenu(scanner);
-                    App.clearScreen();
+                    UI.clearScreen();
                     nummer2 = studentNumberStrToInt(scanner);
                     checkStudentNumber(nummer2, naam, scanner);
                 }
@@ -66,7 +67,7 @@ public class Student {
             if (nummer <= 0 ){
                 StudentUI.printNumInv();
                 App.pauseMenu(scanner);
-                App.clearScreen();
+                UI.clearScreen();
                 nummer2 = studentNumberStrToInt(scanner);
                 checkStudentNumber(nummer2, naam, scanner);
             }
@@ -85,7 +86,7 @@ public class Student {
             } catch (NumberFormatException s){
                 StudentUI.printAskNumber(false);
                 App.pauseMenu(scanner);
-                App.clearScreen();
+                UI.clearScreen();
             }    
         }
     }
@@ -94,7 +95,7 @@ public class Student {
     
     public static void deleteStudent(IScanner scanner){
         while (true){
-            App.clearScreen();
+            UI.clearScreen();
             StudentUI.printAllStudents(true);
             System.out.println("Kies een student:");
             int userRemoveStudentChoice;

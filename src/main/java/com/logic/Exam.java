@@ -1,6 +1,7 @@
 package com.logic; import java.util.ArrayList;
 
 import com.ui.ExamUI;
+import com.ui.UI;
 
 public class Exam{
     private String name;
@@ -44,7 +45,7 @@ public class Exam{
             if(questionList.get(i-1).checkAnswer(scanner.nextLine())){
                 correct++;
             }
-            App.clearScreen();
+            UI.clearScreen();
             ExamUI.amountCorrect(correct);
         }
         if (correct >= ((questionList.size()-1)/2+1)){ //zodat een examen met 5 vragen pas voldoende is als je 3 vragen goed hebt

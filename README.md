@@ -1,4 +1,9 @@
 # PROJ1
+Generate coverage files:  
+mvn jacoco:prepare-agent test install jacoco:report
+
+
+
 Hello boys,
 
 Laten we er iets moois van maken.

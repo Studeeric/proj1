@@ -1,4 +1,5 @@
 package com.logic; import java.util.ArrayList;
+import com.ui.UI;
 
 
 /*
@@ -24,7 +25,7 @@ abstract public class ExamManager {
                     exEditExam(scanner);
                     break;
                 case("0"):
-                    App.clearScreen();
+                    UI.clearScreen();
                     System.out.println("Returning to main menu...");
                     Debug.wait(1,true);
                     break exManagerLoop;
@@ -37,7 +38,7 @@ abstract public class ExamManager {
     }
 
     public static void printExManagerMenu() {
-        App.clearScreen();
+        UI.clearScreen();
         System.out.println("""
         Welcome to the KekCorp© Exam Manager.
         Please choose an option:
@@ -65,7 +66,7 @@ abstract public class ExamManager {
 
     
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
-        App.clearScreen();
+        UI.clearScreen();
         System.out.println("Weet u zeker dat u het volgende examen wil verwijderen\n" + Exam.examList.get(exToBeRemoved).getName() + " - " +Exam.examList.get(exToBeRemoved).getCategory()+"?");
         System.out.println("Y\\N");
         exRemoveLoop: while (true){
@@ -128,11 +129,11 @@ abstract public class ExamManager {
                             int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
                             if(exUserEditChoice != -1){
                                 Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
-                                App.clearScreen();
+                                UI.clearScreen();
                                 exPrintQuestArray(exChosenQuest.questionContents, true);
                                 System.out.println("Welke regel wil u aanpassen?");
                                 exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
-                                App.clearScreen();
+                                UI.clearScreen();
                                 System.out.println("Oude regel:");
                                 System.out.println(exChosenQuest.questionContents.get(exUserEditChoice));
                                 System.out.println("Nieuwe regel:");
@@ -160,7 +161,7 @@ abstract public class ExamManager {
     //Support methods
     public static void exAddQuestion(Exam exam,IScanner scanner) {
         exAddQuestLoop1: while(true){
-            App.clearScreen();
+            UI.clearScreen();
             System.out.println("The selected exam has currently "+exam.getQuestionList().size()+" Questions\n");
             System.out.println("""
                 Please choose an option:
@@ -198,7 +199,7 @@ abstract public class ExamManager {
         }
         System.out.println();
         int exToBeRemoved = Integer.parseInt(scanner.nextLine());
-        App.clearScreen();
+        UI.clearScreen();
         System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + exActualExam.questionList.get(exToBeRemoved).questionPrompt);
         System.out.println("Y\\N?");
         exRemoveQuestLoop: while (true){
@@ -261,7 +262,7 @@ abstract public class ExamManager {
                     break;
             }
         }
-        App.clearScreen();
+        UI.clearScreen();
         System.out.println("Welke vraag is het juiste antwoord?(Zo lang we letters gebruiken ipv nummers moet dit een letter zijn)");
         exPrintQuestArray(exQuestContents,false);
         exQuestContents.add(scanner.nextLine());
