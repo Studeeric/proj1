@@ -27,17 +27,17 @@ public class Student {
             String naam = "";
             // Loops name input
             while (naam.equals("")) {
-                System.out.println("Voer je naam in:");
+                StudentUI.printAskName(true);
                 naam = scanner.nextLine();
                 naam = naam.replace("\n", "");
                 if (naam.equals("")) {
-                    System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
+                    StudentUI.printAskName(false);
                 }
             }
             int nummer = checkStudentNumber(scanner);
             if (nummer != 0) {
                 Student student = new Student(naam, nummer);
-                System.out.println(student.getName() + " is toegevoegd aan de student lijst.");
+                StudentUI.printStudentMadeSuc(student.getName());
                 App.pauseMenu(scanner);
             }
         } catch (Exception e) {
