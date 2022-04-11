@@ -101,7 +101,7 @@ public class App {
             examChoice: while (true) {
                 System.out.println("Examens beschikbaar:");
                 Exam.printAllExams(scanner);
-                System.out.println("0) Terug naar het hoofdmenu");
+                AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
                 try {
                     examNummer = Integer.parseInt(scanner.nextLine());
@@ -129,11 +129,11 @@ public class App {
             if (examNummer >= Exam.examList.size() || examNummer < -1) {
                 AppUI.printChooseValidOption(3);
                 pauseMenu(scanner);
-                UI.clearScreen();
             } else {
                 AppUI.studentHeeftExamenWelNietGehaald(gehaald, Exam.getExam(examNummer).getName());
-                UI.clearScreen();
             }
+
+            UI.clearScreen(); //in both cases UI.clearScreen() gets called.
             
         }
         pauseMenu(scanner);

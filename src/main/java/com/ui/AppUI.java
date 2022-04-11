@@ -61,7 +61,7 @@ public abstract class AppUI extends UI{
     System.out.println("Kies een van de volgende opties:");
     System.out.println("1) Probeer opnieuw");
     System.out.println("2) Nieuwe student aanmaken");
-    System.out.println("0) Keer terug naar het hoofdmenu");
+    printOptionGoBackToMainMenu();
   }
 
   public static void errorMessageApp(Exception e, String method){
@@ -75,5 +75,9 @@ public abstract class AppUI extends UI{
     } else {
       System.out.println("De student heeft het examen \"" + exam + "\" niet gehaald.");
     }
+  }
+
+  public static void printOptionGoBackToMainMenu(){
+    System.out.println("0) Keer terug naar het hoofdmenu");
   }
 }
