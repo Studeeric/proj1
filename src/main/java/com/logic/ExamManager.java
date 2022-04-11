@@ -1,5 +1,6 @@
 package com.logic; import java.util.ArrayList;
 import com.ui.UI;
+import com.ui.exManagerUI;
 
 
 /*
@@ -12,7 +13,7 @@ abstract public class ExamManager {
 
     public static void exManagerMenu(IScanner scanner) {
         exManagerLoop: while (true) {
-            printExManagerMenu();
+            exManagerUI.printExManagerMenu();
             String userChoiceExManager = scanner.nextLine();
             switch(userChoiceExManager){
                 case("1"):
@@ -26,41 +27,31 @@ abstract public class ExamManager {
                     break;
                 case("0"):
                     UI.clearScreen();
-                    System.out.println("Returning to main menu...");
+                    exManagerUI.printExReturnMainMenu(false);
                     Debug.wait(1,true);
                     break exManagerLoop;
                 default:
-                    System.out.println("Please choose a listed option...");
+                    exManagerUI.printExReturnMainMenu(true);
                     Debug.wait(2,true);
                     break;
             }
         }
     }
 
-    public static void printExManagerMenu() {
-        UI.clearScreen();
-        System.out.println("""
-        Welcome to the KekCorp© Exam Manager.
-        Please choose an option:
-        1) Add a new Exam
-        2) Remove a Exam
-        3) Edit Exam Questions
-        0) Exit""");
-
-    }
+    
 
     //Action methods
     public static void exNewExam(IScanner scanner) {
-        System.out.println("Geef de naam van het examen:");
+        exManagerUI.printExExamInput(true);
         String newExName = scanner.nextLine();
-        System.out.println("Geef de categorie van het examen:");
+        exManagerUI.printExExamInput(false);
         String newExCat = scanner.nextLine();
         Exam exManagerCreated = new Exam(newExName, newExCat);
-        System.out.println("Examen toegevoegd, wil u gelijk vragen toevoegen?\n1)Ja\n2)Nee");
+        exManagerUI.printExAddOptions(true);
         if(scanner.nextLine().equals("1")){
             exAddQuestion(exManagerCreated,scanner);
         }
-        System.out.println("Examen toegevoegd!\nReturning to main menu...");
+        exManagerUI.printExAddOptions(false);
         Debug.wait(2,true);
     }
 
