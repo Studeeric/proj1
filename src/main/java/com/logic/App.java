@@ -145,7 +145,7 @@ public class App {
             int counter = 1;
             if (Student.studentList.get(studentNumber).behaaldeExamens.size() > 0) {
                 for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
-                    System.out.println(counter + ") " + exam.getName() + " - " + exam.getCategory());
+                    AppUI.printExamStudentExamPassed(counter, exam.getName(), exam.getCategory());
                     counter++;
                 }
             } else {

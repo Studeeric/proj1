@@ -82,4 +82,8 @@ public abstract class AppUI extends UI{
   public static void printNoExamsPassed(){
     System.out.println("De student heeft helaas geen examens gehaald.");
   }
+
+  public static void printExamStudentExamPassed(int a, String naam, String category){
+    System.out.println(a + ") " + naam + " - " + category);
+  }
 }
