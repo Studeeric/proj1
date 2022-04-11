@@ -1,6 +1,7 @@
 # PROJ1
 Generate coverage files:  
-mvn jacoco:prepare-agent test install jacoco:report
+mvn jacoco:prepare-agent test install jacoco:report  
+Install the coverage gutters extention in vscode
 
 
 
