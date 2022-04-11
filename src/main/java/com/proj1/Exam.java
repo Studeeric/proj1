@@ -61,7 +61,15 @@ public class Exam {
 
     public void examResult(Student student, int correct, boolean gehaald) {
         if(gehaald){
-            student.behaaldeExamens.add(this);
+            boolean alreadyPassed = false;
+            for(Exam exam : student.behaaldeExamens){
+                if (exam.name.equals(this.name)&& exam.questionList.equals(this.questionList)){
+                    alreadyPassed = true;
+                }
+            }
+            if(!alreadyPassed){
+                student.behaaldeExamens.add(this);
+            }
             System.out.println("Gefeliciteerd! Je hebt het examen gehaald.\n" +
             "Je hebt " + correct + " van de " + (questionList.size()) + " vragen goed.");
         } else{
