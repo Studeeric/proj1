@@ -21,7 +21,7 @@ public class ExamTest {
     static Question question2 = new Question("prompt", questionStringList, "1");
 
 
-    //test of de naam wordt opgevraagd
+    /**Test of de naam goed wordt opgevraagd.*/
     @Test
     public void testGetName(){
         String testName = "OPT1";
@@ -32,7 +32,7 @@ public class ExamTest {
         assertNotEquals(foutTestName, resultName);
     }
 
-    //test of de category wordt opgevraagd
+    /**Test of de category goed wordt opgevraagd*/
     @Test
     public void testGetCategory(){
         String testCategory = "HBO-ICT";
@@ -43,9 +43,7 @@ public class ExamTest {
         assertNotEquals(foutTestCategory, resultCategory);
     }
 
-    /*
-    Deze test test of een examen goed wordt toegevoegd bij een student. 
-    */
+    /**Deze test test of een examen goed wordt toegevoegd bij een student.*/
     @Test
     public void testAddExam(){
         testExam.examResult(testStudent, 0, true);
@@ -54,6 +52,7 @@ public class ExamTest {
         assertTrue(testStudent2.behaaldeExamens.isEmpty());
     }
 
+    /**Test of het examen goed opgehaald wordt. */
     @Test
     public void testGetExam(){
         assertEquals(testExam, Exam.getExam(0));
@@ -62,29 +61,37 @@ public class ExamTest {
         assertTrue(Exam.examList.isEmpty());
     }
     
+    /**Test of vragen goed toegevoegd worden. */
     @Test
     public void testAddQuestion(){
         testExam.addQuestion(question);
         assertEquals(question, testExam.questionList.get(0));;
     }
 
+    /**Test of vragenlijst goed opgevraagd wordt. */
     @Test
     public void testGetQuestionlist(){
         assertEquals(testExam.questionList, testExam.getQuestionList());
     }
 
+    /**Test of het maken van examens en het beantwoorden ervan goed gaat.*/
     @Test
-    public void testStartExam(){
+    public void testStartExamSuccess(){
         questionStringList.add("random");
         testExam.addQuestion(question);
         testExam.addQuestion(question2);
         testScanner.setInt(1);
         testScanner.setString("1");
         testExam.startExam(testStudent, testScanner);
+        assertEquals(testStudent.behaaldeExamens.get(0), testExam);
+    }
+
+    /**Test of het examen niet wordt toegevoegd bij het falen van het examen. Dit samen met het verkeerd beantwoorden van vragen.*/
+    @Test
+    public void testStartExamFail(){
         testScanner.setInt(2);
         testScanner.setString("2");
         testExam.startExam(testStudent2, testScanner);
-        assertEquals(testStudent.behaaldeExamens.get(0), testExam);
         assertTrue(testStudent2.behaaldeExamens.isEmpty());
     }
 }
