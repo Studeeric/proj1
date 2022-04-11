@@ -113,7 +113,7 @@ public class App {
                 }
             }
             if (examNummer == -1) {
-                System.out.println("U keer terug naar het hoofdmenu.");
+                System.out.println("U keert terug naar het hoofdmenu.");
                 break studentExamStatus;
             }
             
