@@ -1,4 +1,6 @@
 package com.ui;
+import java.util.ArrayList;
+
 import com.logic.Student;
 public  class StudentUI extends UI {
     
@@ -40,7 +42,7 @@ public  class StudentUI extends UI {
 
     public static void printAskNumber(boolean valid) {
         if(valid){
-            System.out.println("Voer je studentnummer in:");
+            System.out.println("Voer je studentnummer (max 8 cijfers) in:");
         }
         else{
             System.out.println("Voer alleen cijfers in.");
@@ -58,5 +60,48 @@ public  class StudentUI extends UI {
                 System.out.println("0) Terug naar het hoofdmenu");
             }
         }
+    }
+
+    public static void printTryAgain(){
+        System.out.println("Indien u wenst te annuleren, voer 0 in.");
+        System.out.println("Toets iets anders in om het opnieuw te proberen.");
+    }
+
+    public static void printReturnMainMenu(){
+        System.out.println("U keert nu terug naar het hoofdmenu.");
+    }    
+    
+    public static void printChooseStudent(){
+        System.out.println("Kies een student:");
+    }
+
+    public static void printMostPassed(int a, int meesteNrBehaaldeExamens, ArrayList<String> namenStudentenMetMostPassed, int n){
+        switch(a){
+            case(1):
+                System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");
+                break;
+            case(2):
+                System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
+                System.out.println("");
+                break;
+            case(3):
+                System.out.print(namenStudentenMetMostPassed.get(n));
+                break;
+            case(4):
+                System.out.print(", ");
+                break;
+            case(5):
+                System.out.print(" hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+                System.out.println("");
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public static void printException(Exception e){
+        System.out.println("Error in newStudent");
+        System.out.println(e);
     }
 }
