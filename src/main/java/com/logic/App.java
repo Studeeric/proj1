@@ -13,7 +13,7 @@ public class App {
     //mainMenu
     public static void mainMenu(IScanner james) {
         mainMenuLoop: while (true) {
-            printMainMenu();
+            AppUI.printMainMenu();
             int chooseAction = 10;//Any non valid option will work
             chooseAction = james.nextInt();
             try {
@@ -69,15 +69,6 @@ public class App {
         }
     }
 
-    // printMainMenu
-    private static void printMainMenu() {
-        UI.clearScreen();
-        AppUI.printMainMenu();
-    
-    }
-
-   
-
     // getStudents
     private static void getStudents(IScanner scanner) {
         for (Student e : Student.studentList) {
@@ -86,7 +77,7 @@ public class App {
         pauseMenu(scanner);
     }
     
-     //studentExamStatus
+    //studentExamStatus
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
@@ -121,28 +112,24 @@ public class App {
                         gehaald = true;
                     }
                 }
-            }
-            if (examNummer == -1) {
+            }else if (examNummer == -1) {
                 System.out.println("U keer terug naar het hoofdmenu.");
                 break studentExamStatus;
-            }
-            if (gehaald) {
+            }else if (gehaald) {
                 System.out.println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
                 pauseMenu(scanner);
                 UI.clearScreen();
-            } else {
-                if (examNummer >= Exam.examList.size() || examNummer < -1) {
+            }else if (examNummer >= Exam.examList.size() || examNummer < -1) {
                     System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
                     pauseMenu(scanner);
                     UI.clearScreen();
-                } else {
+            }else{
                     System.out.println(
                             "De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" niet gehaald.");
                     pauseMenu(scanner);
                     UI.clearScreen();
                 }
             }
-        }
         pauseMenu(scanner);
     }
 
