@@ -23,6 +23,7 @@ public class Student {
         return this.studentNumber;
     }
     //TODO Deze method is fucked
+    /*
     public static void newStudent(IScanner scanner){
         try{
             newStudentloop1: while(true){
@@ -51,6 +52,8 @@ public class Student {
             System.out.println(e);
         }
     }
+    */
+    //Copy from develop
     
     public static void checkStudentNumber (int nummer, String naam, IScanner scanner){
         int nummer2;
