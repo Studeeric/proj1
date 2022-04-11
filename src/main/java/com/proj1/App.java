@@ -206,27 +206,30 @@ public class App {
 
     private static void studentGegevensAanwezig(Student student,Scanner scanner){
         try{
-            
-            System.out.println("Kies uw examen:");
-            Exam.printAllExams(scanner);
-            int keuze = 0; //any value will do as it will be overwritten unless user is a mafklapper
-            boolean invalidChoice = false;
-            try{
-            keuze = scanner.nextInt();
-            scanner.nextLine();
-            } catch(InputMismatchException iME){
-                System.out.println("Mafklapper, we vroegen om een nummer, niet letter.");
-                System.out.println(iME);
-                invalidChoice = true;
-            }
-
-            if(!invalidChoice){
-                if (keuze > Exam.examList.size() || keuze < 0){
-                    System.out.println("Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
-                } else {
-                    Exam.examList.get(keuze-1).startExam(student,scanner);
+            int examNummer;
+            ExamensLoop: while (true) {
+                clearScreen();
+                System.out.println("Examens beschikbaar:");
+                Exam.printAllExams(scanner);
+                System.out.println("0) Terug naar het hoofdmenu");
+                System.out.println("Voer het nummer van het examen in:");
+                try {
+                    examNummer = Integer.parseInt(scanner.nextLine());
+                    if (examNummer == 0){
+                        break ExamensLoop;
+                    }
+                    if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()){
+                        Exam.examList.get(examNummer-1).startExam(student, scanner);
+                    } else {
+                        System.out.println("Maak een geldige keuze.");
+                        pauseMenu(scanner);
+                    }
+                
+                } catch (NumberFormatException e) {
+                    System.out.println("Voer een geldig nummer in met alleen cijfers.");
+                    pauseMenu(scanner);
                 }
-            } else {System.out.println("try again later.");}
+            }
         } catch (Exception e){
             System.out.println("Error in studentGegevensAanwezig");
             System.out.println(e);
@@ -238,7 +241,7 @@ public class App {
         System.out.println("Kies een van de volgende opties:");
         System.out.println("1) Probeer opnieuw");
         System.out.println("2) Nieuwe student aanmaken");
-        System.out.println("0) Keer terug naar het hoofdmenu");
+        System.out.println("0) Keer terug");
 
     }
 
