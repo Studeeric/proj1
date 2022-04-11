@@ -90,7 +90,7 @@ public class App {
         int examNummer;
         studentExamStatus: while (true) {
             examChoice: while (true) {
-                System.out.println("Examens beschikbaar:");
+                AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
                 AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
@@ -113,7 +113,7 @@ public class App {
                 }
             }
             if (examNummer == -1) {
-                System.out.println("U keer terug naar het hoofdmenu.");
+                AppUI.printGoBackToMainMenu();
                 break studentExamStatus;
             }
             
@@ -145,7 +145,7 @@ public class App {
             int counter = 1;
             if (Student.studentList.get(studentNumber).behaaldeExamens.size() > 0) {
                 for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
-                    System.out.println(counter + ") " + exam.getName() + " - " + exam.getCategory());
+                    AppUI.printExamStudentExamPassed(counter, exam.getName(), exam.getCategory());
                     counter++;
                 }
             } else {
