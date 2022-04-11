@@ -55,15 +55,14 @@ public class App {
                         ExamManager.exManagerMenu(james);
                         break;
                     case(0):
-                        System.out.println("Saving Data.....");
+                        AppUI.printSaveMessage();
                         break mainMenuLoop;
                     default:
-                        System.out.println("Invalid option. Please choose a listed option");
+                        AppUI.printChooseValidOption(1);
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Error in the mainMenu method!");
-                System.out.println(e);
+                AppUI.errorMessageApp(e, "mainMenu");
                 pauseMenu(james);
             }
         }
@@ -80,8 +79,8 @@ public class App {
 
     // getStudents
     private static void getStudents(IScanner scanner) {
-        for (Student e : Student.studentList) {
-            System.out.println(e.getName());
+        for (Student s : Student.studentList) {
+            System.out.println(s.getName());
         }
         pauseMenu(scanner);
     }
@@ -103,12 +102,12 @@ public class App {
                 System.out.println("Examens beschikbaar:");
                 Exam.printAllExams(scanner);
                 System.out.println("0) Terug naar het hoofdmenu");
-                System.out.println("Voer het nummer van het examen in:");
+                AppUI.voerXIn("examnr");
                 try {
                     examNummer = Integer.parseInt(scanner.nextLine());
                     break examChoice;
                 } catch (NumberFormatException e) {
-                    System.out.println("Voer een geldig nummer in met alleen cijfers.");
+                    AppUI.printChooseValidOption(2);
                     pauseMenu(scanner);
                 }
             }
@@ -126,22 +125,16 @@ public class App {
                 System.out.println("U keer terug naar het hoofdmenu.");
                 break studentExamStatus;
             }
-            if (gehaald) {
-                System.out.println("De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" gehaald.");
+            
+            if (examNummer >= Exam.examList.size() || examNummer < -1) {
+                AppUI.printChooseValidOption(3);
                 pauseMenu(scanner);
                 UI.clearScreen();
             } else {
-                if (examNummer >= Exam.examList.size() || examNummer < -1) {
-                    System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
-                    pauseMenu(scanner);
-                    UI.clearScreen();
-                } else {
-                    System.out.println(
-                            "De student heeft het examen \"" + Exam.getExam(examNummer).getName() + "\" niet gehaald.");
-                    pauseMenu(scanner);
-                    UI.clearScreen();
-                }
+                AppUI.studentHeeftExamenWelNietGehaald(gehaald, Exam.getExam(examNummer).getName());
+                UI.clearScreen();
             }
+            
         }
         pauseMenu(scanner);
     }
@@ -168,7 +161,7 @@ public class App {
                 System.out.println("De student heeft helaas geen examens gehaald.");
             }
         } else {
-            System.out.println("Student is niet gevonden. Keer terug naar het hoofdmenu");
+            AppUI.printChooseValidOption(4);
         }
         pauseMenu(scanner);
     }
@@ -191,40 +184,29 @@ public class App {
             int keuze = 0; // any value will do as it will be overwritten unless user is a mafklapper
             keuze = scanner.nextInt();
             if (keuze > Exam.examList.size() || keuze < 0) {
-                System.out.println(
-                        "Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+                AppUI.printChooseValidOption(5);
             } else {
                 Exam.examList.get(keuze - 1).startExam(student, scanner);
             }
         } catch (Exception e) {
-            System.out.println("Error in studentGegevensAanwezig");
-            System.out.println(e);
+            AppUI.errorMessageApp(e, "studentGegevensAanwezig");
             // System.out.println(Thread.currentThread().getStackTrace());
         }
     }
 
-    private static void studentGegevensAfwezigMessage() {
-        System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
-        System.out.println("Kies een van de volgende opties:");
-        System.out.println("1) Probeer opnieuw");
-        System.out.println("2) Nieuwe student aanmaken");
-        System.out.println("0) Keer terug naar het hoofdmenu");
-
-    }
 
     public static void pauseMenu(IScanner scanner) {
         System.out.println("Press return to continue.");
         try {
             scanner.nextLine(); // This is just here to wait for input
         } catch (Exception e) {
-            System.out.println("Exception in method pauseMenu");
-            System.out.println(e);
+            AppUI.errorMessageApp(e, "pauseMenu");
         }
     }
 
     private static int askStudentNumber(IScanner scanner) {
         while (true) {
-            System.out.println("Voer je studentnummer in:");
+            AppUI.voerXIn("studentnr");
             int input = scanner.nextInt();
             for (int i = 0; i < Student.studentList.size(); i++) {
                 if (input == Student.studentList.get(i).getStudentNumber()) {
@@ -236,7 +218,7 @@ public class App {
     }
 
     public static void studentGegevensAfwezig(IScanner scanner){
-        studentGegevensAfwezigMessage();
+        AppUI.studentGegevensAfwezigMessage();
         int studentNotFoundKeuze = scanner.nextInt();
             switch(studentNotFoundKeuze){
                 case 1:
@@ -247,7 +229,7 @@ public class App {
                 case 0: 
                     break;//Break the while loop & go back to mainMenu
                 default:
-                    System.out.println("Verkeerde optie. Ga terug naar main menu.");
+                    AppUI.printChooseValidOption(6);
                     break;
             }      
     }
