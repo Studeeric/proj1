@@ -168,20 +168,35 @@ public class App {
         pauseMenu(scanner);
     }
 
-    private static void studentGegevensAanwezig(Student student, IScanner scanner) {
-        try {
-            System.out.println("Kies uw examen:");
-            Exam.printAllExams(scanner);
-            int keuze = 0; // any value will do as it will be overwritten unless user is a mafklapper
-            keuze = scanner.nextInt();
-            if (keuze > Exam.examList.size() || keuze < 0) {
-                AppUI.printChooseValidOption(5);
-            } else {
-                Exam.examList.get(keuze - 1).startExam(student, scanner);
+    private static void studentGegevensAanwezig(Student student,IScanner scanner){
+        try{
+            int examNummer;
+            ExamensLoop: while (true) {
+                UI.clearScreen();
+                System.out.println("Examens beschikbaar:");
+                Exam.printAllExams(scanner);
+                System.out.println("0) Terug naar het hoofdmenu");
+                System.out.println("Voer het nummer van het examen in:");
+                try {
+                    examNummer = Integer.parseInt(scanner.nextLine());
+                    if (examNummer == 0){
+                        break ExamensLoop;
+                    }
+                    if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()){
+                        Exam.examList.get(examNummer-1).startExam(student, scanner);
+                    } else {
+                        AppUI.printChooseValidOption(5);
+                        pauseMenu(scanner);
+                    }
+                
+                } catch (NumberFormatException e) {
+                    AppUI.printChooseValidOption(2);
+                    pauseMenu(scanner);
+                }
             }
-        } catch (Exception e) {
-            AppUI.errorMessageApp(e, "studentGegevensAanwezig");
-            // System.out.println(Thread.currentThread().getStackTrace());
+        } catch (Exception e){
+            System.out.println("Error in studentGegevensAanwezig");
+            System.out.println(e);
         }
     }
 

@@ -56,6 +56,7 @@ public class ExamTest {
     @Test
     public void testGetExam(){
         assertEquals(testExam, Exam.getExam(0));
+        Exam.printAllExams(testScanner);
         Exam.examList.remove(0);
         Exam.printAllExams(testScanner);
         assertTrue(Exam.examList.isEmpty());
