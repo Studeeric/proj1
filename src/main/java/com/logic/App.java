@@ -158,7 +158,7 @@ public class App {
                     counter++;
                 }
             } else {
-                System.out.println("De student heeft helaas geen examens gehaald.");
+                AppUI.printNoExamsPassed();
             }
         } else {
             AppUI.printChooseValidOption(4);

@@ -80,4 +80,7 @@ public abstract class AppUI extends UI{
   public static void printOptionGoBackToMainMenu(){
     System.out.println("0) Keer terug naar het hoofdmenu");
   }
+  public static void printNoExamsPassed(){
+    System.out.println("De student heeft helaas geen examens gehaald.");
+  }
 }
