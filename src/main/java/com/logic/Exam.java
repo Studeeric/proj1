@@ -42,16 +42,15 @@ public class Exam{
         Collections.shuffle(currentQuestions);
         UI.clearScreen();
         for (int i = 0; i < currentQuestions.size(); i++) {
-            System.out.println("Vraag " + (i+1) + ":");
-            System.out.println(currentQuestions.get(i).questionPrompt);
+            ExamUI.printQuestion(i, currentQuestions);
             for(int j=0;j<currentQuestions.get(i).askQuestion().size();j++){
-                System.out.println((j+1)+ ") "+currentQuestions.get(i).askQuestion().get(j));
+                ExamUI.printQuestionChoices(i, j, currentQuestions);
             }
             if(currentQuestions.get(i).checkAnswer(scanner.nextLine())){
                 correct++;
             }
             UI.clearScreen();
-            ExamUI.amountCorrect(correct);
+            ExamUI.printAmountCorrect(correct);
         }
         if (correct >= ((currentQuestions.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
             examResult(student, correct, true);
@@ -71,19 +70,19 @@ public class Exam{
             if(!alreadyPassed){
                 student.behaaldeExamens.add(this);
             }
-            ExamUI.succesfulExam(correct, questionList.size());
+            ExamUI.printSuccesfulExam(correct, questionList.size());
         } else{
-            ExamUI.failedExam(correct, questionList.size());
+            ExamUI.printFailedExam(correct, questionList.size());
         }
     }
 
     public static void printAllExams(IScanner scanner){
         if (examList.isEmpty()){
-            System.out.println("Er zijn momenteel geen examens beschikbaar.");
+            ExamUI.printNoExams();
             App.pauseMenu(scanner);
         } else {
             for (int i = 0; i < examList.size(); i++) {
-                System.out.println((i+1) + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
+                ExamUI.printExam(i, examList);
             }
         }
     }
