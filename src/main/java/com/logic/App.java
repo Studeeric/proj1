@@ -1,4 +1,4 @@
-package com.logic; import java.io.IOException;
+package com.logic; 
 import com.ui.AppUI;
 import com.ui.UI;
 
