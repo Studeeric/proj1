@@ -36,7 +36,7 @@ public class Student {
                 }
                 naam = naam.replace("\n", "");
                 int nummer = studentNumberStrToInt(obiScanKenobi);
-                while (nummer < 0){
+                while (nummer < 0 ){
                     System.out.println("Studentnummer kan niet negatief zijn. Probeer het opnieiuw.");
                     nummer = studentNumberStrToInt(obiScanKenobi);
                 }
@@ -82,7 +82,7 @@ public class Student {
     public static int studentNumberStrToInt(Scanner jimmy){
         while(true){
             try{
-                System.out.println("Voer je studentnummer in:");
+                System.out.println("Voer je studentnummer (max 8 cijfers) in:");
                 return Integer.parseInt(jimmy.nextLine());
             } catch (NumberFormatException s){
                 System.out.println("Voer alleen cijfers in.");
