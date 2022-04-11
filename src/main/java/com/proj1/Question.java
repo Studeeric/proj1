@@ -7,8 +7,8 @@ public class Question
     public String questionAnswer;
 
     public Question (String prompt,ArrayList<String> contents,String answer){
-        this.questionContents = contents;
         this.questionPrompt = prompt;
+        this.questionContents = contents;
         this.questionAnswer = answer;
     }
 
