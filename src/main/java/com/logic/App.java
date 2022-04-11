@@ -4,11 +4,6 @@ import com.ui.AppUI;
 public class App {
     public static void main( String[] args){
         ScannerV3 scannakin = new ScannerV3();
-        // FakeScanner fakeScanner = new FakeScanner();
-        // fakeScanner.intValue = 1;
-        // Debug.testScan(fakeScanner);
-        // Debug.testScan(scannakin);
-        // Debug.wait(30);
         Init.init(false,scannakin);
         mainMenu(scannakin);
         SaveManager.exitSave();

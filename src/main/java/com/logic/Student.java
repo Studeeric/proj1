@@ -22,26 +22,26 @@ public class Student {
         return this.studentNumber;
     }
 
-    public static void newStudent(IScanner obiScanKenobi){
+    public static void newStudent(IScanner scanner){
         try{
             newStudentloop1: while(true){
                 String naam;
                 newStudentloop2:while(true){
-                    System.out.println ("Voer je naam in:");
-                    naam = obiScanKenobi.nextLine();
+                    StudentUI.printAskName(true);
+                    naam = scanner.nextLine();
                     if (naam.equals("")){
-                        System.out.println("Geen naam ingevoerd, probeer het opnieuw.");
+                        StudentUI.printAskName(false);
                     }
                     else{
                         break newStudentloop2;
                     }
                 }
                 naam = naam.replace("\n", "");
-                int nummer = studentNumberStrToInt(obiScanKenobi);
-                checkStudentNumber(nummer, naam, obiScanKenobi);  
+                int nummer = studentNumberStrToInt(scanner);
+                checkStudentNumber(nummer, naam, scanner);  
                 Student student = new Student (naam, nummer);
                 StudentUI.printStudentMadeSuc(student.getName());
-                App.pauseMenu(obiScanKenobi); 
+                App.pauseMenu(scanner); 
                 break newStudentloop1; 
             }        
         }
@@ -77,56 +77,45 @@ public class Student {
         }
     }
 
-    public static int studentNumberStrToInt(IScanner jimmy){
+    public static int studentNumberStrToInt(IScanner scanner){
         while(true){
             try{
-                System.out.println("Voer je studentnummer in:");
-                return Integer.parseInt(jimmy.nextLine());
+                StudentUI.printAskNumber(true);
+                return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException s){
-                System.out.println("Voer alleen cijfers in.");
-                App.pauseMenu(jimmy);
+                StudentUI.printAskNumber(false);
+                App.pauseMenu(scanner);
                 App.clearScreen();
             }    
         }
     }
 
-    public static void printAllStudents(IScanner pedro){
-        if (studentList.isEmpty()){
-            System.out.println("Er zijn geen studenten.");
-        } else {
-            for (int i = 0; i < studentList.size(); i++) {
-                System.out.println((i+1) + ") " + studentList.get(i).getName());
-            }
-        }
-    }
+   
     
-    public static void deleteStudent(IScanner kim){
+    public static void deleteStudent(IScanner scanner){
         while (true){
             App.clearScreen();
-            printAllStudents(kim);
-            System.out.println("0) Terug naar het hoofdmenu");
+            StudentUI.printAllStudents(true);
             System.out.println("Kies een student:");
             int userRemoveStudentChoice;
             try {
-                userRemoveStudentChoice = Integer.parseInt(kim.nextLine());
+                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
                 if (userRemoveStudentChoice == 0){
-                    System.out.println("Returning to main menu...");
                     break;
                 } else {
                     Student.studentList.set((userRemoveStudentChoice-1),null);
                     Student.studentList.remove(userRemoveStudentChoice-1);
-                    System.out.println("Student removed");
-                    System.out.println("Press return to continue");
-                    kim.nextLine();
+                    StudentUI.printStudentRemove(true);
+                    App.pauseMenu(scanner);
                 }
             } catch (NumberFormatException e){
-                System.out.println("Maak een valide keuze.");
-                App.pauseMenu(kim);
+                StudentUI.printStudentRemove(false);
+                App.pauseMenu(scanner);
             }
         }    
     }
 
-    public static void studentMostPassed (IScanner jacques){
+    public static void studentMostPassed(IScanner scanner){
 
         int meesteNrBehaaldeExamens = 0;
         ArrayList<String> namenStudentenMetMostPassed = new ArrayList<>();
@@ -158,6 +147,6 @@ public class Student {
             System.out.println("");
         }
         
-        App.pauseMenu(jacques);
+        App.pauseMenu(scanner);
     }
 }
