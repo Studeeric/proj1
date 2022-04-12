@@ -1,11 +1,11 @@
 package com.ui;
 
-/*The app does this*/
+//The app does this
 public abstract class AppUI extends UI{
-  private AppUI(){
-  }
+  
+  private AppUI(){} //private constructor means no objects can be made of this class
 
-  /*The method printmainmenu does this */
+  //The method printmainmenu does this
   public static void printMainMenu(){
     UI.clearScreen();
     printer.print(

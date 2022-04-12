@@ -5,6 +5,7 @@ import com.ui.ExamUI;
 import com.ui.UI;
 
 public class Exam{
+    
     private String name;
     private String category;
     public static ArrayList<Exam> examList = new ArrayList<>();

@@ -3,6 +3,9 @@ import com.ui.AppUI;
 import com.ui.UI;
 
 public class App {
+    
+    private App(){} //private constructor means no objects can be made of this class
+
     public static void main( String[] args){
         ScannerV3 scannakin = new ScannerV3();
         Init.init(false,scannakin);
@@ -169,6 +172,7 @@ public class App {
         pauseMenu(scanner);
     }
 
+    //studentGegevensAanwezig
     private static void studentGegevensAanwezig(Student student,IScanner scanner){
         try{
             int examNummer;
@@ -200,7 +204,7 @@ public class App {
         }
     }
 
-
+    //pauseMenu
     public static void pauseMenu(IScanner scanner) {
         AppUI.printPressReturnToContinue();
         try {
@@ -210,6 +214,7 @@ public class App {
         }
     }
 
+    //askStudentNumber
     private static int askStudentNumber(IScanner scanner) {
         while (true) {
             AppUI.voerXIn("studentnr");
@@ -223,6 +228,7 @@ public class App {
         }
     }
 
+    //studentGegevensAfwezig
     public static void studentGegevensAfwezig(IScanner scanner){
         AppUI.studentGegevensAfwezigMessage();
         int studentNotFoundKeuze = scanner.nextInt();

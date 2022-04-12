@@ -22,6 +22,7 @@ public class Student {
     public int getStudentNumber(){
         return this.studentNumber;
     }
+
     public static void newStudent(IScanner scanner) {
         try {
             String naam = "";
@@ -46,9 +47,8 @@ public class Student {
     }
     
     /** Returns the studentnumber that the user inputted.
-     * 
-     * @param scanner
-     * @return int
+     @param scanner
+     @return int
     */
     public static int checkStudentNumber(IScanner scanner) {
         while (true) {
@@ -80,9 +80,7 @@ public class Student {
                 } else {
                     return nummer;
                 }
-
             }
-
         }
     }
 
@@ -104,8 +102,6 @@ public class Student {
         }
     }
 
-   
-    
     public static void deleteStudent(IScanner scanner){
         while (true){
             UI.clearScreen();
@@ -157,8 +153,7 @@ public class Student {
                 }
             }
             StudentUI.printMostPassed(5, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
-        }
-        
+        } 
         App.pauseMenu(scanner);
     }
 }

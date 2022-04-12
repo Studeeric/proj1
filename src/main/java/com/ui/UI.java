@@ -12,8 +12,7 @@ public abstract class UI {
   protected static final String ANSI_CYAN = "\u001B[36m";
   protected static final String ANSI_WHITE = "\u001B[37m";
 
-  protected UI(){
-  }
+  protected UI(){}
   
    /**The method clears the screen. This way the terminal won't be too bloated.*/
   public static void clearScreen() {

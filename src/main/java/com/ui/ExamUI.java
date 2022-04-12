@@ -7,26 +7,22 @@ import com.logic.Question;
 
 public abstract class ExamUI extends UI{
   
-  private ExamUI(){ 
-  }
+  private ExamUI(){}//private constructor means no objects can be made of this class
 
   public static void printAmountCorrect(int correct){
-    printer.print
-    (
+    printer.print(
       "Aantal goed: " + ANSI_GREEN + correct + ANSI_RESET
     );
   }
 
   public static void printAmountOfTotalCorrect(int correct, int total){
-    printer.print
-    (
+    printer.print(
       "Je hebt " + ANSI_GREEN + correct + ANSI_RESET + " van de " + ANSI_RED + total + ANSI_RESET + " vragen goed."
     );
   }
 
   public static void printSuccesfulExam(int correct, int total){
-    printer.print
-    (
+    printer.print(
       "Gefeliciteerd!" + "\n" +
       "Je hebt het examen gehaald!" + "\n"
     );
@@ -34,13 +30,11 @@ public abstract class ExamUI extends UI{
   }
 
   public static void printFailedExam(int correct, int total){
-    printer.print
-    (
+    printer.print(
       "Helaas... Je hebt het examen niet gehaald."
     );
     printAmountOfTotalCorrect(correct, total);
-    printer.print
-    (
+    printer.print(
       "Volgende keer beter!"
     );
   }
@@ -59,10 +53,14 @@ public abstract class ExamUI extends UI{
   }
 
   public static void printNoExams(){
-      printer.print("Er zijn momenteel geen examens beschikbaar.");
+      printer.print(
+        "Er zijn momenteel geen examens beschikbaar."
+      );
   }
 
   public static void printExam(int i, ArrayList<Exam> examList) {
-    printer.print(i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory());
+    printer.print(
+      i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory()
+      );
   }
 }

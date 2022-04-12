@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 import com.logic.Student;
 public  class StudentUI extends UI {
-    
+
+    private StudentUI(){} //private constructor means no objects can be made of this class
 
     public static void printNumExist(){
         printer.print("Studentnummer bestaat al. Kies een ander nummer.");
@@ -19,8 +20,7 @@ public  class StudentUI extends UI {
         }
         else{
             System.out.println("Maak een valide keuze.");
-        }
-        
+        }  
     }
     
     public static void printNumInv() {
@@ -75,29 +75,28 @@ public  class StudentUI extends UI {
         System.out.println("Kies een student:");
     }
 
-    public static void printMostPassed(int a, int meesteNrBehaaldeExamens, ArrayList<String> namenStudentenMetMostPassed, int n){
+    public static void printMostPassed(int a, int mostExamPassed, ArrayList<String> nameMostPassed, int n){
         switch(a){
             case(1):
-                System.out.println(namenStudentenMetMostPassed.get(0) + " heeft maar liefst " + meesteNrBehaaldeExamens + " examens gehaald.");
+                System.out.println(nameMostPassed.get(0) + " heeft maar liefst " + mostExamPassed + " examens gehaald.");
                 break;
             case(2):
-                System.out.println("Er zijn "+ namenStudentenMetMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
+                System.out.println("Er zijn "+ nameMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
                 System.out.println("");
                 break;
             case(3):
-                System.out.print(namenStudentenMetMostPassed.get(n));
+                System.out.print(nameMostPassed.get(n));
                 break;
             case(4):
                 System.out.print(", ");
                 break;
             case(5):
-                System.out.print(" hebben allemaal " + meesteNrBehaaldeExamens + " examens behaald.");
+                System.out.print(" hebben allemaal " + mostExamPassed + " examens behaald.");
                 System.out.println("");
                 break;
             default:
                 break;
         }
-
     }
 
     public static void printException(Exception e){

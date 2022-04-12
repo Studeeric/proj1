@@ -2,7 +2,6 @@ package com.logic; import java.util.ArrayList;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
-
 /*
 =======Class Explanation=======
 This class manages creating, deleting & editing exams and the questions in them.
@@ -11,6 +10,8 @@ Thanks for coming to my TED talk.
 //TODO Deze class is fucked door de nieuwe Question format.
 
 abstract public class ExamManager {
+
+    private ExamManager(){} //private constructor means no objects can be made of this class
 
     public static void exManagerMenu(IScanner scanner) {
         exManagerLoop: while (true) {
@@ -39,8 +40,6 @@ abstract public class ExamManager {
         }
     }
 
-    
-
     //Action methods
     public static void exNewExam(IScanner scanner) {
         exManagerUI.printExExamInput(true);
@@ -56,38 +55,23 @@ abstract public class ExamManager {
         Debug.wait(2,true);
     }
 
-    
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
         UI.clearScreen();
         exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
         exRemoveLoop: while (true){
             switch(scanner.nextLine()){
-                case("y"):
-                case("Y"):
-                case("yes"):
-                case("Yes"):
-                case("j"):
-                case("J"):
-                case("ja"):
-                case("Ja"):
+                case("1"):
                     Exam.examList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveReact(true);
                     break exRemoveLoop;
-                case("n"):
-                case("N"):
-                case("no"):
-                case("No"):
-                case("nee"):
-                case("Nee"):
+                case("0"):
                     exManagerUI.printExRemoveReact(true);
                     break exRemoveLoop;
                 default:
                 exManagerUI.printExRemoveDefaultError();
                     break;
-
             }
-        }
-        
+        }   
     }
 
     public static void exEditExam(IScanner scanner) {
@@ -138,15 +122,11 @@ abstract public class ExamManager {
                 }
             }
             else{break exEditMainLoop;}
-
-        }
-        
+        } 
     }
 
-    
-
     //Support methods
-    public static void exAddQuestion(Exam exam,IScanner scanner) {
+    public static void exAddQuestion(Exam exam, IScanner scanner) {
         exAddQuestLoop1: while(true){
             UI.clearScreen();
             exManagerUI.printExAddQMenu(exam.getQuestionList().size());
@@ -184,35 +164,23 @@ abstract public class ExamManager {
         int exToBeRemoved = Integer.parseInt(scanner.nextLine());
         UI.clearScreen();
         System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + exActualExam.questionList.get(exToBeRemoved).questionPrompt);
-        System.out.println("Y\\N?");
+        System.out.println("1) Ja, verwijder deze vraag");
+        System.out.println("0) Nee, keer terug naar het hoofdmenu");
+        
         exRemoveQuestLoop: while (true){
             switch(scanner.nextLine()){
-                case("y"):
-                case("Y"):
-                case("yes"):
-                case("Yes"):
-                case("j"):
-                case("J"):
-                case("ja"):
-                case("Ja"):
+                case("1"):
                     exActualExam.questionList.remove(exToBeRemoved);
                     System.out.println("Vraag verwijderd.\nReturning to menu...");
                     break exRemoveQuestLoop;
-                case("n"):
-                case("N"):
-                case("no"):
-                case("No"):
-                case("nee"):
-                case("Nee"):
+                case("0"):
                     System.out.println("Vraag verwijderen geannuleerd.\nReturning to menu...");
                     break exRemoveQuestLoop;
                 default:
-                System.out.println("Kies tussen: Yes(Y) of No(N)");
+                System.out.println("Kies tussen: 1 of 0");
                     break;
-
             }
         }
-        
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
@@ -258,7 +226,6 @@ abstract public class ExamManager {
             questionOptions.add(contents.get(i));
         }
         return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
-        
     }
 
     public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {

@@ -4,6 +4,7 @@ public abstract class SaveManager {
 
     //Edited version of my accidental file editor + loader methods
     private SaveManager(){} //private constructor means no objects can be made of this class
+    
     public static ArrayList<String> readFile(String fileName, boolean silent){ //
         File savefile = new File(fileName);
         ArrayList<String> saveFileContents = new ArrayList<>();
@@ -64,7 +65,6 @@ public abstract class SaveManager {
             System.out.println(e);
             return false;
         }
-        
     }
 
     public static ArrayList<String> findSaveFiles(){
@@ -80,7 +80,6 @@ public abstract class SaveManager {
             }
         }
         return dataFiles;
-        
     }
 
     public static void loadSaveFile(String fileName){
@@ -170,8 +169,7 @@ public abstract class SaveManager {
                             passedExams += ":"+(examCounter+1);
                         }
                         examCounter++;
-                    }
-                    
+                    }      
                 }
                 saveWriter.append("student"+":"+"makeStudent"+":"+student.getName()+":"+student.getStudentNumber()+passedExams+"\n");
             }
@@ -186,9 +184,7 @@ public abstract class SaveManager {
             System.out.println("Error in exitSave");
             System.out.println(e);
         }
-        
     }
-
 }
     
 
