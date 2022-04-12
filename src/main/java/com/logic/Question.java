@@ -1,7 +1,7 @@
 package com.logic;import java.util.ArrayList;
 
-public class Question 
-{
+public class Question {
+    
     public ArrayList<String> questionContents = new ArrayList<>(); //Because the savemanager makes the questions, index[0] is always the question & index[index.length-1] is always the answer
     public String questionPrompt;
     public String questionAnswer;

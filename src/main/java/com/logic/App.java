@@ -3,6 +3,9 @@ import com.ui.AppUI;
 import com.ui.UI;
 
 public class App {
+    
+    private App(){} //private constructor means no objects can be made of this class
+
     public static void main( String[] args){
         ScannerV3 scannakin = new ScannerV3();
         Init.init(false,scannakin);
@@ -68,7 +71,7 @@ public class App {
         }
     }
 
-    // getStudents
+    // getStudents //TODO Sysout naar UI
     private static void getStudents(IScanner scanner) {
         for (Student s : Student.studentList) {
             System.out.println(s.getName());
@@ -76,11 +79,14 @@ public class App {
         pauseMenu(scanner);
     }
     
-    //studentExamStatus
+    //studentExamStatus 
+    // TODO kijken hoe deze gemerged kan worden met develop.
+    // TODO kijken of deze method opgesplitst kan worden.
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
+            
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
                 studentNumber = i;
                 break;
@@ -131,6 +137,8 @@ public class App {
     }
 
     //studentExamPassed
+    // TODO kijken hoe deze gemerged kan worden met develop.
+    // TODO kijken of deze method opgesplitst kan worden.
     public static void studentExamPassed(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
@@ -168,41 +176,35 @@ public class App {
         pauseMenu(scanner);
     }
 
+    //studentGegevensAanwezig
     private static void studentGegevensAanwezig(Student student,IScanner scanner){
         try{
             int examNummer;
             ExamensLoop: while (true) {
                 UI.clearScreen();
-                System.out.println("Examens beschikbaar:");
+                AppUI.printExamenBeschikbaar();
                 Exam.printAllExams(scanner);
-                System.out.println("0) Terug naar het hoofdmenu");
-                System.out.println("Voer het nummer van het examen in:");
-                try {
-                    examNummer = Integer.parseInt(scanner.nextLine());
-                    if (examNummer == 0){
-                        break ExamensLoop;
-                    }
-                    if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()){
-                        Exam.examList.get(examNummer-1).startExam(student, scanner);
-                    } else {
-                        AppUI.printChooseValidOption(5);
-                        pauseMenu(scanner);
-                    }
-                
-                } catch (NumberFormatException e) {
-                    AppUI.printChooseValidOption(2);
+                AppUI.printOptionGoBackToMainMenu();
+                AppUI.voerXIn("examnr");
+                examNummer = scanner.nextInt();
+                if (examNummer == 0) {
+                    break ExamensLoop;
+                }
+                if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()) {
+                    Exam.examList.get(examNummer - 1).startExam(student, scanner);
+                } else {
+                    AppUI.printChooseValidOption(5);
                     pauseMenu(scanner);
                 }
             }
         } catch (Exception e){
-            System.out.println("Error in studentGegevensAanwezig");
-            System.out.println(e);
+            AppUI.errorMessageApp(e, "studentGegevensAanwezig");
         }
     }
 
-
+    //pauseMenu
     public static void pauseMenu(IScanner scanner) {
-        System.out.println("Press return to continue.");
+        AppUI.printPressReturnToContinue();
         try {
             scanner.nextLine(); // This is just here to wait for input
         } catch (Exception e) {
@@ -210,6 +212,7 @@ public class App {
         }
     }
 
+    //askStudentNumber
     private static int askStudentNumber(IScanner scanner) {
         while (true) {
             AppUI.voerXIn("studentnr");
@@ -223,6 +226,7 @@ public class App {
         }
     }
 
+    //studentGegevensAfwezig
     public static void studentGegevensAfwezig(IScanner scanner){
         AppUI.studentGegevensAfwezigMessage();
         int studentNotFoundKeuze = scanner.nextInt();

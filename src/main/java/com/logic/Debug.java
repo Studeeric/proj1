@@ -1,12 +1,14 @@
 package com.logic;
 
-
 /**
 =======Class Explanation=======
 This class adds some debug methods for SaveManager & usefull methods for the rest
 */
 
 abstract public class Debug {
+    
+    private Debug(){} //private constructor means no objects can be made of this class
+
     public static void DebugSet(IScanner scanner) {
         checkLoaded(scanner);
         printQuestions(scanner);
@@ -63,8 +65,8 @@ abstract public class Debug {
             Thread.currentThread().interrupt();
         }
     }
+
     public static void testScan(IScanner scanner) {
         System.out.println(scanner.nextInt());
     }
-    
 }
