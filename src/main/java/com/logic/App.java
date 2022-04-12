@@ -71,7 +71,7 @@ public class App {
         }
     }
 
-    // getStudents
+    // getStudents //TODO Sysout naar UI
     private static void getStudents(IScanner scanner) {
         for (Student s : Student.studentList) {
             System.out.println(s.getName());
@@ -79,7 +79,9 @@ public class App {
         pauseMenu(scanner);
     }
     
-    //studentExamStatus
+    //studentExamStatus 
+    // TODO kijken hoe deze gemerged kan worden met develop.
+    // TODO kijken of deze method opgesplitst kan worden.
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
@@ -135,6 +137,8 @@ public class App {
     }
 
     //studentExamPassed
+    // TODO kijken hoe deze gemerged kan worden met develop.
+    // TODO kijken of deze method opgesplitst kan worden.
     public static void studentExamPassed(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
@@ -182,20 +186,14 @@ public class App {
                 Exam.printAllExams(scanner);
                 AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
-                try {
-                    examNummer = Integer.parseInt(scanner.nextLine());
-                    if (examNummer == 0){
-                        break ExamensLoop;
-                    }
-                    if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()){
-                        Exam.examList.get(examNummer-1).startExam(student, scanner);
-                    } else {
-                        AppUI.printChooseValidOption(5);
-                        pauseMenu(scanner);
-                    }
-                
-                } catch (NumberFormatException e) {
-                    AppUI.printChooseValidOption(2);
+                examNummer = scanner.nextInt();
+                if (examNummer == 0) {
+                    break ExamensLoop;
+                }
+                if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()) {
+                    Exam.examList.get(examNummer - 1).startExam(student, scanner);
+                } else {
+                    AppUI.printChooseValidOption(5);
                     pauseMenu(scanner);
                 }
             }
