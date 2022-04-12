@@ -19,4 +19,6 @@ Plan van aanpak https://dehaagsehogeschool-my.sharepoint.com/:w:/r/personal/2114
 
 Technisch ontwerp: https://dehaagsehogeschool-my.sharepoint.com/:w:/g/personal/21093830_student_hhs_nl/EW8rtXCmTCFMu5g9kt1GbTwBpOdu9a5dixfWj68zLi2WxQ?e=HCETCo
 
+Eindverslag: https://dehaagsehogeschool-my.sharepoint.com/:w:/g/personal/21093830_student_hhs_nl/Ecdn-iYOW-9CjXZt_eVUJqMBi84GrN4K4MfmueY8taRH9w?e=B4VZDs
+
 Build je project voordat je runt!!
