@@ -1,7 +1,5 @@
 package com.ui;
 
-import com.logic.Exam;
-
 public class exManagerUI extends UI{
     private exManagerUI(){
     }
