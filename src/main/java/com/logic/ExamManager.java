@@ -8,7 +8,6 @@ import com.ui.exManagerUI;
 This class manages creating, deleting & editing exams and the questions in them.
 Thanks for coming to my TED talk.
 */
-//TODO Deze class is fucked door de nieuwe Question format.
 
 abstract public class ExamManager {
 
@@ -121,7 +120,7 @@ abstract public class ExamManager {
         }
         
     }
-    //TODO also this
+    //TODO Legacy code. 
     /*
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
@@ -134,12 +133,12 @@ abstract public class ExamManager {
         if(exUserEditChoice != -1){
             Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
             UI.clearScreen();
-            //TODO Update this to new Question format
+            
             exPrintQuestArray(exChosenQuest.questionContents, true);
             exManagerUI.printExEditQuestionEditQuestion(true);
             exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
             UI.clearScreen();
-            //TODO this too
+            
             exManagerUI.printExEditQuestionEditMenu(exChosenQuest.questionContents.get(exUserEditChoice));
             exChosenQuest.questionContents.set(exUserEditChoice, scanner.nextLine());
             exManagerUI.printExEditQuestionEditConfirm();
@@ -157,27 +156,16 @@ abstract public class ExamManager {
         int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
         if(exUserEditChoice != -1){
             Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            ArrayList<String> exChosenQuestList = new ArrayList<>(exConvertToList(exChosenQuest));
+            UI.clearScreen();
+            exPrintQuestArray(exChosenQuestList, true);
+            exManagerUI.printExEditQuestionEditQuestion(true);
+            exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+            UI.clearScreen();
+            exManagerUI.printExEditQuestionEditMenu(exChosenQuestList.get(exUserEditChoice));
+            exChosenQuestList.set(exUserEditChoice, scanner.nextLine());
+            exNewFormatQuestion(exChosenQuest, exChosenQuestList);
+            exManagerUI.printExEditQuestionEditConfirm();
         }
         
     }
@@ -195,14 +183,14 @@ abstract public class ExamManager {
                     break;
                 case("2"):
                     int counter = 1;
-                    //TODO Update this
                     for(Question question : exam.questionList){
                         exManagerUI.printExAddQLoop(true, null,counter);
+                        exManagerUI.printExAddQuestVars(question.questionPrompt,false);
                         for(String content : question.questionContents){
                             exManagerUI.printExAddQLoop(false, content,0);
                         }
+                        exManagerUI.printExAddQuestVars(question.questionPrompt,true);
                         counter++;
-                        System.out.println();
                     }
                     App.pauseMenu(scanner);
                     break;
@@ -215,9 +203,9 @@ abstract public class ExamManager {
     }
 
     public static void exRemoveQuestion(Exam exActualExam, IScanner scanner) {
-        System.out.println("Welke vraag wil u verwijderen?");
+        exManagerUI.prinExRemoveQuestAsk(0,null, false);
         for(int i = 0; i< exActualExam.questionList.size();i++){
-            System.out.println((i+1)+") "+ exActualExam.questionList.get(i).questionPrompt);
+            exManagerUI.prinExRemoveQuestAsk(i,exActualExam.questionList.get(i).questionPrompt, true);
         }
         System.out.println();
         int exToBeRemoved = Integer.parseInt(scanner.nextLine());
@@ -299,6 +287,7 @@ abstract public class ExamManager {
         return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
         
     }
+
     public static Question exNewFormatQuestion(Question quest, ArrayList<String> contents){
         ArrayList<String> questionOptions = new ArrayList<>();
         String prompt = contents.get(0);
@@ -310,7 +299,16 @@ abstract public class ExamManager {
         quest.questionPrompt = prompt;
         quest.questionAnswer = answer;
         return quest;
+    }
 
+    public static ArrayList<String> exConvertToList(Question quest) {
+        ArrayList<String> contents = new ArrayList<>();
+        contents.add(quest.questionPrompt);
+        for(String str : quest.questionContents){
+            contents.add(str);
+        }
+        contents.add(quest.questionAnswer);
+        return contents;
     }
 
     public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {

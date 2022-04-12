@@ -1,7 +1,5 @@
 package com.ui;
 
-import com.logic.Exam;
-
 public class exManagerUI extends UI{
     private exManagerUI(){
     }
@@ -99,5 +97,22 @@ public class exManagerUI extends UI{
             System.out.println("Vraag: " + counter);
         else
             System.out.println(content);
+    }
+    public static void printExAddQuestVars(String text, boolean emptyline) {
+        System.out.println(text);
+        if(emptyline)
+            System.out.println();
+            
+
+    }
+
+    /* exRemoveQuestion */
+    public static void prinExRemoveQuestAsk(int counter,String prompt, boolean loop) {
+        if(loop)
+            System.out.println((counter+1)+") "+ prompt);
+
+        else
+            System.out.println("Welke vraag wil u verwijderen?");
+        
     }
 }
