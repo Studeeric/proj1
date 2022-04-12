@@ -122,6 +122,7 @@ abstract public class ExamManager {
         
     }
     //TODO also this
+    /*
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -145,6 +146,40 @@ abstract public class ExamManager {
             App.pauseMenu(scanner);
         }
 
+    }
+    */
+    public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
+        exManagerUI.printExEditQuestionEditQuestion(true);
+        for(int i = 0; i< exActualExam.questionList.size();i++){
+            exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
+        }
+        exManagerUI.printExEditQuestionList();
+        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+        if(exUserEditChoice != -1){
+            Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+        
     }
 
     
@@ -263,6 +298,19 @@ abstract public class ExamManager {
         }
         return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
         
+    }
+    public static Question exNewFormatQuestion(Question quest, ArrayList<String> contents){
+        ArrayList<String> questionOptions = new ArrayList<>();
+        String prompt = contents.get(0);
+        String answer = contents.get(contents.size()-1);
+        for(int i =1;i<contents.size()-1;i++){
+            questionOptions.add(contents.get(i));
+        }
+        quest.questionContents = questionOptions;
+        quest.questionPrompt = prompt;
+        quest.questionAnswer = answer;
+        return quest;
+
     }
 
     public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {
