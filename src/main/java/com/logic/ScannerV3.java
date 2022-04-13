@@ -24,28 +24,3 @@ public class ScannerV3 implements IScanner{
         return scanner.nextLine();
     }
 }
-
-class FakeScanner implements IScanner{
-    int intValue;
-    String stringValue;
-
-    private FakeScanner(){} //private constructor means no objects can be made of this class
-
-    public void setInt(int x){
-        this.intValue = x;
-    }
-
-    public void setString(String x){
-        this.stringValue = x;
-    }
-
-    @Override
-    public int nextInt() {
-        return intValue;
-    }
-
-    @Override
-    public String nextLine() {
-        return stringValue;
-    }
-}
