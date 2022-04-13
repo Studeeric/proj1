@@ -63,4 +63,11 @@ public abstract class ExamUI extends UI{
       i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory()
       );
   }
+
+  public static void printExamColourCoded(String line, boolean passed) {
+    if(passed)
+      System.out.println(ANSI_GREEN+line+ANSI_RESET);
+    else
+      System.out.println(ANSI_RED+line+ANSI_RESET);
+  }
 }
