@@ -35,11 +35,12 @@ class RepeatingTestScanner extends TestScanner{
     @Override
     public String nextLine() {
         this.stringValue = sendlist.get(counter);
-        counter++;
+        if(counter < sendlist.size()-1)
+            counter++;
         return super.nextLine();
     }
 
-    public void resetRepeatScanner() {
+    public void clear() {
         this.sendlist.clear();
         this.counter = 0;
     }
