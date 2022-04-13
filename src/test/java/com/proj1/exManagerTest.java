@@ -40,8 +40,5 @@ public class exManagerTest {
             actual += line.replace(" ", "");
         assertEquals(expected, actual);
         Rescanner.clear();
-        
-        
-        
     }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ScannerV3 implements IScanner{
     Scanner scanner = new Scanner(System.in);
 
-    public ScannerV3(){} //private constructor means no objects can be made of this class
+    public ScannerV3(){}
 
     @Override
     public int nextInt() {
