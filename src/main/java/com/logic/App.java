@@ -137,6 +137,7 @@ public class App {
     //studentExamPassed
     // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
+    
     public static void studentExamPassed(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
@@ -230,12 +231,12 @@ public class App {
         int studentNotFoundKeuze = scanner.nextInt();
             switch(studentNotFoundKeuze){
                 case 1:
-                    break;//NO. No recursion
+                    break;
                 case 2:
                     Student.newStudent(scanner);
-                    break;//Break the for loop & run this method again
+                    break;
                 case 0: 
-                    break;//Break the while loop & go back to mainMenu
+                    break;
                 default:
                     AppUI.printChooseValidOption(6);
                     break;

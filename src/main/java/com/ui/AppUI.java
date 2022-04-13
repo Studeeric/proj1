@@ -30,28 +30,37 @@ public abstract class AppUI extends UI{
     switch(option){
       case 1:
         System.out.println("Invalid option. Please choose a listed option");
+        break;
       case 2:
         System.out.println("Voer een geldig nummer in met alleen cijfers.");
+        break;
       case 3:
         System.out.println("Wat denk je zelf, mafklapper? Dat examen bestaat helemaal niet.");
+        break;
       case 4:
         System.out.println("Student is niet gevonden. Keer terug naar het hoofdmenu");
+        break;
       case 5:
         System.out.println(
         "Wat denk je zelf, mafklapper? Je kan niet een ander getal geven dan dat jou gepresenteerd is.");
+        break;
       case 6:
         System.out.println("Optie bestaat niet. Keer terug naar main menu.");
+        break;
     }
   }
 
-  public static void voerXIn(String object){
+  public static void voerXIn(String object){ //Burton, for the love of god don't forget the break; Switch cases fall through
     switch(object){
       case "studentnr":
         System.out.println("Voer je studentnummer in:");
+        break;
       case "examnr":
         System.out.println("Voer het nummer van het examen in:");
+        break;
       default:
-        System.out.println("Wrong input into voerXIN() at App.java"); 
+        System.out.println("Wrong input into voerXIN() at App.java");
+        break; 
     }
   }
 
