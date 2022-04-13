@@ -80,7 +80,7 @@ public class App {
     //studentExamStatus 
     // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
-    // TODO Is dit niet erg dubbelop met studentExamPassed?
+    // Is dit niet erg dubbelop met studentExamPassed?
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
