@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class ScannerV3 implements IScanner{
     Scanner scanner = new Scanner(System.in);
 
+    public ScannerV3(){} //private constructor means no objects can be made of this class
+
     @Override
     public int nextInt() {
         while (true) {
@@ -21,12 +23,13 @@ public class ScannerV3 implements IScanner{
     public String nextLine() {
         return scanner.nextLine();
     }
-    
 }
 
 class FakeScanner implements IScanner{
     int intValue;
     String stringValue;
+
+    private FakeScanner(){} //private constructor means no objects can be made of this class
 
     public void setInt(int x){
         this.intValue = x;
@@ -45,5 +48,4 @@ class FakeScanner implements IScanner{
     public String nextLine() {
         return stringValue;
     }
-    
 }

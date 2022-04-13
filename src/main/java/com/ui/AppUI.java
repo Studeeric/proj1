@@ -1,11 +1,11 @@
 package com.ui;
 
-/*The app does this*/
+//The app does this
 public abstract class AppUI extends UI{
-  private AppUI(){
-  }
+  
+  private AppUI(){} //private constructor means no objects can be made of this class
 
-  /*The method printmainmenu does this */
+  //The method printmainmenu does this
   public static void printMainMenu(){
     UI.clearScreen();
     printer.print(
@@ -86,12 +86,16 @@ public abstract class AppUI extends UI{
   public static void printExamStudentExamPassed(int a, String naam, String category){
     System.out.println(a + ") " + naam + " - " + category);
   }
-  
+
   public static void printExamenBeschikbaar(){
     System.out.println("Examens beschikbaar:");
   }
 
   public static void printGoBackToMainMenu(){
     System.out.println("U keert terug naar het hoofdmenu.");
+  }
+
+  public static void printPressReturnToContinue(){
+    System.out.println("Press return to continue.");
   }
 }

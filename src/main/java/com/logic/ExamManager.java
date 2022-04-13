@@ -2,7 +2,6 @@ package com.logic; import java.util.ArrayList;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
-
 /*
 =======Class Explanation=======
 This class manages creating, deleting & editing exams and the questions in them.
@@ -10,6 +9,8 @@ Thanks for coming to my TED talk.
 */
 
 abstract public class ExamManager {
+
+    private ExamManager(){} //private constructor means no objects can be made of this class
 
     public static void exManagerMenu(IScanner scanner) {
         exManagerLoop: while (true) {
@@ -38,8 +39,6 @@ abstract public class ExamManager {
         }
     }
 
-    
-
     //Action methods
     public static void exNewExam(IScanner scanner) {
         exManagerUI.printExExamInput(true);
@@ -55,38 +54,23 @@ abstract public class ExamManager {
         Debug.wait(2,true);
     }
 
-    
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
         UI.clearScreen();
         exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
         exRemoveLoop: while (true){
             switch(scanner.nextLine()){
-                case("y"):
-                case("Y"):
-                case("yes"):
-                case("Yes"):
-                case("j"):
-                case("J"):
-                case("ja"):
-                case("Ja"):
+                case("1"):
                     Exam.examList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveReact(true);
                     break exRemoveLoop;
-                case("n"):
-                case("N"):
-                case("no"):
-                case("No"):
-                case("nee"):
-                case("Nee"):
+                case("0"):
                     exManagerUI.printExRemoveReact(true);
                     break exRemoveLoop;
                 default:
                 exManagerUI.printExRemoveDefaultError();
                     break;
-
             }
-        }
-        
+        }   
     }
 
     public static void exEditExam(IScanner scanner) {
@@ -116,9 +100,7 @@ abstract public class ExamManager {
                 }
             }
             else{break exEditMainLoop;}
-
-        }
-        
+        } 
     }
     //TODO Legacy code. 
     /*
@@ -170,10 +152,8 @@ abstract public class ExamManager {
         
     }
 
-    
-
     //Support methods
-    public static void exAddQuestion(Exam exam,IScanner scanner) {
+    public static void exAddQuestion(Exam exam, IScanner scanner) {
         exAddQuestLoop1: while(true){
             UI.clearScreen();
             exManagerUI.printExAddQMenu(exam.getQuestionList().size());
@@ -213,14 +193,7 @@ abstract public class ExamManager {
         exManagerUI.printExRemoveQuestConfirm(exActualExam.questionList.get(exToBeRemoved).questionPrompt);
         exRemoveQuestLoop: while (true){
             switch(scanner.nextLine()){
-                case("y"):
-                case("Y"):
-                case("yes"):
-                case("Yes"):
-                case("j"):
-                case("J"):
-                case("ja"):
-                case("Ja"):
+                case("1"):
                     exActualExam.questionList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveQuestReturn(true);
                     break exRemoveQuestLoop;
@@ -237,7 +210,6 @@ abstract public class ExamManager {
                     break;
             }
         }
-        
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
@@ -287,7 +259,6 @@ abstract public class ExamManager {
             questionOptions.add(contents.get(i));
         }
         return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
-        
     }
 
     public static Question exNewFormatQuestion(Question quest, ArrayList<String> contents){
