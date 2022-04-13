@@ -1,4 +1,5 @@
 package com.ui;
+import java.util.ArrayList;
 
 public class exManagerUI extends UI{
 
@@ -105,5 +106,59 @@ public class exManagerUI extends UI{
             System.out.println("Vraag: " + counter);
         else
             System.out.println(content);
+    }
+    public static void printExAddQuestVars(String text, boolean emptyline) {
+        System.out.println(text);
+        if(emptyline)
+            System.out.println();
+            
+
+    }
+
+    /* exRemoveQuestion */
+    public static void prinExRemoveQuestAsk(int counter,String prompt, boolean loop) {
+        if(loop)
+            System.out.println((counter+1)+") "+ prompt);
+
+        else
+            System.out.println("Welke vraag wil u verwijderen?");
+    }
+
+    public static void printExRemoveQuestConfirm(String questName) {
+        System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + questName);
+        System.out.println("Y\\N?");
+    }
+
+    public static void printExRemoveQuestReturn(boolean confirmed) {
+        if(confirmed)
+            System.out.println("Vraag verwijderd.\nReturning to menu...");
+        else
+            System.out.println("Vraag verwijderen geannuleerd.\nReturning to menu...");
+    }
+
+    /* exGetQuestCont */
+    public static void printExGetQuestCt(int line) {
+        if(line ==1 )
+            System.out.println("Voer de vraag in:");
+        else if(line == 2)
+            System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
+        else if (line == 3)
+            System.out.println("Welke vraag is het juiste antwoord?");
+        
+    }
+
+    /* Misc */
+    public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {
+        System.out.println("Vraag x:");
+        System.out.println();
+        for(int i=0;i<contents.size();i++){
+            if(numbered){
+                System.out.println((i+1)+" "+contents.get(i));
+            }
+            else{
+            System.out.println(contents.get(i));
+            }
+        }
+        
     }
 }

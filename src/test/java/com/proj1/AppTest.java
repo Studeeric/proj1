@@ -20,7 +20,7 @@ public class AppTest{
                 break;
             }
         }
-            assertEquals(0, i);
+        assertEquals(0, i);
     }
 
     @Test

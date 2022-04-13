@@ -17,47 +17,45 @@ public class App {
     public static void mainMenu(IScanner james) {
         mainMenuLoop: while (true) {
             AppUI.printMainMenu();
-            int chooseAction = 10;//Any non valid option will work
-            chooseAction = james.nextInt();
             try {
-                switch (chooseAction) {
-                    case (1):
+                switch (james.nextLine()) {
+                    case ("1"):
                         UI.clearScreen();
                         Exam.printAllExams(james);
                         pauseMenu(james);
                         break;
-                    case (2):
+                    case ("2"):
                         UI.clearScreen();
                         getStudents(james);
                         break;
-                    case (3):
+                    case ("3"):
                         UI.clearScreen();
                         Student.newStudent(james);
                         break;
-                    case (4):
+                    case ("4"):
                         UI.clearScreen();
                         Student.deleteStudent(james);
                         break;
-                    case (5):
+                    case ("5"):
                         UI.clearScreen();
                         startExams(james);
                         break;
-                    case (6):
+                    case ("6"):
                         UI.clearScreen();
                         studentExamStatus(james);
                         break;
-                    case (7):
+                    case ("7"):
                         UI.clearScreen();
                         studentExamPassed(james);
                         break;
-                    case (8):
+                    case ("8"):
                         UI.clearScreen();
                         Student.studentMostPassed(james);
                         break;
-                    case(9):
+                    case("9"):
                         ExamManager.exManagerMenu(james);
                         break;
-                    case(0):
+                    case("0"):
                         AppUI.printSaveMessage();
                         break mainMenuLoop;
                     default:
@@ -139,6 +137,7 @@ public class App {
     //studentExamPassed
     // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
+    
     public static void studentExamPassed(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
@@ -232,12 +231,12 @@ public class App {
         int studentNotFoundKeuze = scanner.nextInt();
             switch(studentNotFoundKeuze){
                 case 1:
-                    break;//NO. No recursion
+                    break;
                 case 2:
                     Student.newStudent(scanner);
-                    break;//Break the for loop & run this method again
+                    break;
                 case 0: 
-                    break;//Break the while loop & go back to mainMenu
+                    break;
                 default:
                     AppUI.printChooseValidOption(6);
                     break;
