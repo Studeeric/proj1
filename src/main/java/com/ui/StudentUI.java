@@ -54,10 +54,10 @@ public  class StudentUI extends UI {
             System.out.println("Er zijn geen studenten.");
         } else {
             for (int i = 0; i < Student.studentList.size(); i++) {
-                System.out.println((i+1) + ") " + Student.studentList.get(i).getName());
+                System.out.println(ANSI_CYAN + (i+1) + ") " + ANSI_RESET + Student.studentList.get(i).getName());
             }
             if(exit){
-                System.out.println("0) Terug naar het hoofdmenu");
+                System.out.println(ANSI_RED + "0)" + ANSI_RESET + " Terug naar het hoofdmenu");
             }
         }
     }
