@@ -111,15 +111,12 @@ public class exManagerUI extends UI{
         System.out.println(text);
         if(emptyline)
             System.out.println();
-            
-
     }
 
     /* exRemoveQuestion */
     public static void prinExRemoveQuestAsk(int counter,String prompt, boolean loop) {
         if(loop)
             System.out.println((counter+1)+") "+ prompt);
-
         else
             System.out.println("Welke vraag wil u verwijderen?");
     }
@@ -144,7 +141,6 @@ public class exManagerUI extends UI{
             System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
         else if (line == 3)
             System.out.println("Welke optie is het juiste antwoord?");
-        
     }
 
     /* Misc */
@@ -159,6 +155,5 @@ public class exManagerUI extends UI{
             System.out.println(contents.get(i));
             }
         }
-        
     }
 }
