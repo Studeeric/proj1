@@ -89,8 +89,9 @@ public class Exam{
             }
         }
     }
-    
+
     public static void printAllExamsColourCoded(IScanner scanner, Student subject) {
+
         if (examList.isEmpty()){
             ExamUI.printNoExams();
             App.pauseMenu(scanner);
@@ -98,7 +99,7 @@ public class Exam{
             boolean passed;
             for (Exam exam : Exam.examList) {
                 passed = false;
-                for(Exam studentExam : subject.behaaldeExamens){
+                for(Exam studentExam : student.behaaldeExamens){
                     if(exam.name.equals(studentExam.name) && exam.questionList.equals(studentExam.questionList)){
                         String examFormat = exam.getName() + " - " + exam.getCategory();
                         ExamUI.printExamColourCoded(examFormat, true);

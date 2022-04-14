@@ -8,7 +8,7 @@ public abstract class AppUI extends UI{
   //The method printmainmenu does this
   public static void printMainMenu(){
     UI.clearScreen();
-    printer.print(
+    System.out.println(
       ANSI_CYAN + "1)" + ANSI_RESET + " Lijst met examens" + "\n" +
       ANSI_CYAN + "2)" + ANSI_RESET + " Lijst met studenten" + "\n" +
       ANSI_CYAN + "3)" + ANSI_RESET + " Nieuwe student inschrijven" + "\n" +
@@ -27,6 +27,8 @@ public abstract class AppUI extends UI{
   }
 
   public static void printChooseValidOption(int option){
+    /*integer option zit hardcoded in App.java . Zo kunnen we 1 methode gebruiken voor meerdere printlines. Ook zijn er in theorie meerdere
+    uses per case mogelijk.*/
     switch(option){
       case 1:
         System.out.println("Invalid option. Please choose a listed option");
@@ -51,6 +53,9 @@ public abstract class AppUI extends UI{
   }
 
   public static void voerXIn(String object){ //Burton, for the love of god don't forget the break; Switch cases fall through
+                                              //Sorry Wouter, zal het niet meer vergeten :(
+    /*string object zit hardcoded in App.java . Zo kunnen we 1 methode gebruiken voor meerdere printlines. Ook zijn er in theorie meerdere
+    uses per case mogelijk.*/
     switch(object){
       case "studentnr":
         System.out.println("Voer je studentnummer in:");
@@ -64,12 +69,22 @@ public abstract class AppUI extends UI{
     }
   }
 
-  public static void studentGegevensAfwezigMessage(){
-    System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
-    System.out.println("Kies een van de volgende opties:");
-    System.out.println("1) Probeer opnieuw");
-    System.out.println("2) Nieuwe student aanmaken");
-    printOptionGoBackToMainMenu();
+  public static void studentGegevensAfwezigMessage(int check) {
+    switch (check) {
+      case (1):
+        System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
+        System.out.println("Kies een van de volgende opties:");
+        System.out.println("1) Probeer opnieuw");
+        System.out.println("2) Nieuwe student aanmaken");
+        printOptionGoBackToMainMenu();
+        break;
+      case (2):
+        System.out.println("Kies een van de volgende opties:");
+        System.out.println("1) Probeer opnieuw");
+        System.out.println("2) Nieuwe student aanmaken");
+        printOptionGoBackToMainMenu();
+        break;
+    }
   }
 
   public static void errorMessageApp(Exception e, String method){

@@ -75,7 +75,7 @@ public class exManagerUI extends UI{
 
     public static void printExEditQuestionEditQuestion(boolean question) {
         if(question)
-            System.out.println("Welke vraag wil u aanpassen?");
+            System.out.println("Van welk examen wil u een vraag aanpassen?");
         else
             System.out.println("Welke regel wil u aanpassen?");
     }

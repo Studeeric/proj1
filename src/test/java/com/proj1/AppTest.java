@@ -3,13 +3,20 @@ package com.proj1;
 import com.logic.App;
 import com.logic.Student;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppTest{
-
-    static TestScanner testScanner = new TestScanner();
-    static Student testStudent = new Student("Geerd", 21000321);
+public class AppTest {
+  
+  private Student testStudent;
+  private TestScanner testscanner;
+  
+    @BeforeEach
+    public void init(){
+        testScanner = new TestScanner();
+        testStudent = new Student("Geerd", 21000321);
+    }
 
     /** Test alle opties bij studentgegevensafwezig en kijkt of de juiste respons word gegeven */
     @Test

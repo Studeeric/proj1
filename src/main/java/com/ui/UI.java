@@ -1,7 +1,6 @@
 package com.ui;
 
 public abstract class UI {
-  protected static Printer printer = new Printer();
   protected static final String ANSI_RESET = "\u001B[0m";
   protected static final String ANSI_BLACK = "\u001B[30m";
   protected static final String ANSI_RED = "\u001B[31m";
