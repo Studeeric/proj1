@@ -81,10 +81,8 @@ abstract public class ExamManager {
                         break;
                 }
             } else {
-                exManagerUI.printExReturnMainMenu(true);
-                App.pauseMenu(scanner);
                 UI.clearScreen();
-                exToBeRemoved = exChooseExamIndex(scanner,false);
+                //TODO ffs
             }
         }   
     }
