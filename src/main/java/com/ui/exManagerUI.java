@@ -130,8 +130,8 @@ public class exManagerUI extends UI{
 
     public static void printExRemoveQuestConfirm(String questName) {
         System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + questName);
-        System.out.println("1) Ja, verwijder deze vraag" + questName);
-        System.out.println("0) Nee, keer terug naar het hoofdmenu");
+        System.out.println(ANSI_RED+"1) Ja, verwijder deze vraag" + questName+ANSI_RESET);
+        System.out.println(ANSI_GREEN+"0) Nee, keer terug naar het hoofdmenu"+ANSI_RESET);
     }
 
     public static void printExRemoveQuestReturn(boolean confirmed) {
