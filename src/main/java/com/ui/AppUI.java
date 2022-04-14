@@ -64,7 +64,7 @@ public abstract class AppUI extends UI{
     }
   }
 
-  public static void studentGegevensAfwezigMessage() {
+  public static void studentGegevensAfwezigMessage(){
     System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
     System.out.println("Kies een van de volgende opties:");
     System.out.println("1) Probeer opnieuw");
@@ -95,7 +95,7 @@ public abstract class AppUI extends UI{
   public static void printExamStudentExamPassed(int a, String naam, String category){
     System.out.println(a + ") " + naam + " - " + category);
   }
-  public static void printExamenBeschikbaar() {
+  public static void printExamenBeschikbaar(){
     System.out.println("Examens beschikbaar");
     
   }
