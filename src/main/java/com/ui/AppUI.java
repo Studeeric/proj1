@@ -114,6 +114,5 @@ public abstract class AppUI extends UI{
     if(gehaald)
       clearScreen();
       System.out.println("Student "+ nummer+" heeft " + aantal + " Examens gehaald");
-    
   }
 }
