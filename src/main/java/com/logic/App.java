@@ -78,7 +78,6 @@ public class App {
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
         for (int i = 0; i < Student.studentList.size(); i++) {
-            
             if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
                 studentNumber = i;
                 break;
@@ -131,7 +130,7 @@ public class App {
     }
 
     //studentGegevensAanwezig
-    private static void studentGegevensAanwezig(Student student,IScanner scanner){
+    public static void studentGegevensAanwezig(Student student,IScanner scanner){
         try{
             int examNummer;
             ExamensLoop: while (true) {
@@ -167,7 +166,7 @@ public class App {
     }
 
     //askStudentNumber
-    private static int askStudentNumber(IScanner scanner) {
+    public static int askStudentNumber(IScanner scanner) {
         while (true) {
             AppUI.voerXIn("studentnr");
             int input = scanner.nextInt();

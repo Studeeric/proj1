@@ -51,40 +51,5 @@ public class StudentTest {
         Student student = new Student(naam, studentNummer);
 
        assertEquals(naamTest, student.getName());
-    }
-
-    //Deze methode controleerd of de studentnumber wel in de studentList staat
-    /*
-    @Test
-    public void testCheckStudentNumber(){
-        int nummer = 21000321;
-        String juist = "gelukt";
-        String test = "nietGelukt";
-        for (Student testStudent : Student.studentList){
-        if (testStudent.getStudentNumber() == nummer){
-            test = "gelukt";
-        }else{
-            test = "niet gelukt";
-            }
-        }
-
-        assertEquals(juist, test);
-    }
-    */
-
-    //Deze methode controleerd of de studentnumber niet in de studentList staat
-    @Test
-    public void testCheckStudentNumber2(){
-        int nummer = 21000320;
-        String juist = "gelukt";
-        String test = "nietGelukt";
-        for (Student testStudent : Student.studentList){
-        if (testStudent.getStudentNumber() == nummer){
-            test = "niet gelukt";
-        }else{
-            test = "gelukt";
-            }
-        }
-        assertEquals(juist, test);
-    }
+    }   
 }
