@@ -53,7 +53,19 @@ public class StudentTest {
     @Test
     public void testNewStudent3(){
         rescanner.sendlist.add("Geerd");
-        
+        rescanner.sendlist.add("21000321");
+        rescanner.sendlist.add("21000321");
+        Student.newStudent(rescanner);
+
+        String testName = "Geerd";
+        String foutTestName = "Lucas";
+        assertEquals(testName, testStudent.getName());
+        assertNotEquals(foutTestName, testStudent.getStudentNumber());
+
+        int testStudentNumber = 21000321;
+        int foutTestStudentNumber = 21045678;
+        assertEquals(testStudentNumber, testStudent.getStudentNumber());
+        assertNotEquals(foutTestStudentNumber, testStudent.getStudentNumber());
     }
 
     //test of de student verwijderd word
