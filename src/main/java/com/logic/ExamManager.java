@@ -110,33 +110,7 @@ abstract public class ExamManager {
             else{break exEditMainLoop;}
         } 
     }
-    //TODO Legacy code. 
-    /*
-    public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
-        exManagerUI.printExEditQuestionEditQuestion(true);
-        for(int i = 0; i< exActualExam.questionList.size();i++){
-            exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
-        }
-        exManagerUI.printExEditQuestionList();
-
-        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
-        if(exUserEditChoice != -1){
-            Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
-            UI.clearScreen();
-            
-            exPrintQuestArray(exChosenQuest.questionContents, true);
-            exManagerUI.printExEditQuestionEditQuestion(true);
-            exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
-            UI.clearScreen();
-            
-            exManagerUI.printExEditQuestionEditMenu(exChosenQuest.questionContents.get(exUserEditChoice));
-            exChosenQuest.questionContents.set(exUserEditChoice, scanner.nextLine());
-            exManagerUI.printExEditQuestionEditConfirm();
-            App.pauseMenu(scanner);
-        }
-
-    }
-    */
+  
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -240,7 +214,11 @@ abstract public class ExamManager {
         }
         return examNr-1;
     }
-
+    /**
+     * 
+     * @param scanner
+     * @return
+     */
     public static ArrayList<String> exGetQuestCont(IScanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
         exManagerUI.printExGetQuestCt(1);
@@ -271,7 +249,11 @@ abstract public class ExamManager {
         exQuestContents.add(questAnswer);
         return exQuestContents;
     }
-
+     /**
+     * Takes an ArrayList<String> in the old all in one List format and converts it to a {@link Question} in the new split format
+     * @param contents
+     * @return
+     */
     public static Question exFormatQuestion(ArrayList<String> contents) {
         ArrayList<String> questionOptions = new ArrayList<>();
         for(int i =1;i<contents.size()-1;i++){
@@ -279,7 +261,12 @@ abstract public class ExamManager {
         }
         return new Question(contents.get(0), questionOptions, contents.get(contents.size()-1));
     }
-
+    /**
+     * Takes an ArrayList<String> in the old all in one List format and converts it to the new split format for the given {@link Question} object
+     * @param quest
+     * @param contents
+     * @return
+     */
     public static Question exNewFormatQuestion(Question quest, ArrayList<String> contents){
         ArrayList<String> questionOptions = new ArrayList<>();
         String prompt = contents.get(0);
@@ -292,7 +279,11 @@ abstract public class ExamManager {
         quest.questionAnswer = answer;
         return quest;
     }
-
+    /**
+     * Takes any {@link Question} object and converts it to the old All in one list format
+     * @param quest
+     * @return ArrayList<String>
+     */
     public static ArrayList<String> exConvertToList(Question quest) {
         ArrayList<String> contents = new ArrayList<>();
         contents.add(quest.questionPrompt);
