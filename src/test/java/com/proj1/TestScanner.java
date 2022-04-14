@@ -29,7 +29,9 @@ class TestScanner implements IScanner{
 
 class RepeatingTestScanner extends TestScanner{
     ArrayList<String> sendlist = new ArrayList<>();
+    ArrayList<Integer> intlist = new ArrayList<>();
     int counter = 0;
+    int intCounter = 0;
 
     @Override
     public String nextLine() {
@@ -38,9 +40,18 @@ class RepeatingTestScanner extends TestScanner{
             counter++;
         return super.nextLine();
     }
+    @Override
+    public int nextInt() {
+        this.intValue = intlist.get(intCounter);
+        if(intCounter < intlist.size()-1)
+            intCounter++;
+        return super.nextInt();
+    }
 
     public void clear() {
         this.sendlist.clear();
         this.counter = 0;
+        this.intCounter = 0;
+        this.intlist.clear();
     }
 }
