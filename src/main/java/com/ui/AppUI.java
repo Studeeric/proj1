@@ -64,7 +64,7 @@ public abstract class AppUI extends UI{
     }
   }
 
-  public static void studentGegevensAfwezigMessage() {
+  public static void studentGegevensAfwezigMessage(){
     System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
     System.out.println("Kies een van de volgende opties:");
     System.out.println("1) Probeer opnieuw");
@@ -95,9 +95,12 @@ public abstract class AppUI extends UI{
   public static void printExamStudentExamPassed(int a, String naam, String category){
     System.out.println(a + ") " + naam + " - " + category);
   }
-
   public static void printExamenBeschikbaar(){
-    System.out.println("Examens beschikbaar:");
+    System.out.println("Examens beschikbaar");
+    
+  }
+  public static void printExamenColourCodes(){
+    System.out.println(ANSI_GREEN +"Gehaald "+ANSI_RESET+ANSI_RED+" Gefaald"+ANSI_RESET);
   }
 
   public static void printGoBackToMainMenu(){
@@ -106,5 +109,10 @@ public abstract class AppUI extends UI{
 
   public static void printPressReturnToContinue(){
     System.out.println("Press return to continue.");
+  }
+  public static void printExamPassed(boolean gehaald, int nummer, int aantal) {
+    if(gehaald)
+      clearScreen();
+      System.out.println("Student "+ nummer+" heeft " + aantal + " Examens gehaald");
   }
 }

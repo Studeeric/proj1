@@ -34,7 +34,7 @@ public class exManagerUI extends UI{
     
     public static void printExAddOptions(boolean fastTrack) {
         if(fastTrack)
-            System.out.println("Examen toegevoegd, wil u gelijk vragen toevoegen?\n1)Ja\n2)Nee");
+            System.out.println("Examen toegevoegd, wil u gelijk vragen toevoegen?\n1)Ja\n0)Nee");
         else
             System.out.println("Examen toegevoegd!\nReturning to main menu...");
     }
@@ -111,15 +111,12 @@ public class exManagerUI extends UI{
         System.out.println(text);
         if(emptyline)
             System.out.println();
-            
-
     }
 
     /* exRemoveQuestion */
     public static void prinExRemoveQuestAsk(int counter,String prompt, boolean loop) {
         if(loop)
             System.out.println((counter+1)+") "+ prompt);
-
         else
             System.out.println("Welke vraag wil u verwijderen?");
     }
@@ -143,8 +140,7 @@ public class exManagerUI extends UI{
         else if(line == 2)
             System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
         else if (line == 3)
-            System.out.println("Welke vraag is het juiste antwoord?");
-        
+            System.out.println("Welke optie is het juiste antwoord?");
     }
 
     /* Misc */
@@ -159,6 +155,5 @@ public class exManagerUI extends UI{
             System.out.println(contents.get(i));
             }
         }
-        
     }
 }
