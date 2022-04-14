@@ -85,7 +85,7 @@ abstract public class ExamManager {
     public static void exEditExam(IScanner scanner) {
         UI.clearScreen();
         exEditMainLoop: while(true){
-            // exManagerUI.printExEditQuestionEditQuestion(true);
+            exManagerUI.printExEditQuestionEditQuestion(true);
             int exIndex = exChooseExamIndex(scanner,true);
             if(exIndex != -1){
                 Exam exActualExam = Exam.examList.get(exIndex);
@@ -226,7 +226,7 @@ abstract public class ExamManager {
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
         while (true) {
-            exManagerUI.printExEditQuestionEditQuestion(true);
+            //exManagerUI.printExEditQuestionEditQuestion(true);
             Exam.printAllExams(scanner);
             if (exit) {
                 exManagerUI.printExEditQuestionList();
