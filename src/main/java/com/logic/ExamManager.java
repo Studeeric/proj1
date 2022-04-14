@@ -234,8 +234,6 @@ abstract public class ExamManager {
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
         while (true) {
-            //exManagerUI.printExEditQuestionEditQuestion(true);
-            //UI.clearScreen();
             Exam.printAllExams(scanner);
             if (exit) {
                 exManagerUI.printExEditQuestionList();
