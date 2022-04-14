@@ -1,5 +1,6 @@
 package com.proj1;
 
+import java.util.ArrayList;
 import com.logic.IScanner;
 
 class TestScanner implements IScanner{
@@ -24,4 +25,22 @@ class TestScanner implements IScanner{
   public String nextLine() {
       return stringValue;
   }
+}
+
+class RepeatingTestScanner extends TestScanner{
+    ArrayList<String> sendlist = new ArrayList<>();
+    int counter = 0;
+
+    @Override
+    public String nextLine() {
+        this.stringValue = sendlist.get(counter);
+        if(counter < sendlist.size()-1)
+            counter++;
+        return super.nextLine();
+    }
+
+    public void clear() {
+        this.sendlist.clear();
+        this.counter = 0;
+    }
 }

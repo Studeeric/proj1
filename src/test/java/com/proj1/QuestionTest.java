@@ -1,32 +1,39 @@
 package com.proj1; 
-/*
-import static org.junit.jupiter.api.Assertions.assertEquals; 
-import static org.junit.jupiter.api.Assertions.assertNotEquals; 
+
+import com.logic.*;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 public class QuestionTest {
+    ArrayList<String> questOptions = new ArrayList<>();
+    Question testQuestion = new Question("TestPrompt", questOptions, "TestAnswer");
 
-    Question testQuestion = new Question("Wie werkt aan deze test?", "Wessel");
-
-    //testen of de vraag over een komt
+    //testen of de opties over een komen
     @Test
-    public void askQuestionTest(){
-        String TestText = "Wie werkt aan deze test?";
-        
-        String resultText = testQuestion.askQuestion();
-
-        assertEquals(resultText, TestText);       
+    public void testAskQuestion(){
+        testQuestion.questionContents.add("grumbel");
+        assertEquals("grumbel", testQuestion.askQuestion().get(0));   
+        testQuestion.questionContents.clear();    
     }
 
-    //test of het antwoord klopt
     @Test
-    public void checkAnswerTest(){
-        String TestAnswer = "Wessel";
-        String FoutTestAnswer = "Burton";
-
-        assertTrue(testQuestion.checkAnswer(TestAnswer));
-        assertFalse(testQuestion.checkAnswer(FoutTestAnswer));
-        
+    public void testCheckAnswer(){
+        testQuestion.questionAnswer = "1";
+        assertTrue(testQuestion.checkAnswer("1"));
+        assertFalse(testQuestion.checkAnswer("2"));
     }
+
+    @Test
+    public void testContentsInString() {
+        testQuestion.questionContents.add("testText2");
+        testQuestion.questionContents.add("Banaan");
+        String contents = testQuestion.contentsInString();
+        assertEquals(":testText2:Banaan", contents);
+        testQuestion.questionContents.clear();
+    }  
 }
-*/

@@ -7,6 +7,8 @@ import com.ui.exManagerUI;
 This class manages creating, deleting & editing exams and the questions in them.
 Thanks for coming to my TED talk.
 */
+//TODO Nog steeds buggy bij exAddQuestion
+// question prompt is printed when asked for the right option in exGetQuestContent
 
 abstract public class ExamManager {
 
@@ -74,6 +76,7 @@ abstract public class ExamManager {
     }
 
     public static void exEditExam(IScanner scanner) {
+        UI.clearScreen();
         exEditMainLoop: while(true){
             exManagerUI.printExEditQuestionEditQuestion(true);
             int exIndex = exChooseExamIndex(scanner,true);
@@ -153,6 +156,7 @@ abstract public class ExamManager {
 
     //Support methods
     public static void exAddQuestion(Exam exam, IScanner scanner) {
+        UI.clearScreen();
         exAddQuestLoop1: while(true){
             UI.clearScreen();
             exManagerUI.printExAddQMenu(exam.getQuestionList().size());
@@ -161,6 +165,7 @@ abstract public class ExamManager {
                     exam.addQuestion(exFormatQuestion(exGetQuestCont(scanner)));
                     break;
                 case("2"):
+                    UI.clearScreen();
                     int counter = 1;
                     for(Question question : exam.questionList){
                         exManagerUI.printExAddQLoop(true, null,counter);
@@ -168,7 +173,7 @@ abstract public class ExamManager {
                         for(String content : question.questionContents){
                             exManagerUI.printExAddQLoop(false, content,0);
                         }
-                        exManagerUI.printExAddQuestVars(question.questionPrompt,true);
+                        exManagerUI.printExAddQuestVars(question.questionAnswer,true);
                         counter++;
                     }
                     App.pauseMenu(scanner);
@@ -182,6 +187,7 @@ abstract public class ExamManager {
     }
 
     public static void exRemoveQuestion(Exam exActualExam, IScanner scanner) {
+        UI.clearScreen();
         exManagerUI.prinExRemoveQuestAsk(0,null, false);
         for(int i = 0; i< exActualExam.questionList.size();i++){
             exManagerUI.prinExRemoveQuestAsk(i,exActualExam.questionList.get(i).questionPrompt, true);
@@ -242,7 +248,7 @@ abstract public class ExamManager {
         }
         UI.clearScreen();
         exManagerUI.printExGetQuestCt(3);
-        exManagerUI.exPrintQuestArray(exQuestContents,false);
+        exManagerUI.exPrintQuestArray(exQuestContents,true);
         exQuestContents.add(scanner.nextLine());
         return exQuestContents;
     }

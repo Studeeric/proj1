@@ -73,6 +73,7 @@ public class App {
  
     //studentExamStatus 
     // TODO kijken of deze method opgesplitst kan worden.
+    // Is dit niet erg dubbelop met studentExamPassed?
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         // For loop veranderd de variabele studentnumber naar index van studentList.
@@ -84,45 +85,8 @@ public class App {
             }
         }
         UI.clearScreen();
-        int examNummer;
-        studentExamStatus: while (true) {
-            examChoice: while (true) {
-                AppUI.printExamenBeschikbaar();
-                Exam.printAllExams(scanner);
-                AppUI.printOptionGoBackToMainMenu();
-                AppUI.voerXIn("examnr");
-                try {
-                    examNummer = Integer.parseInt(scanner.nextLine());
-                    break examChoice;
-                } catch (NumberFormatException e) {
-                    AppUI.printChooseValidOption(2);
-                    pauseMenu(scanner);
-                }
-            }
-            examNummer--;
-            boolean gehaald = false;
-            if (examNummer <= Exam.examList.size() && examNummer >= 0) {
-                for (int i = 0; i < Student.studentList.get(studentNumber).behaaldeExamens.size(); i++) {
-                    if (Student.studentList.get(studentNumber).behaaldeExamens.get(i)
-                            .equals(Exam.examList.get(examNummer))) {
-                        gehaald = true;
-                    }
-                }
-            }
-            if (examNummer == -1) {
-                AppUI.printGoBackToMainMenu();
-                break studentExamStatus;
-            }
-            
-            if (examNummer >= Exam.examList.size() || examNummer < -1) {
-                AppUI.printChooseValidOption(3);
-                pauseMenu(scanner);
-            } else {
-                AppUI.studentHeeftExamenWelNietGehaald(gehaald, Exam.getExam(examNummer).getName());
-            }
-            UI.clearScreen(); //in both cases UI.clearScreen() gets called.
-        }
         pauseMenu(scanner);
+        UI.clearScreen();
     }
 
     //studentExamPassed
@@ -141,6 +105,7 @@ public class App {
         if (studentFound) {
             int counter = 1;
             if (Student.studentList.get(studentNumber).behaaldeExamens.size() > 0) {
+                AppUI.printExamPassed(true, studentNumber, Student.studentList.get(studentNumber).behaaldeExamens.size());
                 for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
                     AppUI.printExamStudentExamPassed(counter, exam.getName(), exam.getCategory());
                     counter++;
@@ -221,6 +186,7 @@ public class App {
         int studentNotFoundKeuze = scanner.nextInt();
             switch(studentNotFoundKeuze){
                 case 1:
+                    UI.clearScreen();
                     break;
                 case 2:
                     Student.newStudent(scanner);

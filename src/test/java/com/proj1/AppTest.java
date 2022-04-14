@@ -63,9 +63,7 @@ public class AppTest{
             } // Tot hier is al getest in de vorige methode vandaar geen assert statements!
             if (studentFound) {
                 if (Student.studentList.get(studentNumber).behaaldeExamens.size() > 0) {
-                    for (Exam exam : Student.studentList.get(studentNumber).behaaldeExamens) {
-                        counter++;
-                }
+                    counter += Student.studentList.get(studentNumber).behaaldeExamens.size();
             }
         }
         assertEquals(0, counter);
