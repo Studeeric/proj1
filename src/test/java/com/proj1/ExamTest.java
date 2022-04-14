@@ -8,21 +8,39 @@ import com.logic.Exam;
 import com.logic.Question;
 import com.logic.Student;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 //Of junit5 (e.g. org.junit.jupiter) of junit4 (e.g. org.junit.Test)
 public class ExamTest {
-    static TestScanner testScanner = new TestScanner();
-    static Exam testExam = new Exam("OPT1", "HBO-ICT");
-    static Student testStudent = new Student("Pietje", 21146633);
-    static Student testStudent2 = new Student("Klaasje", 21146634);
-    static ArrayList<String> questionStringList = new ArrayList<>();
-    static Question question = new Question("prompt", questionStringList, "1");
-    static Question question2 = new Question("prompt", questionStringList, "1");
+    private TestScanner testScanner; 
+    private Exam testExam;
+    private Student testStudent;
+    private Student testStudent2;
+    private ArrayList<String> questionStringList;
+    private Question question;
+    private Question question2;
 
+
+    @BeforeEach
+    public void init(){
+        testScanner = new TestScanner();
+        testExam = new Exam("OPT1", "HBO-ICT");
+        testStudent = new Student("Pietje", 21146633);
+        testStudent2 = new Student("Klaasje", 21146634);
+        questionStringList = new ArrayList<>();
+        question = new Question("prompt", questionStringList, "1");
+        question2 = new Question("prompt", questionStringList, "1");
+    }
+
+    @AfterEach
+    public void clear(){
+        Exam.examList.clear();
+    }
 
     /**Test of de naam goed wordt opgevraagd.*/
-    @Test
+    @Test   
     public void testGetName(){
         String testName = "OPT1";
         String foutTestName = "Biologie";
