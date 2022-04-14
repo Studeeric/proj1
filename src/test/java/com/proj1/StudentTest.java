@@ -2,6 +2,7 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 import com.logic.Student;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +10,18 @@ public class StudentTest {
 
     private Student testStudent;
     private TestScanner testScanner;
+    private RepeatingTestScanner rescanner;
     
     @BeforeEach
     public void init(){
         testStudent = new Student("Geerd", 21000321);
         testScanner = new TestScanner();
+        rescanner = new RepeatingTestScanner();
+    }
+
+    @AfterEach
+    public void clear(){
+        rescanner.clear();
     }
   
     //test of die de naam krijgt
@@ -40,6 +48,12 @@ public class StudentTest {
         int testStudentNumber = 21000321;
         Student.newStudent(testScanner);
         assertEquals(testStudentNumber, testStudent.getStudentNumber());
+    }
+
+    @Test
+    public void testNewStudent3(){
+        rescanner.sendlist.add("Geerd");
+        
     }
 
     //test of de student verwijderd word
