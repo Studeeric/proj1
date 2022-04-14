@@ -61,7 +61,7 @@ public abstract class AppUI extends UI{
         System.out.println("Voer je studentnummer in:");
         break;
       case "examnr":
-        System.out.println("Voer het nummer van het examen in:");
+        System.out.println("Voer een nummer in:");
         break;
       default:
         System.out.println("Wrong input into voerXIN() at App.java");
@@ -101,7 +101,7 @@ public abstract class AppUI extends UI{
   }
 
   public static void printOptionGoBackToMainMenu(){
-    System.out.println(ANSI_CYAN + "0)" + ANSI_RESET + " Keer terug naar het hoofdmenu");
+    System.out.println(ANSI_RED + "0)" + ANSI_RESET + " Keer terug naar het hoofdmenu");
   }
   public static void printNoExamsPassed(){
     System.out.println("De student heeft helaas geen examens gehaald.");
