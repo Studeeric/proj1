@@ -27,8 +27,8 @@ public abstract class AppUI extends UI{
   }
 
   public static void printChooseValidOption(int option){
-    //integer option zit hardcoded in App.java . Zo kunnen we 1 methode gebruiken voor meerdere printlines. Ook zijn er in theorie meerdere
-    //uses per case mogelijk.
+    /*integer option zit hardcoded in App.java . Zo kunnen we 1 methode gebruiken voor meerdere printlines. Ook zijn er in theorie meerdere
+    uses per case mogelijk.*/
     switch(option){
       case 1:
         System.out.println("Invalid option. Please choose a listed option");
@@ -54,6 +54,8 @@ public abstract class AppUI extends UI{
 
   public static void voerXIn(String object){ //Burton, for the love of god don't forget the break; Switch cases fall through
                                               //Sorry Wouter, zal het niet meer vergeten :(
+    /*string object zit hardcoded in App.java . Zo kunnen we 1 methode gebruiken voor meerdere printlines. Ook zijn er in theorie meerdere
+    uses per case mogelijk.*/
     switch(object){
       case "studentnr":
         System.out.println("Voer je studentnummer in:");
