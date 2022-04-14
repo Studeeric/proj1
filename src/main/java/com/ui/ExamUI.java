@@ -60,7 +60,7 @@ public abstract class ExamUI extends UI{
 
   public static void printExam(int i, ArrayList<Exam> examList) {
     System.out.println(
-      i+1 + ") " + examList.get(i).getName() + " - " + examList.get(i).getCategory()
+      ANSI_CYAN + (i+1) + ") " + ANSI_RESET + examList.get(i).getName() + " - " + examList.get(i).getCategory()
       );
   }
 

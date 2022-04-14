@@ -74,14 +74,14 @@ public abstract class AppUI extends UI{
       case (1):
         System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
         System.out.println("Kies een van de volgende opties:");
-        System.out.println("1) Probeer opnieuw");
-        System.out.println("2) Nieuwe student aanmaken");
+        System.out.println(ANSI_CYAN + "1)" + ANSI_RESET + " Probeer opnieuw");
+        System.out.println(ANSI_CYAN + "2)" + ANSI_RESET + " Nieuwe student aanmaken");
         printOptionGoBackToMainMenu();
         break;
       case (2):
         System.out.println("Kies een van de volgende opties:");
-        System.out.println("1) Probeer opnieuw");
-        System.out.println("2) Nieuwe student aanmaken");
+        System.out.println(ANSI_CYAN + "1)" + ANSI_RESET + " Probeer opnieuw");
+        System.out.println(ANSI_CYAN + "2)" + ANSI_RESET + " Nieuwe student aanmaken");
         printOptionGoBackToMainMenu();
         break;
     }
@@ -101,14 +101,14 @@ public abstract class AppUI extends UI{
   }
 
   public static void printOptionGoBackToMainMenu(){
-    System.out.println("0) Keer terug naar het hoofdmenu");
+    System.out.println(ANSI_CYAN + "0)" + ANSI_RESET + " Keer terug naar het hoofdmenu");
   }
   public static void printNoExamsPassed(){
     System.out.println("De student heeft helaas geen examens gehaald.");
   }
 
   public static void printExamStudentExamPassed(int a, String naam, String category){
-    System.out.println(a + ") " + naam + " - " + category);
+    System.out.println(ANSI_GREEN + a + ") " + ANSI_RESET + naam + " - " + category);
   }
   public static void printExamenBeschikbaar(){
     System.out.println("Examens beschikbaar");

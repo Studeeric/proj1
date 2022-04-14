@@ -8,13 +8,13 @@ public class exManagerUI extends UI{
     // exManagerMenu
     public static void printExManagerMenu() {
         clearScreen();
-        System.out.println("""
-        Welcome to the KekCorp© Exam Manager.
-        Please choose an option:
-        1) Add a new Exam
-        2) Remove a Exam
-        3) Edit Exam Questions
-        0) Exit""");
+        System.out.println(
+        "Welcome to the KekCorp© Exam Manager. \n" +
+        "Please choose an option:\n" +
+        ANSI_CYAN + "1) " + ANSI_RESET + "Add a new Exam\n" +
+        ANSI_CYAN + "2) " + ANSI_RESET + "Remove a Exam\n" +
+        ANSI_CYAN + "3) " + ANSI_RESET + "Edit Exam Questions\n" +
+        ANSI_RED +  "0) Exit" + ANSI_RESET);
     }
 
     public static void printExReturnMainMenu(boolean Default) {
@@ -49,8 +49,8 @@ public class exManagerUI extends UI{
     // exRemoveExam
     public static void printExRemoveMenu(String examName, String examCategory) {
         System.out.println("Weet u zeker dat u het volgende examen wil verwijderen\n" + examName + " - " +examCategory+"?");
-        System.out.println("1) Ja, verwijder dit examen" + examName);
-        System.out.println("0) Nee, keer terug naar het hoofdmenu");
+        System.out.println(ANSI_RED + "1) Ja, verwijder dit examen " + examName + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "0) Nee, keer terug naar het hoofdmenu" + ANSI_RESET);
     }
 
     public static void printExRemoveReact(boolean positive) {
@@ -66,11 +66,11 @@ public class exManagerUI extends UI{
 
     // exEditExam
     public static void printExEditMainMenu() {
-        System.out.println("""
-                    1) Add a question
-                    2) Remove a question
-                    3) Edit a question
-                    0) Exit""");
+        System.out.println(
+            ANSI_CYAN + "1) " + ANSI_RESET + "Add a question \n" +
+            ANSI_CYAN + "2) " + ANSI_RESET + "Remove a question \n" +
+            ANSI_CYAN + "3) " + ANSI_RESET + "Edit a question \n" +
+            ANSI_RED + "0) Exit" + ANSI_RESET);
     }
 
     public static void printExEditQuestionEditQuestion(boolean question) {
@@ -81,11 +81,11 @@ public class exManagerUI extends UI{
     }
 
     public static void printExEditQuestionList(int i, String prompt) {
-        System.out.println((i+1)+") "+ prompt);   
+        System.out.println(ANSI_CYAN + (i+1) +") " + ANSI_RESET + prompt);   
     }
 
     public static void printExEditQuestionList() {
-        System.out.println("0) Exit");
+        System.out.println(ANSI_RED + "0) Exit" + ANSI_RESET);
     }
 
     public static void printExEditQuestionEditMenu(String old_line ) {
@@ -101,11 +101,11 @@ public class exManagerUI extends UI{
     // exAddQuestion
     public static void printExAddQMenu(int size) {
         System.out.println("The selected exam has currently "+size+" Questions\n");
-        System.out.println("""
-            Please choose an option:
-            1) Make a new question
-            2) View current questions
-            0) Return to menu""");
+        System.out.println(
+            "Please choose an option:\n" + 
+            ANSI_CYAN + "1) " + ANSI_RESET + " Make a new question\n" +
+            ANSI_CYAN + "2) " + ANSI_RESET + " View current questions\n" +
+            ANSI_RED + "0) " + ANSI_RESET + " Return to menu");
     }
 
     public static void printExAddQLoop(boolean vraag, String content, int counter) {
