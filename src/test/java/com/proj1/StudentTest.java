@@ -2,28 +2,44 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 import com.logic.Student;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
-    Student testStudent = new Student("Geerd", 21000321);
+    private Student testStudent;
+    private TestScanner testScanner
     
+    @BeforeEach
+    public void init(){
+        testStudent = new Student("Geerd", 21000321);
+        testScanner = new TestScanner();
+    }
+  
     //test of die de naam krijgt
     @Test
-    public void testGetName(){
+    public void testNewStudent(){
+        // Test of de naam goed doorkomt
         String testName = "Geerd";
-
+        String foutTestName = "Lucas";
         assertEquals(testName, testStudent.getName());
-    }
+        assertNotEquals(foutTestName, testStudent.getStudentNumber());
 
-    //test of het StudentNumber goed door komt
-    @Test
-    public void testGetStudentNumber(){
+        // Test of de studentnumber correct doorkomt
         int testStudentNumber = 21000321;
-        int foutTestStudentNumber  = 21045678;
-
+        int foutTestStudentNumber = 21045678;
         assertEquals(testStudentNumber, testStudent.getStudentNumber());
         assertNotEquals(foutTestStudentNumber, testStudent.getStudentNumber());
+    }
+
+    /**Checkt of studentnumber goed doorkomt */
+    @Test
+    public void testNewStudent2(){
+        testScanner.setInt(21000321);
+        testScanner.setString("2100321");
+        int testStudentNumber = 21000321;
+        Student.newStudent(testScanner);
+        assertEquals(testStudentNumber, testStudent.getStudentNumber());
     }
 
     //test of de student verwijderd word
@@ -51,40 +67,5 @@ public class StudentTest {
         Student student = new Student(naam, studentNummer);
 
        assertEquals(naamTest, student.getName());
-    }
-
-    //Deze methode controleerd of de studentnumber wel in de studentList staat
-    /*
-    @Test
-    public void testCheckStudentNumber(){
-        int nummer = 21000321;
-        String juist = "gelukt";
-        String test = "nietGelukt";
-        for (Student testStudent : Student.studentList){
-        if (testStudent.getStudentNumber() == nummer){
-            test = "gelukt";
-        }else{
-            test = "niet gelukt";
-            }
-        }
-
-        assertEquals(juist, test);
-    }
-    */
-
-    //Deze methode controleerd of de studentnumber niet in de studentList staat
-    @Test
-    public void testCheckStudentNumber2(){
-        int nummer = 21000320;
-        String juist = "gelukt";
-        String test = "nietGelukt";
-        for (Student testStudent : Student.studentList){
-        if (testStudent.getStudentNumber() == nummer){
-            test = "niet gelukt";
-        }else{
-            test = "gelukt";
-            }
-        }
-        assertEquals(juist, test);
-    }
+    }   
 }
