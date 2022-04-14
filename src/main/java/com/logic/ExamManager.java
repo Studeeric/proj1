@@ -102,8 +102,8 @@ abstract public class ExamManager {
             else{break exEditMainLoop;}
         } 
     }
-    //TODO Legacy code. 
-    /*
+ 
+    /* Legacy Code
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -126,9 +126,9 @@ abstract public class ExamManager {
             exManagerUI.printExEditQuestionEditConfirm();
             App.pauseMenu(scanner);
         }
-
     }
     */
+
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -148,8 +148,7 @@ abstract public class ExamManager {
             exChosenQuestList.set(exUserEditChoice, scanner.nextLine());
             exNewFormatQuestion(exChosenQuest, exChosenQuestList);
             exManagerUI.printExEditQuestionEditConfirm();
-        }
-        
+        }   
     }
 
     //Support methods
@@ -197,12 +196,7 @@ abstract public class ExamManager {
                     exActualExam.questionList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveQuestReturn(true);
                     break exRemoveQuestLoop;
-                case("n"):
-                case("N"):
-                case("no"):
-                case("No"):
-                case("nee"):
-                case("Nee"):
+                case("0"):
                     exManagerUI.printExRemoveQuestReturn(false);
                     break exRemoveQuestLoop;
                 default:

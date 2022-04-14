@@ -111,8 +111,6 @@ public class exManagerUI extends UI{
         System.out.println(text);
         if(emptyline)
             System.out.println();
-            
-
     }
 
     /* exRemoveQuestion */
@@ -126,7 +124,8 @@ public class exManagerUI extends UI{
 
     public static void printExRemoveQuestConfirm(String questName) {
         System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + questName);
-        System.out.println("Y\\N?");
+        System.out.println("1) Ja, verwijder deze vraag");
+        System.out.println("0) Nee, keer terug naar het hoofdmenu");
     }
 
     public static void printExRemoveQuestReturn(boolean confirmed) {
@@ -144,7 +143,6 @@ public class exManagerUI extends UI{
             System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
         else if (line == 3)
             System.out.println("Welke vraag is het juiste antwoord?");
-        
     }
 
     /* Misc */
@@ -158,7 +156,6 @@ public class exManagerUI extends UI{
             else{
             System.out.println(contents.get(i));
             }
-        }
-        
+        }      
     }
 }

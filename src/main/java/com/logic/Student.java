@@ -1,5 +1,6 @@
 package com.logic; import java.util.ArrayList;
 
+import com.ui.AppUI;
 import com.ui.StudentUI;
 import com.ui.UI;
 
@@ -60,7 +61,7 @@ public class Student {
                     StudentUI.printNumExist();
                     StudentUI.printTryAgain();
                     if (scanner.nextLine().equals("0")) {
-                        StudentUI.printReturnMainMenu();
+                        AppUI.printGoBackToMainMenu();
                         App.pauseMenu(scanner);
                         return 0;
                     }
@@ -72,7 +73,7 @@ public class Student {
                     StudentUI.printTryAgain();
                     if (scanner.nextLine().equals("-1")) {
                         StudentUI.printNumInv();
-                        StudentUI.printReturnMainMenu();
+                        AppUI.printGoBackToMainMenu();
                         App.pauseMenu(scanner);
                         return 0;
                     }

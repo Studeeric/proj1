@@ -1,5 +1,6 @@
 package com.logic; 
 import com.ui.AppUI;
+import com.ui.StudentUI;
 import com.ui.UI;
 
 public class App {
@@ -26,7 +27,8 @@ public class App {
                         break;
                     case ("2"):
                         UI.clearScreen();
-                        getStudents(james);
+                        StudentUI.printAllStudents(false);
+                        pauseMenu(james);
                         break;
                     case ("3"):
                         UI.clearScreen();
@@ -68,17 +70,8 @@ public class App {
             }
         }
     }
-
-    // getStudents //TODO Sysout naar UI
-    private static void getStudents(IScanner scanner) {
-        for (Student s : Student.studentList) {
-            System.out.println(s.getName());
-        }
-        pauseMenu(scanner);
-    }
-    
+ 
     //studentExamStatus 
-    // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
     public static void studentExamStatus(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
@@ -127,15 +120,12 @@ public class App {
             } else {
                 AppUI.studentHeeftExamenWelNietGehaald(gehaald, Exam.getExam(examNummer).getName());
             }
-
             UI.clearScreen(); //in both cases UI.clearScreen() gets called.
-            
         }
         pauseMenu(scanner);
     }
 
     //studentExamPassed
-    // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
     
     public static void studentExamPassed(IScanner scanner){
@@ -240,6 +230,6 @@ public class App {
                 default:
                     AppUI.printChooseValidOption(6);
                     break;
-            }      
+        }      
     }
 }
