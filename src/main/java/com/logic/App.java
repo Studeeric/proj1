@@ -206,8 +206,8 @@ public class App {
 
     //studentGegevensAfwezig
     public static boolean studentGegevensAfwezig(IScanner scanner) {
+        AppUI.studentGegevensAfwezigMessage(1);
         while (true) {
-            AppUI.studentGegevensAfwezigMessage();
             int studentNotFoundKeuze = scanner.nextInt();
             if (studentNotFoundKeuze >= 0 && studentNotFoundKeuze < 3) {
                 switch (studentNotFoundKeuze) {
@@ -229,6 +229,7 @@ public class App {
                 AppUI.printChooseValidOption(1);
                 pauseMenu(scanner);
                 UI.clearScreen();
+                AppUI.studentGegevensAfwezigMessage(2);
             }
         }
     }

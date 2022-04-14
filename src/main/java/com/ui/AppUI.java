@@ -64,12 +64,22 @@ public abstract class AppUI extends UI{
     }
   }
 
-  public static void studentGegevensAfwezigMessage(){
-    System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
-    System.out.println("Kies een van de volgende opties:");
-    System.out.println("1) Probeer opnieuw");
-    System.out.println("2) Nieuwe student aanmaken");
-    printOptionGoBackToMainMenu();
+  public static void studentGegevensAfwezigMessage(int check) {
+    switch (check) {
+      case (1):
+        System.out.println("Studentgegevens kloppen niet, of bestaan niet.");
+        System.out.println("Kies een van de volgende opties:");
+        System.out.println("1) Probeer opnieuw");
+        System.out.println("2) Nieuwe student aanmaken");
+        printOptionGoBackToMainMenu();
+        break;
+      case (2):
+        System.out.println("Kies een van de volgende opties:");
+        System.out.println("1) Probeer opnieuw");
+        System.out.println("2) Nieuwe student aanmaken");
+        printOptionGoBackToMainMenu();
+        break;
+    }
   }
 
   public static void errorMessageApp(Exception e, String method){
