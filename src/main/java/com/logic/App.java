@@ -158,6 +158,10 @@ public class App {
                 AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
                 examNummer = scanner.nextInt();
+                while (examNummer > Exam.examList.size()){
+                    AppUI.printChooseValidOption(1);
+                    examNummer = scanner.nextInt();
+                }
                 if (examNummer == 0) {
                     break ExamensLoop;
                 }
@@ -201,25 +205,32 @@ public class App {
     }
 
     //studentGegevensAfwezig
-    public static boolean studentGegevensAfwezig(IScanner scanner){
-        AppUI.studentGegevensAfwezigMessage();
-        while (true){
+    public static boolean studentGegevensAfwezig(IScanner scanner) {
+        AppUI.studentGegevensAfwezigMessage(1);
+        while (true) {
             int studentNotFoundKeuze = scanner.nextInt();
-            switch(studentNotFoundKeuze){
-                case 1:
-                    UI.clearScreen();
-                    return true;
-                case 2:
+            if (studentNotFoundKeuze >= 0 && studentNotFoundKeuze < 3) {
+                switch (studentNotFoundKeuze) {
+                    case 1:
+                        UI.clearScreen();
+                        return true;
+                    case 2:
+                        UI.clearScreen();
+                        Student.newStudent(scanner);
+                        return true;
+                    case 0:
+                        return false;
+                    default:
+                        UI.clearScreen();
+                        AppUI.printChooseValidOption(6);
+                        return false;
+                }
+            } else {
+                AppUI.printChooseValidOption(1);
+                pauseMenu(scanner);
                 UI.clearScreen();
-                    Student.newStudent(scanner);
-                    return true;
-                case 0: 
-                    return false;
-                default:
-                    UI.clearScreen();
-                    AppUI.printChooseValidOption(6);
-                    return false;
-            }      
+                AppUI.studentGegevensAfwezigMessage(2);
+            }
         }
     }
 }
