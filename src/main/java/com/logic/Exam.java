@@ -57,8 +57,8 @@ public class Exam{
             examResult(student, correct, true);
             App.pauseMenu(scanner);
         } else {
-            App.pauseMenu(scanner);
             examResult(student, correct, false);
+            App.pauseMenu(scanner);
         }
     }
 
