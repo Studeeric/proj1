@@ -63,8 +63,7 @@ abstract public class ExamManager {
         Debug.wait(2,true);
     }
 
-    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
-       
+    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {       
         exRemoveLoop: while (true){
             if (exToBeRemoved >= 0 && exToBeRemoved <= Exam.examList.size()) {
                 UI.clearScreen();        
