@@ -1,6 +1,5 @@
 package com.logic; 
 import com.ui.AppUI;
-import com.ui.StudentUI;
 import com.ui.UI;
 
 public class App {
@@ -27,8 +26,7 @@ public class App {
                         break;
                     case ("2"):
                         UI.clearScreen();
-                        StudentUI.printAllStudents(false);
-                        pauseMenu(james);
+                        getStudents(james);
                         break;
                     case ("3"):
                         UI.clearScreen();
@@ -62,6 +60,7 @@ public class App {
                         break mainMenuLoop;
                     default:
                         AppUI.printChooseValidOption(1);
+                        pauseMenu(james);
                         break;
                 }
             } catch (Exception e) {
@@ -70,26 +69,44 @@ public class App {
             }
         }
     }
- 
+
+    // getStudents //TODO Sysout naar UI
+    private static void getStudents(IScanner scanner) {
+        for (Student s : Student.studentList) {
+            System.out.println(s.getName());
+        }
+        pauseMenu(scanner);
+    }
+    
     //studentExamStatus 
+    // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
     // Is dit niet erg dubbelop met studentExamPassed?
     public static void studentExamStatus(IScanner scanner){
-        int studentNumber = askStudentNumber(scanner);
-        // For loop veranderd de variabele studentnumber naar index van studentList.
-        for (int i = 0; i < Student.studentList.size(); i++) {
-            
-            if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
-                studentNumber = i;
+        while (true) {
+            int studentNumber = askStudentNumber(scanner);
+            boolean studentFound = false;
+            for (int i = 0; i < Student.studentList.size(); i++) {
+                if (Student.studentList.get(i).getStudentNumber() == studentNumber) {
+                    studentNumber = i;
+                    studentFound = true;
+                    break;
+                }
+            }
+            if(studentFound){
+                UI.clearScreen();
+                AppUI.printExamenColourCodes();
+                Exam.printAllExamsColourCoded(scanner, Student.studentList.get(studentNumber));
                 break;
             }
+            break;
         }
-        UI.clearScreen();
         pauseMenu(scanner);
         UI.clearScreen();
     }
 
     //studentExamPassed
+    // TODO kijken hoe deze gemerged kan worden met develop.
     // TODO kijken of deze method opgesplitst kan worden.
     
     public static void studentExamPassed(IScanner scanner){
@@ -144,7 +161,7 @@ public class App {
                 if (examNummer == 0) {
                     break ExamensLoop;
                 }
-                if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()) {
+                if (examNummer <= Exam.examList.size() || examNummer >= Exam.examList.size()) {
                     Exam.examList.get(examNummer - 1).startExam(student, scanner);
                 } else {
                     AppUI.printChooseValidOption(5);
@@ -176,26 +193,33 @@ public class App {
                     return input;
                 }
             }
-            studentGegevensAfwezig(scanner);
+            if(!studentGegevensAfwezig(scanner)){
+                return -1;
+            }
+            
         }
     }
 
     //studentGegevensAfwezig
-    public static void studentGegevensAfwezig(IScanner scanner){
+    public static boolean studentGegevensAfwezig(IScanner scanner){
         AppUI.studentGegevensAfwezigMessage();
-        int studentNotFoundKeuze = scanner.nextInt();
+        while (true){
+            int studentNotFoundKeuze = scanner.nextInt();
             switch(studentNotFoundKeuze){
                 case 1:
                     UI.clearScreen();
-                    break;
+                    return true;
                 case 2:
+                UI.clearScreen();
                     Student.newStudent(scanner);
-                    break;
+                    return true;
                 case 0: 
-                    break;
+                    return false;
                 default:
+                    UI.clearScreen();
                     AppUI.printChooseValidOption(6);
-                    break;
-        }      
+                    return false;
+            }      
+        }
     }
 }

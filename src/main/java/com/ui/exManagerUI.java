@@ -38,6 +38,13 @@ public class exManagerUI extends UI{
         else
             System.out.println("Examen toegevoegd!\nReturning to main menu...");
     }
+    public static void printExExamInputError(boolean type) {
+        if(type)
+            System.out.println("Voer geen lege naam in");
+        else
+            System.out.println("Voer geen lege vraag in");
+        
+    }
 
     // exRemoveExam
     public static void printExRemoveMenu(String examName, String examCategory) {
@@ -113,7 +120,7 @@ public class exManagerUI extends UI{
             System.out.println();
     }
 
-    // exRemoveQuestion 
+    /* exRemoveQuestion */
     public static void prinExRemoveQuestAsk(int counter,String prompt, boolean loop) {
         if(loop)
             System.out.println((counter+1)+") "+ prompt);
@@ -123,8 +130,7 @@ public class exManagerUI extends UI{
 
     public static void printExRemoveQuestConfirm(String questName) {
         System.out.println("Weet u zeker dat u deze vraag wil verwijderen\n" + questName);
-        System.out.println("1) Ja, verwijder deze vraag");
-        System.out.println("0) Nee, keer terug naar het hoofdmenu");
+        System.out.println("Y\\N?");
     }
 
     public static void printExRemoveQuestReturn(boolean confirmed) {
@@ -134,17 +140,17 @@ public class exManagerUI extends UI{
             System.out.println("Vraag verwijderen geannuleerd.\nReturning to menu...");
     }
 
-    // exGetQuestCont 
+    /* exGetQuestCont */
     public static void printExGetQuestCt(int line) {
         if(line ==1 )
             System.out.println("Voer de vraag in:");
         else if(line == 2)
             System.out.println("Enter a option & press return to confirm. Press 0 to stop adding options");
         else if (line == 3)
-            System.out.println("Welke vraag is het juiste antwoord?");
+            System.out.println("Welke optie is het juiste antwoord?");
     }
 
-    // Misc
+    /* Misc */
     public static void exPrintQuestArray(ArrayList<String> contents,boolean numbered) {
         System.out.println("Vraag x:");
         System.out.println();
@@ -155,6 +161,17 @@ public class exManagerUI extends UI{
             else{
             System.out.println(contents.get(i));
             }
-        }      
+        }
+    }
+    public static void exPrintNewQuestArray(ArrayList<String> contents,boolean numbered) {
+        System.out.println();
+        for(int i=1;i<contents.size()-1;i++){
+            if(numbered){
+                System.out.println((i+1)+" "+contents.get(i));
+            }
+            else{
+            System.out.println(contents.get(i));
+            }
+        }
     }
 }
