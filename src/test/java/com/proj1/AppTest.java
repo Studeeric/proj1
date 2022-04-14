@@ -1,7 +1,6 @@
 package com.proj1;
 
 import com.logic.App;
-import com.logic.Student;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,13 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
   
-  private static Student testStudent;
   private TestScanner testScanner;
   
     @BeforeEach
     public void init(){
         testScanner = new TestScanner();
-        testStudent = new Student("Geerd", 21000321);
     }
 
     /** Test alle opties bij studentgegevensafwezig en kijkt of de juiste respons word gegeven */

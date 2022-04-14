@@ -1,4 +1,6 @@
 package com.logic; import java.util.ArrayList;
+
+import com.ui.AppUI;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
@@ -63,7 +65,7 @@ abstract public class ExamManager {
 
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
         UI.clearScreen();
-        if(exToBeRemoved != -1){
+        if(exToBeRemoved >-1 && exToBeRemoved < Exam.examList.size()){
             exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
             exRemoveLoop: while (true){
                 switch(scanner.nextLine()){
@@ -119,7 +121,7 @@ abstract public class ExamManager {
             exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
         }
         exManagerUI.printExEditQuestionList();
-        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+        int exUserEditChoice = scanner.nextInt()-1;
         if(exUserEditChoice != -1){
             Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
             ArrayList<String> exChosenQuestList = new ArrayList<>(exConvertToList(exChosenQuest));
@@ -199,23 +201,14 @@ abstract public class ExamManager {
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
-        UI.clearScreen();
-        Exam.printAllExams(scanner);
-        if(exit){
-            exManagerUI.printExEditQuestionList();
-        }
-        Integer examNr;
-        while (true){
-            String exChooseExChoice = scanner.nextLine();
-            try{
-                examNr = Integer.parseInt(exChooseExChoice);
-                break;
+        while (true) {
+            Exam.printAllExams(scanner);
+            if (exit) {
+                exManagerUI.printExEditQuestionList();
             }
-            catch(Exception e){
-                exManagerUI.printExReturnMainMenu(false);
-            }
+            int examNr = scanner.nextInt();
+            return (examNr - 1);
         }
-        return examNr-1;
     }
     /**
      * 
