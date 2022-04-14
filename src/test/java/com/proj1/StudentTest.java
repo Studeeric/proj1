@@ -2,11 +2,13 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 import com.logic.Student;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
+    private RepeatingTestScanner rescanner;
     private Student testStudent;
     private TestScanner testScanner;
     
@@ -14,7 +16,13 @@ public class StudentTest {
     public void init(){
         testStudent = new Student("Geerd", 21000321);
         testScanner = new TestScanner();
+        rescanner = new RepeatingTestScanner();
     }
+
+    @AfterEach
+    public void clear(){
+        rescanner.clear();
+    }    
   
     //test of die de naam krijgt
     @Test
@@ -40,6 +48,25 @@ public class StudentTest {
         int testStudentNumber = 21000321;
         Student.newStudent(testScanner);
         assertEquals(testStudentNumber, testStudent.getStudentNumber());
+    }
+
+    @Test
+    public void testNewStudent3(){
+        rescanner.sendlist.add("Lucas");
+        rescanner.sendlist.add("1200923");
+        Student.newStudent(rescanner);
+
+        //Test of de naam goed doorkomt
+        String testName = "Lucas";
+        String foutTestName = "Geerd";
+        assertEquals(testName, Student.studentList.get(Student.studentList.size()-1).getName());
+        assertNotEquals(foutTestName, Student.studentList.get(Student.studentList.size()-1).getName());
+
+        //Test of de studentnumber goed doorkomt
+        int testStudentNumber = 1200923;
+        int foutTestStudentNumber = 21045678;
+        assertEquals(testStudentNumber, Student.studentList.get(Student.studentList.size()-1).getStudentNumber());
+        assertNotEquals(foutTestStudentNumber, Student.studentList.get(Student.studentList.size()-1).getStudentNumber());
     }
 
     //test of de student verwijderd word
