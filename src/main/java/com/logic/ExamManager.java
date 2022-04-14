@@ -1,4 +1,6 @@
 package com.logic; import java.util.ArrayList;
+
+import com.ui.AppUI;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
@@ -61,21 +63,26 @@ abstract public class ExamManager {
         Debug.wait(2,true);
     }
 
-    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
-        UI.clearScreen();
-        exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
+    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {       
         exRemoveLoop: while (true){
-            switch(scanner.nextLine()){
-                case("1"):
-                    Exam.examList.remove(exToBeRemoved);
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                case("0"):
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                default:
-                exManagerUI.printExRemoveDefaultError();
-                    break;
+            if (exToBeRemoved >= 0 && exToBeRemoved <= Exam.examList.size()) {
+                UI.clearScreen();        
+                exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
+                switch (scanner.nextLine()) {
+                    case ("1"):
+                        Exam.examList.remove(exToBeRemoved);
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    case ("0"):
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    default:
+                        exManagerUI.printExRemoveDefaultError();
+                        break;
+                }
+            } else {
+                UI.clearScreen();
+                //TODO ffs
             }
         }   
     }
@@ -117,7 +124,7 @@ abstract public class ExamManager {
             exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
         }
         exManagerUI.printExEditQuestionList();
-        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+        int exUserEditChoice = scanner.nextInt()-1;
         if(exUserEditChoice != -1){
             Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
             ArrayList<String> exChosenQuestList = new ArrayList<>(exConvertToList(exChosenQuest));
@@ -197,22 +204,21 @@ abstract public class ExamManager {
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
-        Exam.printAllExams(scanner);
-        if(exit){
-            exManagerUI.printExEditQuestionList();
-        }
-        Integer examNr;
-        while (true){
-            String exChooseExChoice = scanner.nextLine();
-            try{
-                examNr = Integer.parseInt(exChooseExChoice);
-                break;
+        while (true) {
+            Exam.printAllExams(scanner);
+            if (exit) {
+                exManagerUI.printExEditQuestionList();
             }
-            catch(Exception e){
-                exManagerUI.printExReturnMainMenu(false);
+
+            int examNr = scanner.nextInt();
+            if (examNr >= 0 && examNr <= Exam.examList.size()) {
+                return (examNr - 1);
+            } else {
+                AppUI.printChooseValidOption(1);
+                App.pauseMenu(scanner);
+                UI.clearScreen();
             }
         }
-        return examNr-1;
     }
     /**
      * 
