@@ -12,11 +12,11 @@ exam:AddQuestion:2:Wat krijg je als je blauw en rood mixt?: Groen: Roze: Paars: 
 exam:AddQuestion:2:Wat krijg je als je rood en geel mixt?: Groen: Roze: Paars: Oranje:4
 #
 exam:newExam:Geschiedenis voor beginners:Geschiedenis
-exam:AddQuestion:3:Willem II was de koning voor Willem I. Waar of Niet waar?: Waar: Niet waar:3
-exam:AddQuestion:3:Welke partij won de Great Emu War?: Australisch leger: Abel Tasman: De emoe's: Engeland:4
-exam:AddQuestion:3:Welke Europeaan ontdekte Amerika?: Christoffel Columbus: Erik de Rode: de Paus: Leif Erikson:5
-exam:AddQuestion:3:Louis XVI was onthoofd tijdens de Franse Revolutie. Waar of Niet Waar?: Waar: Niet Waar:3
-exam:AddQuestion:3:Het was eerste kerstdag, 1961, ik weet het nog zo goed. Wat weet ik nog zo goed?: Het konijnenhok was leeg: Vaders bed was leeg: Duitsers waren aan het voetballen: Lucas kreeg een ex:2
+exam:AddQuestion:3:Willem II was de koning voor Willem I. Waar of Niet waar?: Waar: Niet waar:2
+exam:AddQuestion:3:Welke partij won de Great Emu War?: Australisch leger: Abel Tasman: De emoe's: Engeland:3
+exam:AddQuestion:3:Welke Europeaan ontdekte Amerika?: Christoffel Columbus: Erik de Rode: de Paus: Leif Erikson:4
+exam:AddQuestion:3:Louis XVI was onthoofd tijdens de Franse Revolutie. Waar of Niet Waar?: Waar: Niet Waar:2
+exam:AddQuestion:3:Het was eerste kerstdag, 1961, ik weet het nog zo goed. Wat weet ik nog zo goed?: Het konijnenhok was leeg: Vaders bed was leeg: Duitsers waren aan het voetballen: Lucas kreeg een ex:1
 #
 student:makeStudent:Eric:21146632
 student:makeStudent:Lucas:21093830
