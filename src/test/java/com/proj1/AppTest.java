@@ -3,12 +3,18 @@ package com.proj1;
 import com.logic.Exam;
 import com.logic.Student;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class AppTest{
-    Student testStudent = new Student("Geerd", 21000321);
+    Student testStudent;
+
+    @BeforeEach
+    public void init(){
+        testStudent = new Student("Geerd", 21000321);
+    }
 
     @Test
     public void testStudentExamStatus(){

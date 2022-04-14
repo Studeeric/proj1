@@ -2,12 +2,17 @@ package com.proj1; import static org.junit.jupiter.api.Assertions.assertEquals; 
 
 import com.logic.Student;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
-    Student testStudent = new Student("Geerd", 21000321);
+    private Student testStudent;
     
+    @BeforeEach
+    public void init(){
+        testStudent = new Student("Geerd", 21000321);
+    }
     //test of die de naam krijgt
     @Test
     public void testGetName(){
