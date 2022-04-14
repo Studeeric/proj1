@@ -9,7 +9,11 @@ Thanks for coming to my TED talk.
 */
 //TODO Nog steeds buggy bij exAddQuestion
 // question prompt is printed when asked for the right option in exGetQuestContent
+// Fixed the question prompt thingy but the right answer selection doesn't work right and its 0:23 AM
 
+/**
+ * This class manages creating, deleting & editing exams and the questions in them.
+ */
 abstract public class ExamManager {
 
     private ExamManager(){} //private constructor means no objects can be made of this class
