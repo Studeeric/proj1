@@ -82,6 +82,10 @@ abstract public class ExamManager {
                 }
             }   
         }
+        else{
+            exManagerUI.printExReturnMainMenu(false);
+            Debug.wait(3, true);
+        }
     }
 
     public static void exEditExam(IScanner scanner) {
@@ -185,12 +189,7 @@ abstract public class ExamManager {
                     exActualExam.questionList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveQuestReturn(true);
                     break exRemoveQuestLoop;
-                case("n"):
-                case("N"):
-                case("no"):
-                case("No"):
-                case("nee"):
-                case("Nee"):
+                case("0"):
                     exManagerUI.printExRemoveQuestReturn(false);
                     break exRemoveQuestLoop;
                 default:
@@ -199,8 +198,15 @@ abstract public class ExamManager {
             }
         }
     }
-
+    /**
+     * Enables the user to select an exam from the {@link Exam}.examList
+     * 
+     * @param scanner
+     * @param exit enables the print of a "0) Exit" Option
+     * @return the index of the selected exam as int
+     */
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
+        UI.clearScreen();
         while (true) {
             Exam.printAllExams(scanner);
             if (exit) {
@@ -211,9 +217,9 @@ abstract public class ExamManager {
         }
     }
     /**
-     * 
+     * Generates an All in One format ArrayList containing {@link Question} values
      * @param scanner
-     * @return
+     * @return ArrayList<String>
      */
     public static ArrayList<String> exGetQuestCont(IScanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
@@ -248,7 +254,7 @@ abstract public class ExamManager {
      /**
      * Takes an ArrayList<String> in the old all in one List format and converts it to a {@link Question} in the new split format
      * @param contents
-     * @return
+     * @return {@link Question}
      */
     public static Question exFormatQuestion(ArrayList<String> contents) {
         ArrayList<String> questionOptions = new ArrayList<>();
@@ -261,7 +267,7 @@ abstract public class ExamManager {
      * Takes an ArrayList<String> in the old all in one List format and converts it to the new split format for the given {@link Question} object
      * @param quest
      * @param contents
-     * @return
+     * @return {@link Question}
      */
     public static Question exNewFormatQuestion(Question quest, ArrayList<String> contents){
         ArrayList<String> questionOptions = new ArrayList<>();
