@@ -158,6 +158,10 @@ public class App {
                 AppUI.printOptionGoBackToMainMenu();
                 AppUI.voerXIn("examnr");
                 examNummer = scanner.nextInt();
+                while (examNummer > Exam.examList.size()){
+                    AppUI.printChooseValidOption(1);
+                    examNummer = scanner.nextInt();
+                }
                 if (examNummer == 0) {
                     break ExamensLoop;
                 }
