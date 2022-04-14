@@ -1,7 +1,6 @@
 package com.proj1;
 
 import java.util.ArrayList;
-
 import com.logic.IScanner;
 
 class TestScanner implements IScanner{
@@ -44,5 +43,4 @@ class RepeatingTestScanner extends TestScanner{
         this.sendlist.clear();
         this.counter = 0;
     }
-    
 }
