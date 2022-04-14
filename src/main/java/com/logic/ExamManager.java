@@ -49,8 +49,16 @@ abstract public class ExamManager {
     public static void exNewExam(IScanner scanner) {
         exManagerUI.printExExamInput(true);
         String newExName = scanner.nextLine();
+        while(newExName.equals("")){
+            exManagerUI.printExExamInputError(true);
+            newExName = scanner.nextLine();
+        }
         exManagerUI.printExExamInput(false);
         String newExCat = scanner.nextLine();
+        while(newExCat.equals("")){
+            exManagerUI.printExExamInputError(false);
+            newExCat = scanner.nextLine();
+        }
         Exam exManagerCreated = new Exam(newExName, newExCat);
         exManagerUI.printExAddOptions(true);
         if(scanner.nextLine().equals("1")){
@@ -156,7 +164,6 @@ abstract public class ExamManager {
             exNewFormatQuestion(exChosenQuest, exChosenQuestList);
             exManagerUI.printExEditQuestionEditConfirm();
         }
-        
     }
 
     //Support methods
@@ -244,7 +251,12 @@ abstract public class ExamManager {
     public static ArrayList<String> exGetQuestCont(IScanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
         exManagerUI.printExGetQuestCt(1);
-        exQuestContents.add(scanner.nextLine());
+        String questPrompt = scanner.nextLine();
+        while(questPrompt.equals("")){
+            exManagerUI.printExExamInputError(false);
+            questPrompt = scanner.nextLine();
+        }
+        exQuestContents.add(questPrompt);
         exGetQuestLoop: while (true){
             exManagerUI.printExGetQuestCt(2);
             String exUserChoice = scanner.nextLine();

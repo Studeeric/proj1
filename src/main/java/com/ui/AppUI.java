@@ -115,4 +115,7 @@ public abstract class AppUI extends UI{
       clearScreen();
       System.out.println("Student "+ nummer+" heeft " + aantal + " Examens gehaald");
   }
+  public static void printStudentNotFound() {
+    System.out.println("StudentNumber unknown, please enter a valid number");
+  }
 }

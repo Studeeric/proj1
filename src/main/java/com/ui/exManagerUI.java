@@ -38,6 +38,13 @@ public class exManagerUI extends UI{
         else
             System.out.println("Examen toegevoegd!\nReturning to main menu...");
     }
+    public static void printExExamInputError(boolean type) {
+        if(type)
+            System.out.println("Voer geen lege naam in");
+        else
+            System.out.println("Voer geen lege vraag in");
+        
+    }
 
     // exRemoveExam
     public static void printExRemoveMenu(String examName, String examCategory) {
