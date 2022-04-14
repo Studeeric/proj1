@@ -1,6 +1,4 @@
 package com.logic; import java.util.ArrayList;
-
-import com.ui.AppUI;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
