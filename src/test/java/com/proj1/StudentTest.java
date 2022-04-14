@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class StudentTest {
 
     private Student testStudent;
-    private TestScanner testScanner
+    private TestScanner testScanner;
     
     @BeforeEach
     public void init(){

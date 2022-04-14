@@ -99,7 +99,7 @@ public class Exam{
             boolean passed;
             for (Exam exam : Exam.examList) {
                 passed = false;
-                for(Exam studentExam : student.behaaldeExamens){
+                for(Exam studentExam : subject.behaaldeExamens){
                     if(exam.name.equals(studentExam.name) && exam.questionList.equals(studentExam.questionList)){
                         String examFormat = exam.getName() + " - " + exam.getCategory();
                         ExamUI.printExamColourCoded(examFormat, true);

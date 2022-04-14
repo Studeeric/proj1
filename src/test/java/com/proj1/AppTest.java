@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
   
-  private Student testStudent;
-  private TestScanner testscanner;
+  private static Student testStudent;
+  private TestScanner testScanner;
   
     @BeforeEach
     public void init(){
