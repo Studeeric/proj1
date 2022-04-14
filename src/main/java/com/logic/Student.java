@@ -54,7 +54,7 @@ public class Student {
     public static int checkStudentNumber(IScanner scanner) {
         while (true) {
             boolean unique = true;
-            int nummer = studentNumberStrToInt(scanner);
+            int nummer = studentNumberToInt(scanner);
             for (Student student : studentList) {
                 if (student.getStudentNumber() == nummer) {
                     unique = false;
@@ -90,7 +90,7 @@ public class Student {
      * @param scanner
      * @return int
     */
-    public static int studentNumberStrToInt(IScanner scanner){
+    public static int studentNumberToInt(IScanner scanner){
         while(true){
             try{
                 StudentUI.printAskNumber(true);

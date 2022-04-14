@@ -8,7 +8,7 @@ public abstract class AppUI extends UI{
   //The method printmainmenu does this
   public static void printMainMenu(){
     UI.clearScreen();
-    printer.print(
+    System.out.println(
       ANSI_CYAN + "1)" + ANSI_RESET + " Lijst met examens" + "\n" +
       ANSI_CYAN + "2)" + ANSI_RESET + " Lijst met studenten" + "\n" +
       ANSI_CYAN + "3)" + ANSI_RESET + " Nieuwe student inschrijven" + "\n" +

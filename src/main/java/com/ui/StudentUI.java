@@ -7,11 +7,11 @@ public  class StudentUI extends UI {
     private StudentUI(){} //private constructor means no objects can be made of this class
 
     public static void printNumExist(){
-        printer.print("Studentnummer bestaat al. Kies een ander nummer.");
+        System.out.println("Studentnummer bestaat al. Kies een ander nummer.");
     }
 
     public static void printStudentMadeSuc(String name) {
-        printer.print(name + " is toegevoegd aan de student lijst.");
+        System.out.println(name + " is toegevoegd aan de student lijst.");
     }
 
     public static void printStudentRemove(boolean succes) {
@@ -24,7 +24,7 @@ public  class StudentUI extends UI {
     }
     
     public static void printNumInv() {
-        printer.print("Studentnummer is niet geldig. Kies een ander nummer");
+        System.out.println("Studentnummer is niet geldig. Kies een ander nummer");
     }
 
     /**
