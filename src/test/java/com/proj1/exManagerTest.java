@@ -19,6 +19,7 @@ public class exManagerTest {
         assertEquals(1, Exam.examList.size());
         assertEquals(examen.getName(), examName);
         Rescanner.clear();
+        Exam.examList.clear();
     }
 
     @Test
