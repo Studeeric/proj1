@@ -23,7 +23,7 @@ public abstract class Init {
         }
     }
     
-    /* Legacy code
+    /*TODO Legacy code
     private static void legacyInit(boolean usethis){
         if(usethis){
             Exam rekenen = new Exam("Rekenen voor beginners", "Rekenen");

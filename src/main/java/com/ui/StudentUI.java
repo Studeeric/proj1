@@ -66,6 +66,10 @@ public  class StudentUI extends UI {
         System.out.println("Indien u wenst te annuleren, voer 0 in.");
         System.out.println("Toets iets anders in om het opnieuw te proberen.");
     }
+
+    public static void printReturnMainMenu(){
+        System.out.println("U keert nu terug naar het hoofdmenu.");
+    }    
     
     public static void printChooseStudent(){
         System.out.println("Kies een student:");
