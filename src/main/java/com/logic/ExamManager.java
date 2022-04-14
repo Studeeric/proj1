@@ -59,7 +59,7 @@ abstract public class ExamManager {
             exAddQuestion(exManagerCreated,scanner);
         }
         exManagerUI.printExAddOptions(false);
-        Debug.wait(2,true);
+        Debug.wait(1,true);
     }
 
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
@@ -156,8 +156,10 @@ abstract public class ExamManager {
                     for(Question question : exam.questionList){
                         exManagerUI.printExAddQLoop(true, null,counter);
                         exManagerUI.printExAddQuestVars(question.questionPrompt,false);
+                        counter = 1;
                         for(String content : question.questionContents){
-                            exManagerUI.printExAddQLoop(false, content,0);
+                            exManagerUI.printExAddQLoop(false, content,counter);
+                            counter++;
                         }
                         exManagerUI.printExAddQuestVars(question.questionAnswer,true);
                         counter++;

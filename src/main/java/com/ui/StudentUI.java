@@ -1,6 +1,7 @@
 package com.ui;
 import java.util.ArrayList;
 
+import com.logic.Exam;
 import com.logic.Student;
 public  class StudentUI extends UI {
 
@@ -78,11 +79,11 @@ public  class StudentUI extends UI {
     public static void printMostPassed(int a, int mostExamPassed, ArrayList<String> nameMostPassed, int n){
         switch(a){
             case(1):
-                System.out.println(nameMostPassed.get(0) + " heeft maar liefst " + mostExamPassed + " examens gehaald.");
+                System.out.println(nameMostPassed.get(0) + " heeft maar liefst " + mostExamPassed + " van de "+Exam.examList.size()+" examens gehaald.");
                 break;
             case(2):
-                System.out.println("Er zijn "+ nameMostPassed.size() + " Studenten die allemaal de meeste examens gehaald hebben.");
-                System.out.println("");
+                System.out.println("Er zijn "+ nameMostPassed.size() + " Studenten die allemaal "+mostExamPassed+" examens gehaald hebben.");
+                System.out.println();
                 break;
             case(3):
                 System.out.print(nameMostPassed.get(n));
@@ -92,7 +93,7 @@ public  class StudentUI extends UI {
                 break;
             case(5):
                 System.out.print(" hebben allemaal " + mostExamPassed + " examens behaald.");
-                System.out.println("");
+                System.out.println();
                 break;
             default:
                 break;

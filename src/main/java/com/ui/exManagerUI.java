@@ -112,7 +112,8 @@ public class exManagerUI extends UI{
         if(vraag)
             System.out.println("Vraag: " + counter);
         else
-            System.out.println(content);
+            if (counter !=0)
+                System.out.println(counter+") "+content);
     }
     public static void printExAddQuestVars(String text, boolean emptyline) {
         System.out.println(text);
@@ -168,7 +169,7 @@ public class exManagerUI extends UI{
         System.out.println();
         for(int i=1;i<contents.size();i++){
             if(numbered){
-                System.out.println((i)+" "+contents.get(i));
+                System.out.println((i)+") "+contents.get(i));
             }
             else{
             System.out.println(contents.get(i));
