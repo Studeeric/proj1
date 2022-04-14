@@ -2,14 +2,7 @@ package com.logic; import java.util.ArrayList;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
-/*
-=======Class Explanation=======
-This class manages creating, deleting & editing exams and the questions in them.
-Thanks for coming to my TED talk.
-*/
-//TODO Nog steeds buggy bij exAddQuestion
-// question prompt is printed when asked for the right option in exGetQuestContent
-// Fixed the question prompt thingy but the right answer selection doesn't work right and its 0:23 AM
+
 
 /**
  * This class manages creating, deleting & editing exams and the questions in them.
@@ -270,8 +263,12 @@ abstract public class ExamManager {
         }
         UI.clearScreen();
         exManagerUI.printExGetQuestCt(3);
-        exManagerUI.exPrintQuestArray(exQuestContents,true);
-        exQuestContents.add(scanner.nextLine());
+        exManagerUI.exPrintNewQuestArray(exQuestContents,true);
+        String questAnswer = scanner.nextLine();
+        while(questAnswer.equals("") || Integer.parseInt(questAnswer)>exQuestContents.size()){
+            questAnswer = scanner.nextLine();
+        }
+        exQuestContents.add(questAnswer);
         return exQuestContents;
     }
 

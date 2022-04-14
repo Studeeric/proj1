@@ -163,4 +163,15 @@ public class exManagerUI extends UI{
             }
         }
     }
+    public static void exPrintNewQuestArray(ArrayList<String> contents,boolean numbered) {
+        System.out.println();
+        for(int i=1;i<contents.size()-1;i++){
+            if(numbered){
+                System.out.println((i+1)+" "+contents.get(i));
+            }
+            else{
+            System.out.println(contents.get(i));
+            }
+        }
+    }
 }

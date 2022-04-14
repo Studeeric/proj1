@@ -55,8 +55,10 @@ public class Exam{
         }
         if (correct >= ((currentQuestions.size()-1)/2+1)){ //Examens met een oneven aantal vragen zijn gehaald wanneer het meerendeel goed beantwoord wordt
             examResult(student, correct, true);
+            App.pauseMenu(scanner);
         } else {
             examResult(student, correct, false);
+            App.pauseMenu(scanner);
         }
     }
 
