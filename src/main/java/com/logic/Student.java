@@ -70,8 +70,8 @@ public class Student {
             if (unique) {
                 if (nummer < 0 || nummer > 99999999) {
                     StudentUI.printTryAgain();
-                    if (scanner.nextLine().equals("-1")) {
-                        StudentUI.printNumInv();
+                    if (scanner.nextLine().equals("0")) {
+                        // StudentUI.printNumInv();
                         StudentUI.printReturnMainMenu();
                         App.pauseMenu(scanner);
                         return 0;
@@ -102,27 +102,27 @@ public class Student {
         }
     }
 
-    public static void deleteStudent(IScanner scanner){
-        while (true){
+    public static void deleteStudent(IScanner scanner) {
+        while (true) {
             UI.clearScreen();
             StudentUI.printAllStudents(true);
             StudentUI.printChooseStudent();
             int userRemoveStudentChoice;
-            try {
-                userRemoveStudentChoice = Integer.parseInt(scanner.nextLine());
-                if (userRemoveStudentChoice == 0){
+            userRemoveStudentChoice = scanner.nextInt();
+            if (userRemoveStudentChoice >= 0 && userRemoveStudentChoice <= Student.studentList.size()) {
+                if (userRemoveStudentChoice == 0) {
                     break;
                 } else {
-                    Student.studentList.set((userRemoveStudentChoice-1),null);
-                    Student.studentList.remove(userRemoveStudentChoice-1);
+                    Student.studentList.set((userRemoveStudentChoice - 1), null);
+                    Student.studentList.remove(userRemoveStudentChoice - 1);
                     StudentUI.printStudentRemove(true);
                     App.pauseMenu(scanner);
                 }
-            } catch (NumberFormatException e){
+            } else {
                 StudentUI.printStudentRemove(false);
                 App.pauseMenu(scanner);
             }
-        }    
+        }
     }
 
     public static void studentMostPassed(IScanner scanner){
