@@ -20,7 +20,7 @@ abstract public class ExamManager {
                     exNewExam(scanner);
                     break;
                 case("2"):
-                    exRemoveExam(scanner, exChooseExamIndex(scanner,false));
+                    exRemoveExam(scanner, exChooseExamIndex(scanner,true));
                     break;
                 case("3"):
                     exEditExam(scanner);
@@ -63,21 +63,23 @@ abstract public class ExamManager {
 
     public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
         UI.clearScreen();
-        exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
-        exRemoveLoop: while (true){
-            switch(scanner.nextLine()){
-                case("1"):
-                    Exam.examList.remove(exToBeRemoved);
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                case("0"):
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                default:
-                exManagerUI.printExRemoveDefaultError();
-                    break;
-            }
-        }   
+        if(exToBeRemoved != -1){
+            exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
+            exRemoveLoop: while (true){
+                switch(scanner.nextLine()){
+                    case("1"):
+                        Exam.examList.remove(exToBeRemoved);
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    case("0"):
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    default:
+                    exManagerUI.printExRemoveDefaultError();
+                        break;
+                }
+            }   
+        }
     }
 
     public static void exEditExam(IScanner scanner) {
@@ -197,6 +199,7 @@ abstract public class ExamManager {
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
+        UI.clearScreen();
         Exam.printAllExams(scanner);
         if(exit){
             exManagerUI.printExEditQuestionList();
