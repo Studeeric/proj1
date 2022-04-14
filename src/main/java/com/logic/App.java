@@ -217,7 +217,7 @@ public class App {
                 default:
                     UI.clearScreen();
                     AppUI.printChooseValidOption(6);
-                    break;
+                    return false;
             }      
         }
     }
