@@ -205,25 +205,31 @@ public class App {
     }
 
     //studentGegevensAfwezig
-    public static boolean studentGegevensAfwezig(IScanner scanner){
-        AppUI.studentGegevensAfwezigMessage();
-        while (true){
+    public static boolean studentGegevensAfwezig(IScanner scanner) {
+        while (true) {
+            AppUI.studentGegevensAfwezigMessage();
             int studentNotFoundKeuze = scanner.nextInt();
-            switch(studentNotFoundKeuze){
-                case 1:
-                    UI.clearScreen();
-                    return true;
-                case 2:
+            if (studentNotFoundKeuze >= 0 && studentNotFoundKeuze < 3) {
+                switch (studentNotFoundKeuze) {
+                    case 1:
+                        UI.clearScreen();
+                        return true;
+                    case 2:
+                        UI.clearScreen();
+                        Student.newStudent(scanner);
+                        return true;
+                    case 0:
+                        return false;
+                    default:
+                        UI.clearScreen();
+                        AppUI.printChooseValidOption(6);
+                        return false;
+                }
+            } else {
+                AppUI.printChooseValidOption(1);
+                pauseMenu(scanner);
                 UI.clearScreen();
-                    Student.newStudent(scanner);
-                    return true;
-                case 0: 
-                    return false;
-                default:
-                    UI.clearScreen();
-                    AppUI.printChooseValidOption(6);
-                    return false;
-            }      
+            }
         }
     }
 }
