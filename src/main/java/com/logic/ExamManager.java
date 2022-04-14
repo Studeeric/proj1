@@ -2,14 +2,11 @@ package com.logic; import java.util.ArrayList;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
-/*
-=======Class Explanation=======
-This class manages creating, deleting & editing exams and the questions in them.
-Thanks for coming to my TED talk.
-*/
-//TODO Nog steeds buggy bij exAddQuestion
-// question prompt is printed when asked for the right option in exGetQuestContent
 
+
+/**
+ * This class manages creating, deleting & editing exams and the questions in them.
+ */
 abstract public class ExamManager {
 
     private ExamManager(){} //private constructor means no objects can be made of this class
@@ -45,8 +42,16 @@ abstract public class ExamManager {
     public static void exNewExam(IScanner scanner) {
         exManagerUI.printExExamInput(true);
         String newExName = scanner.nextLine();
+        while(newExName.equals("")){
+            exManagerUI.printExExamInputError(true);
+            newExName = scanner.nextLine();
+        }
         exManagerUI.printExExamInput(false);
         String newExCat = scanner.nextLine();
+        while(newExCat.equals("")){
+            exManagerUI.printExExamInputError(false);
+            newExCat = scanner.nextLine();
+        }
         Exam exManagerCreated = new Exam(newExName, newExCat);
         exManagerUI.printExAddOptions(true);
         if(scanner.nextLine().equals("1")){
@@ -105,8 +110,8 @@ abstract public class ExamManager {
             else{break exEditMainLoop;}
         } 
     }
- 
-    /* Legacy Code
+    //TODO Legacy code. 
+    /*
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -129,9 +134,9 @@ abstract public class ExamManager {
             exManagerUI.printExEditQuestionEditConfirm();
             App.pauseMenu(scanner);
         }
+
     }
     */
-
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
         exManagerUI.printExEditQuestionEditQuestion(true);
         for(int i = 0; i< exActualExam.questionList.size();i++){
@@ -151,7 +156,7 @@ abstract public class ExamManager {
             exChosenQuestList.set(exUserEditChoice, scanner.nextLine());
             exNewFormatQuestion(exChosenQuest, exChosenQuestList);
             exManagerUI.printExEditQuestionEditConfirm();
-        }   
+        }
     }
 
     //Support methods
@@ -202,7 +207,12 @@ abstract public class ExamManager {
                     exActualExam.questionList.remove(exToBeRemoved);
                     exManagerUI.printExRemoveQuestReturn(true);
                     break exRemoveQuestLoop;
-                case("0"):
+                case("n"):
+                case("N"):
+                case("no"):
+                case("No"):
+                case("nee"):
+                case("Nee"):
                     exManagerUI.printExRemoveQuestReturn(false);
                     break exRemoveQuestLoop;
                 default:
@@ -234,7 +244,12 @@ abstract public class ExamManager {
     public static ArrayList<String> exGetQuestCont(IScanner scanner) {
         ArrayList<String> exQuestContents = new ArrayList<>();
         exManagerUI.printExGetQuestCt(1);
-        exQuestContents.add(scanner.nextLine());
+        String questPrompt = scanner.nextLine();
+        while(questPrompt.equals("")){
+            exManagerUI.printExExamInputError(false);
+            questPrompt = scanner.nextLine();
+        }
+        exQuestContents.add(questPrompt);
         exGetQuestLoop: while (true){
             exManagerUI.printExGetQuestCt(2);
             String exUserChoice = scanner.nextLine();
@@ -248,8 +263,12 @@ abstract public class ExamManager {
         }
         UI.clearScreen();
         exManagerUI.printExGetQuestCt(3);
-        exManagerUI.exPrintQuestArray(exQuestContents,true);
-        exQuestContents.add(scanner.nextLine());
+        exManagerUI.exPrintNewQuestArray(exQuestContents,true);
+        String questAnswer = scanner.nextLine();
+        while(questAnswer.equals("") || Integer.parseInt(questAnswer)>exQuestContents.size()){
+            questAnswer = scanner.nextLine();
+        }
+        exQuestContents.add(questAnswer);
         return exQuestContents;
     }
 
