@@ -6,24 +6,32 @@ import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
+    static TestScanner testScanner = new TestScanner();
     Student testStudent = new Student("Geerd", 21000321);
-    
-    //test of die de naam krijgt
+    /**Test het toevoegen van een student */
     @Test
-    public void testGetName(){
+    public void testNewStudent(){
+        // Test of de naam goed doorkomt
         String testName = "Geerd";
-
+        String foutTestName = "Lucas";
         assertEquals(testName, testStudent.getName());
-    }
+        assertNotEquals(foutTestName, testStudent.getStudentNumber());
 
-    //test of het StudentNumber goed door komt
-    @Test
-    public void testGetStudentNumber(){
+        // Test of de studentnumber correct doorkomt
         int testStudentNumber = 21000321;
-        int foutTestStudentNumber  = 21045678;
-
+        int foutTestStudentNumber = 21045678;
         assertEquals(testStudentNumber, testStudent.getStudentNumber());
         assertNotEquals(foutTestStudentNumber, testStudent.getStudentNumber());
+    }
+
+    /**Checkt of studentnumber goed doorkomt */
+    @Test
+    public void testNewStudent2(){
+        testScanner.setInt(21000321);
+        testScanner.setString("2100321");
+        int testStudentNumber = 21000321;
+        Student.newStudent(testScanner);
+        assertEquals(testStudentNumber, testStudent.getStudentNumber());
     }
 
     //test of de student verwijderd word

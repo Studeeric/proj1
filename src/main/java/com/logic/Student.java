@@ -85,7 +85,6 @@ public class Student {
     }
 
     /**Asks studentnumber and tries to turn the string into an int.
-     * 
      * @param scanner
      * @return int
     */

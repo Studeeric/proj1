@@ -1,27 +1,41 @@
 package com.proj1;
 
 import com.logic.App;
-import com.logic.Exam;
 import com.logic.Student;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class AppTest{
 
-        TestScanner testScanner = new TestScanner();
-        Student testStudent = new Student("Geerd", 21000321);
-    
-    public void testStudentGegevensAanwezig(){
+    static TestScanner testScanner = new TestScanner();
+    static Student testStudent = new Student("Geerd", 21000321);
 
+    /** Test alle opties bij studentgegevensafwezig en kijkt of de juiste respons word gegeven */
+    @Test
+    public void testStudentGegevensAfwezig(){
+        testScanner.setInt(1);
+        assertEquals(true, App.studentGegevensAfwezig(testScanner));
+
+        testScanner.setInt(2);
+        assertEquals(true, App.studentGegevensAfwezig(testScanner));
+
+        testScanner.setInt(0);
+        assertEquals(false, App.studentGegevensAfwezig(testScanner));
+
+        testScanner.setInt(10);
+        assertEquals(false, App.studentGegevensAfwezig(testScanner));
     }
 
     /**Test of de studentnumber goed wordt teruggegeven als deze wel in de lijst staat */
     @Test
     public void testAskStudentNumber(){
+        //als de studentnumber wel in de lijst zit
         testScanner.setInt(21000321);
         assertEquals(21000321, App.askStudentNumber(testScanner));
+
+        //als de studentnumber niet in de lijst zit
+        testScanner.setInt(0);
+        assertEquals(-1, App.askStudentNumber(testScanner));
     }
 } 

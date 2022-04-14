@@ -89,6 +89,7 @@ public class Exam{
             }
         }
     }
+    
     public static void printAllExamsColourCoded(IScanner scanner, Student subject) {
         if (examList.isEmpty()){
             ExamUI.printNoExams();

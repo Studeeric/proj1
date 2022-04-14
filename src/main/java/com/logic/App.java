@@ -195,8 +195,7 @@ public class App {
             }
             if(!studentGegevensAfwezig(scanner)){
                 return -1;
-            }
-            
+            }  
         }
     }
 
