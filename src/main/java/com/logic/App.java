@@ -60,6 +60,7 @@ public class App {
                         break mainMenuLoop;
                     default:
                         AppUI.printChooseValidOption(1);
+                        pauseMenu(james);
                         break;
                 }
             } catch (Exception e) {
