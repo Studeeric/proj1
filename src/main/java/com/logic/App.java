@@ -161,7 +161,7 @@ public class App {
                 if (examNummer == 0) {
                     break ExamensLoop;
                 }
-                if (examNummer <= Exam.examList.size() && examNummer >= Exam.examList.size()) {
+                if (examNummer <= Exam.examList.size() || examNummer >= Exam.examList.size()) {
                     Exam.examList.get(examNummer - 1).startExam(student, scanner);
                 } else {
                     AppUI.printChooseValidOption(5);
