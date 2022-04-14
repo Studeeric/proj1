@@ -1,4 +1,6 @@
 package com.logic; import java.util.ArrayList;
+
+import com.ui.AppUI;
 import com.ui.UI;
 import com.ui.exManagerUI;
 
@@ -83,7 +85,7 @@ abstract public class ExamManager {
     public static void exEditExam(IScanner scanner) {
         UI.clearScreen();
         exEditMainLoop: while(true){
-            exManagerUI.printExEditQuestionEditQuestion(true);
+            // exManagerUI.printExEditQuestionEditQuestion(true);
             int exIndex = exChooseExamIndex(scanner,true);
             if(exIndex != -1){
                 Exam exActualExam = Exam.examList.get(exIndex);
@@ -143,7 +145,7 @@ abstract public class ExamManager {
             exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
         }
         exManagerUI.printExEditQuestionList();
-        int exUserEditChoice = Integer.parseInt(scanner.nextLine())-1;
+        int exUserEditChoice = scanner.nextInt()-1;
         if(exUserEditChoice != -1){
             Question exChosenQuest = exActualExam.questionList.get(exUserEditChoice);
             ArrayList<String> exChosenQuestList = new ArrayList<>(exConvertToList(exChosenQuest));
@@ -223,22 +225,22 @@ abstract public class ExamManager {
     }
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
-        Exam.printAllExams(scanner);
-        if(exit){
-            exManagerUI.printExEditQuestionList();
-        }
-        Integer examNr;
-        while (true){
-            String exChooseExChoice = scanner.nextLine();
-            try{
-                examNr = Integer.parseInt(exChooseExChoice);
-                break;
+        while (true) {
+            exManagerUI.printExEditQuestionEditQuestion(true);
+            Exam.printAllExams(scanner);
+            if (exit) {
+                exManagerUI.printExEditQuestionList();
             }
-            catch(Exception e){
-                exManagerUI.printExReturnMainMenu(false);
+
+            int examNr = scanner.nextInt();
+            if (examNr >= 0 && examNr < Exam.examList.size()) {
+                return (examNr - 1);
+            } else {
+                AppUI.printChooseValidOption(1);
+                App.pauseMenu(scanner);
+                UI.clearScreen();
             }
         }
-        return examNr-1;
     }
 
     public static ArrayList<String> exGetQuestCont(IScanner scanner) {

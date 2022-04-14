@@ -147,7 +147,7 @@ public class Student {
         } else {
             StudentUI.printMostPassed(2, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
             for (int n = 0; n < namenStudentenMetMostPassed.size(); n++){
-                StudentUI.printMostPassed(3, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, 0);
+                StudentUI.printMostPassed(3, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, n);
                 if (n < (namenStudentenMetMostPassed.size()-1)){
                     StudentUI.printMostPassed(4, meesteNrBehaaldeExamens, namenStudentenMetMostPassed, n);
                 }
