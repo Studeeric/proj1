@@ -63,21 +63,28 @@ abstract public class ExamManager {
         Debug.wait(2,true);
     }
 
-    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {
-        UI.clearScreen();
-        exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
+    public static void exRemoveExam(IScanner scanner,int exToBeRemoved) {       
         exRemoveLoop: while (true){
-            switch(scanner.nextLine()){
-                case("1"):
-                    Exam.examList.remove(exToBeRemoved);
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                case("0"):
-                    exManagerUI.printExRemoveReact(true);
-                    break exRemoveLoop;
-                default:
-                exManagerUI.printExRemoveDefaultError();
-                    break;
+            if (exToBeRemoved >= 0 && exToBeRemoved <= Exam.examList.size()) {
+                UI.clearScreen();        
+                exManagerUI.printExRemoveMenu(Exam.examList.get(exToBeRemoved).getName(),Exam.examList.get(exToBeRemoved).getCategory());
+                switch (scanner.nextLine()) {
+                    case ("1"):
+                        Exam.examList.remove(exToBeRemoved);
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    case ("0"):
+                        exManagerUI.printExRemoveReact(true);
+                        break exRemoveLoop;
+                    default:
+                        exManagerUI.printExRemoveDefaultError();
+                        break;
+                }
+            } else {
+                exManagerUI.printExReturnMainMenu(true);
+                App.pauseMenu(scanner);
+                UI.clearScreen();
+                exToBeRemoved = exChooseExamIndex(scanner,false);
             }
         }   
     }
@@ -85,7 +92,7 @@ abstract public class ExamManager {
     public static void exEditExam(IScanner scanner) {
         UI.clearScreen();
         exEditMainLoop: while(true){
-            // exManagerUI.printExEditQuestionEditQuestion(true);
+            exManagerUI.printExEditQuestionEditQuestion(true);
             int exIndex = exChooseExamIndex(scanner,true);
             if(exIndex != -1){
                 Exam exActualExam = Exam.examList.get(exIndex);
@@ -226,14 +233,13 @@ abstract public class ExamManager {
 
     public static int exChooseExamIndex(IScanner scanner, boolean exit) {
         while (true) {
-            exManagerUI.printExEditQuestionEditQuestion(true);
             Exam.printAllExams(scanner);
             if (exit) {
                 exManagerUI.printExEditQuestionList();
             }
 
             int examNr = scanner.nextInt();
-            if (examNr >= 0 && examNr < Exam.examList.size()) {
+            if (examNr >= 0 && examNr <= Exam.examList.size()) {
                 return (examNr - 1);
             } else {
                 AppUI.printChooseValidOption(1);
