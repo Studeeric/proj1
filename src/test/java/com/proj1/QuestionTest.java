@@ -26,7 +26,6 @@ public class QuestionTest {
         testQuestion.questionAnswer = "1";
         assertTrue(testQuestion.checkAnswer("1"));
         assertFalse(testQuestion.checkAnswer("2"));
-
     }
 
     @Test
@@ -36,7 +35,5 @@ public class QuestionTest {
         String contents = testQuestion.contentsInString();
         assertEquals(":testText2:Banaan", contents);
         testQuestion.questionContents.clear();
-    }
-   
+    }  
 }
-
