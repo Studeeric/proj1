@@ -133,4 +133,8 @@ public abstract class AppUI extends UI{
   public static void printStudentNotFound() {
     System.out.println("StudentNumber unknown, please enter a valid number");
   }
+
+  public static void printStudent(String name, int studentNumber) {
+    System.out.println(name + " - " + studentNumber);
+  }
 }

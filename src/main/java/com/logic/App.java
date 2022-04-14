@@ -70,17 +70,15 @@ public class App {
         }
     }
 
-    // getStudents //TODO Sysout naar UI
+    // getStudents
     private static void getStudents(IScanner scanner) {
         for (Student s : Student.studentList) {
-            System.out.println(s.getName());
+            AppUI.printStudent(s.getName(), s.getStudentNumber());
         }
         pauseMenu(scanner);
     }
     
     //studentExamStatus 
-    // TODO kijken hoe deze gemerged kan worden met develop.
-    // TODO kijken of deze method opgesplitst kan worden.
     // Is dit niet erg dubbelop met studentExamPassed?
     public static void studentExamStatus(IScanner scanner){
         while (true) {
@@ -105,10 +103,7 @@ public class App {
         UI.clearScreen();
     }
 
-    //studentExamPassed
-    // TODO kijken hoe deze gemerged kan worden met develop.
-    // TODO kijken of deze method opgesplitst kan worden.
-    
+    //studentExamPassed    
     public static void studentExamPassed(IScanner scanner){
         int studentNumber = askStudentNumber(scanner);
         boolean studentFound = false;
