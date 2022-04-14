@@ -148,7 +148,7 @@ public class App {
     }
 
     //studentGegevensAanwezig
-    private static void studentGegevensAanwezig(Student student,IScanner scanner){
+    public static void studentGegevensAanwezig(Student student,IScanner scanner){
         try{
             int examNummer;
             ExamensLoop: while (true) {
@@ -188,7 +188,7 @@ public class App {
     }
 
     //askStudentNumber
-    private static int askStudentNumber(IScanner scanner) {
+    public static int askStudentNumber(IScanner scanner) {
         while (true) {
             AppUI.voerXIn("studentnr");
             int input = scanner.nextInt();
@@ -199,8 +199,7 @@ public class App {
             }
             if(!studentGegevensAfwezig(scanner)){
                 return -1;
-            }
-            
+            }  
         }
     }
 
