@@ -8,7 +8,7 @@ public class App {
 
     public static void main( String[] args){
         ScannerV3 scannakin = new ScannerV3();
-        Init.init(false,scannakin);
+        Init.init(args,scannakin);
         mainMenu(scannakin);
         SaveManager.exitSave();
     }

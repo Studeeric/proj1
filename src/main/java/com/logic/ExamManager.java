@@ -76,7 +76,7 @@ abstract public class ExamManager {
                         exManagerUI.printExRemoveReact(true);
                         break exRemoveLoop;
                     default:
-                    exManagerUI.printExRemoveDefaultError();
+                        exManagerUI.printExRemoveDefaultError();
                         break;
                 }
             }   
@@ -119,7 +119,7 @@ abstract public class ExamManager {
     }
   
     public static void exEditQuestion(Exam exActualExam,IScanner scanner) {
-        exManagerUI.printExEditQuestionEditQuestion(true);
+        exManagerUI.printExEditQuestionEditQuestion(false);
         for(int i = 0; i< exActualExam.questionList.size();i++){
             exManagerUI.printExEditQuestionList(i, exActualExam.questionList.get(i).questionPrompt);
         }

@@ -6,7 +6,13 @@ public abstract class Init {
 
     public static String dir = System.getProperty("user.dir")+"\\database\\";
 
-    public static void init(boolean debugMode,IScanner scanner) {
+    public static void init(String[] arguments,IScanner scanner) {
+        boolean debugMode = false;
+        for(String arg : arguments){
+            if(arg.equals("Debug")){
+                debugMode = true;
+            }
+        }
         try{
             File savefile = new File(Init.dir + "\\oldDatabase.Wdf");
             if(!savefile.exists()){
